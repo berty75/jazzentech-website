@@ -177,3 +177,18 @@ input:focus, select:focus, textarea:focus {
   z-index: 999999 !important;
   pointer-events: auto !important;
 }
+
+/* Animations artistiques */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 30s linear infinite;
+}
+
+/* Effet glassmorphism */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
