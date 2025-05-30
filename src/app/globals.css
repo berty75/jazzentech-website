@@ -1,26 +1,179 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables CSS avec VOS couleurs */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --jazz-yellow: #E6A824;
+  --jazz-red: #A8312F;
+  --catalan-amber: #D4941E;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Reset de base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html, body {
+  font-family: 'Inter', system-ui, sans-serif;
+  scroll-behavior: smooth;
+  background-color: #FFFFFF;
+  color: #1F2937;
+}
+
+/* Classes utilitaires avec VOS couleurs */
+@layer utilities {
+  .hero-gradient {
+    background: linear-gradient(135deg, #A8312F 0%, #B85450 100%);
+  }
+  
+  .catalan-soft-gradient {
+    background: linear-gradient(45deg, #E6A824 0%, #F2C55C 50%, #A8312F 100%);
+  }
+  
+  .warm-gradient {
+    background: linear-gradient(to bottom, #FDF7E7 0%, #F5E6D3 100%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Boutons avec VOS couleurs */
+@layer components {
+  .btn-jazz {
+    @apply bg-jazz-yellow text-jazz-red px-6 py-3 rounded-lg font-semibold 
+           hover:bg-jazz-yellow-light transition-colors;
+  }
+
+  .btn-jazz-outline {
+    @apply border-2 border-jazz-yellow text-jazz-yellow px-6 py-3 rounded-lg font-semibold 
+           hover:bg-jazz-yellow hover:text-white transition-colors;
+  }
+}
+
+/* Styles pour le formulaire de contact */
+.focus\:ring-jazz-yellow:focus {
+  --tw-ring-color: #E6A824;
+}
+
+/* Animation du loader */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Transitions douces pour les cards */
+.hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Focus states accessibles */
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #E6A824;
+  outline-offset: 2px;
+}
+
+/* Animations pour les cards de vision */
+.hover\:-translate-y-2:hover {
+  transform: translateY(-0.5rem);
+}
+
+/* Effet prose pour le contenu */
+.prose {
+  max-width: none;
+}
+
+.prose p {
+  margin-bottom: 1.25em;
+}
+
+.prose h2 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+/* Sticky positioning pour la sidebar */
+.sticky {
+  position: sticky;
+}
+
+/* Gradient text effect */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-jazz-red {
+  --tw-gradient-from: #A8312F;
+}
+
+.to-jazz-yellow {
+  --tw-gradient-to: #E6A824;
+}
+
+/* NOUVELLES CLASSES pour sidebar corrigée */
+/* Sidebar spacing amélioré */
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+/* Cards sidebar */
+.sidebar-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Responsive sidebar */
+@media (max-width: 1024px) {
+  .lg\:col-span-1 {
+    margin-top: 2rem;
+  }
+}
+
+/* Amélioration des espacements */
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Cards avec effets améliorés */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Amélioration typography */
+.text-gradient {
+  background: linear-gradient(45deg, #E6A824, #A8312F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* src/app/globals.css - ajoutez à la fin */
+.cookie-banner {
+  z-index: 999999 !important;
+}
+
+.cookie-banner button {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
 }
