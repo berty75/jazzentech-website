@@ -1,27 +1,27 @@
-// src/app/artistes/page.tsx - Version avec format carré sur desktop
+// src/app/artistes/page.tsx - Version responsive avec palette jazz
 import { Calendar, MapPin, Users, Music, Ticket, Play } from 'lucide-react'
 
 export default function Artistes() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="hero-gradient text-white py-16">
+      {/* Hero Section - RESPONSIVE ET COULEURS JAZZ */}
+      <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-jazz-yellow">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
             Nos Artistes
           </h1>
-          <p className="text-lg text-gray-200 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
             Découvrez les talents exceptionnels de cette 10ème édition
           </p>
         </div>
       </section>
 
-      {/* Section Artistes */}
-      <section className="py-16 bg-gray-50">
+      {/* Section Artistes - RESPONSIVE */}
+      <section className="py-8 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           
-          {/* Manu Le Prince */}
-          <div className="max-w-5xl mx-auto mb-12">
+          {/* Manu Le Prince - COULEURS JAZZ CORRIGÉES */}
+          <div className="max-w-5xl mx-auto mb-8 md:mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
@@ -32,28 +32,31 @@ export default function Artistes() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h2 className="text-2xl font-bold">Manu Le Prince</h2>
+                    <h2 className="text-xl md:text-2xl font-bold">Manu Le Prince</h2>
                     <p className="text-sm opacity-90">Quartet « Bossa Jazz for Ever »</p>
                   </div>
                 </div>
 
-                <div className="md:col-span-2 p-6">
-                  <div className="grid md:grid-cols-2 gap-6 h-full">
+                <div className="md:col-span-2 p-4 md:p-6">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6 h-full">
                     <div>
-                      <div className="bg-jazz-yellow bg-opacity-10 rounded-xl p-4 mb-4">
+                      <div 
+                        className="rounded-xl p-3 md:p-4 mb-4"
+                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                      >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 text-jazz-red mr-2" />
-                          <span className="font-bold text-jazz-red">Dim. 27 juillet – 21h</span>
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Dim. 27 juillet – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 text-jazz-yellow mr-2" />
-                          <span className="text-sm text-gray-600">Cloître Saint-Génis-des-Fontaines</span>
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <span className="text-xs md:text-sm text-gray-600">Cloître Saint-Génis-des-Fontaines</span>
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Formation :</h4>
-                        <div className="text-sm text-gray-600 space-y-1">
+                        <h4 className="font-semibold mb-2 text-sm" style={{ color: '#1a1a1a' }}>Formation :</h4>
+                        <div className="text-xs md:text-sm text-gray-600 space-y-1">
                           <div>• <strong>Manu Le Prince</strong> – chant</div>
                           <div>• <strong>Franck Monbaylet</strong> – piano</div>
                           <div>• <strong>Philippe Brassoud</strong> – contrebasse</div>
@@ -64,36 +67,41 @@ export default function Artistes() {
 
                     <div className="flex flex-col justify-between">
                       <div>
-                        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                        <p className="text-gray-700 text-xs md:text-sm leading-relaxed mb-4">
                           Chanteuse sans frontières, <strong>Manu Le Prince</strong> s'est imposée comme 
                           l'une des plus belles voix du Latin Jazz français. Brésilienne de cœur, 
                           elle se partage entre Paris et Rio depuis 30 ans.
                         </p>
                         
-                        <div className="bg-jazz-yellow bg-opacity-10 rounded-lg p-3 mb-4">
-                          <p className="text-xs text-jazz-red font-medium italic">
+                        <div 
+                          className="rounded-lg p-2 md:p-3 mb-4"
+                          style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                        >
+                          <p className="text-xs font-medium italic" style={{ color: '#722f37' }}>
                             "Un trésor de la musique brésilienne conçu en France" – Télérama
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                         <a 
                           href="https://www.youtube.com/watch?v=SKgvTVcQEcU" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
                         >
-                          <Play className="w-4 h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/manu-le-prince-quartet-bossa-jazz-for-ever" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-jazz-yellow text-jazz-red px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-400 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#d4af37', color: '#722f37' }}
                         >
-                          <Ticket className="w-4 h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           Billets
                         </a>
                       </div>
@@ -104,8 +112,8 @@ export default function Artistes() {
             </div>
           </div>
 
-          {/* Florin Gugulica */}
-          <div className="max-w-5xl mx-auto mb-12">
+          {/* Florin Gugulica - COULEURS JAZZ CORRIGÉES */}
+          <div className="max-w-5xl mx-auto mb-8 md:mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
@@ -116,28 +124,31 @@ export default function Artistes() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h2 className="text-2xl font-bold">Florin Gugulica</h2>
+                    <h2 className="text-xl md:text-2xl font-bold">Florin Gugulica</h2>
                     <p className="text-sm opacity-90">Sextet « It's a long Way »</p>
                   </div>
                 </div>
 
-                <div className="md:col-span-2 p-6">
-                  <div className="grid md:grid-cols-2 gap-6 h-full">
+                <div className="md:col-span-2 p-4 md:p-6">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6 h-full">
                     <div>
-                      <div className="bg-jazz-yellow bg-opacity-10 rounded-xl p-4 mb-4">
+                      <div 
+                        className="rounded-xl p-3 md:p-4 mb-4"
+                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                      >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 text-jazz-red mr-2" />
-                          <span className="font-bold text-jazz-red">Lun. 28 juillet – 21h</span>
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Lun. 28 juillet – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 text-jazz-yellow mr-2" />
-                          <span className="text-sm text-gray-600">Cloître Saint-Génis-des-Fontaines</span>
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <span className="text-xs md:text-sm text-gray-600">Cloître Saint-Génis-des-Fontaines</span>
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Formation :</h4>
-                        <div className="text-sm text-gray-600 space-y-1">
+                        <h4 className="font-semibold mb-2 text-sm" style={{ color: '#1a1a1a' }}>Formation :</h4>
+                        <div className="text-xs md:text-sm text-gray-600 space-y-1">
                           <div>• <strong>Florin Gugulica</strong> – clarinette</div>
                           <div>• <strong>José Moléro</strong> – trombone</div>
                           <div>• <strong>Gwenaël Ollivier</strong> – piano</div>
@@ -150,36 +161,41 @@ export default function Artistes() {
 
                     <div className="flex flex-col justify-between">
                       <div>
-                        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                        <p className="text-gray-700 text-xs md:text-sm leading-relaxed mb-4">
                           <strong>Florin Gugulica</strong> nous embarque dans son univers musical aux horizons 
                           multiples : jazz manouche, taraf balkanique, fanfares tziganes... Des musiques 
                           de tous horizons tissées dans son monde intime.
                         </p>
                         
-                        <div className="bg-jazz-yellow bg-opacity-10 rounded-lg p-3 mb-4">
-                          <p className="text-xs text-jazz-red font-medium">
+                        <div 
+                          className="rounded-lg p-2 md:p-3 mb-4"
+                          style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                        >
+                          <p className="text-xs font-medium" style={{ color: '#722f37' }}>
                             Avec Didier Lockwood, Bireli Lagrène, Stochelo Rosenberg...
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                         <a 
                           href="https://www.facebook.com/FestivalJazzenTech/videos/1155459846348417/?ref=embed_video&t=0" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#b87333', color: '#f7f3e9' }}
                         >
-                          <Play className="w-4 h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           Facebook
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/florin-gugulica-sextet-its-a-long-way" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-jazz-yellow text-jazz-red px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-400 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#d4af37', color: '#722f37' }}
                         >
-                          <Ticket className="w-4 h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           Billets
                         </a>
                       </div>
@@ -190,8 +206,8 @@ export default function Artistes() {
             </div>
           </div>
 
-          {/* Stefano Di Battista */}
-          <div className="max-w-5xl mx-auto mb-12">
+          {/* Stefano Di Battista - COULEURS JAZZ CORRIGÉES */}
+          <div className="max-w-5xl mx-auto mb-8 md:mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
@@ -202,28 +218,31 @@ export default function Artistes() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h2 className="text-2xl font-bold">Stefano Di Battista</h2>
+                    <h2 className="text-xl md:text-2xl font-bold">Stefano Di Battista</h2>
                     <p className="text-sm opacity-90">« La Dolce Vita »</p>
                   </div>
                 </div>
 
-                <div className="md:col-span-2 p-6">
-                  <div className="grid md:grid-cols-2 gap-6 h-full">
+                <div className="md:col-span-2 p-4 md:p-6">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6 h-full">
                     <div>
-                      <div className="bg-jazz-yellow bg-opacity-10 rounded-xl p-4 mb-4">
+                      <div 
+                        className="rounded-xl p-3 md:p-4 mb-4"
+                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                      >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 text-jazz-red mr-2" />
-                          <span className="font-bold text-jazz-red">Jeu. 7 août – 21h</span>
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Jeu. 7 août – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 text-jazz-yellow mr-2" />
-                          <span className="text-sm text-gray-600">Place de la République – Céret</span>
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <span className="text-xs md:text-sm text-gray-600">Place de la République – Céret</span>
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Formation :</h4>
-                        <div className="text-sm text-gray-600 space-y-1">
+                        <h4 className="font-semibold mb-2 text-sm" style={{ color: '#1a1a1a' }}>Formation :</h4>
+                        <div className="text-xs md:text-sm text-gray-600 space-y-1">
                           <div>• <strong>Stefano Di Battista</strong> – saxophone</div>
                           <div>• <strong>Fred Nardin</strong> – piano</div>
                           <div>• <strong>Daniel Sorrentino</strong> – contrebasse</div>
@@ -235,36 +254,41 @@ export default function Artistes() {
 
                     <div className="flex flex-col justify-between">
                       <div>
-                        <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                        <p className="text-gray-700 text-xs md:text-sm leading-relaxed mb-4">
                           Amoureux de la mélodie, magicien du timbre, <strong>Stefano Di Battista</strong> 
                           fait résonner les thèmes de Paolo Conte, Andrea Bocelli, Lucio Dalla... 
                           Un univers de passion, style et beauté italienne.
                         </p>
                         
-                        <div className="bg-jazz-yellow bg-opacity-10 rounded-lg p-3 mb-4">
-                          <p className="text-xs text-jazz-red font-medium">
+                        <div 
+                          className="rounded-lg p-2 md:p-3 mb-4"
+                          style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                        >
+                          <p className="text-xs font-medium" style={{ color: '#722f37' }}>
                             Avec Michel Petrucciani, Enrico Rava, Aldo Romano...
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                         <a 
                           href="https://www.youtube.com/watch?v=Gjh-v425HPQ" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
                         >
-                          <Play className="w-4 h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-jazz-yellow text-jazz-red px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-400 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#d4af37', color: '#722f37' }}
                         >
-                          <Ticket className="w-4 h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           Billets
                         </a>
                       </div>
@@ -275,8 +299,8 @@ export default function Artistes() {
             </div>
           </div>
 
-          {/* Jacky Terrasson & Camille Bertault */}
-          <div className="max-w-5xl mx-auto mb-12">
+          {/* Jacky Terrasson & Camille Bertault - COULEURS JAZZ CORRIGÉES */}
+          <div className="max-w-5xl mx-auto mb-8 md:mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
@@ -287,28 +311,31 @@ export default function Artistes() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h2 className="text-xl font-bold">Jacky Terrasson</h2>
+                    <h2 className="text-lg md:text-xl font-bold">Jacky Terrasson</h2>
                     <p className="text-sm opacity-90">Trio « Moving On » + Camille Bertault</p>
                   </div>
                 </div>
 
-                <div className="md:col-span-2 p-6">
-                  <div className="grid md:grid-cols-2 gap-6 h-full">
+                <div className="md:col-span-2 p-4 md:p-6">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6 h-full">
                     <div>
-                      <div className="bg-jazz-yellow bg-opacity-10 rounded-xl p-4 mb-4">
+                      <div 
+                        className="rounded-xl p-3 md:p-4 mb-4"
+                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                      >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 text-jazz-red mr-2" />
-                          <span className="font-bold text-jazz-red">Ven. 8 août – 21h</span>
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Ven. 8 août – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 text-jazz-yellow mr-2" />
-                          <span className="text-sm text-gray-600">Place de la République – Céret</span>
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <span className="text-xs md:text-sm text-gray-600">Place de la République – Céret</span>
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Formation :</h4>
-                        <div className="text-sm text-gray-600 space-y-1">
+                        <h4 className="font-semibold mb-2 text-sm" style={{ color: '#1a1a1a' }}>Formation :</h4>
+                        <div className="text-xs md:text-sm text-gray-600 space-y-1">
                           <div>• <strong>Jacky Terrasson</strong> – piano</div>
                           <div>• <strong>Sylvain Romano</strong> – contrebasse</div>
                           <div>• <strong>Lukmil Perez</strong> – batterie</div>
@@ -319,35 +346,40 @@ export default function Artistes() {
 
                     <div className="flex flex-col justify-between">
                       <div>
-                        <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                        <p className="text-gray-700 text-xs md:text-sm leading-relaxed mb-3">
                           Prix Thelonious Monk 1993, <strong>Jacky Terrasson</strong> « le plus voyageur des pianistes » 
                           invite <strong>Camille Bertault</strong>, Victoire du Jazz 2023, pour un quartet d'exception.
                         </p>
                         
-                        <div className="bg-jazz-yellow bg-opacity-10 rounded-lg p-2 mb-4">
-                          <p className="text-xs text-jazz-red font-medium">
+                        <div 
+                          className="rounded-lg p-2 mb-4"
+                          style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                        >
+                          <p className="text-xs font-medium" style={{ color: '#722f37' }}>
                             « Un sens du rythme stupéfiant, une justesse infaillible » – Jazz Magazine
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                         <a 
                           href="https://www.youtube.com/watch?v=HX0ASXAHf2Y" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
                         >
-                          <Play className="w-4 h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-jazz-yellow text-jazz-red px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-400 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#d4af37', color: '#722f37' }}
                         >
-                          <Ticket className="w-4 h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           Billets
                         </a>
                       </div>
@@ -358,8 +390,8 @@ export default function Artistes() {
             </div>
           </div>
 
-          {/* Charlotte Planchou */}
-          <div className="max-w-5xl mx-auto mb-12">
+          {/* Charlotte Planchou - COULEURS JAZZ CORRIGÉES */}
+          <div className="max-w-5xl mx-auto mb-8 md:mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
@@ -370,28 +402,31 @@ export default function Artistes() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h2 className="text-xl font-bold">Charlotte Planchou</h2>
+                    <h2 className="text-lg md:text-xl font-bold">Charlotte Planchou</h2>
                     <p className="text-sm opacity-90">Quartet</p>
                   </div>
                 </div>
 
-                <div className="md:col-span-2 p-6">
-                  <div className="grid md:grid-cols-2 gap-6 h-full">
+                <div className="md:col-span-2 p-4 md:p-6">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6 h-full">
                     <div>
-                      <div className="bg-jazz-yellow bg-opacity-10 rounded-xl p-4 mb-4">
+                      <div 
+                        className="rounded-xl p-3 md:p-4 mb-4"
+                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                      >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 text-jazz-red mr-2" />
-                          <span className="font-bold text-jazz-red">Sam. 9 août – 21h</span>
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Sam. 9 août – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 text-jazz-yellow mr-2" />
-                          <span className="text-sm text-gray-600">Place de la République – Céret</span>
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <span className="text-xs md:text-sm text-gray-600">Place de la République – Céret</span>
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2 text-sm">Formation :</h4>
-                        <div className="text-sm text-gray-600 space-y-1">
+                        <h4 className="font-semibold mb-2 text-sm" style={{ color: '#1a1a1a' }}>Formation :</h4>
+                        <div className="text-xs md:text-sm text-gray-600 space-y-1">
                           <div>• <strong>Charlotte Planchou</strong> – voix</div>
                           <div>• <strong>Dexter Goldberg</strong> – piano</div>
                           <div>• <strong>Thomas Posner</strong> – contrebasse</div>
@@ -399,11 +434,14 @@ export default function Artistes() {
                         </div>
                       </div>
 
-                      <div className="bg-jazz-red bg-opacity-10 rounded-lg p-3">
-                        <p className="text-xs text-jazz-red font-bold">
+                      <div 
+                        className="rounded-lg p-2 md:p-3"
+                        style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}
+                      >
+                        <p className="text-xs font-bold" style={{ color: '#722f37' }}>
                           🏆 Prix Évidence de l'Académie du Jazz
                         </p>
-                        <p className="text-xs text-jazz-red">
+                        <p className="text-xs" style={{ color: '#722f37' }}>
                           (Révélation de l'année) – Mars 2025
                         </p>
                       </div>
@@ -411,36 +449,41 @@ export default function Artistes() {
 
                     <div className="flex flex-col justify-between">
                       <div>
-                        <p className="text-gray-700 text-sm leading-relaxed mb-3">
+                        <p className="text-gray-700 text-xs md:text-sm leading-relaxed mb-3">
                           « Une chanteuse pas comme les autres » (Jazz Magazine) clôturera le festival. 
                           De l'opéra au jazz, elle puise chez Ella Fitzgerald, Nina Simone, Léo Ferré, 
                           Gainsbourg...
                         </p>
                         
-                        <div className="bg-jazz-yellow bg-opacity-10 rounded-lg p-2 mb-4">
-                          <p className="text-xs text-jazz-red font-medium italic">
+                        <div 
+                          className="rounded-lg p-2 mb-4"
+                          style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                        >
+                          <p className="text-xs font-medium italic" style={{ color: '#722f37' }}>
                             « Une heure de musique gracieuse et habitée, ça ne se refuse pas » – Jazz Magazine
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
                         <a 
                           href="https://www.youtube.com/watch?v=5k4eWo9HHZ4" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
                         >
-                          <Play className="w-4 h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center bg-jazz-yellow text-jazz-red px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-400 transition-colors"
+                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          style={{ backgroundColor: '#d4af37', color: '#722f37' }}
                         >
-                          <Ticket className="w-4 h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                           Billets
                         </a>
                       </div>
@@ -454,22 +497,23 @@ export default function Artistes() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 catalan-soft-gradient text-white">
+      {/* CTA Section - COULEURS JAZZ CORRIGÉES */}
+      <section className="py-8 md:py-12 catalan-soft-gradient text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-4">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
             5 concerts exceptionnels vous attendent
           </h2>
-          <p className="mb-6 text-gray-100">
+          <p className="mb-4 md:mb-6" style={{ color: '#f7f3e9' }}>
             Saint-Génis-des-Fontaines (27-28 juillet) • Céret (7-8-9 août)
           </p>
           <a 
             href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-white text-jazz-red px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center bg-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-bold transition-all duration-300 hover:opacity-90"
+            style={{ color: '#722f37' }}
           >
-            <Ticket className="w-5 h-5 mr-2" />
+            <Ticket className="w-4 h-4 md:w-5 md:h-5 mr-2" />
             Billetterie officielle
           </a>
         </div>
