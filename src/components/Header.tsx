@@ -11,7 +11,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      setIsScrolled(scrollTop > 50)
+      setIsScrolled(scrollTop > 100) // Plus de marge avant de devenir sticky
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -19,23 +19,26 @@ export default function Header() {
   }, [])
 
   return (
-<header 
-  className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-6'}`}
-  style={{
-    background: isScrolled 
-      ? '#050526' 
-      : 'linear-gradient(45deg, #050526 0%, #262671 50%, #3c3ca3 100%)',
-    boxShadow: isScrolled ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
-  }}
->
+    <header 
+      className={`${isScrolled ? 'fixed' : 'absolute'} top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'py-3 backdrop-blur-md' : 'py-6'
+      }`}
+      style={{
+        background: isScrolled 
+          ? 'rgba(5, 5, 38, 0.95)' // Semi-transparent quand fixe
+          : 'transparent', // TRANSPARENT au début pour fusion parfaite
+        boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.15)' : 'none',
+        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center hover:opacity-90 transition-all duration-300">
             <img
               src="/images/logo-jazz-en-tech.png"
               alt="Jazz en Tech Festival"
-              className={`w-auto transition-all duration-300 ${
-                isScrolled ? 'h-12' : 'h-20 md:h-24'
+              className={`w-auto transition-all duration-500 ${
+                isScrolled ? 'h-14' : 'h-20 md:h-24'
               }`}
             />
           </Link>
@@ -45,7 +48,7 @@ export default function Header() {
           </div>
 
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white hover:text-persian-blue transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -53,7 +56,7 @@ export default function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden pb-4">
+          <div className="md:hidden pb-4 mt-4 border-t border-white/20">
             <Navigation mobile onItemClick={() => setIsMenuOpen(false)} />
           </div>
         )}

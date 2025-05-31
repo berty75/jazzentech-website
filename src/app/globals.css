@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables CSS avec NOUVELLE palette de 4 bleus */
+/* Variables CSS avec palette de 4 bleus */
 :root {
   --persian-blue: #3c3ca3;
   --midnight-blue: #262671;
@@ -28,270 +28,75 @@ html, body {
   color: #1F2937;
 }
 
-/* Classes utilitaires avec NOUVELLE palette de 4 bleus */
+/* FUSION PARFAITE Header + Hero avec gradient plus nuancé */
 @layer utilities {
   .hero-gradient {
-    background: linear-gradient(45deg, #050526 0%, #262671 50%, #3c3ca3 100%);
+    background: linear-gradient(45deg, #050526 0%, #121248 25%, #262671 60%, #3c3ca3 100%);
   }
   
   .catalan-soft-gradient {
     background: linear-gradient(45deg, #3c3ca3 0%, #262671 50%, #050526 100%);
   }
   
-}
-
-/* Boutons avec NOUVELLE palette */
-@layer components {
-  .btn-oxford {
-    background-color: #050526;
-    color: white;
-    @apply px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors;
-  }
-  
-  .btn-oxford:hover {
-    background-color: #121248;
-  }
-
-  .btn-persian {
-    background-color: #3c3ca3;
-    color: white;
-    @apply px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors;
-  }
-  
-  .btn-persian:hover {
-    background-color: #262671;
+  .warm-gradient {
+    background: linear-gradient(135deg, rgba(38,38,113,0.12) 0%, rgba(60,60,163,0.12) 100%);
   }
 }
 
-/* Styles pour le formulaire de contact */
-.focus\:ring-oxford:focus {
-  --tw-ring-color: #050526;
+/* Animation personnalisées pour la fusion */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-.focus\:ring-persian:focus {
-  --tw-ring-color: #3c3ca3;
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(60, 60, 163, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(60, 60, 163, 0.6); }
 }
 
-/* Animation du loader */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
-.animate-spin {
-  animation: spin 1s linear infinite;
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
 }
 
-/* Transitions douces pour les cards */
-.hover\:shadow-md:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-/* Focus states accessibles */
-input:focus, select:focus, textarea:focus {
-  outline: 2px solid #3c3ca3;
-  outline-offset: 2px;
-}
-
-/* Animations pour les cards de vision */
-.hover\:-translate-y-2:hover {
-  transform: translateY(-0.5rem);
-}
-
-/* Effet prose pour le contenu */
-.prose {
-  max-width: none;
-}
-
-.prose p {
-  margin-bottom: 1.25em;
-}
-
-.prose h2 {
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-/* Sticky positioning pour la sidebar */
-.sticky {
-  position: sticky;
-}
-
-/* Gradient text effect avec nouvelle palette */
-.bg-gradient-to-r {
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
-.from-oxford-blue {
-  --tw-gradient-from: #050526;
-}
-
-.to-persian-blue {
-  --tw-gradient-to: #3c3ca3;
-}
-
-.from-penn-blue {
-  --tw-gradient-from: #121248;
-}
-
-.to-midnight-blue {
-  --tw-gradient-to: #262671;
-}
-
-/* Text gradient avec nouvelles couleurs */
-.text-gradient {
-  background: linear-gradient(45deg, #050526, #3c3ca3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-blue {
-  background: linear-gradient(45deg, #121248, #262671);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* NOUVELLES CLASSES pour sidebar corrigée */
-/* Sidebar spacing amélioré */
-.space-y-6 > * + * {
-  margin-top: 1.5rem;
-}
-
-/* Cards sidebar */
-.sidebar-card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-.sidebar-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-/* Cards avec bordures colorées */
-.sidebar-card-oxford {
-  border-left: 4px solid #050526;
-}
-
-.sidebar-card-persian {
-  border-left: 4px solid #3c3ca3;
-}
-
-.sidebar-card-midnight {
-  border-left: 4px solid #262671;
-}
-
-/* Responsive sidebar */
-@media (max-width: 1024px) {
-  .lg\:col-span-1 {
-    margin-top: 2rem;
-  }
-}
-
-/* Amélioration des espacements */
-.section-spacing {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-/* Cards avec effets améliorés */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(5, 5, 38, 0.15);
-}
-
-/* Backgrounds avec nouvelle palette */
-.bg-oxford-soft {
-  background-color: rgba(5, 5, 38, 0.05);
-}
-
-.bg-persian-soft {
-  background-color: rgba(60, 60, 163, 0.1);
-}
-
-.bg-midnight-soft {
-  background-color: rgba(38, 38, 113, 0.1);
-}
-
-/* Borders avec nouvelle palette */
-.border-oxford {
-  border-color: #050526;
-}
-
-.border-persian {
-  border-color: #3c3ca3;
-}
-
-.border-midnight {
-  border-color: #262671;
-}
-
-.border-penn {
-  border-color: #121248;
-}
-
-/* Animations spéciales pour les nouveaux bleus */
-@keyframes wave-blue {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-wave-blue {
-  background: linear-gradient(-45deg, #050526, #121248, #262671, #3c3ca3);
-  background-size: 400% 400%;
-  animation: wave-blue 15s ease infinite;
-}
-
-/* Cookie banner */
-.cookie-banner {
-  z-index: 999999 !important;
-}
-
-.cookie-banner button {
-  z-index: 999999 !important;
-  pointer-events: auto !important;
-}
-
-/* Effets de survol spéciaux pour les liens */
-.link-oxford {
-  color: #050526;
-  position: relative;
-  text-decoration: none;
-}
-
-.link-oxford::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: #3c3ca3;
-  transition: width 0.3s ease;
-}
-
-.link-oxford:hover::after {
-  width: 100%;
-}
-
-.link-oxford:hover {
-  color: #3c3ca3;
-}
+/* Header spécifique - évite les bordures quand pas scrollé */
 header:not(.scrolled) {
   box-shadow: none !important;
   border-bottom: none !important;
+}
+
+/* Smooth transitions pour tous les éléments */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Effets de glassmorphism */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Amélioration des boutons */
+.btn-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-hero:hover::before {
+  left: 100%;
 }

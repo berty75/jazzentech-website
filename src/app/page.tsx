@@ -4,8 +4,8 @@ import { Calendar, Music, Users, Star, MapPin, Ticket } from 'lucide-react'
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section avec effet artistique */}
-      <section className="bg-hero-gradient text-white py-24 relative overflow-hidden">
+      {/* Hero Section - FUSION TOTALE avec header */}
+      <section className="hero-gradient text-white pt-16 pb-24 relative overflow-hidden min-h-screen flex items-center">
         {/* Éléments artistiques de fond */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-64 h-64 bg-persian-blue rounded-full blur-3xl animate-pulse"></div>
@@ -14,7 +14,7 @@ export default function Home() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="pt-8">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
                 Jazz en Tech
               </h1>
@@ -40,13 +40,12 @@ export default function Home() {
               </div>
             </div>
             
-            {/* AFFICHE OFFICIELLE avec effet artistique */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-white rounded-2xl blur-xl opacity-20 transform rotate-3"></div>
+            {/* AFFICHE OFFICIELLE - PLUS D'ESPACE AVEC LE HEADER */}
+            <div className="flex justify-center items-start pt-24">
               <img 
                 src="/images/affiche-2025.jpg" 
                 alt="Affiche Jazz en Tech 2025 - 10ème édition"
-                className="relative w-full max-w-md mx-auto rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+                className="w-full max-w-md rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
