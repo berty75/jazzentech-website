@@ -1,3 +1,4 @@
+// src/app/artistes/page.tsx - Version avec format carré sur desktop
 import { Calendar, MapPin, Users, Music, Ticket, Play } from 'lucide-react'
 
 export default function Artistes() {
@@ -23,11 +24,11 @@ export default function Artistes() {
           <div className="max-w-5xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
-                <div className="relative">
+                <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/manu-le-prince.jpeg" 
                     alt="Manu Le Prince"
-                    className="w-full h-64 md:h-80 object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
@@ -107,11 +108,11 @@ export default function Artistes() {
           <div className="max-w-5xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
-                <div className="relative">
+                <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/florin-gugulica.jpeg" 
                     alt="Florin Gugulica"
-                    className="w-full h-64 md:h-80 object-cover grayscale"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
@@ -193,11 +194,11 @@ export default function Artistes() {
           <div className="max-w-5xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
-                <div className="relative">
+                <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/stefano-di-battista.jpg" 
                     alt="Stefano Di Battista"
-                    className="w-full h-64 md:h-80 object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
@@ -278,11 +279,11 @@ export default function Artistes() {
           <div className="max-w-5xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
-                <div className="relative">
+                <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/jacky-terrasson.jpeg" 
                     alt="Jacky Terrasson"
-                    className="w-full h-64 md:h-80 object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
@@ -361,11 +362,11 @@ export default function Artistes() {
           <div className="max-w-5xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="grid md:grid-cols-3 gap-0">
-                <div className="relative">
+                <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/charlotte-planchou.jpg" 
                     alt="Charlotte Planchou"
-                    className="w-full h-64 md:h-80 object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">

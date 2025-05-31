@@ -4,11 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables CSS avec VOS couleurs */
+/* Variables CSS avec NOUVELLE palette de 4 bleus */
 :root {
-  --jazz-yellow: #E6A824;
-  --jazz-red: #A8312F;
-  --catalan-amber: #D4941E;
+  --persian-blue: #3c3ca3;
+  --midnight-blue: #262671;
+  --penn-blue: #121248;
+  --oxford-blue: #050526;
+  --warm-cream: #FDF7E7;
+  --warm-beige: #F5E6D3;
 }
 
 /* Reset de base */
@@ -25,37 +28,48 @@ html, body {
   color: #1F2937;
 }
 
-/* Classes utilitaires avec VOS couleurs */
+/* Classes utilitaires avec NOUVELLE palette de 4 bleus */
 @layer utilities {
   .hero-gradient {
-    background: linear-gradient(135deg, #A8312F 0%, #B85450 100%);
+    background: linear-gradient(45deg, #050526 0%, #262671 50%, #3c3ca3 100%);
   }
   
   .catalan-soft-gradient {
-    background: linear-gradient(45deg, #E6A824 0%, #F2C55C 50%, #A8312F 100%);
+    background: linear-gradient(45deg, #3c3ca3 0%, #262671 50%, #050526 100%);
   }
   
-  .warm-gradient {
-    background: linear-gradient(to bottom, #FDF7E7 0%, #F5E6D3 100%);
-  }
 }
 
-/* Boutons avec VOS couleurs */
+/* Boutons avec NOUVELLE palette */
 @layer components {
-  .btn-jazz {
-    @apply bg-jazz-yellow text-jazz-red px-6 py-3 rounded-lg font-semibold 
-           hover:bg-jazz-yellow-light transition-colors;
+  .btn-oxford {
+    background-color: #050526;
+    color: white;
+    @apply px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors;
+  }
+  
+  .btn-oxford:hover {
+    background-color: #121248;
   }
 
-  .btn-jazz-outline {
-    @apply border-2 border-jazz-yellow text-jazz-yellow px-6 py-3 rounded-lg font-semibold 
-           hover:bg-jazz-yellow hover:text-white transition-colors;
+  .btn-persian {
+    background-color: #3c3ca3;
+    color: white;
+    @apply px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-colors;
+  }
+  
+  .btn-persian:hover {
+    background-color: #262671;
   }
 }
 
 /* Styles pour le formulaire de contact */
-.focus\:ring-jazz-yellow:focus {
-  --tw-ring-color: #E6A824;
+.focus\:ring-oxford:focus {
+  --tw-ring-color: #050526;
+}
+
+.focus\:ring-persian:focus {
+  --tw-ring-color: #3c3ca3;
 }
 
 /* Animation du loader */
@@ -76,7 +90,7 @@ html, body {
 
 /* Focus states accessibles */
 input:focus, select:focus, textarea:focus {
-  outline: 2px solid #E6A824;
+  outline: 2px solid #3c3ca3;
   outline-offset: 2px;
 }
 
@@ -104,17 +118,40 @@ input:focus, select:focus, textarea:focus {
   position: sticky;
 }
 
-/* Gradient text effect */
+/* Gradient text effect avec nouvelle palette */
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
-.from-jazz-red {
-  --tw-gradient-from: #A8312F;
+.from-oxford-blue {
+  --tw-gradient-from: #050526;
 }
 
-.to-jazz-yellow {
-  --tw-gradient-to: #E6A824;
+.to-persian-blue {
+  --tw-gradient-to: #3c3ca3;
+}
+
+.from-penn-blue {
+  --tw-gradient-from: #121248;
+}
+
+.to-midnight-blue {
+  --tw-gradient-to: #262671;
+}
+
+/* Text gradient avec nouvelles couleurs */
+.text-gradient {
+  background: linear-gradient(45deg, #050526, #3c3ca3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(45deg, #121248, #262671);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* NOUVELLES CLASSES pour sidebar corrigée */
@@ -137,6 +174,19 @@ input:focus, select:focus, textarea:focus {
   transition: box-shadow 0.3s ease;
 }
 
+/* Cards avec bordures colorées */
+.sidebar-card-oxford {
+  border-left: 4px solid #050526;
+}
+
+.sidebar-card-persian {
+  border-left: 4px solid #3c3ca3;
+}
+
+.sidebar-card-midnight {
+  border-left: 4px solid #262671;
+}
+
 /* Responsive sidebar */
 @media (max-width: 1024px) {
   .lg\:col-span-1 {
@@ -157,18 +207,56 @@ input:focus, select:focus, textarea:focus {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(5, 5, 38, 0.15);
 }
 
-/* Amélioration typography */
-.text-gradient {
-  background: linear-gradient(45deg, #E6A824, #A8312F);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Backgrounds avec nouvelle palette */
+.bg-oxford-soft {
+  background-color: rgba(5, 5, 38, 0.05);
 }
 
-/* src/app/globals.css - ajoutez à la fin */
+.bg-persian-soft {
+  background-color: rgba(60, 60, 163, 0.1);
+}
+
+.bg-midnight-soft {
+  background-color: rgba(38, 38, 113, 0.1);
+}
+
+/* Borders avec nouvelle palette */
+.border-oxford {
+  border-color: #050526;
+}
+
+.border-persian {
+  border-color: #3c3ca3;
+}
+
+.border-midnight {
+  border-color: #262671;
+}
+
+.border-penn {
+  border-color: #121248;
+}
+
+/* Animations spéciales pour les nouveaux bleus */
+@keyframes wave-blue {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-wave-blue {
+  background: linear-gradient(-45deg, #050526, #121248, #262671, #3c3ca3);
+  background-size: 400% 400%;
+  animation: wave-blue 15s ease infinite;
+}
+
+/* Cookie banner */
 .cookie-banner {
   z-index: 999999 !important;
 }
@@ -178,17 +266,32 @@ input:focus, select:focus, textarea:focus {
   pointer-events: auto !important;
 }
 
-/* Animations artistiques */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Effets de survol spéciaux pour les liens */
+.link-oxford {
+  color: #050526;
+  position: relative;
+  text-decoration: none;
 }
 
-.animate-spin-slow {
-  animation: spin-slow 30s linear infinite;
+.link-oxford::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #3c3ca3;
+  transition: width 0.3s ease;
 }
 
-/* Effet glassmorphism */
-.backdrop-blur-sm {
-  backdrop-filter: blur(4px);
+.link-oxford:hover::after {
+  width: 100%;
+}
+
+.link-oxford:hover {
+  color: #3c3ca3;
+}
+header:not(.scrolled) {
+  box-shadow: none !important;
+  border-bottom: none !important;
 }

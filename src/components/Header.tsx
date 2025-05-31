@@ -11,7 +11,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      setIsScrolled(scrollTop > 50) // Change après 50px de scroll
+      setIsScrolled(scrollTop > 50)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -19,13 +19,17 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`bg-jazz-red shadow-lg sticky top-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'py-2' : 'py-6'
-    }`}>
+<header 
+  className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-6'}`}
+  style={{
+    background: isScrolled 
+      ? '#050526' 
+      : 'linear-gradient(45deg, #050526 0%, #262671 50%, #3c3ca3 100%)',
+    boxShadow: isScrolled ? '0 10px 15px -3px rgba(0, 0, 0, 0.1)' : 'none'
+  }}
+>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          
-          {/* Logo qui change de taille */}
           <Link href="/" className="flex items-center hover:opacity-90 transition-all duration-300">
             <img
               src="/images/logo-jazz-en-tech.png"
@@ -36,12 +40,10 @@ export default function Header() {
             />
           </Link>
 
-          {/* Navigation desktop */}
           <div className="hidden md:block">
             <Navigation />
           </div>
 
-          {/* Bouton menu mobile */}
           <button
             className="md:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -50,7 +52,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Menu mobile */}
         {isMenuOpen && (
           <div className="md:hidden pb-4">
             <Navigation mobile onItemClick={() => setIsMenuOpen(false)} />

@@ -9,27 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // VOS couleurs Jazz en Tech
-        'jazz-yellow': '#E6A824',        // Or doux/miel
-        'jazz-yellow-light': '#F2C55C',  // Jaune pâle doré
-        'jazz-yellow-dark': '#B8841C',   // Or foncé
-        
-        'jazz-red': '#A8312F',           // Rouge brique doux
-        'jazz-red-light': '#C14242',     // Rouge terracotta
-        'jazz-red-dark': '#7D2726',      // Bordeaux doux
-        
-        'catalan-amber': '#D4941E',      // Ambre catalan
-        'catalan-terracotta': '#B85450', // Terracotta
-        'catalan-gold-soft': '#E8B44A',  // Or doux
-        'catalan-rust': '#A0522D',       // Rouille douce
-        
-        'warm-cream': '#FDF7E7',         // Crème chaude
-        'warm-beige': '#F5E6D3',         // Beige méditerranéen
+        'persian-blue': '#3c3ca3',
+        'midnight-blue': '#262671',
+        'penn-blue': '#121248',
+        'oxford-blue': '#050526',
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #A8312F 0%, #B85450 100%)',
-        'catalan-soft-gradient': 'linear-gradient(45deg, #E6A824 0%, #F2C55C 50%, #A8312F 100%)',
-        'warm-gradient': 'linear-gradient(to bottom, #FDF7E7 0%, #F5E6D3 100%)',
+        'hero-gradient': 'linear-gradient(45deg, #050526 0%, #262671 50%, #3c3ca3 100%)',
+        'catalan-soft-gradient': 'linear-gradient(45deg, #3c3ca3 0%, #262671 50%, #050526 100%)',
+        'warm-gradient': 'linear-gradient(135deg, rgba(38,38,113,0.12) 0%, rgba(60,60,163,0.12) 100%)',
       },
     },
   },

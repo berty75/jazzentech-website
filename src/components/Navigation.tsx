@@ -31,12 +31,12 @@ export default function Navigation({ mobile = false, onItemClick }: NavigationPr
                 font-medium transition-colors
                 ${mobile ? "block py-2" : ""}
                 ${pathname === item.href 
-                  ? "text-yellow-400" 
-                  : "text-white hover:text-yellow-400"
+                  ? "text-sky-blue" 
+                  : "text-white hover:text-sky-blue"
                 }
               `}
               style={{
-                color: pathname === item.href ? '#E6A824' : 'white'
+                color: pathname === item.href ? '#89c2d9' : 'white'
               }}
             >
               {item.label}

@@ -1,4 +1,76 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
+
+// Composant compte à rebours
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  })
+
+  useEffect(() => {
+    // Date de fin des ventes - 25 juillet 2025 à 23h59
+    const targetDate = new Date('2025-07-25T23:59:59').getTime()
+
+    const updateCountdown = () => {
+      const now = new Date().getTime()
+      const difference = targetDate - now
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+
+        setTimeLeft({ days, hours, minutes, seconds })
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+      }
+    }
+
+    updateCountdown() // Mise à jour immédiate
+    const interval = setInterval(updateCountdown, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="flex justify-center items-center space-x-2 sm:space-x-4">
+      {/* Jours */}
+      <div className="bg-jazz-red text-white rounded-lg p-3 text-center min-w-[60px] shadow-lg">
+        <div className="text-xl sm:text-2xl font-bold">{timeLeft.days}</div>
+        <div className="text-xs uppercase tracking-wide">Jours</div>
+      </div>
+      
+      <div className="text-jazz-red text-xl font-bold">:</div>
+      
+      {/* Heures */}
+      <div className="bg-jazz-red text-white rounded-lg p-3 text-center min-w-[60px] shadow-lg">
+        <div className="text-xl sm:text-2xl font-bold">{timeLeft.hours.toString().padStart(2, '0')}</div>
+        <div className="text-xs uppercase tracking-wide">Heures</div>
+      </div>
+      
+      <div className="text-jazz-red text-xl font-bold">:</div>
+      
+      {/* Minutes */}
+      <div className="bg-jazz-yellow text-jazz-red rounded-lg p-3 text-center min-w-[60px] shadow-lg">
+        <div className="text-xl sm:text-2xl font-bold">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+        <div className="text-xs uppercase tracking-wide">Min</div>
+      </div>
+      
+      <div className="text-jazz-red text-xl font-bold">:</div>
+      
+      {/* Secondes */}
+      <div className="bg-jazz-yellow text-jazz-red rounded-lg p-3 text-center min-w-[60px] shadow-lg">
+        <div className="text-xl sm:text-2xl font-bold">{timeLeft.seconds.toString().padStart(2, '0')}</div>
+        <div className="text-xs uppercase tracking-wide">Sec</div>
+      </div>
+    </div>
+  )
+}
 
 export default function Programmation() {
   return (
@@ -95,14 +167,21 @@ export default function Programmation() {
             </div>
           </section>
 
-          {/* Information billetterie */}
+          {/* Information billetterie avec compte à rebours */}
           <section className="bg-jazz-yellow/10 p-6 rounded-lg">
-            <p className="text-center text-gray-600">
+            <p className="text-center text-gray-600 mb-4">
               <span className="font-semibold">Billet non reçu ?</span> Cliquez ici
             </p>
-            <p className="text-center text-gray-600 mt-2">
-              <span className="font-semibold">Fin des ventes dans</span> 2 mois, 12 jours
-            </p>
+            
+            <div className="text-center">
+              <p className="text-gray-800 font-semibold mb-3 text-lg">
+                ⏰ Fin des ventes dans :
+              </p>
+              <CountdownTimer />
+              <p className="text-gray-600 text-sm mt-3">
+                Ventes jusqu'au 25 juillet 2025 à 23h59
+              </p>
+            </div>
           </section>
         </div>
       </div>
