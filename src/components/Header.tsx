@@ -11,7 +11,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
-      setIsScrolled(scrollTop > 100) // Plus de marge avant de devenir sticky
+      setIsScrolled(scrollTop > 100)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -24,11 +24,9 @@ export default function Header() {
         isScrolled ? 'py-3 backdrop-blur-md' : 'py-6'
       }`}
       style={{
-        background: isScrolled 
-          ? 'rgba(5, 5, 38, 0.95)' // Semi-transparent quand fixe
-          : 'transparent', // TRANSPARENT au début pour fusion parfaite
+        background: '#722f37', // TOUJOURS deep-burgundy, même au scroll
         boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.15)' : 'none',
-        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'
+        borderBottom: isScrolled ? '1px solid rgba(212, 175, 55, 0.3)' : 'none'
       }}
     >
       <div className="container mx-auto px-4">
@@ -48,7 +46,7 @@ export default function Header() {
           </div>
 
           <button
-            className="md:hidden text-white hover:text-persian-blue transition-colors"
+            className="md:hidden text-white hover:text-yellow-300 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}

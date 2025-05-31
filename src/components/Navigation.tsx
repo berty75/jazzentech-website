@@ -28,15 +28,16 @@ export default function Navigation({ mobile = false, onItemClick }: NavigationPr
               href={item.href}
               onClick={onItemClick}
               className={`
-                font-medium transition-colors
-                ${mobile ? "block py-2" : ""}
+                font-medium transition-all duration-300 hover:scale-105
+                ${mobile ? "block py-2 px-3 rounded-lg" : ""}
                 ${pathname === item.href 
-                  ? "text-sky-blue" 
-                  : "text-white hover:text-sky-blue"
+                  ? "font-bold" 
+                  : "hover:opacity-80"
                 }
               `}
               style={{
-                color: pathname === item.href ? '#89c2d9' : 'white'
+                color: pathname === item.href ? '#d4af37' : '#f7f3e9', // Jazz gold pour actif, warm cream pour normal
+                backgroundColor: mobile && pathname === item.href ? 'rgba(212, 175, 55, 0.1)' : 'transparent'
               }}
             >
               {item.label}

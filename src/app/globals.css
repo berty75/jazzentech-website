@@ -4,14 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables CSS avec palette de 4 bleus */
+/* Variables CSS - Palette Jazz Classique & Élégant */
 :root {
-  --persian-blue: #3c3ca3;
-  --midnight-blue: #262671;
-  --penn-blue: #121248;
-  --oxford-blue: #050526;
-  --warm-cream: #FDF7E7;
-  --warm-beige: #F5E6D3;
+  --jazz-black: #1a1a1a;
+  --jazz-gold: #d4af37;
+  --deep-burgundy: #722f37;
+  --warm-cream: #f7f3e9;
+  --copper: #b87333;
 }
 
 /* Reset de base */
@@ -28,38 +27,171 @@ html, body {
   color: #1F2937;
 }
 
-/* FUSION PARFAITE Header + Hero avec gradient plus nuancé */
+/* NOUVELLES COULEURS JAZZ CLASSIQUE */
 @layer utilities {
   .hero-gradient {
-    background: linear-gradient(45deg, #050526 0%, #121248 25%, #262671 60%, #3c3ca3 100%);
+    background: linear-gradient(45deg, #1a1a1a 0%, #722f37 40%, #b87333 80%, #d4af37 100%);
+  }
+  
+  .header-jazz {
+    background: #722f37;
   }
   
   .catalan-soft-gradient {
-    background: linear-gradient(45deg, #3c3ca3 0%, #262671 50%, #050526 100%);
+    background: linear-gradient(45deg, #d4af37 0%, #b87333 50%, #722f37 100%);
   }
   
   .warm-gradient {
-    background: linear-gradient(135deg, rgba(38,38,113,0.12) 0%, rgba(60,60,163,0.12) 100%);
+    background: linear-gradient(135deg, rgba(114, 47, 55, 0.12) 0%, rgba(212, 175, 55, 0.12) 100%);
   }
 }
 
-/* Animation personnalisées pour la fusion */
+/* NOUVELLES ANIMATIONS POUR LES EFFETS HERO */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
 }
 
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(60, 60, 163, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(60, 60, 163, 0.6); }
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(180deg); }
 }
 
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-5px) scale(1.05); }
+}
+
+@keyframes scroll-indicator {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateX(0%); }
+  50% { transform: translateX(-25%); }
+}
+
+/* Application des animations */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-fast 2s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fade-in-right 0.8s ease-out forwards;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 4s ease-in-out infinite;
+}
+
+/* Délais d'animation */
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
 }
 
 /* Header spécifique - évite les bordures quand pas scrollé */
