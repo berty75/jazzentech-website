@@ -1,5 +1,12 @@
 import { Music, Calendar, MapPin, Heart, Award, Users } from 'lucide-react'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Mot du Président - Jazz en Tech 2025',
+  description: 'Message de bienvenue du président du festival Jazz en Tech 2025.'
+}
+
 export default function MotDuPresident() {
   return (
     <div className="min-h-screen bg-white">
@@ -210,7 +217,7 @@ export default function MotDuPresident() {
                       
                       <div>
                         <div className="flex items-center mb-2">
-                          <span className="text-jazz-gold mr-2 text-sm md:text-base">🎟️</span>
+                        <span className="text-jazz-gold-accessible mr-2 text-sm md:text-base">🎟️</span>
                           <span className="font-semibold text-jazz-black text-sm md:text-base">Tarifs</span>
                         </div>
                         <div className="text-gray-600 ml-5 md:ml-6 text-sm md:text-base">

@@ -1,4 +1,10 @@
 import { Calendar, MapPin, Users, Music, Ticket, Play } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Nos Artistes - Jazz en Tech 2025',
+  description: 'Découvrez les artistes exceptionnels du festival Jazz en Tech 2025 : Manu Le Prince, Florin Gugulica, Stefano Di Battista, Jacky Terrasson et Charlotte Planchou.'
+}
 
 export default function Artistes() {
   return (
@@ -179,17 +185,17 @@ export default function Artistes() {
                       </div>
 
                       <div className="flex flex-col sm:flex-row gap-2 md:gap-3">
-                        <a 
-                          href="https://www.facebook.com/FestivalJazzenTech/videos/1155459846348417/?ref=embed_video&t=0" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
-                          style={{ backgroundColor: '#b87333', color: '#f7f3e9' }}
-                          aria-label="Voir Florin Gugulica sur Facebook"
-                        >
-                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
-                          Facebook
-                        </a>
+                      <a 
+  href="https://www.facebook.com/FestivalJazzenTech/videos/1155459846348417/?ref=embed_video&t=0" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+  style={{ backgroundColor: '#6e4a1a', color: '#f7f3e9' }}  // Couleur accessible
+  aria-label="Voir Florin Gugulica sur Facebook"
+>
+  <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
+  Facebook
+</a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/florin-gugulica-sextet-its-a-long-way" 
                           target="_blank" 

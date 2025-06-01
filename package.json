@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:a11y": "eslint . --ext .tsx,.ts --fix",
     "test:a11y": "pa11y http://localhost:3000",
-    "test:a11y:all": "pa11y-ci --sitemap http://localhost:3000/sitemap.xml",
+    "test:a11y:all": "pa11y-ci",
     "lighthouse:ci": "lhci autorun",
     "check:accessibility": "npm run lint:a11y && npm run test:a11y"
   },
@@ -36,6 +36,7 @@
     "eslint-config-next": "15.3.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "pa11y": "^8.0.0",
+    "pa11y-ci": "^3.1.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"

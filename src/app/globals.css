@@ -4,13 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables CSS - Palette Jazz Classique & Élégant */
+/* Variables CSS - Palette Jazz Classique & Élégant + ACCESSIBILITÉ */
 :root {
   --jazz-black: #1a1a1a;
   --jazz-gold: #d4af37;
+  --jazz-gold-accessible: #947100;  /* Pour fonds clairs - contraste 4.5:1 */
   --deep-burgundy: #722f37;
   --warm-cream: #f7f3e9;
   --copper: #b87333;
+  --copper-accessible: #6e4a1a;     /* Pour meilleur contraste */
 }
 
 /* Reset de base */
@@ -43,6 +45,19 @@ html, body {
   
   .warm-gradient {
     background: linear-gradient(135deg, rgba(114, 47, 55, 0.12) 0%, rgba(212, 175, 55, 0.12) 100%);
+  }
+
+  /* ===== COULEURS ACCESSIBLES ===== */
+  .text-jazz-gold-accessible {
+    color: #947100;
+  }
+  
+  .text-copper-accessible {
+    color: #6e4a1a;
+  }
+
+  .bg-copper-accessible {
+    background-color: #6e4a1a;
   }
 
   /* ===== FOCUS STYLES SUBTILS ET HARMONIEUX ===== */

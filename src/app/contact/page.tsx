@@ -130,12 +130,13 @@ export default function Contact() {
                   <span className="text-sm font-bold" aria-hidden="true">@</span>
                 </a>
                 <a 
-                  href="#" 
-                  className="focus-minimal w-10 h-10 bg-blue-400 text-white rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
-                  aria-label="Suivez-nous sur Twitter"
-                >
-                  <span className="text-sm font-bold" aria-hidden="true">t</span>
-                </a>
+  href="#" 
+  className="focus-minimal w-10 h-10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+  style={{ backgroundColor: '#3277cc' }}  // Couleur accessible recommandée
+  aria-label="Suivez-nous sur Twitter"
+>
+  <span className="text-sm font-bold text-white" aria-hidden="true">t</span>
+</a>
               </div>
             </div>
           </div>
@@ -310,7 +311,9 @@ export default function Contact() {
                   <div>
                     <label htmlFor="consent" className="text-xs md:text-sm text-gray-600">
                       J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
-                      Voir notre <a href="/politique-confidentialite" className="nav-link hover:underline rounded" style={{ color: '#d4af37' }}>politique de confidentialité</a>.
+                      Voir notre <a href="/politique-confidentialite" className="nav-link hover:underline rounded text-jazz-gold-accessible">
+  politique de confidentialité
+</a>
                     </label>
                     <div id="consent-help" className="sr-only">
                       Case obligatoire pour accepter le traitement de vos données personnelles
@@ -359,23 +362,24 @@ export default function Contact() {
             <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-semibold text-gray-900 mb-2">Billetterie</h3>
               <p className="text-gray-600 text-sm">Comment acheter mes billets ? Quand ouvre la billetterie ?</p>
-              <a href="/programmation" className="nav-link hover:underline text-sm font-medium mt-2 inline-block" style={{ color: '#d4af37' }}>
-                Voir la programmation →
-              </a>
+              <a href="/programmation" className="nav-link hover:underline text-sm font-medium mt-2 inline-block text-jazz-gold-accessible">
+  Voir la programmation →
+</a>
+
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-semibold text-gray-900 mb-2">Bénévolat</h3>
               <p className="text-gray-600 text-sm">Comment rejoindre l'équipe ? Quelles sont les missions ?</p>
-              <a href="/benevoles" className="nav-link hover:underline text-sm font-medium mt-2 inline-block" style={{ color: '#d4af37' }}>
-                Devenir bénévole →
-              </a>
+              <a href="/benevoles" className="nav-link hover:underline text-sm font-medium mt-2 inline-block text-jazz-gold-accessible">
+  Devenir bénévole →
+</a>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-semibold text-gray-900 mb-2">Artistes</h3>
               <p className="text-gray-600 text-sm">Vous êtes artiste ? Proposez votre projet musical !</p>
-              <a href="/artistes" className="nav-link hover:underline text-sm font-medium mt-2 inline-block" style={{ color: '#d4af37' }}>
-                Découvrir les artistes →
-              </a>
+              <a href="/artistes" className="nav-link hover:underline text-sm font-medium mt-2 inline-block text-jazz-gold-accessible">
+  Découvrir les artistes →
+</a>
             </div>
           </div>
         </div>

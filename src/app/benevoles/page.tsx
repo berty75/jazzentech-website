@@ -1,5 +1,11 @@
 import React from 'react'
 import { Heart, Users, Clock, Phone, Mail, MapPin, Ticket } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Devenir Bénévole - Jazz en Tech 2025',
+  description: 'Rejoignez notre équipe de bénévoles pour le festival Jazz en Tech 2025. Vivez le festival de l\'intérieur !'
+}
 
 export default function Benevoles() {
   return (
@@ -63,23 +69,23 @@ export default function Benevoles() {
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Aider à monter/démonter</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Tenir la buvette quelques heures</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Orienter les gens qui cherchent leur chemin</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Donner un coup de main là où c'est nécessaire</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Être présent pour que tout se passe bien</span>
                 </li>
               </ul>
@@ -95,23 +101,23 @@ export default function Benevoles() {
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Voir le festival sous un autre angle</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Partager des moments avec l'équipe</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Contribuer à quelque chose qu'on aime</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Se rendre utile tout simplement</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 font-bold text-lg" style={{ color: '#d4af37' }}>•</span>
+                  <span className="mr-3 font-bold text-lg text-jazz-gold-accessible">•</span>
                   <span className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>Accès privilégié aux concerts</span>
                 </li>
               </ul>
@@ -179,7 +185,7 @@ export default function Benevoles() {
                   "L'ambiance est extraordinaire, on se sent vraiment utile et on vit le jazz de près !"
                 </p>
                 <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#b87333' }}>
+                  <div className="w-8 h-8 bg-copper-accessible rounded-full flex items-center justify-center mr-3">
                     <span className="text-sm font-bold text-white">P</span>
                   </div>
                   <div>
@@ -219,7 +225,7 @@ export default function Benevoles() {
             
             <a 
               href="/contact"
-              className="inline-block px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 hover:opacity-90 transform hover:scale-105 shadow-lg"
+              className="btn-primary inline-block px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 hover:opacity-90 transform hover:scale-105 shadow-lg"
               style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
             >
               Ou utilisez notre formulaire de contact

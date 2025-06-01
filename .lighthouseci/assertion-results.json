@@ -1,0 +1,66 @@
+[
+  {
+    "name": "minScore",
+    "expected": 0.8,
+    "actual": 0.58,
+    "values": [
+      0.53,
+      0.52,
+      0.58
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:3000/"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.8,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.52,
+      0.54
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:3000/artistes"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.8,
+    "actual": 0.56,
+    "values": [
+      0.56,
+      0.56,
+      0.51
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:3000/contact"
+  },
+  {
+    "name": "minScore",
+    "expected": 0.8,
+    "actual": 0.66,
+    "values": [
+      0.66,
+      0.58,
+      0.57
+    ],
+    "operator": ">=",
+    "passed": false,
+    "auditProperty": "performance",
+    "auditId": "categories",
+    "level": "warn",
+    "url": "http://localhost:3000/dossier-presse"
+  }
+]

@@ -1,5 +1,11 @@
 import Link from 'next/link'
 import { Calendar, Music, Users, Star, MapPin, Ticket } from 'lucide-react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Dossier de Presse - Jazz en Tech 2025',
+  description: 'Dossier de presse officiel du festival Jazz en Tech 2025. Informations pour les médias et journalistes.'
+}
 
 export default function Home() {
   return (
