@@ -1,15 +1,18 @@
 {
+    "sitemap": false,
+    "timeout": 10000,
+    "wait": 2000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    },
     "defaults": {
       "timeout": 10000,
-      "wait": 500,
-      "chromeLaunchConfig": {
-        "args": ["--no-sandbox"]
-      }
+      "wait": 2000
     },
     "urls": [
-      "http://localhost:3000",
+      "http://localhost:3000/",
       "http://localhost:3000/artistes",
-      "http://localhost:3000/contact",
+      "http://localhost:3000/contact", 
       "http://localhost:3000/dossier-presse",
       "http://localhost:3000/mot-du-president",
       "http://localhost:3000/benevoles"

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function Benevoles() {
   return (
     <div className="min-h-screen bg-white">
+      <title>Devenir Bénévole - Jazz en Tech 2025</title>
       {/* Hero Section - AJOUTÉE AVEC PALETTE JAZZ */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">

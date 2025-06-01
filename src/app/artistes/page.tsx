@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Users, Music, Ticket, Play } from 'lucide-react'
+import { Calendar, MapPin, Ticket, Play } from 'lucide-react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 export default function Artistes() {
   return (
     <div className="min-h-screen bg-white">
+      <title>Nos Artistes - Jazz en Tech 2025</title>
       {/* Hero Section - RESPONSIVE ET COULEURS JAZZ */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">

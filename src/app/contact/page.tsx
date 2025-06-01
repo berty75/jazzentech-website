@@ -35,6 +35,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+       <title>Contact - Jazz en Tech 2025</title>
       {/* Hero Section - COHÉRENT AVEC LES AUTRES PAGES */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">

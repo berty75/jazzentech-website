@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 export default function MotDuPresident() {
   return (
     <div className="min-h-screen bg-white">
+      <title>Mot du Président - Jazz en Tech 2025</title>
       {/* Hero Section - 10ème anniversaire RESPONSIVE */}
       <section className="relative overflow-hidden">
         <div className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pb-20">

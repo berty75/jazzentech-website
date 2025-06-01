@@ -1,15 +1,11 @@
-// src/app/dossier-presse/page.tsx
-'use client'
 import React from 'react'
 import { Download, Newspaper, Quote, Calendar, Users, Award, ExternalLink, Image as ImageIcon, Phone, Mail } from 'lucide-react'
-
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Dossier de Presse - Jazz en Tech 2025',
   description: 'Dossier de presse officiel du festival Jazz en Tech 2025. Informations pour les médias et journalistes.'
 }
-
 
 export default function DossierPresse() {
   const coupuresPresse = [
@@ -72,6 +68,7 @@ export default function DossierPresse() {
 
   return (
     <div className="min-h-screen bg-white">
+        <title>Dossier de Presse - Jazz en Tech 2025</title>
       {/* Hero Section */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
@@ -183,20 +180,7 @@ export default function DossierPresse() {
                       src={article.image}
                       alt={article.titre}
                       className="w-full h-full object-contain bg-white"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement
-                        target.style.display = 'none'
-                        if (target.nextElementSibling) {
-                          (target.nextElementSibling as HTMLElement).style.display = 'flex'
-                        }
-                      }}
                     />
-                    <div className="hidden w-full h-full bg-gray-200 items-center justify-center">
-                      <div className="text-center">
-                        <Newspaper className="w-12 h-12 mx-auto mb-2 text-gray-400" />
-                        <p className="text-sm text-gray-500">Article de presse</p>
-                      </div>
-                    </div>
                   </div>
                   
                   <div className="mb-3">
@@ -216,14 +200,17 @@ export default function DossierPresse() {
                     {article.description}
                   </p>
                   
-                  <button 
-                    onClick={() => window.open(article.image, '_blank')}
+                  {/* Remplacer le bouton onClick par un lien normal */}
+                  <a 
+                    href={article.image}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs md:text-sm font-medium hover:underline flex items-center"
                     style={{ color: '#722f37' }}
                   >
                     <ExternalLink className="w-4 h-4 mr-1" />
                     Voir en grand
-                  </button>
+                  </a>
                 </div>
               ))}
             </div>
