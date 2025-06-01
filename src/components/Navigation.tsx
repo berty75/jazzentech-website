@@ -8,6 +8,7 @@ const navItems = [
   { href: '/programmation', label: 'Programmation' },
   { href: '/artistes', label: 'Artistes' },
   { href: '/benevoles', label: 'Bénévoles' },
+  { href: '/dossier-presse', label: 'Presse' }, // 👈 AJOUTEZ CETTE LIGNE
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -36,7 +37,7 @@ export default function Navigation({ mobile = false, onItemClick }: NavigationPr
                 }
               `}
               style={{
-                color: pathname === item.href ? '#d4af37' : '#f7f3e9', // Jazz gold pour actif, warm cream pour normal
+                color: pathname === item.href ? '#d4af37' : '#f7f3e9',
                 backgroundColor: mobile && pathname === item.href ? 'rgba(212, 175, 55, 0.1)' : 'transparent'
               }}
             >

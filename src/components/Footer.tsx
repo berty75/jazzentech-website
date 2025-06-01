@@ -44,6 +44,7 @@ function Footer() {
             </h4>
             <ul className="space-y-2">
               <li><Link href="/benevoles" className="hover:opacity-80 transition-colors" style={{ color: '#f7f3e9' }}>Devenir bénévole</Link></li>
+              <li><Link href="/dossier-presse" className="hover:opacity-80 transition-colors" style={{ color: '#f7f3e9' }}>Dossier de presse</Link></li> {/* 👈 AJOUTEZ CETTE LIGNE */}
               <li><Link href="/contact" className="hover:opacity-80 transition-colors" style={{ color: '#f7f3e9' }}>Contact</Link></li>
               <li><Link href="/plan-site" className="hover:opacity-80 transition-colors" style={{ color: '#f7f3e9' }}>Plan du site</Link></li>
             </ul>
