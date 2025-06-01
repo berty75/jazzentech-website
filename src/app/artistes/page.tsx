@@ -1,4 +1,3 @@
-// src/app/artistes/page.tsx - Version responsive avec palette jazz
 import { Calendar, MapPin, Users, Music, Ticket, Play } from 'lucide-react'
 
 export default function Artistes() {
@@ -27,7 +26,7 @@ export default function Artistes() {
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/manu-le-prince.jpeg" 
-                    alt="Manu Le Prince"
+                    alt="Manu Le Prince, chanteuse brésilienne de jazz, au microphone lors d'un concert. Elle porte une robe noire et sourit au public."
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -45,11 +44,11 @@ export default function Artistes() {
                         style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
                       >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} aria-hidden="true" />
                           <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Dim. 27 juillet – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} aria-hidden="true" />
                           <span className="text-xs md:text-sm text-gray-600">Cloître Saint-Génis-des-Fontaines</span>
                         </div>
                       </div>
@@ -88,20 +87,22 @@ export default function Artistes() {
                           href="https://www.youtube.com/watch?v=SKgvTVcQEcU" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                          aria-label="Écouter Manu Le Prince sur YouTube"
                         >
-                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/manu-le-prince-quartet-bossa-jazz-for-ever" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          className="btn-primary flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                          aria-label="Acheter des billets pour le concert de Manu Le Prince"
                         >
-                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           Billets
                         </a>
                       </div>
@@ -119,7 +120,7 @@ export default function Artistes() {
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/florin-gugulica.jpeg" 
-                    alt="Florin Gugulica"
+                    alt="Florin Gugulica, clarinettiste virtuose, tenant sa clarinette lors d'un concert. Musicien aux multiples influences musicales."
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -137,11 +138,11 @@ export default function Artistes() {
                         style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
                       >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} aria-hidden="true" />
                           <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Lun. 28 juillet – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} aria-hidden="true" />
                           <span className="text-xs md:text-sm text-gray-600">Cloître Saint-Génis-des-Fontaines</span>
                         </div>
                       </div>
@@ -182,20 +183,22 @@ export default function Artistes() {
                           href="https://www.facebook.com/FestivalJazzenTech/videos/1155459846348417/?ref=embed_video&t=0" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#b87333', color: '#f7f3e9' }}
+                          aria-label="Voir Florin Gugulica sur Facebook"
                         >
-                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           Facebook
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/florin-gugulica-sextet-its-a-long-way" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          className="btn-primary flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                          aria-label="Acheter des billets pour le concert de Florin Gugulica"
                         >
-                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           Billets
                         </a>
                       </div>
@@ -213,7 +216,7 @@ export default function Artistes() {
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/stefano-di-battista.jpg" 
-                    alt="Stefano Di Battista"
+                    alt="Stefano Di Battista, saxophoniste italien, jouant du saxophone alto dans sa voiture. Spécialiste de la musique italienne et du jazz."
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -231,11 +234,11 @@ export default function Artistes() {
                         style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
                       >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} aria-hidden="true" />
                           <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Jeu. 7 août – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} aria-hidden="true" />
                           <span className="text-xs md:text-sm text-gray-600">Place de la République – Céret</span>
                         </div>
                       </div>
@@ -275,20 +278,22 @@ export default function Artistes() {
                           href="https://www.youtube.com/watch?v=Gjh-v425HPQ" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                          aria-label="Écouter Stefano Di Battista sur YouTube"
                         >
-                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          className="btn-primary flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                          aria-label="Acheter des billets pour le concert de Stefano Di Battista"
                         >
-                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           Billets
                         </a>
                       </div>
@@ -306,7 +311,7 @@ export default function Artistes() {
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/jacky-terrasson.jpeg" 
-                    alt="Jacky Terrasson"
+                    alt="Jacky Terrasson, pianiste de jazz français-américain, au piano lors d'un concert. Prix Thelonious Monk 1993."
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -324,11 +329,11 @@ export default function Artistes() {
                         style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
                       >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} aria-hidden="true" />
                           <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Ven. 8 août – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} aria-hidden="true" />
                           <span className="text-xs md:text-sm text-gray-600">Place de la République – Céret</span>
                         </div>
                       </div>
@@ -366,20 +371,22 @@ export default function Artistes() {
                           href="https://www.youtube.com/watch?v=HX0ASXAHf2Y" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                          aria-label="Écouter Jacky Terrasson sur YouTube"
                         >
-                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          className="btn-primary flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                          aria-label="Acheter des billets pour le concert de Jacky Terrasson"
                         >
-                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           Billets
                         </a>
                       </div>
@@ -397,7 +404,7 @@ export default function Artistes() {
                 <div className="relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-square">
                   <img 
                     src="/images/charlotte-planchou.jpg" 
-                    alt="Charlotte Planchou"
+                    alt="Charlotte Planchou, chanteuse française, portrait artistique. Révélation de l'année 2025 de l'Académie du Jazz."
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
@@ -415,11 +422,11 @@ export default function Artistes() {
                         style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
                       >
                         <div className="flex items-center mb-2">
-                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+                          <Calendar className="w-4 h-4 mr-2" style={{ color: '#722f37' }} aria-hidden="true" />
                           <span className="font-bold text-sm md:text-base" style={{ color: '#722f37' }}>Sam. 9 août – 21h</span>
                         </div>
                         <div className="flex items-center">
-                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                          <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} aria-hidden="true" />
                           <span className="text-xs md:text-sm text-gray-600">Place de la République – Céret</span>
                         </div>
                       </div>
@@ -470,20 +477,22 @@ export default function Artistes() {
                           href="https://www.youtube.com/watch?v=5k4eWo9HHZ4" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
+                          className="focus-minimal flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                          aria-label="Écouter Charlotte Planchou sur YouTube"
                         >
-                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Play className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           YouTube
                         </a>
                         <a 
                           href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
+                          className="btn-primary flex-1 flex items-center justify-center px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:opacity-90"
                           style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                          aria-label="Acheter des billets pour le concert de Charlotte Planchou"
                         >
-                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-1" aria-hidden="true" />
                           Billets
                         </a>
                       </div>
@@ -510,10 +519,11 @@ export default function Artistes() {
             href="https://boutique.tourisme-pyrenees-mediterranee.com/" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center bg-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-bold transition-all duration-300 hover:opacity-90"
+            className="btn-primary inline-flex items-center bg-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-bold transition-all duration-300 hover:opacity-90"
             style={{ color: '#722f37' }}
+            aria-label="Accéder à la billetterie officielle du festival"
           >
-            <Ticket className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+            <Ticket className="w-4 h-4 md:w-5 md:h-5 mr-2" aria-hidden="true" />
             Billetterie officielle
           </a>
         </div>

@@ -44,6 +44,48 @@ html, body {
   .warm-gradient {
     background: linear-gradient(135deg, rgba(114, 47, 55, 0.12) 0%, rgba(212, 175, 55, 0.12) 100%);
   }
+
+  /* ===== FOCUS STYLES SUBTILS ET HARMONIEUX ===== */
+  .focus-jazz {
+    @apply focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-offset-1;
+  }
+  
+  .focus-jazz-gold {
+    @apply focus-jazz focus:ring-amber-400;
+  }
+  
+  .focus-jazz-red {
+    @apply focus-jazz focus:ring-red-300;
+  }
+  
+  .focus-jazz-subtle {
+    @apply focus:outline-none focus:ring-1 focus:ring-gray-300 focus:ring-opacity-60;
+  }
+  
+  /* Focus uniquement au clavier (pas à la souris) */
+  .focus-visible-only {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-opacity-50 focus-visible:ring-offset-1;
+  }
+
+  /* Focus pour les liens de navigation - très subtil */
+  .nav-link {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-opacity-40 focus-visible:ring-offset-2 rounded-sm transition-all duration-200;
+  }
+
+  /* Focus pour les boutons principaux - plus visible car important */
+  .btn-primary {
+    @apply focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50 focus:ring-offset-2 transition-all duration-200;
+  }
+
+  /* Focus très subtil pour les éléments moins importants */
+  .focus-minimal {
+    @apply focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-opacity-30 transition-all duration-200;
+  }
+
+  /* Focus pour les champs de formulaire */
+  .form-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-40 focus:border-amber-400 transition-all duration-200;
+  }
 }
 
 /* NOUVELLES ANIMATIONS POUR LES EFFETS HERO */
@@ -231,4 +273,127 @@ header:not(.scrolled) {
 
 .btn-hero:hover::before {
   left: 100%;
+}
+
+/* ===== ACCESSIBILITÉ AMÉLIORÉE ===== */
+
+/* Classe pour masquer visuellement mais garder pour lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip link invisible sauf au focus */
+.skip-link {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  height: 1px;
+  width: 1px;
+  text-align: left;
+  overflow: hidden;
+  background: #d4af37;
+  color: #722f37;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* ===== FOCUS SUBTILS ET HARMONIEUX ===== */
+
+/* Style global par défaut - TRÈS SUBTIL */
+*:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.6) !important;
+  outline-offset: 1px;
+  border-radius: 2px;
+}
+
+/* Links - focus encore plus subtil */
+a:focus-visible {
+  outline: 1px solid rgba(212, 175, 55, 0.5) !important;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Boutons importants - focus plus visible */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.7) !important;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Inputs et selects - focus harmonieux */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.4) !important;
+  border-color: rgba(212, 175, 55, 0.6) !important;
+}
+
+/* Focus spécial pour les éléments de navigation */
+nav a:focus-visible {
+  outline: 1px solid rgba(212, 175, 55, 0.4) !important;
+  outline-offset: 2px;
+  background-color: rgba(212, 175, 55, 0.05);
+  border-radius: 4px;
+}
+
+/* Focus pour les boutons de billetterie (plus important) */
+.btn-primary:focus-visible,
+a[href*="billetterie"]:focus-visible,
+a[href*="boutique"]:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.8) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Respecter les préférences d'animation */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Améliorer les contrastes en mode sombre si nécessaire */
+@media (prefers-color-scheme: dark) {
+  *:focus-visible {
+    outline-color: rgba(212, 175, 55, 0.8) !important;
+  }
+}
+
+/* Focus pour les éléments interactifs spécifiques */
+[tabindex]:focus-visible {
+  outline: 1px solid rgba(212, 175, 55, 0.5) !important;
+  outline-offset: 1px;
+}
+
+/* Masquer le focus par défaut du navigateur pour les éléments avec nos classes custom */
+.nav-link:focus,
+.btn-primary:focus,
+.focus-jazz:focus,
+.focus-jazz-subtle:focus,
+.focus-minimal:focus {
+  outline: none !important;
 }

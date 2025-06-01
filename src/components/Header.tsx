@@ -13,7 +13,6 @@ export default function Header() {
       const scrollTop = window.scrollY
       setIsScrolled(scrollTop > 50)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -31,7 +30,10 @@ export default function Header() {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <Link href="/" className="flex items-center hover:opacity-90 transition-all duration-300">
+          <Link 
+            href="/" 
+            className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1"
+          >
             <img
               src="/images/logo-jazz-en-tech.png"
               alt="Jazz en Tech Festival"
@@ -50,7 +52,7 @@ export default function Header() {
 
           {/* Menu burger mobile */}
           <button
-            className="md:hidden text-white hover:text-yellow-300 transition-colors p-2"
+            className="focus-minimal md:hidden text-white hover:text-yellow-300 transition-colors p-2 rounded-lg"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Menu"
           >

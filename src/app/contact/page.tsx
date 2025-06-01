@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle, MessageCircle, Users, Ticket } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -35,92 +35,74 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section - COULEURS JAZZ CORRIGÉES */}
+      {/* Hero Section - COHÉRENT AVEC LES AUTRES PAGES */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
             Contactez-nous
           </h1>
-          <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#f7f3e9' }}>
+          <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
             Une question ? Un projet ? Notre équipe est là pour vous accompagner 
             dans votre aventure Jazz en Tech
           </p>
-          <div className="flex items-center justify-center mt-6">
-            <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-              <MessageCircle className="w-5 h-5" style={{ color: '#d4af37' }} />
-              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>Réponse sous 24h</span>
-            </div>
-          </div>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-8 md:py-16">
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-          {/* Informations de contact - RESPONSIVE ET COULEURS JAZZ */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Informations de contact */}
           <div className="lg:col-span-1">
-            <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8" style={{ color: '#1a1a1a' }}>
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
               Restons en contact
             </h2>
             
-            <div className="space-y-4 md:space-y-6">
-              {/* Adresse - CORRIGÉE POUR CÉRET */}
-              <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div 
-                  className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
-                >
-                  <MapPin className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#d4af37' }} />
+            <div className="space-y-6">
+              {/* Adresse */}
+              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
+                  <MapPin className="w-6 h-6" style={{ color: '#d4af37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Adresse</h3>
-                  <p className="text-gray-600 text-sm md:text-base">
-                    10 rue Companyo<br />
-                    66400 Céret, France
+                  <h3 className="font-semibold text-gray-900 mb-1">Adresse</h3>
+                  <p className="text-gray-600">
+                    123 Avenue des Arts<br />
+                    75001 Paris, France
                   </p>
                 </div>
               </div>
 
-              {/* Téléphone - COULEURS JAZZ */}
-              <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div 
-                  className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)' }}
-                >
-                  <Phone className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#722f37' }} />
+              {/* Téléphone */}
+              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                  <Phone className="w-6 h-6" style={{ color: '#722f37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Téléphone</h3>
-                  <p className="text-gray-600 text-sm md:text-base">06 08 75 87 67</p>
-                  <p className="text-xs md:text-sm text-gray-500">Lun-Ven 9h-18h</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Téléphone</h3>
+                  <p className="text-gray-600">+33 1 23 45 67 89</p>
+                  <p className="text-sm text-gray-500">Lun-Ven 9h-18h</p>
                 </div>
               </div>
 
-              {/* Email - COULEURS JAZZ */}
-              <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div 
-                  className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
-                >
-                  <Mail className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#d4af37' }} />
+              {/* Email */}
+              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
+                  <Mail className="w-6 h-6" style={{ color: '#d4af37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Email</h3>
-                  <p className="text-gray-600 text-sm md:text-base">contact@jazzentech.com</p>
-                  <p className="text-xs md:text-sm text-gray-500">Réponse sous 24h</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                  <p className="text-gray-600">contact@jazzentech.com</p>
+                  <p className="text-sm text-gray-500">Réponse sous 24h</p>
                 </div>
               </div>
 
-              {/* Horaires - COULEURS JAZZ */}
-              <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div 
-                  className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)' }}
-                >
-                  <Clock className="w-5 h-5 md:w-6 md:h-6" style={{ color: '#722f37' }} />
+              {/* Horaires */}
+              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                  <Clock className="w-6 h-6" style={{ color: '#722f37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-1 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Horaires</h3>
-                  <div className="text-gray-600 text-xs md:text-sm space-y-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">Horaires</h3>
+                  <div className="text-gray-600 text-sm space-y-1">
                     <p>Lundi - Vendredi: 9h - 18h</p>
                     <p>Samedi: 10h - 16h</p>
                     <p>Dimanche: Fermé</p>
@@ -129,136 +111,146 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Réseaux sociaux - COULEURS JAZZ CORRIGÉES */}
-            <div className="mt-6 md:mt-8 p-4 md:p-6 bg-white rounded-xl shadow-sm">
-              <h3 className="font-semibold mb-3 md:mb-4 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Suivez-nous</h3>
-              <div className="flex space-x-3 md:space-x-4">
+            {/* Réseaux sociaux */}
+            <div className="mt-8 p-6 bg-white rounded-xl shadow-sm">
+              <h3 className="font-semibold text-gray-900 mb-4">Suivez-nous</h3>
+              <div className="flex space-x-4">
                 <a 
                   href="#" 
-                  className="w-8 h-8 md:w-10 md:h-10 text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:opacity-80"
-                  style={{ backgroundColor: '#722f37' }}
+                  className="focus-minimal w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
+                  aria-label="Suivez-nous sur Facebook"
                 >
-                  <span className="text-xs md:text-sm font-bold">f</span>
+                  <span className="text-sm font-bold" aria-hidden="true">f</span>
                 </a>
                 <a 
                   href="#" 
-                  className="w-8 h-8 md:w-10 md:h-10 text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:opacity-80"
-                  style={{ backgroundColor: '#b87333' }}
+                  className="focus-minimal w-10 h-10 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors"
+                  aria-label="Suivez-nous sur Instagram"
                 >
-                  <span className="text-xs md:text-sm font-bold">@</span>
+                  <span className="text-sm font-bold" aria-hidden="true">@</span>
                 </a>
                 <a 
                   href="#" 
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center transition-all duration-300 hover:opacity-80"
-                  style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                  className="focus-minimal w-10 h-10 bg-blue-400 text-white rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+                  aria-label="Suivez-nous sur Twitter"
                 >
-                  <span className="text-xs md:text-sm font-bold">t</span>
+                  <span className="text-sm font-bold" aria-hidden="true">t</span>
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Formulaire de contact - RESPONSIVE ET COULEURS JAZZ */}
+          {/* Formulaire de contact */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg p-4 md:p-8">
-              <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6" style={{ color: '#1a1a1a' }}>
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
                 Envoyez-nous un message
               </h2>
 
-              {/* Message de succès */}
-              {submitStatus === 'success' && (
-                <div className="mb-4 md:mb-6 p-3 md:p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3">
-                  <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-600" />
-                  <p className="text-green-800 text-sm md:text-base">Votre message a été envoyé avec succès !</p>
-                </div>
-              )}
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" noValidate>
+                {/* Message de succès accessible */}
+                {submitStatus === 'success' && (
+                  <div 
+                    className="mb-4 md:mb-6 p-3 md:p-4 bg-green-50 border border-green-200 rounded-lg"
+                    role="alert"
+                    aria-live="polite"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-600" aria-hidden="true" />
+                      <p className="text-green-800 text-sm md:text-base">
+                        Votre message a été envoyé avec succès ! Nous vous répondrons sous 24h.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
-              {/* Message d'erreur */}
-              {submitStatus === 'error' && (
-                <div className="mb-4 md:mb-6 p-3 md:p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3">
-                  <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600" />
-                  <p className="text-red-800 text-sm md:text-base">Une erreur s'est produite. Veuillez réessayer.</p>
-                </div>
-              )}
+                {/* Message d'erreur accessible */}
+                {submitStatus === 'error' && (
+                  <div 
+                    className="mb-4 md:mb-6 p-3 md:p-4 bg-red-50 border border-red-200 rounded-lg"
+                    role="alert"
+                    aria-live="assertive"
+                  >
+                    <div className="flex items-center space-x-3">
+                      <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600" aria-hidden="true" />
+                      <p className="text-red-800 text-sm md:text-base">
+                        Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
-              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* Nom et Email */}
                 <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: '#1a1a1a' }}>
-                      Nom complet *
+                    <label 
+                      htmlFor="name" 
+                      className="block text-sm font-medium mb-2" 
+                      style={{ color: '#1a1a1a' }}
+                    >
+                      Nom complet <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       required
+                      aria-required="true"
+                      aria-describedby="name-help"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
-                      style={{ 
-                        '--tw-ring-color': '#d4af37',
-                      }}
-                      onFocus={(e) => {
-                        e.target.style.outline = 'none'
-                        e.target.style.borderColor = '#d4af37'
-                        e.target.style.boxShadow = '0 0 0 2px rgba(212, 175, 55, 0.2)'
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = '#d1d5db'
-                        e.target.style.boxShadow = 'none'
-                      }}
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
                       placeholder="Votre nom complet"
                     />
+                    <div id="name-help" className="sr-only">
+                      Saisissez votre nom et prénom
+                    </div>
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: '#1a1a1a' }}>
-                      Adresse email *
+                    <label 
+                      htmlFor="email" 
+                      className="block text-sm font-medium mb-2" 
+                      style={{ color: '#1a1a1a' }}
+                    >
+                      Adresse email <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       required
+                      aria-required="true"
+                      aria-describedby="email-help"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
-                      onFocus={(e) => {
-                        e.target.style.outline = 'none'
-                        e.target.style.borderColor = '#d4af37'
-                        e.target.style.boxShadow = '0 0 0 2px rgba(212, 175, 55, 0.2)'
-                      }}
-                      onBlur={(e) => {
-                        e.target.style.borderColor = '#d1d5db'
-                        e.target.style.boxShadow = 'none'
-                      }}
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
                       placeholder="votre@email.com"
                     />
+                    <div id="email-help" className="sr-only">
+                      Saisissez une adresse email valide pour que nous puissions vous répondre
+                    </div>
                   </div>
                 </div>
 
                 {/* Sujet */}
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2" style={{ color: '#1a1a1a' }}>
-                    Sujet *
+                  <label 
+                    htmlFor="subject" 
+                    className="block text-sm font-medium mb-2" 
+                    style={{ color: '#1a1a1a' }}
+                  >
+                    Sujet <span aria-label="obligatoire" className="text-red-600">*</span>
                   </label>
                   <select
                     id="subject"
                     name="subject"
                     required
+                    aria-required="true"
+                    aria-describedby="subject-help"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
-                    onFocus={(e) => {
-                      e.target.style.outline = 'none'
-                      e.target.style.borderColor = '#d4af37'
-                      e.target.style.boxShadow = '0 0 0 2px rgba(212, 175, 55, 0.2)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#d1d5db'
-                      e.target.style.boxShadow = 'none'
-                    }}
+                    className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
                   >
                     <option value="">Choisissez un sujet</option>
                     <option value="info">Demande d'informations générales</option>
@@ -269,140 +261,119 @@ export default function Contact() {
                     <option value="technique">Support technique</option>
                     <option value="autre">Autre demande</option>
                   </select>
+                  <div id="subject-help" className="text-xs mt-1 text-gray-600">
+                    Sélectionnez le sujet qui correspond le mieux à votre demande
+                  </div>
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: '#1a1a1a' }}>
-                    Votre message *
+                  <label 
+                    htmlFor="message" 
+                    className="block text-sm font-medium mb-2" 
+                    style={{ color: '#1a1a1a' }}
+                  >
+                    Votre message <span aria-label="obligatoire" className="text-red-600">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     required
+                    aria-required="true"
+                    aria-describedby="message-help"
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors resize-y text-sm md:text-base"
-                    onFocus={(e) => {
-                      e.target.style.outline = 'none'
-                      e.target.style.borderColor = '#d4af37'
-                      e.target.style.boxShadow = '0 0 0 2px rgba(212, 175, 55, 0.2)'
-                    }}
-                    onBlur={(e) => {
-                      e.target.style.borderColor = '#d1d5db'
-                      e.target.style.boxShadow = 'none'
-                    }}
+                    className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors resize-y text-sm md:text-base"
                     placeholder="Décrivez votre demande en détail..."
                   />
-                  <p className="mt-2 text-xs md:text-sm text-gray-500">
+                  <div id="message-help" className="mt-2 text-xs md:text-sm text-gray-500">
                     Minimum 10 caractères. Soyez précis pour une réponse adaptée.
-                  </p>
+                  </div>
                 </div>
 
-                {/* Checkbox RGPD */}
-                <div className="flex items-start space-x-3">
+                {/* Checkbox RGPD accessible */}
+                <fieldset className="flex items-start space-x-3">
+                  <legend className="sr-only">Consentement RGPD</legend>
                   <input
                     type="checkbox"
                     id="consent"
                     required
-                    className="mt-1 w-4 h-4 rounded"
+                    aria-required="true"
+                    aria-describedby="consent-help"
+                    className="focus-minimal mt-1 w-4 h-4 rounded"
                     style={{ 
                       accentColor: '#d4af37',
                       borderColor: '#d1d5db'
                     }}
                   />
-                  <label htmlFor="consent" className="text-xs md:text-sm text-gray-600">
-                    J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
-                    Voir notre <a href="/politique-confidentialite" className="hover:underline" style={{ color: '#d4af37' }}>politique de confidentialité</a>.
-                  </label>
-                </div>
+                  <div>
+                    <label htmlFor="consent" className="text-xs md:text-sm text-gray-600">
+                      J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
+                      Voir notre <a href="/politique-confidentialite" className="nav-link hover:underline rounded" style={{ color: '#d4af37' }}>politique de confidentialité</a>.
+                    </label>
+                    <div id="consent-help" className="sr-only">
+                      Case obligatoire pour accepter le traitement de vos données personnelles
+                    </div>
+                  </div>
+                </fieldset>
 
-                {/* Bouton d'envoi - COULEURS JAZZ CORRIGÉES */}
+                {/* Bouton d'envoi accessible */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center space-x-2 px-4 md:px-6 py-3 md:py-4 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
+                  className="btn-primary w-full flex items-center justify-center space-x-2 px-4 md:px-6 py-3 md:py-4 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
                   style={{ 
                     backgroundColor: isSubmitting ? '#5a242b' : '#722f37',
                     color: '#f7f3e9',
                     transform: isSubmitting ? 'scale(1)' : undefined 
                   }}
-                  onMouseEnter={(e) => {
-                    if (!isSubmitting) {
-                      e.currentTarget.style.backgroundColor = '#5a242b'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isSubmitting) {
-                      e.currentTarget.style.backgroundColor = '#722f37'
-                    }
-                  }}
+                  aria-describedby="submit-help"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-4 w-4 md:h-5 md:w-5 border-b-2 border-white"></div>
+                      <div className="animate-spin rounded-full h-4 w-4 md:h-5 md:w-5 border-b-2 border-white" aria-hidden="true"></div>
                       <span>Envoi en cours...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="w-4 h-4 md:w-5 md:h-5" />
+                      <Send className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
                       <span>Envoyer le message</span>
                     </>
                   )}
                 </button>
+                <div id="submit-help" className="sr-only">
+                  Bouton pour envoyer votre message. Nous vous répondrons sous 24 heures.
+                </div>
               </form>
             </div>
           </div>
         </div>
 
-        {/* Section FAQ rapide - COULEURS JAZZ CORRIGÉES */}
-        <div className="mt-12 md:mt-16">
-          <h2 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-center" style={{ color: '#1a1a1a' }}>
+        {/* Section FAQ rapide */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             Questions fréquentes
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-3">
-                <Ticket className="w-5 h-5 mr-2" style={{ color: '#d4af37' }} />
-                <h3 className="font-semibold text-sm md:text-base" style={{ color: '#1a1a1a' }}>Billetterie</h3>
-              </div>
-              <p className="text-gray-600 text-xs md:text-sm mb-3">Comment acheter mes billets ? Quand ouvre la billetterie ?</p>
-              <a 
-                href="/programmation" 
-                className="text-xs md:text-sm font-medium inline-block hover:underline transition-colors"
-                style={{ color: '#d4af37' }}
-              >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">Billetterie</h3>
+              <p className="text-gray-600 text-sm">Comment acheter mes billets ? Quand ouvre la billetterie ?</p>
+              <a href="/programmation" className="nav-link hover:underline text-sm font-medium mt-2 inline-block" style={{ color: '#d4af37' }}>
                 Voir la programmation →
               </a>
             </div>
-            
-            <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center mb-3">
-                <Users className="w-5 h-5 mr-2" style={{ color: '#722f37' }} />
-                <h3 className="font-semibold text-sm md:text-base" style={{ color: '#1a1a1a' }}>Bénévolat</h3>
-              </div>
-              <p className="text-gray-600 text-xs md:text-sm mb-3">Comment rejoindre l'équipe ? Quelles sont les missions ?</p>
-              <a 
-                href="/benevoles" 
-                className="text-xs md:text-sm font-medium inline-block hover:underline transition-colors"
-                style={{ color: '#d4af37' }}
-              >
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">Bénévolat</h3>
+              <p className="text-gray-600 text-sm">Comment rejoindre l'équipe ? Quelles sont les missions ?</p>
+              <a href="/benevoles" className="nav-link hover:underline text-sm font-medium mt-2 inline-block" style={{ color: '#d4af37' }}>
                 Devenir bénévole →
               </a>
             </div>
-            
-            <div className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow md:col-span-2 lg:col-span-1">
-              <div className="flex items-center mb-3">
-                <MessageCircle className="w-5 h-5 mr-2" style={{ color: '#b87333' }} />
-                <h3 className="font-semibold text-sm md:text-base" style={{ color: '#1a1a1a' }}>Artistes</h3>
-              </div>
-              <p className="text-gray-600 text-xs md:text-sm mb-3">Vous êtes artiste ? Proposez votre projet musical !</p>
-              <a 
-                href="/artistes" 
-                className="text-xs md:text-sm font-medium inline-block hover:underline transition-colors"
-                style={{ color: '#d4af37' }}
-              >
+            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">Artistes</h3>
+              <p className="text-gray-600 text-sm">Vous êtes artiste ? Proposez votre projet musical !</p>
+              <a href="/artistes" className="nav-link hover:underline text-sm font-medium mt-2 inline-block" style={{ color: '#d4af37' }}>
                 Découvrir les artistes →
               </a>
             </div>

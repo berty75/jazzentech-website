@@ -8,7 +8,7 @@ const navItems = [
   { href: '/programmation', label: 'Programmation' },
   { href: '/artistes', label: 'Artistes' },
   { href: '/benevoles', label: 'Bénévoles' },
-  { href: '/dossier-presse', label: 'Presse' }, // 👈 AJOUTEZ CETTE LIGNE
+  { href: '/dossier-presse', label: 'Presse' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -29,8 +29,8 @@ export default function Navigation({ mobile = false, onItemClick }: NavigationPr
               href={item.href}
               onClick={onItemClick}
               className={`
-                font-medium transition-all duration-300 hover:scale-105
-                ${mobile ? "block py-2 px-3 rounded-lg" : ""}
+                nav-link font-medium transition-all duration-300 hover:scale-105 rounded-lg
+                ${mobile ? "block py-2 px-3" : "px-3 py-2"}
                 ${pathname === item.href 
                   ? "font-bold" 
                   : "hover:opacity-80"
