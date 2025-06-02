@@ -2,6 +2,175 @@
 
 import React, { useState, useEffect } from 'react'
 import { Calendar, MapPin, Clock, Ticket, Star, Music } from 'lucide-react'
+import Link from 'next/link'
+
+// Données des artistes avec leurs dates et slugs
+const artistsData = {
+  'all': {
+    title: 'TOUTES LES DATES',
+    locations: [
+      {
+        title: '27-28 JUILLET 2025',
+        subtitle: 'Cloître Saint-Génis-des-Fontaines',
+        artists: [
+          {
+            name: 'MANU LE PRINCE',
+            subtitle: '🎤 Quartet « Bossa Jazz for Ever »',
+            date: 'DIMANCHE 27 JUILLET • 21H00',
+            image: '/images/manu-le-prince.jpeg',
+            badge: 'BOSSA NOVA',
+            badgeColor: '#d4af37',
+            slug: 'manu-le-prince'
+          },
+          {
+            name: 'FLORIN GUGULICA',
+            subtitle: '🎷 Sextet « It\'s a long Way »',
+            date: 'LUNDI 28 JUILLET • 21H00',
+            image: '/images/florin-gugulica.jpeg',
+            badge: 'JAZZ MANOUCHE',
+            badgeColor: '#b87333',
+            slug: 'florin-gugulica'
+          }
+        ]
+      },
+      {
+        title: '7-8-9 AOÛT 2025',
+        subtitle: 'Place de la République, Céret',
+        artists: [
+          {
+            name: 'STEFANO DI BATTISTA',
+            subtitle: '🎷 « La Dolce Vita »',
+            date: 'JEU 7 AOÛT • 21H',
+            image: '/images/stefano-di-battista.jpg',
+            badge: 'JAZZ ITALIEN',
+            badgeColor: '#722f37',
+            slug: 'stefano-di-battista'
+          },
+          {
+            name: 'JACKY TERRASSON',
+            subtitle: '🎹 + Camille Bertault',
+            date: 'VEN 8 AOÛT • 21H',
+            image: '/images/jacky-terrasson.jpeg',
+            badge: 'PIANO JAZZ',
+            badgeColor: '#b87333',
+            slug: 'jacky-terrasson'
+          },
+          {
+            name: 'CHARLOTTE PLANCHOU',
+            subtitle: '🎤 Quartet',
+            date: 'SAM 9 AOÛT • 21H',
+            image: '/images/charlotte-planchou.jpg',
+            badge: '🏆 PRIX ÉVIDENCE',
+            badgeColor: '#d4af37',
+            extraBadge: 'CLÔTURE',
+            slug: 'charlotte-planchou'
+          }
+        ]
+      }
+    ]
+  },
+  '27': {
+    title: '27 JUILLET 2025',
+    locations: [
+      {
+        title: '27 JUILLET 2025',
+        subtitle: 'Cloître Saint-Génis-des-Fontaines',
+        artists: [
+          {
+            name: 'MANU LE PRINCE',
+            subtitle: '🎤 Quartet « Bossa Jazz for Ever »',
+            date: 'DIMANCHE 27 JUILLET • 21H00',
+            image: '/images/manu-le-prince.jpeg',
+            badge: 'BOSSA NOVA',
+            badgeColor: '#d4af37',
+            slug: 'manu-le-prince'
+          }
+        ]
+      }
+    ]
+  },
+  '28': {
+    title: '28 JUILLET 2025',
+    locations: [
+      {
+        title: '28 JUILLET 2025',
+        subtitle: 'Cloître Saint-Génis-des-Fontaines',
+        artists: [
+          {
+            name: 'FLORIN GUGULICA',
+            subtitle: '🎷 Sextet « It\'s a long Way »',
+            date: 'LUNDI 28 JUILLET • 21H00',
+            image: '/images/florin-gugulica.jpeg',
+            badge: 'JAZZ MANOUCHE',
+            badgeColor: '#b87333',
+            slug: 'florin-gugulica'
+          }
+        ]
+      }
+    ]
+  },
+  '7': {
+    title: '7 AOÛT 2025',
+    locations: [
+      {
+        title: '7 AOÛT 2025',
+        subtitle: 'Place de la République, Céret',
+        artists: [
+          {
+            name: 'STEFANO DI BATTISTA',
+            subtitle: '🎷 « La Dolce Vita »',
+            date: 'JEUDI 7 AOÛT • 21H00',
+            image: '/images/stefano-di-battista.jpg',
+            badge: 'JAZZ ITALIEN',
+            badgeColor: '#722f37',
+            slug: 'stefano-di-battista'
+          }
+        ]
+      }
+    ]
+  },
+  '8': {
+    title: '8 AOÛT 2025',
+    locations: [
+      {
+        title: '8 AOÛT 2025',
+        subtitle: 'Place de la République, Céret',
+        artists: [
+          {
+            name: 'JACKY TERRASSON',
+            subtitle: '🎹 + Camille Bertault',
+            date: 'VENDREDI 8 AOÛT • 21H00',
+            image: '/images/jacky-terrasson.jpeg',
+            badge: 'PIANO JAZZ',
+            badgeColor: '#b87333',
+            slug: 'jacky-terrasson'
+          }
+        ]
+      }
+    ]
+  },
+  '9': {
+    title: '9 AOÛT 2025',
+    locations: [
+      {
+        title: '9 AOÛT 2025',
+        subtitle: 'Place de la République, Céret',
+        artists: [
+          {
+            name: 'CHARLOTTE PLANCHOU',
+            subtitle: '🎤 Quartet',
+            date: 'SAMEDI 9 AOÛT • 21H00',
+            image: '/images/charlotte-planchou.jpg',
+            badge: '🏆 PRIX ÉVIDENCE',
+            badgeColor: '#d4af37',
+            extraBadge: 'CLÔTURE',
+            slug: 'charlotte-planchou'
+          }
+        ]
+      }
+    ]
+  }
+}
 
 // Composant compte à rebours
 function CountdownTimer() {
@@ -13,7 +182,6 @@ function CountdownTimer() {
   })
 
   useEffect(() => {
-    // Date de fin des ventes - 25 juillet 2025 à 23h59
     const targetDate = new Date('2025-07-25T23:59:59').getTime()
 
     const updateCountdown = () => {
@@ -32,7 +200,7 @@ function CountdownTimer() {
       }
     }
 
-    updateCountdown() // Mise à jour immédiate
+    updateCountdown()
     const interval = setInterval(updateCountdown, 1000)
 
     return () => clearInterval(interval)
@@ -40,7 +208,6 @@ function CountdownTimer() {
 
   return (
     <div className="flex justify-center items-center space-x-2 sm:space-x-4">
-      {/* Jours */}
       <div 
         className="text-white rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
         style={{ backgroundColor: '#722f37' }}
@@ -51,7 +218,6 @@ function CountdownTimer() {
       
       <div className="text-lg sm:text-xl font-bold" style={{ color: '#722f37' }}>:</div>
       
-      {/* Heures */}
       <div 
         className="text-white rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
         style={{ backgroundColor: '#722f37' }}
@@ -62,7 +228,6 @@ function CountdownTimer() {
       
       <div className="text-lg sm:text-xl font-bold" style={{ color: '#722f37' }}>:</div>
       
-      {/* Minutes */}
       <div 
         className="rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
         style={{ backgroundColor: '#d4af37', color: '#722f37' }}
@@ -73,7 +238,6 @@ function CountdownTimer() {
       
       <div className="text-lg sm:text-xl font-bold" style={{ color: '#722f37' }}>:</div>
       
-      {/* Secondes */}
       <div 
         className="rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
         style={{ backgroundColor: '#d4af37', color: '#722f37' }}
@@ -86,8 +250,22 @@ function CountdownTimer() {
 }
 
 export default function Programmation() {
+  const [selectedDate, setSelectedDate] = useState('all')
+
+  const handleDateClick = (date: string) => {
+    setSelectedDate(date)
+    // Scroll vers la section programme
+    const programmeSection = document.getElementById('programme-section')
+    if (programmeSection) {
+      programmeSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const currentData = artistsData[selectedDate as keyof typeof artistsData]
+
   return (
     <div className="min-h-screen bg-white">
+      <title>Programmation & Billetterie - Jazz en Tech 2025</title>
       {/* Hero Section */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
@@ -109,7 +287,7 @@ export default function Programmation() {
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
           
-          {/* Boutons de billetterie principaux - COULEURS CORRIGÉES */}
+          {/* Boutons de billetterie principaux - GARDÉS */}
           <section className="space-y-4 md:space-y-6">
             <h2 className="text-xl md:text-2xl font-bold text-center mb-6" style={{ color: '#722f37' }}>
               🎟️ Réservez dès maintenant
@@ -146,138 +324,178 @@ export default function Programmation() {
             </div>
           </section>
 
-          {/* Section programmation complète - COULEURS CORRIGÉES */}
-          <section>
-            <h2 className="text-xl md:text-2xl font-bold mb-6 flex items-center" style={{ color: '#722f37' }}>
-              <Music className="w-6 h-6 mr-3" />
+          {/* SECTION Programme complet - INTERACTIVE */}
+          <section id="programme-section">
+            <h2 className="text-xl md:text-2xl font-bold mb-8 text-center" style={{ color: '#722f37' }}>
+              <Music className="w-6 h-6 inline mr-3" />
               Programme complet - 10ème édition
             </h2>
             
-            <div className="grid gap-4 md:gap-6">
-              {/* Concert 1 - Stefano Di Battista */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300 hover:border-opacity-50" style={{ '&:hover': { borderColor: '#d4af37' } }}>
-                <div className="grid md:grid-cols-3 gap-4 items-center">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#1a1a1a' }}>
-                      Stefano Di Battista
+            {/* Bannière des dates cliquables - INTERACTIVE */}
+            <div className="mb-8 overflow-x-auto">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4 min-w-max">
+                <button 
+                  onClick={() => handleDateClick('all')}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedDate === 'all' ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedDate === 'all' ? '#d4af37' : '#f3f4f6', 
+                    color: selectedDate === 'all' ? '#722f37' : '#6b7280' 
+                  }}
+                >
+                  TOUTES LES DATES
+                </button>
+                <button 
+                  onClick={() => handleDateClick('27')}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedDate === '27' ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedDate === '27' ? '#722f37' : '#f3f4f6', 
+                    color: selectedDate === '27' ? '#f7f3e9' : '#6b7280' 
+                  }}
+                >
+                  27 JUILLET
+                </button>
+                <button 
+                  onClick={() => handleDateClick('28')}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedDate === '28' ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedDate === '28' ? '#b87333' : '#f3f4f6', 
+                    color: selectedDate === '28' ? '#f7f3e9' : '#6b7280' 
+                  }}
+                >
+                  28 JUILLET
+                </button>
+                <button 
+                  onClick={() => handleDateClick('7')}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedDate === '7' ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedDate === '7' ? '#722f37' : '#f3f4f6', 
+                    color: selectedDate === '7' ? '#f7f3e9' : '#6b7280' 
+                  }}
+                >
+                  7 AOÛT
+                </button>
+                <button 
+                  onClick={() => handleDateClick('8')}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedDate === '8' ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedDate === '8' ? '#b87333' : '#f3f4f6', 
+                    color: selectedDate === '8' ? '#f7f3e9' : '#6b7280' 
+                  }}
+                >
+                  8 AOÛT
+                </button>
+                <button 
+                  onClick={() => handleDateClick('9')}
+                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedDate === '9' ? 'shadow-lg' : 'hover:shadow-md'
+                  }`}
+                  style={{ 
+                    backgroundColor: selectedDate === '9' ? '#722f37' : '#f3f4f6', 
+                    color: selectedDate === '9' ? '#f7f3e9' : '#6b7280' 
+                  }}
+                >
+                  9 AOÛT
+                </button>
+              </div>
+            </div>
+
+            {/* Affichage dynamique des artistes selon la date sélectionnée */}
+            <div className="space-y-12">
+              {currentData.locations.map((location, locationIndex) => (
+                <div key={locationIndex} className="mb-12">
+                  <div className="text-center mb-8 p-6 rounded-xl" style={{ background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(114, 47, 55, 0.05))' }}>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#722f37' }}>
+                      {location.title}
                     </h3>
-                    <p className="text-sm md:text-base font-semibold mb-1" style={{ color: '#722f37' }}>« La Dolce Vita »</p>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600 mb-2">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      Jeudi 7 août 2025 - 21h
-                    </div>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      Place de la République, Céret
-                    </div>
-                  </div>
-                  
-                  <div className="md:text-center">
-                    <div className="flex items-center justify-center space-x-1 mb-2">
-                      <Star className="w-4 h-4 fill-current" style={{ color: '#d4af37' }} />
-                      <Star className="w-4 h-4 fill-current" style={{ color: '#d4af37' }} />
-                      <Star className="w-4 h-4 fill-current" style={{ color: '#d4af37' }} />
-                    </div>
-                    <p className="text-xs md:text-sm text-gray-600 italic">
-                      "Le saxophoniste de génie italien"
+                    <p className="text-lg font-semibold flex items-center justify-center" style={{ color: '#1a1a1a' }}>
+                      <MapPin className="w-5 h-5 mr-2" style={{ color: '#d4af37' }} />
+                      {location.subtitle}
                     </p>
                   </div>
                   
-                  <div className="md:text-right">
-                    <button 
-                      className="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                      style={{ backgroundColor: '#d4af37', color: '#722f37' }}
-                    >
-                      <Ticket className="w-4 h-4 inline mr-2" />
-                      Réserver
-                    </button>
+                  <div className={`grid gap-6 ${
+                    location.artists.length === 2 ? 'md:grid-cols-2' : 
+                    location.artists.length === 3 ? 'md:grid-cols-3' : 
+                    'grid-cols-1 max-w-md mx-auto'
+                  }`}>
+                    {location.artists.map((artist, artistIndex) => (
+                      <Link 
+                        key={artistIndex}
+                        href={`/artiste/${artist.slug}`}
+                        className="group relative cursor-pointer"
+                      >
+                        <div className={`relative ${
+                          location.artists.length === 3 ? 'aspect-[4/5]' : 'aspect-[4/3]'
+                        } rounded-xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2`}>
+                          <img 
+                            src={artist.image}
+                            alt={artist.name}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 right-4 text-white">
+                            <h4 className={`font-bold mb-1 ${
+                              location.artists.length === 3 ? 'text-xl' : 'text-2xl'
+                            }`}>
+                              {artist.name}
+                            </h4>
+                            <p className={`opacity-90 mb-2 ${
+                              location.artists.length === 3 ? 'text-xs' : 'text-sm'
+                            }`}>
+                              {artist.subtitle}
+                            </p>
+                            <div className={`flex items-center ${
+                              location.artists.length === 3 ? 'text-xs' : 'text-sm'
+                            }`}>
+                              <Calendar className={`mr-2 ${
+                                location.artists.length === 3 ? 'w-3 h-3' : 'w-4 h-4'
+                              }`} style={{ color: '#d4af37' }} />
+                              <span className="font-semibold">{artist.date}</span>
+                            </div>
+                          </div>
+                          <div className={`absolute top-3 right-3 px-2 py-1 rounded-full font-bold ${
+                            location.artists.length === 3 ? 'text-xs' : 'text-xs'
+                          }`} style={{ backgroundColor: artist.badgeColor, color: artist.badgeColor === '#d4af37' ? '#722f37' : '#f7f3e9' }}>
+                            {artist.badge}
+                          </div>
+                          {artist.extraBadge && (
+                            <div className="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                              {artist.extraBadge}
+                            </div>
+                          )}
+                          
+                          {/* Overlay hover pour indiquer que c'est cliquable */}
+                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div className="bg-white/90 rounded-full px-4 py-2 text-sm font-semibold" style={{ color: '#722f37' }}>
+                              Voir l'artiste →
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 </div>
-              </div>
+              ))}
+            </div>
+          </section>
 
-              {/* Concert 2 - Jacky Terrasson & Camille Bertault */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300">
-                <div className="grid md:grid-cols-3 gap-4 items-center">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#1a1a1a' }}>
-                      Jacky Terrasson & Camille Bertault
-                    </h3>
-                    <p className="text-sm md:text-base font-semibold mb-1" style={{ color: '#722f37' }}>Trio « Moving On »</p>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600 mb-2">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      Vendredi 8 août 2025 - 21h
-                    </div>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      Place de la République, Céret
-                    </div>
-                  </div>
-                  
-                  <div className="md:text-center">
-                    <div className="flex items-center justify-center space-x-1 mb-2">
-                      <Star className="w-4 h-4 fill-current" style={{ color: '#d4af37' }} />
-                      <Star className="w-4 h-4 fill-current" style={{ color: '#d4af37' }} />
-                      <Star className="w-4 h-4 fill-current" style={{ color: '#d4af37' }} />
-                    </div>
-                    <p className="text-xs md:text-sm text-gray-600 italic">
-                      "Quartet d'exception"
-                    </p>
-                  </div>
-                  
-                  <div className="md:text-right">
-                    <button 
-                      className="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                      style={{ backgroundColor: '#d4af37', color: '#722f37' }}
-                    >
-                      <Ticket className="w-4 h-4 inline mr-2" />
-                      Réserver
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Concert 3 - Charlotte Planchou */}
-              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300">
-                <div className="grid md:grid-cols-3 gap-4 items-center">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#1a1a1a' }}>
-                      Charlotte Planchou
-                    </h3>
-                    <p className="text-sm md:text-base font-semibold mb-1" style={{ color: '#722f37' }}>Quartet</p>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600 mb-2">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      Samedi 9 août 2025 - 21h
-                    </div>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      Place de la République, Céret
-                    </div>
-                  </div>
-                  
-                  <div className="md:text-center">
-                    <div 
-                      className="inline-block text-white px-2 py-1 rounded text-xs font-bold mb-2"
-                      style={{ backgroundColor: '#722f37' }}
-                    >
-                      🏆 Prix Évidence 2025
-                    </div>
-                    <p className="text-xs md:text-sm text-gray-600 italic">
-                      "Révélation de l'année"
-                    </p>
-                  </div>
-                  
-                  <div className="md:text-right">
-                    <button 
-                      className="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                      style={{ backgroundColor: '#d4af37', color: '#722f37' }}
-                    >
-                      <Ticket className="w-4 h-4 inline mr-2" />
-                      Réserver
-                    </button>
-                  </div>
-                </div>
-              </div>
-
+          {/* Pass 2 et 3 soirées - GARDÉS */}
+          <section>
+            <h3 className="text-lg md:text-xl font-bold mb-6 text-center" style={{ color: '#722f37' }}>
+              🎫 Formules avantageuses
+            </h3>
+            
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {/* Pass 2 soirées */}
               <div 
                 className="border-2 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300"
@@ -286,37 +504,28 @@ export default function Programmation() {
                   borderColor: 'rgba(212, 175, 55, 0.3)' 
                 }}
               >
-                <div className="grid md:grid-cols-3 gap-4 items-center">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#722f37' }}>
-                      Pass 2 soirées à Céret
-                    </h3>
-                    <p className="text-sm md:text-base mb-2" style={{ color: '#1a1a1a' }}>2 soirées parmi celles du 7 au 9 août 2025</p>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600">
-                      <span 
-                        className="text-white px-2 py-1 rounded text-xs font-bold mr-2"
-                        style={{ backgroundColor: '#722f37' }}
-                      >
-                        ÉCONOMIE
-                      </span>
-                      Jusqu'à 15% de réduction
-                    </div>
-                  </div>
-                  
-                  <div className="md:text-center">
-                    <p className="text-xl md:text-2xl font-bold" style={{ color: '#722f37' }}>30€</p>
-                    <p className="text-xs md:text-sm text-gray-600">Tarif préférentiel</p>
-                  </div>
-                  
-                  <div className="md:text-right">
-                    <button 
-                      className="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                      style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                <div className="text-center">
+                  <h4 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#722f37' }}>
+                    Pass 2 soirées à Céret
+                  </h4>
+                  <p className="text-sm md:text-base mb-4" style={{ color: '#1a1a1a' }}>2 soirées parmi celles du 7 au 9 août 2025</p>
+                  <div className="flex items-center justify-center text-xs md:text-sm text-gray-600 mb-4">
+                    <span 
+                      className="text-white px-2 py-1 rounded text-xs font-bold mr-2"
+                      style={{ backgroundColor: '#722f37' }}
                     >
-                      <Ticket className="w-4 h-4 inline mr-2" />
-                      Réserver
-                    </button>
+                      ÉCONOMIE
+                    </span>
+                    Jusqu'à 15% de réduction
                   </div>
+                  <p className="text-xl md:text-2xl font-bold mb-4" style={{ color: '#722f37' }}>30€</p>
+                  <button 
+                    className="w-full px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
+                    style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                  >
+                    <Ticket className="w-4 h-4 inline mr-2" />
+                    Réserver
+                  </button>
                 </div>
               </div>
 
@@ -328,43 +537,34 @@ export default function Programmation() {
                   borderColor: '#d4af37' 
                 }}
               >
-                <div className="grid md:grid-cols-3 gap-4 items-center">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#722f37' }}>
-                      Pass 3 soirées à Céret
-                    </h3>
-                    <p className="text-sm md:text-base mb-2" style={{ color: '#1a1a1a' }}>Les 3 soirées du 7 au 9 août 2025</p>
-                    <div className="flex items-center text-xs md:text-sm text-gray-600">
-                      <span 
-                        className="text-white px-2 py-1 rounded text-xs font-bold mr-2"
-                        style={{ backgroundColor: '#722f37' }}
-                      >
-                        MEILLEUR PRIX
-                      </span>
-                      Jusqu'à 25% de réduction
-                    </div>
-                  </div>
-                  
-                  <div className="md:text-center">
-                    <p className="text-xl md:text-2xl font-bold" style={{ color: '#722f37' }}>42€</p>
-                    <p className="text-xs md:text-sm text-gray-600">Meilleur tarif</p>
-                  </div>
-                  
-                  <div className="md:text-right">
-                    <button 
-                      className="w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                      style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                <div className="text-center">
+                  <h4 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#722f37' }}>
+                    Pass 3 soirées à Céret
+                  </h4>
+                  <p className="text-sm md:text-base mb-4" style={{ color: '#1a1a1a' }}>Les 3 soirées du 7 au 9 août 2025</p>
+                  <div className="flex items-center justify-center text-xs md:text-sm text-gray-600 mb-4">
+                    <span 
+                      className="text-white px-2 py-1 rounded text-xs font-bold mr-2"
+                      style={{ backgroundColor: '#722f37' }}
                     >
-                      <Ticket className="w-4 h-4 inline mr-2" />
-                      Réserver
-                    </button>
+                      MEILLEUR PRIX
+                    </span>
+                    Jusqu'à 25% de réduction
                   </div>
+                  <p className="text-xl md:text-2xl font-bold mb-4" style={{ color: '#722f37' }}>42€</p>
+                  <button 
+                    className="w-full px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
+                    style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                  >
+                    <Ticket className="w-4 h-4 inline mr-2" />
+                    Réserver
+                  </button>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* Information billetterie avec compte à rebours - COULEURS CORRIGÉES */}
+          {/* Compte à rebours - GARDÉ */}
           <section 
             className="rounded-2xl p-4 md:p-6 border"
             style={{ 
@@ -404,7 +604,7 @@ export default function Programmation() {
             </div>
           </section>
 
-          {/* Informations pratiques - COULEURS CORRIGÉES */}
+          {/* Informations pratiques - GARDÉES */}
           <section className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 shadow-sm">
             <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center" style={{ color: '#722f37' }}>
               <Clock className="w-5 h-5 md:w-6 md:h-6 mr-2" />

@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { Calendar, Music, Users, Star, MapPin, Ticket } from 'lucide-react'
+import { Calendar, Music, Users, Star, MapPin, Ticket, Play } from 'lucide-react'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <title>Jazz en Tech - Festival de Jazz Innovation</title>
+      
       {/* Hero Section - PADDING TOP CORRIGÉ */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pb-24 relative overflow-hidden min-h-[80vh] md:min-h-screen flex items-center">
         {/* Éléments artistiques de fond */}
@@ -76,70 +77,155 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reste du contenu inchangé... */}
-      {/* Section À propos */}
-      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, white 50%, #f7f3e9 100%)' }}>
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6" style={{ color: '#1a1a1a' }}>
-                Un festival <span style={{ color: '#722f37' }}>unique</span>
-              </h2>
-              <p className="text-base md:text-lg leading-relaxed mb-6 md:mb-8" style={{ color: '#722f37' }}>
-                Jazz en Tech est le premier festival qui unit la richesse du jazz traditionnel 
-                aux innovations technologiques d'aujourd'hui. Une expérience musicale 
-                immersive qui repousse les frontières de l'art.
-              </p>
-              <Link 
-                href="/mot-du-president"
-                className="inline-flex items-center font-semibold group transition-colors hover:opacity-80"
-                style={{ color: '#722f37' }}
-              >
-                Découvrir notre vision 
-                <span className="ml-2 transform group-hover:translate-x-2 transition-transform">→</span>
-              </Link>
-            </div>
+      {/* NOUVELLE SECTION GALERIE ARTISTES */}
+      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, rgba(212, 175, 55, 0.1) 50%, #f7f3e9 100%)' }}>
+        {/* Éléments décoratifs de fond */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
+          <div className="absolute top-20 right-20 w-24 h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
+          <div className="absolute bottom-10 left-1/3 w-20 h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
+              PROGRAMMATION DE L'ÉDITION 2025
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#1a1a1a' }}>
+              Découvrez les artistes exceptionnels qui illumineront cette 10ème édition
+            </p>
+          </div>
+
+          {/* Grille d'images des artistes */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             
-            {/* Design en losange avec nouvelles couleurs - RESPONSIVE */}
-            <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
-              
-              {/* Top */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#1a1a1a' }}>
-                  <Music className="w-8 h-8 md:w-10 md:h-10 text-white" />
+            {/* Manu Le Prince */}
+            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                <img 
+                  src="/images/manu-le-prince.jpeg" 
+                  alt="Manu Le Prince"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Informations overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">MANU LE PRINCE</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">Quartet « Bossa Jazz for Ever »</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>DIM. 27 JUILLET - 21H00</span>
+                  </div>
                 </div>
-                <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Artistes</div>
-                <div className="text-xs" style={{ color: '#722f37' }}>Exceptionnels</div>
               </div>
-              
-              {/* Right */}
-              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform -rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#722f37' }}>
-                  <Users className="w-8 h-8 md:w-10 md:h-10 text-white" />
+            </Link>
+
+            {/* Florin Gugulica */}
+            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                <img 
+                  src="/images/florin-gugulica.jpeg" 
+                  alt="Florin Gugulica"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">FLORIN GUGULICA</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">Sextet « It's a long Way »</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>LUN. 28 JUILLET - 21H00</span>
+                  </div>
                 </div>
-                <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Public</div>
-                <div className="text-xs" style={{ color: '#722f37' }}>Passionné</div>
               </div>
-              
-              {/* Bottom */}
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#b87333' }}>
-                  <Calendar className="w-8 h-8 md:w-10 md:h-10 text-white" />
+            </Link>
+
+            {/* Stefano Di Battista */}
+            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                <img 
+                  src="/images/stefano-di-battista.jpg" 
+                  alt="Stefano Di Battista"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">STEFANO DI BATTISTA</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">« La Dolce Vita »</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>JEU. 7 AOÛT - 21H00</span>
+                  </div>
                 </div>
-                <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Événements</div>
-                <div className="text-xs" style={{ color: '#722f37' }}>Inoubliables</div>
               </div>
-              
-              {/* Left */}
-              <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform -rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#d4af37' }}>
-                  <Star className="w-8 h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} />
+            </Link>
+
+            {/* Jacky Terrasson */}
+            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                <img 
+                  src="/images/jacky-terrasson.jpeg" 
+                  alt="Jacky Terrasson"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">JACKY TERRASSON</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">Trio « Moving On » + Camille Bertault</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>VEN. 8 AOÛT - 21H00</span>
+                  </div>
                 </div>
-                <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Expérience</div>
-                <div className="text-xs" style={{ color: '#722f37' }}>Unique</div>
               </div>
-              
-            </div>
+            </Link>
+
+          </div>
+
+          {/* Section supplémentaire pour Charlotte Planchou - mise en avant */}
+          <div className="mt-8 md:mt-12 max-w-2xl mx-auto">
+            <Link href="/artistes" className="group relative block overflow-hidden rounded-xl shadow-2xl">
+              <div className="relative aspect-[5/2] md:aspect-[3/1] overflow-hidden">
+                <img 
+                  src="/images/charlotte-planchou.jpg" 
+                  alt="Charlotte Planchou"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+                
+                {/* Badge Prix */}
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                  🏆 PRIX ÉVIDENCE 2025
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+                  <h3 className="font-bold text-xl md:text-2xl mb-2">CHARLOTTE PLANCHOU</h3>
+                  <p className="text-sm md:text-base opacity-90 mb-3">Quartet - Révélation de l'année 2025</p>
+                  <div className="flex items-center text-sm">
+                    <Calendar className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+                    <span className="font-semibold">SAMEDI 9 AOÛT - 21H00 - CLÔTURE DU FESTIVAL</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          {/* Bouton CTA */}
+          <div className="text-center mt-8 md:mt-12">
+            <Link 
+              href="/artistes"
+              className="inline-block px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl"
+              style={{ 
+                backgroundColor: '#722f37', 
+                color: '#f7f3e9'
+              }}
+            >
+              Découvrir tous les artistes
+            </Link>
           </div>
         </div>
       </section>
@@ -230,90 +316,195 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section Actualités - RESPONSIVE */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-1/4 left-0 w-80 h-80 rounded-full blur-3xl" style={{ backgroundColor: '#1a1a1a' }}></div>
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 rounded-full blur-3xl" style={{ backgroundColor: '#722f37' }}></div>
+
+
+{/* Section À propos + Vidéos - UNE SEULE SECTION avec fond continu */}
+<section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, white 50%, #f7f3e9 100%)' }}>
+  {/* Éléments décoratifs */}
+  <div className="absolute inset-0 opacity-20">
+    <div className="absolute top-10 left-10 w-32 h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
+    <div className="absolute bottom-20 right-20 w-24 h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
+    <div className="absolute top-1/2 right-10 w-20 h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
+  </div>
+
+  <div className="container mx-auto px-4 relative z-10">
+    
+    {/* PARTIE 1 : Festival unique */}
+    <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center mb-16 md:mb-24">
+      <div>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6" style={{ color: '#1a1a1a' }}>
+          Un festival <span style={{ color: '#722f37' }}>unique</span>
+        </h2>
+        <p className="text-base md:text-lg leading-relaxed mb-6 md:mb-8" style={{ color: '#722f37' }}>
+          Jazz en Tech est le premier festival qui unit la richesse du jazz traditionnel 
+          aux innovations technologiques d'aujourd'hui. Une expérience musicale 
+          immersive qui repousse les frontières de l'art.
+        </p>
+        <Link 
+          href="/mot-du-president"
+          className="inline-flex items-center font-semibold group transition-colors hover:opacity-80"
+          style={{ color: '#722f37' }}
+        >
+          Découvrir notre vision 
+          <span className="ml-2 transform group-hover:translate-x-2 transition-transform">→</span>
+        </Link>
+      </div>
+      
+      {/* Design en losange avec nouvelles couleurs - RESPONSIVE */}
+      <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+        
+        {/* Top */}
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-center">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#1a1a1a' }}>
+            <Music className="w-8 h-8 md:w-10 md:h-10 text-white" />
+          </div>
+          <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Artistes</div>
+          <div className="text-xs" style={{ color: '#722f37' }}>Exceptionnels</div>
         </div>
         
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-center" style={{ color: '#1a1a1a' }}>
-            Actualités
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <article className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100">
-              <div className="h-40 md:h-48 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #722f37, #1a1a1a)' }}>
-                <Music className="w-12 h-12 md:w-16 md:h-16 text-white group-hover:scale-125 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              </div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 group-hover:opacity-80 transition-colors" style={{ color: '#1a1a1a' }}>
-                  Programmation 2025 dévoilée
-                </h3>
-                <p className="mb-3 md:mb-4 text-sm md:text-base" style={{ color: '#722f37' }}>
-                  Découvrez les artistes exceptionnels qui monteront sur scène pour cette 10ème édition...
-                </p>
-                <Link 
-                  href="/programmation"
-                  className="inline-flex items-center font-semibold group/link transition-colors hover:opacity-80 text-sm md:text-base"
-                  style={{ color: '#722f37' }}
-                >
-                  Lire la suite 
-                  <span className="ml-2 transform group-hover/link:translate-x-2 transition-transform">→</span>
-                </Link>
-              </div>
-            </article>
+        {/* Right */}
+        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-center">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform -rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#722f37' }}>
+            <Users className="w-8 h-8 md:w-10 md:h-10 text-white" />
+          </div>
+          <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Public</div>
+          <div className="text-xs" style={{ color: '#722f37' }}>Passionné</div>
+        </div>
+        
+        {/* Bottom */}
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#b87333' }}>
+            <Calendar className="w-8 h-8 md:w-10 md:h-10 text-white" />
+          </div>
+          <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Événements</div>
+          <div className="text-xs" style={{ color: '#722f37' }}>Inoubliables</div>
+        </div>
+        
+        {/* Left */}
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-center">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform -rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#d4af37' }}>
+            <Star className="w-8 h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} />
+          </div>
+          <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Expérience</div>
+          <div className="text-xs" style={{ color: '#722f37' }}>Unique</div>
+        </div>
+        
+      </div>
+    </div>
 
-            <article className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100">
-              <div className="h-40 md:h-48 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a1a, #b87333)' }}>
-                <Users className="w-12 h-12 md:w-16 md:h-16 group-hover:scale-125 transition-transform duration-300" style={{ color: '#d4af37' }} />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              </div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 group-hover:opacity-80 transition-colors" style={{ color: '#1a1a1a' }}>
-                  Appel aux bénévoles
-                </h3>
-                <p className="mb-3 md:mb-4 text-sm md:text-base" style={{ color: '#722f37' }}>
-                  Rejoignez notre équipe et vivez le festival de l'intérieur...
-                </p>
-                <Link 
-                  href="/benevoles"
-                  className="inline-flex items-center font-semibold group/link transition-colors hover:opacity-80 text-sm md:text-base"
-                  style={{ color: '#722f37' }}
-                >
-                  Lire la suite 
-                  <span className="ml-2 transform group-hover/link:translate-x-2 transition-transform">→</span>
-                </Link>
-              </div>
-            </article>
-
-            <article className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100 md:col-span-2 lg:col-span-1">
-              <div className="h-40 md:h-48 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #b87333, #722f37)' }}>
-                <Ticket className="w-12 h-12 md:w-16 md:h-16 group-hover:scale-125 transition-transform duration-300" style={{ color: '#d4af37' }} />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              </div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 group-hover:opacity-80 transition-colors" style={{ color: '#1a1a1a' }}>
-                  Billetterie ouverte
-                </h3>
-                <p className="mb-3 md:mb-4 text-sm md:text-base" style={{ color: '#722f37' }}>
-                  Les billets sont maintenant disponibles à tarifs très raisonnables...
-                </p>
-                <Link 
-                  href="/programmation"
-                  className="inline-flex items-center font-semibold group/link transition-colors hover:opacity-80 text-sm md:text-base"
-                  style={{ color: '#722f37' }}
-                >
-                  Lire la suite 
-                  <span className="ml-2 transform group-hover/link:translate-x-2 transition-transform">→</span>
-                </Link>
-              </div>
-            </article>
+    {/* PARTIE 2 : Vidéos dans la même section */}
+    <div>
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
+          🎬 Découvrez nos artistes en vidéo
+        </h2>
+        <p className="text-lg max-w-2xl mx-auto" style={{ color: '#1a1a1a' }}>
+          Plongez dans l'univers musical de nos artistes exceptionnels
+        </p>
+      </div>
+      
+      {/* Grille de vidéos responsive */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+        
+        {/* Vidéo 1 - Manu Le Prince */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/SKgvTVcQEcU"
+              title="Manu Le Prince - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎤 Manu Le Prince
+            </h3>
+            <p className="text-sm text-gray-600">Quartet « Bossa Jazz for Ever »</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">27 JUILLET 2025</span>
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* Vidéo 2 - Stefano Di Battista */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/Gjh-v425HPQ"
+              title="Stefano Di Battista - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎷 Stefano Di Battista
+            </h3>
+            <p className="text-sm text-gray-600">« La Dolce Vita »</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">7 AOÛT 2025</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Vidéo 3 - Jacky Terrasson */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 md:col-span-2 lg:col-span-1">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/HX0ASXAHf2Y"
+              title="Jacky Terrasson - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎹 Jacky Terrasson
+            </h3>
+            <p className="text-sm text-gray-600">Trio « Moving On » + Camille Bertault</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">8 AOÛT 2025</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Bouton CTA vers la page artistes */}
+      <div className="text-center mt-8 md:mt-12">
+        <Link 
+          href="/artistes"
+          className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl"
+          style={{ 
+            backgroundColor: '#722f37', 
+            color: '#f7f3e9'
+          }}
+        >
+          <Play className="w-5 h-5 mr-2" />
+          Découvrir tous nos artistes
+        </Link>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       {/* CTA final - RESPONSIVE */}
       <section className="py-12 md:py-16 text-white relative overflow-hidden" style={{ background: 'linear-gradient(45deg, #d4af37 0%, #b87333 50%, #722f37 100%)' }}>
