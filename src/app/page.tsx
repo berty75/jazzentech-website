@@ -100,7 +100,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             
             {/* Manu Le Prince */}
-            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+            <Link href="/artistes/manu-le-prince" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/manu-le-prince.jpeg" 
@@ -122,7 +122,7 @@ export default function Home() {
             </Link>
 
             {/* Florin Gugulica */}
-            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+            <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/florin-gugulica.jpeg" 
@@ -143,7 +143,7 @@ export default function Home() {
             </Link>
 
             {/* Stefano Di Battista */}
-            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+            <Link href="/artistes/stefano-di-battista" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/stefano-di-battista.jpg" 
@@ -164,7 +164,7 @@ export default function Home() {
             </Link>
 
             {/* Jacky Terrasson */}
-            <Link href="/artistes" className="group relative block overflow-hidden rounded-lg shadow-xl">
+            <Link href="/artistes/jacky-terrasson" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/jacky-terrasson.jpeg" 
@@ -188,7 +188,7 @@ export default function Home() {
 
           {/* Section supplémentaire pour Charlotte Planchou - mise en avant */}
           <div className="mt-8 md:mt-12 max-w-2xl mx-auto">
-            <Link href="/artistes" className="group relative block overflow-hidden rounded-xl shadow-2xl">
+            <Link href="/artistes/charlotte-planchou" className="group relative block overflow-hidden rounded-xl shadow-2xl">
               <div className="relative aspect-[5/2] md:aspect-[3/1] overflow-hidden">
                 <img 
                   src="/images/charlotte-planchou.jpg" 
@@ -315,8 +315,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
 
 {/* Section À propos + Vidéos - UNE SEULE SECTION avec fond continu */}
 <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, white 50%, #f7f3e9 100%)' }}>
@@ -504,7 +502,6 @@ export default function Home() {
 
   </div>
 </section>
-
 
       {/* CTA final - RESPONSIVE */}
       <section className="py-12 md:py-16 text-white relative overflow-hidden" style={{ background: 'linear-gradient(45deg, #d4af37 0%, #b87333 50%, #722f37 100%)' }}>

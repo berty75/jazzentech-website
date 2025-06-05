@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Calendar, MapPin, Clock, Ticket, Star, Music } from 'lucide-react'
+import { Calendar, MapPin, Clock, Music } from 'lucide-react'
 import Link from 'next/link'
 
 // Données des artistes avec leurs dates et slugs
@@ -265,20 +265,20 @@ export default function Programmation() {
 
   return (
     <div className="min-h-screen bg-white">
-      <title>Programmation & Billetterie - Jazz en Tech 2025</title>
+      <title>Programmation - Jazz en Tech 2025</title>
       {/* Hero Section */}
       <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
-            Programmation & Billetterie
+            Programmation 2025
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#f7f3e9' }}>
-            Découvrez notre programmation exceptionnelle et réservez vos places pour la 10ème édition
+            Découvrez notre programmation exceptionnelle pour la 10ème édition
           </p>
           <div className="flex items-center justify-center mt-6">
             <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-              <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
-              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>Billetterie officielle</span>
+              <Music className="w-5 h-5" style={{ color: '#d4af37' }} />
+              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>5 artistes exceptionnels</span>
             </div>
           </div>
         </div>
@@ -287,43 +287,6 @@ export default function Programmation() {
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
           
-          {/* Boutons de billetterie principaux - GARDÉS */}
-          <section className="space-y-4 md:space-y-6">
-            <h2 className="text-xl md:text-2xl font-bold text-center mb-6" style={{ color: '#722f37' }}>
-              🎟️ Réservez dès maintenant
-            </h2>
-            
-            <div className="grid gap-4 max-w-4xl mx-auto">
-              <a 
-                href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/manu-le-prince-quartet-bossa-jazz-for-ever"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-4 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:opacity-90 shadow-lg text-center"
-                style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
-              >
-                <div className="flex items-center justify-center space-x-3">
-                  <Calendar className="w-5 h-5" />
-                  <span className="text-sm md:text-lg">Manu Le Prince - 27 juillet 2025</span>
-                </div>
-                <div className="text-xs md:text-sm opacity-90 mt-1">Saint-Génis-des-Fontaines</div>
-              </a>
-              
-              <a 
-                href="https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/florin-gugulica-sextet-its-a-long-way"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block px-4 md:px-8 py-3 md:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-[1.02] hover:opacity-90 shadow-lg text-center"
-                style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
-              >
-                <div className="flex items-center justify-center space-x-3">
-                  <Calendar className="w-5 h-5" />
-                  <span className="text-sm md:text-lg">Florin Gugulica - 28 juillet 2025</span>
-                </div>
-                <div className="text-xs md:text-sm opacity-90 mt-1">Saint-Génis-des-Fontaines</div>
-              </a>
-            </div>
-          </section>
-
           {/* SECTION Programme complet - INTERACTIVE */}
           <section id="programme-section">
             <h2 className="text-xl md:text-2xl font-bold mb-8 text-center" style={{ color: '#722f37' }}>
@@ -431,7 +394,7 @@ export default function Programmation() {
                     {location.artists.map((artist, artistIndex) => (
                       <Link 
                         key={artistIndex}
-                        href={`/artiste/${artist.slug}`}
+                        href={`/artistes/${artist.slug}`}
                         className="group relative cursor-pointer"
                       >
                         <div className={`relative ${
@@ -489,82 +452,7 @@ export default function Programmation() {
             </div>
           </section>
 
-          {/* Pass 2 et 3 soirées - GARDÉS */}
-          <section>
-            <h3 className="text-lg md:text-xl font-bold mb-6 text-center" style={{ color: '#722f37' }}>
-              🎫 Formules avantageuses
-            </h3>
-            
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {/* Pass 2 soirées */}
-              <div 
-                className="border-2 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300"
-                style={{ 
-                  backgroundColor: 'rgba(212, 175, 55, 0.1)', 
-                  borderColor: 'rgba(212, 175, 55, 0.3)' 
-                }}
-              >
-                <div className="text-center">
-                  <h4 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#722f37' }}>
-                    Pass 2 soirées à Céret
-                  </h4>
-                  <p className="text-sm md:text-base mb-4" style={{ color: '#1a1a1a' }}>2 soirées parmi celles du 7 au 9 août 2025</p>
-                  <div className="flex items-center justify-center text-xs md:text-sm text-gray-600 mb-4">
-                    <span 
-                      className="text-white px-2 py-1 rounded text-xs font-bold mr-2"
-                      style={{ backgroundColor: '#722f37' }}
-                    >
-                      ÉCONOMIE
-                    </span>
-                    Jusqu'à 15% de réduction
-                  </div>
-                  <p className="text-xl md:text-2xl font-bold mb-4" style={{ color: '#722f37' }}>30€</p>
-                  <button 
-                    className="w-full px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
-                  >
-                    <Ticket className="w-4 h-4 inline mr-2" />
-                    Réserver
-                  </button>
-                </div>
-              </div>
-
-              {/* Pass 3 soirées */}
-              <div 
-                className="border-2 rounded-xl p-4 md:p-6 hover:shadow-lg transition-all duration-300"
-                style={{ 
-                  backgroundColor: 'rgba(212, 175, 55, 0.2)', 
-                  borderColor: '#d4af37' 
-                }}
-              >
-                <div className="text-center">
-                  <h4 className="text-lg md:text-xl font-bold mb-2" style={{ color: '#722f37' }}>
-                    Pass 3 soirées à Céret
-                  </h4>
-                  <p className="text-sm md:text-base mb-4" style={{ color: '#1a1a1a' }}>Les 3 soirées du 7 au 9 août 2025</p>
-                  <div className="flex items-center justify-center text-xs md:text-sm text-gray-600 mb-4">
-                    <span 
-                      className="text-white px-2 py-1 rounded text-xs font-bold mr-2"
-                      style={{ backgroundColor: '#722f37' }}
-                    >
-                      MEILLEUR PRIX
-                    </span>
-                    Jusqu'à 25% de réduction
-                  </div>
-                  <p className="text-xl md:text-2xl font-bold mb-4" style={{ color: '#722f37' }}>42€</p>
-                  <button 
-                    className="w-full px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
-                  >
-                    <Ticket className="w-4 h-4 inline mr-2" />
-                    Réserver
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Compte à rebours - GARDÉ */}
+          {/* Compte à rebours - Festival approche */}
           <section 
             className="rounded-2xl p-4 md:p-6 border"
             style={{ 
@@ -574,37 +462,18 @@ export default function Programmation() {
           >
             <div className="text-center">
               <h3 className="text-lg md:text-xl font-bold mb-4" style={{ color: '#722f37' }}>
-                ⏰ Attention : Vente limitée dans le temps
+                ⏰ Le festival approche !
               </h3>
               
               <CountdownTimer />
               
-              <p className="text-xs md:text-sm text-gray-600 mt-4 mb-6">
-                Ventes jusqu'au <strong>25 juillet 2025 à 23h59</strong>
+              <p className="text-xs md:text-sm text-gray-600 mt-4">
+                Plus que quelques mois avant cette 10ème édition exceptionnelle
               </p>
-              
-              <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                <div className="bg-white rounded-lg p-3 md:p-4 text-center">
-                  <p className="text-xs md:text-sm font-semibold mb-1" style={{ color: '#1a1a1a' }}>Billet non reçu ?</p>
-                  <button 
-                    className="text-xs md:text-sm font-medium hover:opacity-80 transition-opacity"
-                    style={{ color: '#722f37' }}
-                  >
-                    Cliquez ici pour assistance
-                  </button>
-                </div>
-                
-                <div className="bg-white rounded-lg p-3 md:p-4 text-center">
-                  <p className="text-xs md:text-sm font-semibold mb-1" style={{ color: '#1a1a1a' }}>Service client</p>
-                  <p className="text-xs md:text-sm font-medium" style={{ color: '#722f37' }}>
-                    06 08 75 87 67
-                  </p>
-                </div>
-              </div>
             </div>
           </section>
 
-          {/* Informations pratiques - GARDÉES */}
+          {/* Informations pratiques */}
           <section className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 shadow-sm">
             <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center" style={{ color: '#722f37' }}>
               <Clock className="w-5 h-5 md:w-6 md:h-6 mr-2" />

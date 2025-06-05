@@ -5,8 +5,7 @@ import { usePathname } from 'next/navigation'
 const navItems = [
   { href: '/', label: 'Accueil' },
   { href: '/mot-du-president', label: 'Mot du Président' },
-  { href: '/programmation', label: 'Programmation' },
-  { href: '/artistes', label: 'Artistes' },
+  { href: '/programmation', label: 'Programme' },
   { href: '/benevoles', label: 'Bénévoles' },
   { href: '/dossier-presse', label: 'Presse' },
   { href: '/contact', label: 'Contact' },

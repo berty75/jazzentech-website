@@ -1,9 +1,8 @@
-'use client'
-
 import React from 'react'
 import { notFound } from 'next/navigation'
-import { Calendar, MapPin, Clock, Ticket, Music, Play, ExternalLink, Instagram, Youtube } from 'lucide-react'
+import { Calendar, MapPin, Clock, Music, Play, Instagram, Youtube } from 'lucide-react'
 import Link from 'next/link'
+import ReservationButton from '@/components/ReservationButton'
 
 // Données complètes des artistes
 const artistsData = {
@@ -16,6 +15,7 @@ const artistsData = {
     time: '21H00',
     venue: 'Cloître Saint-Génis-des-Fontaines',
     ticketUrl: 'https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/manu-le-prince-quartet-bossa-jazz-for-ever',
+    ticketType: 'direct' as const,
     biography: {
       intro: "Chanteuse sans frontières, Manu Le Prince s'est imposée comme l'une des plus belles voix du Latin Jazz français.",
       content: [
@@ -67,6 +67,7 @@ const artistsData = {
     time: '21H00',
     venue: 'Cloître Saint-Génis-des-Fontaines',
     ticketUrl: 'https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/florin-gugulica-sextet-its-a-long-way',
+    ticketType: 'direct' as const,
     biography: {
       intro: "Florin Gugulica nous embarque dans son univers musical aux horizons multiples : jazz manouche, taraf balkanique et musique traditionnelle roumaine.",
       content: [
@@ -111,7 +112,8 @@ const artistsData = {
     date: 'JEUDI 7 AOÛT 2025',
     time: '21H00',
     venue: 'Place de la République, Céret',
-    ticketUrl: '#',
+    ticketType: 'billetweb' as const,
+    billetwebEventId: 'stefano-di-battista-jazz-en-tech-2025',
     biography: {
       intro: "Amoureux de la mélodie et magicien du timbre, Stefano Di Battista fait résonner les thèmes de Paolo Conte avec une élégance toute italienne.",
       content: [
@@ -162,7 +164,8 @@ const artistsData = {
     date: 'VENDREDI 8 AOÛT 2025',
     time: '21H00',
     venue: 'Place de la République, Céret',
-    ticketUrl: '#',
+    ticketType: 'billetweb' as const,
+    billetwebEventId: 'jacky-terrasson-camille-bertault-jazz-en-tech-2025',
     biography: {
       intro: "Prix Thelonious Monk 1993, Jacky Terrasson est \"le plus voyageur des pianistes\". Pour cette soirée exceptionnelle, il s'associe à la talentueuse Camille Bertault.",
       content: [
@@ -213,7 +216,8 @@ const artistsData = {
     date: 'SAMEDI 9 AOÛT 2025',
     time: '21H00',
     venue: 'Place de la République, Céret',
-    ticketUrl: '#',
+    ticketType: 'billetweb' as const,
+    billetwebEventId: 'charlotte-planchou-quartet-jazz-en-tech-2025',
     badge: '🏆 PRIX ÉVIDENCE 2025',
     isClosure: true,
     biography: {
@@ -305,6 +309,17 @@ export default function ArtistPage({ params }: ArtistPageProps) {
               {artist.genre}
             </p>
             
+            {/* PHOTO CIRCULAIRE DE L'ARTISTE */}
+            <div className="flex justify-center mb-8">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                <img 
+                  src={artist.image}
+                  alt={artist.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            
             {/* Infos concert */}
             <div className="bg-black/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20">
               <div className="grid md:grid-cols-3 gap-4 text-center">
@@ -329,21 +344,15 @@ export default function ArtistPage({ params }: ArtistPageProps) {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
           
-          {/* Bouton réservation principal */}
-          {artist.ticketUrl !== '#' && (
-            <section className="text-center">
-              <a 
-                href={artist.ticketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
-                style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
-              >
-                <Ticket className="w-6 h-6 mr-3" />
-                Réserver maintenant
-              </a>
-            </section>
-          )}
+          {/* Bouton réservation avec composant séparé */}
+          <section className="text-center">
+            <ReservationButton
+              ticketType={artist.ticketType}
+              ticketUrl={artist.ticketUrl}
+              billetwebEventId={artist.billetwebEventId}
+              artistName={artist.name}
+            />
+          </section>
 
           {/* Biographie */}
           <section>

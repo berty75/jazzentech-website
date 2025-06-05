@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react'
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Ticket } from 'lucide-react'
 
 function Footer() {
   return (
@@ -103,6 +103,21 @@ function Footer() {
                 </span>
               </div>
             </address>
+
+            {/* CTA Billetterie dans footer */}
+            <div className="mt-6">
+              <Link
+                href="/billetterie"
+                className="inline-flex items-center px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105"
+                style={{ 
+                  background: 'linear-gradient(45deg, #d4af37, #b87333)', 
+                  color: '#1a1a1a' 
+                }}
+              >
+                <Ticket className="w-4 h-4 mr-2" />
+                Billetterie
+              </Link>
+            </div>
           </div>
         </div>
         
