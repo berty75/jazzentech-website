@@ -46,7 +46,7 @@ export default function Home() {
                   Billetterie & Programmation
                 </Link>
                 <Link
-                  href="/artistes"
+                  href="/programmation"
                   className="inline-block border-2 px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center"
                   style={{ borderColor: '#d4af37', color: '#d4af37' }}
                 >
@@ -77,7 +77,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NOUVELLE SECTION GALERIE ARTISTES */}
+      {/* SECTION CONCERTS PAYANTS */}
       <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, rgba(212, 175, 55, 0.1) 50%, #f7f3e9 100%)' }}>
         {/* Éléments décoratifs de fond */}
         <div className="absolute inset-0 opacity-20">
@@ -89,15 +89,19 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
-              PROGRAMMATION DE L'ÉDITION 2025
+              🎫 CONCERTS AVEC BILLETTERIE
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#1a1a1a' }}>
-              Découvrez les artistes exceptionnels qui illumineront cette 10ème édition
+            <p className="text-lg max-w-2xl mx-auto mb-4" style={{ color: '#1a1a1a' }}>
+              Découvrez les artistes exceptionnels de cette 10ème édition
             </p>
+            <div className="inline-flex items-center px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)', border: '2px solid #722f37' }}>
+              <Ticket className="w-4 h-4 mr-2" style={{ color: '#722f37' }} />
+              <span className="text-sm font-medium" style={{ color: '#722f37' }}>Réservation obligatoire</span>
+            </div>
           </div>
 
-          {/* Grille d'images des artistes */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+          {/* Grille d'images des artistes PAYANTS - MAINTENANT 6 CARTES */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 max-w-7xl mx-auto">
             
             {/* Manu Le Prince */}
             <Link href="/artistes/manu-le-prince" className="group relative block overflow-hidden rounded-lg shadow-xl">
@@ -109,13 +113,18 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 
+                {/* Badge payant */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                  PAYANT
+                </div>
+                
                 {/* Informations overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                  <h3 className="font-bold text-sm md:text-lg mb-1">MANU LE PRINCE</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Quartet « Bossa Jazz for Ever »</p>
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">MANU LE PRINCE</h3>
+                  <p className="text-xs opacity-90 mb-1">Quartet « Bossa Jazz »</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
-                    <span>DIM. 27 JUILLET - 21H00</span>
+                    <span>27 JUIL</span>
                   </div>
                 </div>
               </div>
@@ -131,12 +140,17 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                  <h3 className="font-bold text-sm md:text-lg mb-1">FLORIN GUGULICA</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Sextet « It's a long Way »</p>
+                {/* Badge payant */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                  PAYANT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">FLORIN GUGULICA</h3>
+                  <p className="text-xs opacity-90 mb-1">Sextet</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
-                    <span>LUN. 28 JUILLET - 21H00</span>
+                    <span>28 JUIL</span>
                   </div>
                 </div>
               </div>
@@ -152,12 +166,17 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                  <h3 className="font-bold text-sm md:text-lg mb-1">STEFANO DI BATTISTA</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">« La Dolce Vita »</p>
+                {/* Badge payant */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                  PAYANT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">STEFANO DI BATTISTA</h3>
+                  <p className="text-xs opacity-90 mb-1">« La Dolce Vita »</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
-                    <span>JEU. 7 AOÛT - 21H00</span>
+                    <span>7 AOÛT</span>
                   </div>
                 </div>
               </div>
@@ -173,59 +192,264 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                  <h3 className="font-bold text-sm md:text-lg mb-1">JACKY TERRASSON</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Trio « Moving On » + Camille Bertault</p>
+                {/* Badge payant */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                  PAYANT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">JACKY TERRASSON</h3>
+                  <p className="text-xs opacity-90 mb-1">Trio « Moving On »</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
-                    <span>VEN. 8 AOÛT - 21H00</span>
+                    <span>8 AOÛT</span>
                   </div>
                 </div>
               </div>
             </Link>
 
-          </div>
+            {/* NOUVELLE CARTE - Camille Bertault */}
+            <div className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                {/* Placeholder pour photo Camille */}
+                <div 
+                  className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundColor: 'rgba(184, 115, 51, 0.3)' }}
+                >
+                  <div className="text-center">
+                    <div className="text-3xl mb-2">🎤</div>
+                    <p className="text-xs font-bold text-white">Photo à venir</p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Badge payant */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                  PAYANT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">CAMILLE BERTAULT</h3>
+                  <p className="text-xs opacity-90 mb-1">Chanteuse</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>8 AOÛT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-          {/* Section supplémentaire pour Charlotte Planchou - mise en avant */}
-          <div className="mt-8 md:mt-12 max-w-2xl mx-auto">
-            <Link href="/artistes/charlotte-planchou" className="group relative block overflow-hidden rounded-xl shadow-2xl">
-              <div className="relative aspect-[5/2] md:aspect-[3/1] overflow-hidden">
+            {/* Charlotte Planchou */}
+            <Link href="/artistes/charlotte-planchou" className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/charlotte-planchou.jpg" 
                   alt="Charlotte Planchou"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 
-                {/* Badge Prix */}
-                <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
-                  🏆 PRIX ÉVIDENCE 2025
+                {/* Badge payant */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                  PAYANT
                 </div>
                 
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
-                  <h3 className="font-bold text-xl md:text-2xl mb-2">CHARLOTTE PLANCHOU</h3>
-                  <p className="text-sm md:text-base opacity-90 mb-3">Quartet - Révélation de l'année 2025</p>
-                  <div className="flex items-center text-sm">
-                    <Calendar className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
-                    <span className="font-semibold">SAMEDI 9 AOÛT - 21H00 - CLÔTURE DU FESTIVAL</span>
+                {/* Badge Prix */}
+                <div className="absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                  🏆 PRIX
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">CHARLOTTE PLANCHOU</h3>
+                  <p className="text-xs opacity-90 mb-1">Quartet</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>9 AOÛT</span>
                   </div>
                 </div>
               </div>
             </Link>
+
           </div>
 
           {/* Bouton CTA */}
           <div className="text-center mt-8 md:mt-12">
             <Link 
-              href="/artistes"
+              href="/billetterie"
               className="inline-block px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl"
               style={{ 
                 backgroundColor: '#722f37', 
                 color: '#f7f3e9'
               }}
             >
-              Découvrir tous les artistes
+              Réserver mes places
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION CONCERTS GRATUITS - FOND IDENTIQUE CONCERTS PAYANTS */}
+      <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, rgba(212, 175, 55, 0.1) 50%, #f7f3e9 100%)' }}>
+        {/* Mêmes éléments décoratifs que les concerts payants */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
+          <div className="absolute top-20 right-20 w-24 h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
+          <div className="absolute bottom-10 left-1/3 w-20 h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
+              🎵 CONCERTS GRATUITS 🎵
+            </h2>
+            <p className="text-lg md:text-xl max-w-3xl mx-auto mb-4" style={{ color: '#1a1a1a' }}>
+              Du 6 au 9 août le jazz vivra dans les rues de Céret
+            </p>
+            <div className="inline-flex items-center px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)', border: '2px solid #d4af37' }}>
+              <MapPin className="w-4 h-4 mr-2" style={{ color: '#d4af37' }} />
+              <span className="text-sm font-medium" style={{ color: '#d4af37' }}>Centre-ville de Céret</span>
+            </div>
+          </div>
+
+          {/* Grille d'artistes concerts gratuits - SEULEMENT 3 ARTISTES */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+            
+            {/* Cavale Trio */}
+            <div className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                {/* Placeholder pour photo */}
+                <div 
+                  className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-2">🥁</div>
+                    <p className="text-sm font-bold" style={{ color: '#722f37' }}>Photo à venir</p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Badge gratuit */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                  GRATUIT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">CAVALE TRIO</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">Jazz contemporain</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>8 & 9 AOÛT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* David Vilayleck Trio */}
+            <div className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                {/* Placeholder pour photo */}
+                <div 
+                  className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.3)' }}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-2">🎹</div>
+                    <p className="text-sm font-bold" style={{ color: '#f7f3e9' }}>Photo à venir</p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Badge gratuit */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                  GRATUIT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">DAVID VILAYLECK</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">Trio Piano</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>VEN. 8 AOÛT - 11H</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Triton 66 Quintet */}
+            <div className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                {/* Placeholder pour photo */}
+                <div 
+                  className="w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundColor: 'rgba(184, 115, 51, 0.3)' }}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-2">🎷</div>
+                    <p className="text-sm font-bold" style={{ color: '#722f37' }}>Photo à venir</p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Badge gratuit */}
+                <div className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                  GRATUIT
+                </div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
+                  <h3 className="font-bold text-sm md:text-lg mb-1">TRITON 66</h3>
+                  <p className="text-xs md:text-sm opacity-90 mb-2">Quintet</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>6 & 7 AOÛT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Planning détaillé des concerts gratuits */}
+          <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
+            <div 
+              className="p-6 rounded-2xl border-2"
+              style={{ 
+                backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                borderColor: '#d4af37'
+              }}
+            >
+              <h3 className="text-xl font-bold mb-6 text-center" style={{ color: '#d4af37' }}>
+                📅 Planning des concerts gratuits
+              </h3>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <h4 className="font-bold" style={{ color: '#722f37' }}>Mercredi 6 août</h4>
+                  <div className="flex justify-between items-center p-2 rounded" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                    <span style={{ color: '#722f37' }}>18h - Triton 66</span>
+                  </div>
+                  
+                  <h4 className="font-bold pt-2" style={{ color: '#722f37' }}>Jeudi 7 août</h4>
+                  <div className="flex justify-between items-center p-2 rounded" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                    <span style={{ color: '#722f37' }}>11h - Triton 66</span>
+                  </div>
+                </div>
+                
+                <div className="space-y-3">
+                  <h4 className="font-bold" style={{ color: '#722f37' }}>Vendredi 8 août</h4>
+                  <div className="flex justify-between items-center p-2 rounded" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                    <span style={{ color: '#722f37' }}>11h - David Vilayleck Trio</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 rounded" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                    <span style={{ color: '#722f37' }}>18h - Cavale Trio</span>
+                  </div>
+                  
+                  <h4 className="font-bold pt-2" style={{ color: '#722f37' }}>Samedi 9 août</h4>
+                  <div className="flex justify-between items-center p-2 rounded" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
+                    <span style={{ color: '#722f37' }}>18h - Cavale Trio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -316,7 +540,7 @@ export default function Home() {
         </div>
       </section>
 
-{/* Section À propos + Vidéos - UNE SEULE SECTION avec fond continu */}
+{/* Section À propos + Vidéos CONCERTS PAYANTS */}
 <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, white 50%, #f7f3e9 100%)' }}>
   {/* Éléments décoratifs */}
   <div className="absolute inset-0 opacity-20">
@@ -390,18 +614,18 @@ export default function Home() {
       </div>
     </div>
 
-    {/* PARTIE 2 : Vidéos dans la même section */}
-    <div>
+    {/* PARTIE 2 : Vidéos CONCERTS PAYANTS */}
+    <div className="mb-16 md:mb-24">
       <div className="text-center mb-8 md:mb-12">
         <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
-          🎬 Découvrez nos artistes en vidéo
+          🎬 Artistes avec billetterie
         </h2>
         <p className="text-lg max-w-2xl mx-auto" style={{ color: '#1a1a1a' }}>
-          Plongez dans l'univers musical de nos artistes exceptionnels
+          Découvrez en vidéo les têtes d'affiche de cette 10ème édition
         </p>
       </div>
       
-      {/* Grille de vidéos responsive */}
+      {/* Grille de vidéos payantes - LIENS CORRIGÉS */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
         
         {/* Vidéo 1 - Manu Le Prince */}
@@ -419,6 +643,11 @@ export default function Home() {
             ></iframe>
           </div>
           <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold mr-2" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                PAYANT
+              </span>
+            </div>
             <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
               🎤 Manu Le Prince
             </h3>
@@ -445,6 +674,11 @@ export default function Home() {
             ></iframe>
           </div>
           <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold mr-2" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                PAYANT
+              </span>
+            </div>
             <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
               🎷 Stefano Di Battista
             </h3>
@@ -457,7 +691,7 @@ export default function Home() {
         </div>
 
         {/* Vidéo 3 - Jacky Terrasson */}
-        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100 md:col-span-2 lg:col-span-1">
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
           <div className="aspect-video rounded-lg overflow-hidden mb-4">
             <iframe
               width="100%"
@@ -471,6 +705,11 @@ export default function Home() {
             ></iframe>
           </div>
           <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold mr-2" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                PAYANT
+              </span>
+            </div>
             <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
               🎹 Jacky Terrasson
             </h3>
@@ -482,12 +721,218 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Vidéo 4 - Charlotte Planchou */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/5k4eWo9HHZ4"
+              title="Charlotte Planchou - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold mr-2" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                PAYANT
+              </span>
+              <span className="px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                PRIX
+              </span>
+            </div>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎤 Charlotte Planchou
+            </h3>
+            <p className="text-sm text-gray-600">Prix Évidence 2025</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">9 AOÛT 2025</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Vidéo 5 - Florin Gugulica */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/JchABVZGrGE"
+              title="Florin Gugulica - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold mr-2" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                PAYANT
+              </span>
+            </div>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎷 Florin Gugulica
+            </h3>
+            <p className="text-sm text-gray-600">Sextet « It's a long Way »</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">28 JUILLET 2025</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Vidéo 6 - Camille Bertault */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/MAo6eSowSko"
+              title="Camille Bertault - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold mr-2" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                PAYANT
+              </span>
+            </div>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎤 Camille Bertault
+            </h3>
+            <p className="text-sm text-gray-600">Invite de Jacky Terrasson</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">8 AOÛT 2025</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {/* PARTIE 3 : Vidéos CONCERTS GRATUITS - SEULEMENT 3 ARTISTES */}
+    <div>
+      <div className="text-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
+          🎬 Concerts gratuits en vidéo
+        </h2>
+        <p className="text-lg max-w-2xl mx-auto" style={{ color: '#1a1a1a' }}>
+          Découvrez les artistes qui animeront les rues de Céret
+        </p>
+      </div>
+      
+      {/* Grille de vidéos concerts gratuits - SEULEMENT 3 VIDÉOS */}
+      <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+        
+        {/* Vidéo 1 - Cavale Trio */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/BZbzXJ0eOcw"
+              title="Cavale Trio - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                GRATUIT
+              </span>
+            </div>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🥁 Cavale Trio
+            </h3>
+            <p className="text-sm text-gray-600">Concerts gratuits</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">8 & 9 AOÛT</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Vidéo 2 - David Vilayleck Trio */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/CdDbtkyXd00"
+              title="David Vilayleck Trio - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                GRATUIT
+              </span>
+            </div>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎹 David Vilayleck Trio
+            </h3>
+            <p className="text-sm text-gray-600">Concert gratuit</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">8 AOÛT - 11H</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Vidéo 3 - Triton 66 Quintet */}
+        <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+          <div className="aspect-video rounded-lg overflow-hidden mb-4">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/S8n12s-2GjE"
+              title="Triton 66 Quintet - Jazz en Tech"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-2">
+              <span className="px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                GRATUIT
+              </span>
+            </div>
+            <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+              🎷 Triton 66 Quintet
+            </h3>
+            <p className="text-sm text-gray-600">Concerts gratuits</p>
+            <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+              <Calendar className="w-3 h-3 mr-1" />
+              <span className="font-semibold">6 & 7 AOÛT</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      {/* Bouton CTA vers la page artistes */}
+      {/* Bouton CTA vers la programmation */}
       <div className="text-center mt-8 md:mt-12">
         <Link 
-          href="/artistes"
+          href="/programmation"
           className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl"
           style={{ 
             backgroundColor: '#722f37', 
@@ -495,7 +940,7 @@ export default function Home() {
           }}
         >
           <Play className="w-5 h-5 mr-2" />
-          Découvrir tous nos artistes
+          Découvrir toute la programmation
         </Link>
       </div>
     </div>
@@ -519,7 +964,7 @@ export default function Home() {
             Réservez vos billets dès maintenant pour vivre Jazz en Tech 2025
           </p>
           <Link 
-            href="/programmation" 
+            href="/billetterie" 
             className="inline-block px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-2xl"
             style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
           >

@@ -52,7 +52,7 @@ function Footer() {
                 <li><Link href="/" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Accueil</Link></li>
                 <li><Link href="/mot-du-president" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Mot du Président</Link></li>
                 <li><Link href="/programmation" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Programmation</Link></li>
-                <li><Link href="/artistes" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Artistes</Link></li>
+                <li><Link href="/billetterie" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Billetterie</Link></li>
               </ul>
             </nav>
           </div>
