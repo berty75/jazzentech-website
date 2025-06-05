@@ -1,170 +1,414 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Calendar, MapPin, Clock, Music } from 'lucide-react'
+import { Calendar, MapPin, Clock, Music, Ticket } from 'lucide-react'
 import Link from 'next/link'
 
-// Données des artistes avec leurs dates et slugs
+// Données des artistes organisées par sections
 const artistsData = {
   'all': {
-    title: 'TOUTES LES DATES',
-    locations: [
+    title: 'TOUTE LA PROGRAMMATION',
+    sections: [
       {
-        title: '27-28 JUILLET 2025',
-        subtitle: 'Cloître Saint-Génis-des-Fontaines',
-        artists: [
+        title: 'CONCERTS AVEC BILLETTERIE',
+        subtitle: '🎫 Réservation obligatoire',
+        color: '#722f37',
+        locations: [
           {
-            name: 'MANU LE PRINCE',
-            subtitle: '🎤 Quartet « Bossa Jazz for Ever »',
-            date: 'DIMANCHE 27 JUILLET • 21H00',
-            image: '/images/manu-le-prince.jpeg',
-            badge: 'BOSSA NOVA',
-            badgeColor: '#d4af37',
-            slug: 'manu-le-prince'
+            title: '27-28 JUILLET 2025',
+            subtitle: 'Cloître Saint-Génis-des-Fontaines',
+            dateKeys: ['27', '28'],
+            artists: [
+              {
+                name: 'MANU LE PRINCE',
+                subtitle: '🎤 Quartet « Bossa Jazz for Ever »',
+                date: 'DIMANCHE 27 JUILLET • 21H00',
+                image: '/images/manu-le-prince.jpeg',
+                badge: 'BOSSA NOVA',
+                badgeColor: '#d4af37',
+                slug: 'manu-le-prince',
+                ticketType: 'payant',
+                dateKey: '27'
+              },
+              {
+                name: 'FLORIN GUGULICA',
+                subtitle: '🎷 Sextet « It\'s a long Way »',
+                date: 'LUNDI 28 JUILLET • 21H00',
+                image: '/images/florin-gugulica.jpeg',
+                badge: 'JAZZ MANOUCHE',
+                badgeColor: '#b87333',
+                slug: 'florin-gugulica',
+                ticketType: 'payant',
+                dateKey: '28'
+              }
+            ]
           },
           {
-            name: 'FLORIN GUGULICA',
-            subtitle: '🎷 Sextet « It\'s a long Way »',
-            date: 'LUNDI 28 JUILLET • 21H00',
-            image: '/images/florin-gugulica.jpeg',
-            badge: 'JAZZ MANOUCHE',
-            badgeColor: '#b87333',
-            slug: 'florin-gugulica'
+            title: '7-8-9 AOÛT 2025',
+            subtitle: 'Place de la République, Céret',
+            dateKeys: ['7', '8', '9'],
+            artists: [
+              {
+                name: 'STEFANO DI BATTISTA',
+                subtitle: '🎷 « La Dolce Vita »',
+                date: 'JEUDI 7 AOÛT • 21H00',
+                image: '/images/stefano-di-battista.jpg',
+                badge: 'JAZZ ITALIEN',
+                badgeColor: '#722f37',
+                slug: 'stefano-di-battista',
+                ticketType: 'payant',
+                dateKey: '7'
+              },
+              {
+                name: 'JACKY TERRASSON',
+                subtitle: '🎹 Trio « Moving On »',
+                date: 'VENDREDI 8 AOÛT • 21H00',
+                image: '/images/jacky-terrasson.jpeg',
+                badge: 'PIANO JAZZ',
+                badgeColor: '#b87333',
+                slug: 'jacky-terrasson',
+                ticketType: 'payant',
+                dateKey: '8'
+              },
+              {
+                name: 'CAMILLE BERTAULT',
+                subtitle: '🎤 Invitée de Jacky Terrasson',
+                date: 'VENDREDI 8 AOÛT • 21H00',
+                image: '/images/camille-bertault.jpg',
+                badge: 'JAZZ VOCAL',
+                badgeColor: '#722f37',
+                slug: 'camille-bertault',
+                ticketType: 'payant',
+                dateKey: '8'
+              },
+              {
+                name: 'CHARLOTTE PLANCHOU',
+                subtitle: '🎤 Quartet',
+                date: 'SAMEDI 9 AOÛT • 21H00',
+                image: '/images/charlotte-planchou.jpg',
+                badge: '🏆 PRIX ÉVIDENCE',
+                badgeColor: '#d4af37',
+                extraBadge: 'CLÔTURE',
+                slug: 'charlotte-planchou',
+                ticketType: 'payant',
+                dateKey: '9'
+              }
+            ]
           }
         ]
       },
       {
-        title: '7-8-9 AOÛT 2025',
-        subtitle: 'Place de la République, Céret',
-        artists: [
+        title: 'CONCERTS GRATUITS',
+        subtitle: '🎵 Centre-ville de Céret - Accès libre',
+        color: '#d4af37',
+        locations: [
           {
-            name: 'STEFANO DI BATTISTA',
-            subtitle: '🎷 « La Dolce Vita »',
-            date: 'JEU 7 AOÛT • 21H',
-            image: '/images/stefano-di-battista.jpg',
-            badge: 'JAZZ ITALIEN',
-            badgeColor: '#722f37',
-            slug: 'stefano-di-battista'
+            title: 'PROGRAMME DÉTAILLÉ DES CONCERTS GRATUITS',
+            subtitle: 'Du 6 au 9 août dans les rues de Céret',
+            dateKeys: ['6', '7', '8', '9'],
+            gratuitSchedule: [
+              {
+                date: 'MERCREDI 6 AOÛT',
+                dateKey: '6',
+                concerts: [
+                  {
+                    time: '18H00',
+                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              },
+              {
+                date: 'JEUDI 7 AOÛT', 
+                dateKey: '7',
+                concerts: [
+                  {
+                    time: '11H00',
+                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  },
+                  {
+                    time: '18H00',
+                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              },
+              {
+                date: 'VENDREDI 8 AOÛT',
+                dateKey: '8',
+                concerts: [
+                  {
+                    time: '11H00',
+                    artists: 'David Vilayleck Trio',
+                    location: 'Centre-ville'
+                  },
+                  {
+                    time: '18H00', 
+                    artists: 'Cavale Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              },
+              {
+                date: 'SAMEDI 9 AOÛT',
+                dateKey: '9',
+                concerts: [
+                  {
+                    time: '18H00',
+                    artists: 'Cavale Trio + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              }
+            ],
+            artists: [
+              {
+                name: 'CAVALE TRIO',
+                subtitle: '🥁 Prêle Abelanet, Damien Guisset, Pierre Baradel',
+                date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
+                image: '/images/cavale-trio.jpg',
+                badge: 'JAZZ CONTEMPORAIN',
+                badgeColor: '#d4af37',
+                slug: 'cavale-trio',
+                ticketType: 'gratuit',
+                dateKey: '8,9'
+              },
+              {
+                name: 'DAVID VILAYLECK',
+                subtitle: '🎹 Trio Power Jazz',
+                date: 'VENDREDI 8 AOÛT • 11H00',
+                image: '/images/david-vilayleck.jpg',
+                badge: 'JAZZ FUSION',
+                badgeColor: '#b87333',
+                slug: 'david-vilayleck',
+                ticketType: 'gratuit',
+                dateKey: '8'
+              },
+              {
+                name: 'TRITON 66',
+                subtitle: '🎷 Quintet Standards',
+                date: 'MERCREDI 6 & JEUDI 7 AOÛT',
+                image: '/images/triton-66.jpg',
+                badge: 'STANDARDS',
+                badgeColor: '#722f37',
+                slug: 'triton-66',
+                ticketType: 'gratuit',
+                dateKey: '6,7'
+              },
+              {
+                name: 'FLORIN GUGULICA',
+                subtitle: '🎻 Trio (concerts gratuits)',
+                date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
+                image: '/images/florin-gugulica-trio.jpg',
+                badge: 'DOUBLE FORMATION',
+                badgeColor: '#b87333',
+                slug: 'florin-gugulica',
+                ticketType: 'gratuit',
+                dateKey: '6,7,9'
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  'payants': {
+    title: 'CONCERTS AVEC BILLETTERIE',
+    sections: [
+      {
+        title: 'CONCERTS AVEC BILLETTERIE',
+        subtitle: '🎫 Réservation obligatoire',
+        color: '#722f37',
+        locations: [
+          {
+            title: '27-28 JUILLET 2025',
+            subtitle: 'Cloître Saint-Génis-des-Fontaines',
+            dateKeys: ['27', '28'],
+            artists: [
+              {
+                name: 'MANU LE PRINCE',
+                subtitle: '🎤 Quartet « Bossa Jazz for Ever »',
+                date: 'DIMANCHE 27 JUILLET • 21H00',
+                image: '/images/manu-le-prince.jpeg',
+                badge: 'BOSSA NOVA',
+                badgeColor: '#d4af37',
+                slug: 'manu-le-prince',
+                ticketType: 'payant',
+                dateKey: '27'
+              },
+              {
+                name: 'FLORIN GUGULICA',
+                subtitle: '🎷 Sextet « It\'s a long Way »',
+                date: 'LUNDI 28 JUILLET • 21H00',
+                image: '/images/florin-gugulica.jpeg',
+                badge: 'JAZZ MANOUCHE',
+                badgeColor: '#b87333',
+                slug: 'florin-gugulica',
+                ticketType: 'payant',
+                dateKey: '28'
+              }
+            ]
           },
           {
-            name: 'JACKY TERRASSON',
-            subtitle: '🎹 + Camille Bertault',
-            date: 'VEN 8 AOÛT • 21H',
-            image: '/images/jacky-terrasson.jpeg',
-            badge: 'PIANO JAZZ',
-            badgeColor: '#b87333',
-            slug: 'jacky-terrasson'
-          },
-          {
-            name: 'CHARLOTTE PLANCHOU',
-            subtitle: '🎤 Quartet',
-            date: 'SAM 9 AOÛT • 21H',
-            image: '/images/charlotte-planchou.jpg',
-            badge: '🏆 PRIX ÉVIDENCE',
-            badgeColor: '#d4af37',
-            extraBadge: 'CLÔTURE',
-            slug: 'charlotte-planchou'
+            title: '7-8-9 AOÛT 2025',
+            subtitle: 'Place de la République, Céret',
+            dateKeys: ['7', '8', '9'],
+            artists: [
+              {
+                name: 'STEFANO DI BATTISTA',
+                subtitle: '🎷 « La Dolce Vita »',
+                date: 'JEUDI 7 AOÛT • 21H00',
+                image: '/images/stefano-di-battista.jpg',
+                badge: 'JAZZ ITALIEN',
+                badgeColor: '#722f37',
+                slug: 'stefano-di-battista',
+                ticketType: 'payant',
+                dateKey: '7'
+              },
+              {
+                name: 'JACKY TERRASSON',
+                subtitle: '🎹 + Camille Bertault',
+                date: 'VENDREDI 8 AOÛT • 21H00',
+                image: '/images/jacky-terrasson.jpeg',
+                badge: 'PIANO JAZZ',
+                badgeColor: '#b87333',
+                slug: 'jacky-terrasson',
+                ticketType: 'payant',
+                dateKey: '8'
+              },
+              {
+                name: 'CHARLOTTE PLANCHOU',
+                subtitle: '🎤 Quartet',
+                date: 'SAMEDI 9 AOÛT • 21H00',
+                image: '/images/charlotte-planchou.jpg',
+                badge: '🏆 PRIX ÉVIDENCE',
+                badgeColor: '#d4af37',
+                extraBadge: 'CLÔTURE',
+                slug: 'charlotte-planchou',
+                ticketType: 'payant',
+                dateKey: '9'
+              }
+            ]
           }
         ]
       }
     ]
   },
-  '27': {
-    title: '27 JUILLET 2025',
-    locations: [
+  'gratuits': {
+    title: 'CONCERTS GRATUITS',
+    sections: [
       {
-        title: '27 JUILLET 2025',
-        subtitle: 'Cloître Saint-Génis-des-Fontaines',
-        artists: [
+        title: 'CONCERTS GRATUITS',
+        subtitle: '🎵 Centre-ville de Céret - Accès libre',
+        color: '#d4af37',
+        locations: [
           {
-            name: 'MANU LE PRINCE',
-            subtitle: '🎤 Quartet « Bossa Jazz for Ever »',
-            date: 'DIMANCHE 27 JUILLET • 21H00',
-            image: '/images/manu-le-prince.jpeg',
-            badge: 'BOSSA NOVA',
-            badgeColor: '#d4af37',
-            slug: 'manu-le-prince'
-          }
-        ]
-      }
-    ]
-  },
-  '28': {
-    title: '28 JUILLET 2025',
-    locations: [
-      {
-        title: '28 JUILLET 2025',
-        subtitle: 'Cloître Saint-Génis-des-Fontaines',
-        artists: [
-          {
-            name: 'FLORIN GUGULICA',
-            subtitle: '🎷 Sextet « It\'s a long Way »',
-            date: 'LUNDI 28 JUILLET • 21H00',
-            image: '/images/florin-gugulica.jpeg',
-            badge: 'JAZZ MANOUCHE',
-            badgeColor: '#b87333',
-            slug: 'florin-gugulica'
-          }
-        ]
-      }
-    ]
-  },
-  '7': {
-    title: '7 AOÛT 2025',
-    locations: [
-      {
-        title: '7 AOÛT 2025',
-        subtitle: 'Place de la République, Céret',
-        artists: [
-          {
-            name: 'STEFANO DI BATTISTA',
-            subtitle: '🎷 « La Dolce Vita »',
-            date: 'JEUDI 7 AOÛT • 21H00',
-            image: '/images/stefano-di-battista.jpg',
-            badge: 'JAZZ ITALIEN',
-            badgeColor: '#722f37',
-            slug: 'stefano-di-battista'
-          }
-        ]
-      }
-    ]
-  },
-  '8': {
-    title: '8 AOÛT 2025',
-    locations: [
-      {
-        title: '8 AOÛT 2025',
-        subtitle: 'Place de la République, Céret',
-        artists: [
-          {
-            name: 'JACKY TERRASSON',
-            subtitle: '🎹 + Camille Bertault',
-            date: 'VENDREDI 8 AOÛT • 21H00',
-            image: '/images/jacky-terrasson.jpeg',
-            badge: 'PIANO JAZZ',
-            badgeColor: '#b87333',
-            slug: 'jacky-terrasson'
-          }
-        ]
-      }
-    ]
-  },
-  '9': {
-    title: '9 AOÛT 2025',
-    locations: [
-      {
-        title: '9 AOÛT 2025',
-        subtitle: 'Place de la République, Céret',
-        artists: [
-          {
-            name: 'CHARLOTTE PLANCHOU',
-            subtitle: '🎤 Quartet',
-            date: 'SAMEDI 9 AOÛT • 21H00',
-            image: '/images/charlotte-planchou.jpg',
-            badge: '🏆 PRIX ÉVIDENCE',
-            badgeColor: '#d4af37',
-            extraBadge: 'CLÔTURE',
-            slug: 'charlotte-planchou'
+            title: 'PROGRAMME DÉTAILLÉ DES CONCERTS GRATUITS',
+            subtitle: 'Du 6 au 9 août dans les rues de Céret',
+            dateKeys: ['6', '7', '8', '9'],
+            gratuitSchedule: [
+              {
+                date: 'MERCREDI 6 AOÛT',
+                dateKey: '6',
+                concerts: [
+                  {
+                    time: '18H00',
+                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              },
+              {
+                date: 'JEUDI 7 AOÛT', 
+                dateKey: '7',
+                concerts: [
+                  {
+                    time: '11H00',
+                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  },
+                  {
+                    time: '18H00',
+                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              },
+              {
+                date: 'VENDREDI 8 AOÛT',
+                dateKey: '8',
+                concerts: [
+                  {
+                    time: '11H00',
+                    artists: 'David Vilayleck Trio',
+                    location: 'Centre-ville'
+                  },
+                  {
+                    time: '18H00', 
+                    artists: 'Cavale Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              },
+              {
+                date: 'SAMEDI 9 AOÛT',
+                dateKey: '9',
+                concerts: [
+                  {
+                    time: '18H00',
+                    artists: 'Cavale Trio + Florin Gugulica Trio',
+                    location: 'Centre-ville'
+                  }
+                ]
+              }
+            ],
+            artists: [
+              {
+                name: 'CAVALE TRIO',
+                subtitle: '🥁 Prêle Abelanet, Damien Guisset, Pierre Baradel',
+                date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
+                image: '/images/cavale-trio.jpg',
+                badge: 'JAZZ CONTEMPORAIN',
+                badgeColor: '#d4af37',
+                slug: 'cavale-trio',
+                ticketType: 'gratuit',
+                dateKey: '8,9'
+              },
+              {
+                name: 'DAVID VILAYLECK',
+                subtitle: '🎹 Trio Power Jazz',
+                date: 'VENDREDI 8 AOÛT • 11H00',
+                image: '/images/david-vilayleck.jpg',
+                badge: 'JAZZ FUSION',
+                badgeColor: '#b87333',
+                slug: 'david-vilayleck',
+                ticketType: 'gratuit',
+                dateKey: '8'
+              },
+              {
+                name: 'TRITON 66',
+                subtitle: '🎷 Quintet Standards',
+                date: 'MERCREDI 6 & JEUDI 7 AOÛT',
+                image: '/images/triton-66.jpg',
+                badge: 'STANDARDS',
+                badgeColor: '#722f37',
+                slug: 'triton-66',
+                ticketType: 'gratuit',
+                dateKey: '6,7'
+              },
+              {
+                name: 'FLORIN GUGULICA',
+                subtitle: '🎻 Trio (concerts gratuits)',
+                date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
+                image: '/images/florin-gugulica-trio.jpg',
+                badge: 'DOUBLE FORMATION',
+                badgeColor: '#b87333',
+                slug: 'florin-gugulica',
+                ticketType: 'gratuit',
+                dateKey: '6,7,9'
+              }
+            ]
           }
         ]
       }
@@ -250,18 +494,57 @@ function CountdownTimer() {
 }
 
 export default function Programmation() {
+  const [selectedView, setSelectedView] = useState('all')
   const [selectedDate, setSelectedDate] = useState('all')
 
-  const handleDateClick = (date: string) => {
-    setSelectedDate(date)
-    // Scroll vers la section programme
+  const handleScroll = () => {
     const programmeSection = document.getElementById('programme-section')
     if (programmeSection) {
       programmeSection.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
-  const currentData = artistsData[selectedDate as keyof typeof artistsData]
+  // Fonction pour filtrer les données selon les critères
+  const getFilteredData = () => {
+    let data = artistsData[selectedView as keyof typeof artistsData]
+    
+    if (selectedDate === 'all') {
+      return data
+    }
+
+    // Filtrer par date
+    const filteredSections = data.sections.map(section => ({
+      ...section,
+      locations: section.locations.map(location => {
+        // Filtrer le planning gratuit
+        const filteredGratuitSchedule = location.gratuitSchedule 
+          ? location.gratuitSchedule.filter(day => day.dateKey === selectedDate)
+          : undefined
+
+        // Filtrer les artistes
+        const filteredArtists = location.artists 
+          ? location.artists.filter(artist => artist.dateKey.includes(selectedDate))
+          : undefined
+
+        // Ne montrer la location que si elle a du contenu pour cette date
+        const hasContent = (filteredArtists && filteredArtists.length > 0) || 
+                          (filteredGratuitSchedule && filteredGratuitSchedule.length > 0)
+
+        return hasContent ? {
+          ...location,
+          gratuitSchedule: filteredGratuitSchedule,
+          artists: filteredArtists
+        } : null
+      }).filter(Boolean)
+    })).filter(section => section.locations.length > 0)
+
+    return {
+      ...data,
+      sections: filteredSections
+    }
+  }
+
+  const currentData = getFilteredData()
 
   return (
     <div className="min-h-screen bg-white">
@@ -275,184 +558,375 @@ export default function Programmation() {
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed" style={{ color: '#f7f3e9' }}>
             Découvrez notre programmation exceptionnelle pour la 10ème édition
           </p>
-          <div className="flex items-center justify-center mt-6">
-            <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-              <Music className="w-5 h-5" style={{ color: '#d4af37' }} />
-              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>5 artistes exceptionnels</span>
-            </div>
-          </div>
+          <div className="flex items-center justify-center mt-6 space-x-4">
+  <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+    <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
+    <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 concerts payants</span>
+  </div>
+  <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+    <Music className="w-5 h-5" style={{ color: '#d4af37' }} />
+    <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 créneaux gratuits</span>
+  </div>
+</div>
         </div>
       </section>
 
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
           
-          {/* SECTION Programme complet - INTERACTIVE */}
+          {/* SECTION Programme complet */}
           <section id="programme-section">
             <h2 className="text-xl md:text-2xl font-bold mb-8 text-center" style={{ color: '#722f37' }}>
               <Music className="w-6 h-6 inline mr-3" />
               Programme complet - 10ème édition
             </h2>
             
-            {/* Bannière des dates cliquables - INTERACTIVE */}
-            <div className="mb-8 overflow-x-auto">
-              <div className="flex flex-wrap justify-center gap-2 md:gap-4 min-w-max">
-                <button 
-                  onClick={() => handleDateClick('all')}
-                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                    selectedDate === 'all' ? 'shadow-lg' : 'hover:shadow-md'
-                  }`}
-                  style={{ 
-                    backgroundColor: selectedDate === 'all' ? '#d4af37' : '#f3f4f6', 
-                    color: selectedDate === 'all' ? '#722f37' : '#6b7280' 
-                  }}
-                >
-                  TOUTES LES DATES
-                </button>
-                <button 
-                  onClick={() => handleDateClick('27')}
-                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                    selectedDate === '27' ? 'shadow-lg' : 'hover:shadow-md'
-                  }`}
-                  style={{ 
-                    backgroundColor: selectedDate === '27' ? '#722f37' : '#f3f4f6', 
-                    color: selectedDate === '27' ? '#f7f3e9' : '#6b7280' 
-                  }}
-                >
-                  27 JUILLET
-                </button>
-                <button 
-                  onClick={() => handleDateClick('28')}
-                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                    selectedDate === '28' ? 'shadow-lg' : 'hover:shadow-md'
-                  }`}
-                  style={{ 
-                    backgroundColor: selectedDate === '28' ? '#b87333' : '#f3f4f6', 
-                    color: selectedDate === '28' ? '#f7f3e9' : '#6b7280' 
-                  }}
-                >
-                  28 JUILLET
-                </button>
-                <button 
-                  onClick={() => handleDateClick('7')}
-                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                    selectedDate === '7' ? 'shadow-lg' : 'hover:shadow-md'
-                  }`}
-                  style={{ 
-                    backgroundColor: selectedDate === '7' ? '#722f37' : '#f3f4f6', 
-                    color: selectedDate === '7' ? '#f7f3e9' : '#6b7280' 
-                  }}
-                >
-                  7 AOÛT
-                </button>
-                <button 
-                  onClick={() => handleDateClick('8')}
-                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                    selectedDate === '8' ? 'shadow-lg' : 'hover:shadow-md'
-                  }`}
-                  style={{ 
-                    backgroundColor: selectedDate === '8' ? '#b87333' : '#f3f4f6', 
-                    color: selectedDate === '8' ? '#f7f3e9' : '#6b7280' 
-                  }}
-                >
-                  8 AOÛT
-                </button>
-                <button 
-                  onClick={() => handleDateClick('9')}
-                  className={`px-4 py-2 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                    selectedDate === '9' ? 'shadow-lg' : 'hover:shadow-md'
-                  }`}
-                  style={{ 
-                    backgroundColor: selectedDate === '9' ? '#722f37' : '#f3f4f6', 
-                    color: selectedDate === '9' ? '#f7f3e9' : '#6b7280' 
-                  }}
-                >
-                  9 AOÛT
-                </button>
+            {/* Filtres compacts sur 2 lignes */}
+            <div className="mb-8 space-y-4">
+              {/* Ligne 1: Filtres par TYPE */}
+              <div className="text-center">
+                <div className="flex justify-center gap-3">
+                  <button 
+                    onClick={() => { setSelectedView('all'); handleScroll(); }}
+                    className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
+                      selectedView === 'all' ? 'shadow-lg' : 'hover:shadow-md'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedView === 'all' ? '#d4af37' : '#f3f4f6', 
+                      color: selectedView === 'all' ? '#722f37' : '#6b7280' 
+                    }}
+                  >
+                    TOUT VOIR
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedView('payants'); handleScroll(); }}
+                    className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
+                      selectedView === 'payants' ? 'shadow-lg' : 'hover:shadow-md'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedView === 'payants' ? '#722f37' : '#f3f4f6', 
+                      color: selectedView === 'payants' ? '#f7f3e9' : '#6b7280' 
+                    }}
+                  >
+                    🎫 PAYANTS
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedView('gratuits'); handleScroll(); }}
+                    className={`px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
+                      selectedView === 'gratuits' ? 'shadow-lg' : 'hover:shadow-md'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedView === 'gratuits' ? '#d4af37' : '#f3f4f6', 
+                      color: selectedView === 'gratuits' ? '#722f37' : '#6b7280' 
+                    }}
+                  >
+                    🎵 GRATUITS
+                  </button>
+                </div>
+              </div>
+
+              {/* Ligne 2: Filtres par DATE */}
+              <div className="overflow-x-auto">
+                <div className="flex justify-center gap-2 min-w-max px-4">
+                  <button 
+                    onClick={() => { setSelectedDate('all'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === 'all' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === 'all' ? '#d4af37' : '#f9f9f9', 
+                      color: selectedDate === 'all' ? '#722f37' : '#6b7280' 
+                    }}
+                  >
+                    TOUTES
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedDate('27'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === '27' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === '27' ? '#722f37' : '#f9f9f9', 
+                      color: selectedDate === '27' ? '#f7f3e9' : '#6b7280' 
+                    }}
+                  >
+                    27 JUIL
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedDate('28'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === '28' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === '28' ? '#b87333' : '#f9f9f9', 
+                      color: selectedDate === '28' ? '#f7f3e9' : '#6b7280' 
+                    }}
+                  >
+                    28 JUIL
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedDate('6'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === '6' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === '6' ? '#d4af37' : '#f9f9f9', 
+                      color: selectedDate === '6' ? '#722f37' : '#6b7280' 
+                    }}
+                  >
+                    6 AOÛT
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedDate('7'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === '7' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === '7' ? '#722f37' : '#f9f9f9', 
+                      color: selectedDate === '7' ? '#f7f3e9' : '#6b7280' 
+                    }}
+                  >
+                    7 AOÛT
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedDate('8'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === '8' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === '8' ? '#b87333' : '#f9f9f9', 
+                      color: selectedDate === '8' ? '#f7f3e9' : '#6b7280' 
+                    }}
+                  >
+                    8 AOÛT
+                  </button>
+                  <button 
+                    onClick={() => { setSelectedDate('9'); handleScroll(); }}
+                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
+                      selectedDate === '9' ? 'shadow-md' : 'hover:shadow-sm'
+                    }`}
+                    style={{ 
+                      backgroundColor: selectedDate === '9' ? '#722f37' : '#f9f9f9', 
+                      color: selectedDate === '9' ? '#f7f3e9' : '#6b7280' 
+                    }}
+                  >
+                    9 AOÛT
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Affichage dynamique des artistes selon la date sélectionnée */}
-            <div className="space-y-12">
-              {currentData.locations.map((location, locationIndex) => (
-                <div key={locationIndex} className="mb-12">
-                  <div className="text-center mb-8 p-6 rounded-xl" style={{ background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(114, 47, 55, 0.05))' }}>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#722f37' }}>
-                      {location.title}
+            {/* Affichage des sections filtrées */}
+            <div className="space-y-16">
+              {currentData.sections.map((section, sectionIndex) => (
+                <div key={sectionIndex} className="space-y-12">
+                  {/* Titre de section */}
+                  <div className="text-center mb-12 p-6 rounded-xl" style={{ 
+                    background: `linear-gradient(135deg, ${section.color === '#722f37' ? 'rgba(114, 47, 55, 0.1)' : 'rgba(212, 175, 55, 0.1)'}, rgba(247, 243, 233, 0.5))`
+                  }}>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: section.color }}>
+                      {section.title}
                     </h3>
-                    <p className="text-lg font-semibold flex items-center justify-center" style={{ color: '#1a1a1a' }}>
-                      <MapPin className="w-5 h-5 mr-2" style={{ color: '#d4af37' }} />
-                      {location.subtitle}
+                    <p className="text-lg font-semibold" style={{ color: '#1a1a1a' }}>
+                      {section.subtitle}
                     </p>
                   </div>
-                  
-                  <div className={`grid gap-6 ${
-                    location.artists.length === 2 ? 'md:grid-cols-2' : 
-                    location.artists.length === 3 ? 'md:grid-cols-3' : 
-                    'grid-cols-1 max-w-md mx-auto'
-                  }`}>
-                    {location.artists.map((artist, artistIndex) => (
-                      <Link 
-                        key={artistIndex}
-                        href={`/artistes/${artist.slug}`}
-                        className="group relative cursor-pointer"
-                      >
-                        <div className={`relative ${
-                          location.artists.length === 3 ? 'aspect-[4/5]' : 'aspect-[4/3]'
-                        } rounded-xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2`}>
-                          <img 
-                            src={artist.image}
-                            alt={artist.name}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                          <div className="absolute bottom-4 left-4 right-4 text-white">
-                            <h4 className={`font-bold mb-1 ${
-                              location.artists.length === 3 ? 'text-xl' : 'text-2xl'
-                            }`}>
-                              {artist.name}
+
+                  {section.locations.map((location, locationIndex) => (
+                    <div key={locationIndex} className="mb-12">
+                      
+                      {/* Planning détaillé pour les concerts gratuits */}
+                      {location.gratuitSchedule && (
+                        <div className="mb-12">
+                          <div className="text-center mb-8 p-6 rounded-xl" style={{ 
+                            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(247, 243, 233, 0.5))',
+                            border: '2px solid rgba(212, 175, 55, 0.3)'
+                          }}>
+                            <h4 className="text-xl md:text-2xl font-bold mb-2" style={{ color: '#d4af37' }}>
+                              📅 {location.title}
                             </h4>
-                            <p className={`opacity-90 mb-2 ${
-                              location.artists.length === 3 ? 'text-xs' : 'text-sm'
-                            }`}>
-                              {artist.subtitle}
+                            <p className="text-base font-medium" style={{ color: '#722f37' }}>
+                              {location.subtitle}
                             </p>
-                            <div className={`flex items-center ${
-                              location.artists.length === 3 ? 'text-xs' : 'text-sm'
-                            }`}>
-                              <Calendar className={`mr-2 ${
-                                location.artists.length === 3 ? 'w-3 h-3' : 'w-4 h-4'
-                              }`} style={{ color: '#d4af37' }} />
-                              <span className="font-semibold">{artist.date}</span>
-                            </div>
                           </div>
-                          <div className={`absolute top-3 right-3 px-2 py-1 rounded-full font-bold ${
-                            location.artists.length === 3 ? 'text-xs' : 'text-xs'
-                          }`} style={{ backgroundColor: artist.badgeColor, color: artist.badgeColor === '#d4af37' ? '#722f37' : '#f7f3e9' }}>
-                            {artist.badge}
-                          </div>
-                          {artist.extraBadge && (
-                            <div className="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
-                              {artist.extraBadge}
-                            </div>
-                          )}
                           
-                          {/* Overlay hover pour indiquer que c'est cliquable */}
-                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <div className="bg-white/90 rounded-full px-4 py-2 text-sm font-semibold" style={{ color: '#722f37' }}>
-                              Voir l'artiste →
-                            </div>
+                          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                            {location.gratuitSchedule.map((day, dayIndex) => (
+                              <div key={dayIndex} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                                <h5 className="text-lg font-bold mb-4" style={{ color: '#722f37' }}>
+                                  {day.date}
+                                </h5>
+                                <div className="space-y-3">
+                                  {day.concerts.map((concert, concertIndex) => (
+                                    <div key={concertIndex} className="flex items-center justify-between p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
+                                      <div>
+                                        <div className="font-semibold text-sm" style={{ color: '#722f37' }}>
+                                          {concert.time}
+                                        </div>
+                                        <div className="text-xs text-gray-600">{concert.location}</div>
+                                      </div>
+                                      <div className="text-right">
+                                        <div className="text-sm font-medium" style={{ color: '#1a1a1a' }}>
+                                          {concert.artists}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
-                      </Link>
-                    ))}
-                  </div>
+                      )}
+
+                      {/* Location normale pour concerts payants */}
+                      {!location.gratuitSchedule && (
+                        <div className="text-center mb-8 p-6 rounded-xl" style={{ background: 'linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(212, 175, 55, 0.05))' }}>
+                          <h4 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: '#722f37' }}>
+                            {location.title}
+                          </h4>
+                          <p className="text-lg font-semibold flex items-center justify-center" style={{ color: '#1a1a1a' }}>
+                            <MapPin className="w-5 h-5 mr-2" style={{ color: '#d4af37' }} />
+                            {location.subtitle}
+                          </p>
+                        </div>
+                      )}
+                      
+                      {/* Grille d'artistes */}
+                      {location.artists && location.artists.length > 0 && (
+                        <div className={`grid gap-6 ${
+                          location.artists.length === 2 ? 'md:grid-cols-2' : 
+                          location.artists.length === 3 ? 'md:grid-cols-3' : 
+                          location.artists.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' :
+                          location.artists.length === 6 ? 'md:grid-cols-2 lg:grid-cols-3' :
+                          'grid-cols-1 max-w-md mx-auto'
+                        }`}>
+                          {location.artists.map((artist, artistIndex) => (
+                            <Link 
+                              key={artistIndex}
+                              href={`/artistes/${artist.slug}`}
+                              className="group relative cursor-pointer"
+                            >
+                              <div className={`relative ${
+                                location.artists.length >= 4 ? 'aspect-[3/4]' : 'aspect-[4/3]'
+                              } rounded-xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2`}>
+                                <img 
+                                  src={artist.image}
+                                  alt={artist.name}
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                                <div className="absolute bottom-4 left-4 right-4 text-white">
+                                  <h5 className={`font-bold mb-1 ${
+                                    location.artists.length >= 4 ? 'text-lg' : 'text-xl'
+                                  }`}>
+                                    {artist.name}
+                                  </h5>
+                                  <p className={`opacity-90 mb-2 ${
+                                    location.artists.length >= 4 ? 'text-xs' : 'text-sm'
+                                  }`}>
+                                    {artist.subtitle}
+                                  </p>
+                                  <div className={`flex items-center ${
+                                    location.artists.length >= 4 ? 'text-xs' : 'text-sm'
+                                  }`}>
+                                    <Calendar className={`mr-2 ${
+                                      location.artists.length >= 4 ? 'w-3 h-3' : 'w-4 h-4'
+                                    }`} style={{ color: '#d4af37' }} />
+                                    <span className="font-semibold">{artist.date}</span>
+                                  </div>
+                                </div>
+                                
+                                {/* Badge type de concert */}
+                                <div className={`absolute top-3 right-3 px-2 py-1 rounded-full font-bold ${
+                                  location.artists.length >= 4 ? 'text-xs' : 'text-xs'
+                                }`} style={{ 
+                                  backgroundColor: artist.ticketType === 'payant' ? '#722f37' : '#d4af37', 
+                                  color: artist.ticketType === 'payant' ? '#f7f3e9' : '#722f37' 
+                                }}>
+                                  {artist.ticketType === 'payant' ? 'PAYANT' : 'GRATUIT'}
+                                </div>
+                                
+                                {/* Badge spécifique artiste */}
+                                <div className={`absolute top-3 left-3 px-2 py-1 rounded-full font-bold ${
+                                  location.artists.length >= 4 ? 'text-xs' : 'text-xs'
+                                }`} style={{ backgroundColor: artist.badgeColor, color: artist.badgeColor === '#d4af37' ? '#722f37' : '#f7f3e9' }}>
+                                  {artist.badge}
+                                </div>
+                                
+                                {artist.extraBadge && (
+                                  <div className="absolute bottom-16 left-3 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                                    {artist.extraBadge}
+                                  </div>
+                                )}
+                                
+                                {/* Overlay hover */}
+                                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                  <div className="bg-white/90 rounded-full px-4 py-2 text-sm font-semibold" style={{ color: '#722f37' }}>
+                                    Voir l'artiste →
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
+
+            {/* Message si aucun résultat */}
+            {currentData.sections.length === 0 && (
+              <div className="text-center py-12">
+                <Music className="w-16 h-16 mx-auto mb-4 opacity-50" style={{ color: '#722f37' }} />
+                <h3 className="text-xl font-bold mb-2" style={{ color: '#722f37' }}>
+                  Aucun concert trouvé
+                </h3>
+                <p className="text-gray-600">
+                  Aucun concert ne correspond à votre sélection pour cette date
+                </p>
+              </div>
+            )}
           </section>
 
-          {/* Compte à rebours - Festival approche */}
+{/* Message pour concerts gratuits uniquement */}
+{selectedView === 'gratuits' && (
+  <section className="text-center">
+    <div 
+      className="inline-flex items-center px-8 py-4 rounded-xl font-bold text-lg shadow-xl"
+      style={{ 
+        backgroundColor: '#d4af37', 
+        color: '#722f37'
+      }}
+    >
+      🎵 Concerts gratuits - Accès libre dans les rues de Céret
+    </div>
+  </section>
+)}
+
+{/* Bouton vers billetterie - SEULEMENT si des concerts payants sont visibles */}
+{currentData.sections.some(section => 
+  section.locations.some(location => 
+    location.artists && location.artists.some(artist => artist.ticketType === 'payant')
+  )
+) && (
+  <section className="text-center">
+    <Link 
+      href="/billetterie"
+      className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+      style={{ 
+        backgroundColor: '#722f37', 
+        color: '#f7f3e9'
+      }}
+    >
+      🎫 Réserver mes places
+    </Link>
+  </section>
+)}
+
+          {/* Compte à rebours */}
           <section 
             className="rounded-2xl p-4 md:p-6 border"
             style={{ 
@@ -482,21 +956,21 @@ export default function Programmation() {
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <div>
-                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Horaires</h4>
+                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Concerts payants</h4>
                 <p className="text-xs md:text-sm text-gray-600">Concerts à 21h précises</p>
                 <p className="text-xs md:text-sm text-gray-600">Ouverture des portes : 20h</p>
               </div>
               
               <div>
-                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Accès</h4>
-                <p className="text-xs md:text-sm text-gray-600">Parking gratuit à proximité</p>
-                <p className="text-xs md:text-sm text-gray-600">Transport en commun recommandé</p>
+                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Concerts gratuits</h4>
+                <p className="text-xs md:text-sm text-gray-600">11h et 18h dans les rues</p>
+                <p className="text-xs md:text-sm text-gray-600">Accès libre, arrivée libre</p>
               </div>
               
               <div>
-                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Restauration</h4>
+                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Services</h4>
                 <p className="text-xs md:text-sm text-gray-600">Buvette sur place</p>
-                <p className="text-xs md:text-sm text-gray-600">Restaurants partenaires</p>
+                <p className="text-xs md:text-sm text-gray-600">Parking gratuit à proximité</p>
               </div>
             </div>
           </section>

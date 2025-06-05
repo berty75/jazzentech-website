@@ -1,6 +1,6 @@
 import React from 'react'
 import { notFound } from 'next/navigation'
-import { Calendar, MapPin, Clock, Music, Play, Instagram, Youtube } from 'lucide-react'
+import { Calendar, MapPin, Clock, Music, Play, Instagram, Apple, Facebook } from 'lucide-react'
 import Link from 'next/link'
 import ReservationButton from '@/components/ReservationButton'
 
@@ -53,28 +53,29 @@ const artistsData = {
       }
     ],
     socials: {
-      instagram: '#',
-      youtube: '#',
-      spotify: '#'
+      instagram: 'https://www.instagram.com/manu.leprince/',
+      facebook: 'https://www.facebook.com/manuleprinceoff/',
+      appleMusic: 'https://music.apple.com/fr/artist/manu-le-prince/158238593'
     }
   },
   'florin-gugulica': {
     name: 'Florin Gugulica',
-    subtitle: 'Sextet « It\'s a long Way »',
+    subtitle: 'Sextet « It\'s a long Way » & Trio',
     genre: 'Jazz Manouche • Musique Balkanique',
     image: '/images/florin-gugulica.jpeg',
-    date: 'LUNDI 28 JUILLET 2025',
-    time: '21H00',
-    venue: 'Cloître Saint-Génis-des-Fontaines',
+    date: 'LUNDI 28 JUILLET 2025 + 6, 7 & 9 AOÛT 2025',
+    time: 'Concerts payants et gratuits',
+    venue: 'Saint-Génis-des-Fontaines & Céret',
     ticketUrl: 'https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/florin-gugulica-sextet-its-a-long-way',
     ticketType: 'direct' as const,
+    badge: '🎭 DOUBLE FORMATION',
     biography: {
-      intro: "Florin Gugulica nous embarque dans son univers musical aux horizons multiples : jazz manouche, taraf balkanique et musique traditionnelle roumaine.",
+      intro: "Florin Gugulica nous embarque dans son univers musical aux horizons multiples : jazz manouche, taraf balkanique et musique traditionnelle roumaine. Artiste polyvalent, il se produit en sextet pour les concerts payants et en trio pour les concerts gratuits.",
       content: [
         "Né en Roumanie dans une famille de musiciens, Florin Gugulica découvre la musique dès l'âge de 5 ans. Son père, violoniste virtuose, lui transmet la passion des musiques traditionnelles des Balkans. À 12 ans, il maîtrise déjà parfaitement le violon et s'essaie aux premières improvisations.",
         "Son arrivée en France dans les années 2000 marque sa rencontre avec le jazz manouche. Fasciné par l'univers de Django Reinhardt, il développe un style unique mêlant virtuosité balkanique et swing manouche. Cette fusion originale séduit rapidement le public des festivals européens.",
         "En 2015, il forme le sextet « It's a long Way » avec des musiciens français et roumains. Ensemble, ils créent un répertoire original où se mélangent compositions personnelles et réinterprétations de standards du jazz manouche et de musiques traditionnelles des Balkans.",
-        "Reconnu par ses pairs comme l'un des violonistes les plus talentueux de sa génération, Florin Gugulica a collaboré avec de nombreux artistes internationaux et se produit dans les plus grands festivals européens."
+        "Pour Jazz en Tech 2025, Florin présente une particularité unique : il se produit dans deux formations différentes. Le sextet « It's a long Way » pour le concert payant du 28 juillet à Saint-Génis-des-Fontaines, et en trio pour les concerts gratuits des 6, 7 et 9 août à Céret, offrant ainsi deux expériences musicales complémentaires."
       ]
     },
     discography: [
@@ -97,11 +98,22 @@ const artistsData = {
         description: 'Album éponyme du groupe, synthèse de 8 années de recherche musicale.'
       }
     ],
-    videos: [],
+    videos: [
+      {
+        id: 'JchABVZGrGE',
+        title: 'Florin Gugulica Sextet',
+        description: 'Performance du sextet "It\'s a long Way"'
+      },
+      {
+        id: 'sHogMmjL08A',
+        title: 'Florin Gugulica Trio',
+        description: 'Performance en trio pour les concerts gratuits'
+      }
+    ],
     socials: {
       instagram: '#',
-      youtube: '#',
-      spotify: '#'
+      facebook: 'https://www.facebook.com/phl123',
+      appleMusic: '#'
     }
   },
   'stefano-di-battista': {
@@ -112,8 +124,7 @@ const artistsData = {
     date: 'JEUDI 7 AOÛT 2025',
     time: '21H00',
     venue: 'Place de la République, Céret',
-    ticketType: 'billetweb' as const,
-    billetwebEventId: 'stefano-di-battista-jazz-en-tech-2025',
+    ticketType: 'billetterie' as const,
     biography: {
       intro: "Amoureux de la mélodie et magicien du timbre, Stefano Di Battista fait résonner les thèmes de Paolo Conte avec une élégance toute italienne.",
       content: [
@@ -151,9 +162,9 @@ const artistsData = {
       }
     ],
     socials: {
-      instagram: '#',
-      youtube: '#',
-      spotify: '#'
+      instagram: 'https://www.instagram.com/stefanodibattista_official/',
+      facebook: 'https://www.facebook.com/stefano.d.battista.10/?locale=fr_FR',
+      appleMusic: 'https://music.apple.com/fr/artist/stefano-di-battista/14638702'
     }
   },
   'jacky-terrasson': {
@@ -164,8 +175,7 @@ const artistsData = {
     date: 'VENDREDI 8 AOÛT 2025',
     time: '21H00',
     venue: 'Place de la République, Céret',
-    ticketType: 'billetweb' as const,
-    billetwebEventId: 'jacky-terrasson-camille-bertault-jazz-en-tech-2025',
+    ticketType: 'billetterie' as const,
     biography: {
       intro: "Prix Thelonious Monk 1993, Jacky Terrasson est \"le plus voyageur des pianistes\". Pour cette soirée exceptionnelle, il s'associe à la talentueuse Camille Bertault.",
       content: [
@@ -203,9 +213,73 @@ const artistsData = {
       }
     ],
     socials: {
-      instagram: '#',
-      youtube: '#',
-      spotify: '#'
+      instagram: 'https://www.instagram.com/jacky_terrasson/',
+      facebook: 'https://www.facebook.com/jackyterrasson/?locale=fr_FR',
+      appleMusic: 'https://music.apple.com/fr/artist/jacky-terrasson/1100040'
+    }
+  },
+  'camille-bertault': {
+    name: 'Camille Bertault',
+    subtitle: 'Chanteuse invitée de Jacky Terrasson',
+    genre: 'Jazz Vocal Contemporain',
+    image: '/images/camille-bertault.jpg',
+    date: 'VENDREDI 8 AOÛT 2025',
+    time: '21H00',
+    venue: 'Place de la République, Céret',
+    ticketType: 'billetterie' as const,
+    badge: '🏆 VICTOIRE DU JAZZ 2023',
+    biography: {
+      intro: "\"Un talent impertinent\" selon Le Figaro, Camille Bertault est l'une des artistes les plus talentueuses de la scène jazz actuelle. Elle rejoint Jacky Terrasson pour une soirée exceptionnelle.",
+      content: [
+        "Après une formation au conservatoire, Camille Bertault obtient un prix de piano classique et étudie l'opéra, le théâtre et la danse au conservatoire de Nice. À l'âge de 20 ans, elle écrit, met en scène et joue dans des spectacles pour enfants.",
+        "Inspirée par un père passionné de jazz, elle se tourne vers le chant jazz et l'improvisation au Conservatoire de Paris. En 2016, elle est repérée par le label new-yorkais Sunnyside Records, qui distribue son premier album En vie et lui ouvre les portes de la scène jazz new-yorkaise.",
+        "C'est là qu'elle rencontre Dan Tepfer, Michael Leonhart, Jeff Ballard et Joe Sanders, avec lesquels elle enregistre sous le label Sony France son deuxième album en 2018, Pas de Géant, salué par une presse enthousiaste.",
+        "Camille entame alors une tournée internationale et sort en 2020 son troisième album, Le Tigre, chez Sony, suivi de Playground, en collaboration avec David Helbock chez ACT. En 2023, son cinquième album, Bonjour mon amour, paraît sur le label collectif d'artistes Vita, et elle remporte une Victoire du Jazz."
+      ]
+    },
+    discography: [
+      {
+        title: 'En vie',
+        year: '2016',
+        label: 'Sunnyside Records',
+        description: 'Premier album qui lui ouvre les portes de la scène jazz new-yorkaise.'
+      },
+      {
+        title: 'Pas de Géant',
+        year: '2018',
+        label: 'Sony France',
+        description: 'Deuxième album salué par une presse enthousiaste.'
+      },
+      {
+        title: 'Le Tigre',
+        year: '2020',
+        label: 'Sony',
+        description: 'Troisième album marquant sa maturité artistique.'
+      },
+      {
+        title: 'Playground',
+        year: '2022',
+        label: 'ACT',
+        description: 'Collaboration avec David Helbock.'
+      },
+      {
+        title: 'Bonjour mon amour',
+        year: '2023',
+        label: 'Vita',
+        description: 'Cinquième album qui lui vaut une Victoire du Jazz.'
+      }
+    ],
+    videos: [
+      {
+        id: 'MAo6eSowSko',
+        title: 'Camille Bertault - Bonjour mon amour',
+        description: 'Performance de son album récompensé aux Victoires du Jazz'
+      }
+    ],
+    socials: {
+      instagram: 'https://www.instagram.com/camillebertault/?hl=fr',
+      facebook: 'https://www.facebook.com/CamBertault/?locale=fr_FR',
+      appleMusic: 'https://music.apple.com/fr/artist/camille-bertault/1084204688'
     }
   },
   'charlotte-planchou': {
@@ -216,8 +290,7 @@ const artistsData = {
     date: 'SAMEDI 9 AOÛT 2025',
     time: '21H00',
     venue: 'Place de la République, Céret',
-    ticketType: 'billetweb' as const,
-    billetwebEventId: 'charlotte-planchou-quartet-jazz-en-tech-2025',
+    ticketType: 'billetterie' as const,
     badge: '🏆 PRIX ÉVIDENCE 2025',
     isClosure: true,
     biography: {
@@ -243,11 +316,135 @@ const artistsData = {
         description: 'Second opus, qui lui vaut le Prix Évidence 2025 de l\'Académie du Jazz.'
       }
     ],
-    videos: [],
+    videos: [
+      {
+        id: '5k4eWo9HHZ4',
+        title: 'Charlotte Planchou - Évidence',
+        description: 'Performance de son album primé'
+      }
+    ],
+    socials: {
+      instagram: 'https://www.instagram.com/charlotteplanchou/?hl=fr',
+      facebook: 'https://www.facebook.com/charlotteplanchou/?locale=fr_FR',
+      appleMusic: 'https://music.apple.com/fr/artist/charlotte-planchou/1466442533'
+    }
+  },
+  // NOUVEAUX ARTISTES CONCERTS GRATUITS
+  'cavale-trio': {
+    name: 'Cavale Trio',
+    subtitle: 'Prêle Abelanet, Damien Guisset, Pierre Baradel',
+    genre: 'Jazz Contemporain • Musique Acoustique',
+    image: '/images/cavale-trio.jpg',
+    date: 'VENDREDI 8 & SAMEDI 9 AOÛT 2025',
+    time: '18H00',
+    venue: 'Centre-ville de Céret',
+    ticketType: 'gratuit' as const,
+    biography: {
+      intro: "Musicienne multi-instrumentiste (accordéon, batterie, percussions, piano), Prêle Abelanet compose et joue dans différentes formations musicales, spectacles, histoires, lectures musicales.",
+      content: [
+        "Durant son parcours en partie autodidacte, elle a abordé le jazz, la musique acousmatique, et participé à des ateliers d'improvisation, en perpétuelle exploration du langage sonore et musical.",
+        "Prêle fonde en 2011 son groupe CAVALE qu'elle dirige autour de ses compositions (jazz imaginatif poétique), et produit son 5ième album en 2024 (Exuvie).",
+        "Sa musique semble raconter des histoires, des humeurs, des paysages, comme un film imaginaire, avec une écriture riche de mélodies puissantes, rythmes entêtants et improvisations.",
+        "Le trio Cavale réunit Prêle Abelanet à l'accordéon, Damien Guisset à la contrebasse et Pierre Baradel à la batterie pour une expérience musicale immersive et poétique."
+      ]
+    },
+    discography: [
+      {
+        title: 'Exuvie',
+        year: '2024',
+        label: 'Autoproduit',
+        description: 'Cinquième album du groupe, jazz imaginatif et poétique.'
+      }
+    ],
+    videos: [
+      {
+        id: 'BZbzXJ0eOcw',
+        title: 'Cavale Trio - Performance live',
+        description: 'Concert du trio avec Prêle Abelanet'
+      }
+    ],
     socials: {
       instagram: '#',
-      youtube: '#',
-      spotify: '#'
+      facebook: '#',
+      appleMusic: '#'
+    }
+  },
+  'david-vilayleck': {
+    name: 'David Vilayleck Trio',
+    subtitle: 'David Vilayleck, Jean Luc Lehr, Eric Flandrin',
+    genre: 'Jazz Power Trio • Jazz Fusion',
+    image: '/images/david-vilayleck.jpg',
+    date: 'VENDREDI 8 AOÛT 2025',
+    time: '11H00',
+    venue: 'Centre-ville de Céret',
+    ticketType: 'gratuit' as const,
+    biography: {
+      intro: "La musique du David Vilayleck Trio est celle d'un jazz power trio (basse, batterie, guitare) qui permet la croisée d'influences world, jazz fusion, free, rock et contemporain.",
+      content: [
+        "Les compositions du guitariste, à la fois complexes et accessibles, offrent des improvisations ouvertes où l'énergie et le partage sont palpables dès les premières notes : des mélodies envoûtantes, rythmes hypnotiques, aux cascades post-coltraniennes ou hendrixiennes.",
+        "David Vilayleck dirige depuis un an la série de concerts jazz club au Nautilus à Perpignan. Il a tourné dans le monde entier et sa musique est publiée sur des labels tels que Chinabot (Londres, UK), Ayan Records et autres.",
+        "Le trio réunit David Vilayleck à la guitare, Jean Luc Lehr à la basse et Eric Flandrin à la batterie pour une formation puissante et créative.",
+        "Leur approche du jazz power trio permet une exploration libre des territoires musicaux, entre tradition et modernité, dans un esprit de partage et d'innovation constante."
+      ]
+    },
+    discography: [
+      {
+        title: 'Power Trio Sessions',
+        year: '2023',
+        label: 'Chinabot Records',
+        description: 'Album explorant les frontières du jazz power trio.'
+      }
+    ],
+    videos: [
+      {
+        id: 'CdDbtkyXd00',
+        title: 'David Vilayleck Trio - Live Session',
+        description: 'Performance en trio du guitariste David Vilayleck'
+      }
+    ],
+    socials: {
+      instagram: '#',
+      facebook: '#',
+      appleMusic: '#'
+    }
+  },
+  'triton-66': {
+    name: 'Triton 66 Quintet',
+    subtitle: 'Bernard Poujal, Garry Fowler, Joel Bergeon, Jean-Yves Bouche, Albert Woda',
+    genre: 'Jazz Standards • Swing',
+    image: '/images/triton-66.jpg',
+    date: 'MERCREDI 6 & JEUDI 7 AOÛT 2025',
+    time: '18H00 et 11H00',
+    venue: 'Centre-ville de Céret',
+    ticketType: 'gratuit' as const,
+    biography: {
+      intro: "Cinq musiciens passionnés animés par le plaisir du jeu collectif et le désir de partager une musique vivante, généreuse et accessible.",
+      content: [
+        "L'ensemble explore un répertoire allant des grands standards du jazz à la bossa nova, en passant par des compositions emblématiques de Miles Davis, Dizzy Gillespie, Herbie Hancock, Sonny Rollins et bien d'autres figures majeures du genre.",
+        "À travers des arrangements subtils, une belle complicité musicale et une énergie communicative, le quintette propose un voyage sonore riche en nuances, entre swing, groove et improvisation.",
+        "Le quintet réunit Bernard Poujal à la batterie, Garry Fowler à la guitare, Joel Bergeon au saxophone, Jean-Yves Bouche à la guitare et Albert Woda à la basse.",
+        "Leur approche respectueuse des traditions du jazz, enrichie d'une sensibilité contemporaine, fait de chaque concert un moment de partage authentique et généreux."
+      ]
+    },
+    discography: [
+      {
+        title: 'Standards & More',
+        year: '2023',
+        label: 'Autoproduit',
+        description: 'Répertoire de standards jazz et compositions originales.'
+      }
+    ],
+    videos: [
+      {
+        id: 'S8n12s-2GjE',
+        title: 'Triton 66 Quintet - Live Performance',
+        description: 'Concert du quintet avec leurs standards préférés'
+      }
+    ],
+    socials: {
+      instagram: '#',
+      facebook: '#',
+      appleMusic: '#'
     }
   }
 }
@@ -264,6 +461,24 @@ export default function ArtistPage({ params }: ArtistPageProps) {
   if (!artist) {
     notFound()
   }
+
+  // Composant pour les concerts gratuits (pas de bouton réservation)
+  const ConcertGratuitInfo = () => (
+    <div className="text-center">
+      <div 
+        className="inline-flex items-center px-6 py-4 rounded-xl font-bold text-lg shadow-xl"
+        style={{ 
+          backgroundColor: '#d4af37', 
+          color: '#1a1a1a'
+        }}
+      >
+        🎵 Concert Gratuit - Accès Libre 🎵
+      </div>
+      <p className="mt-4 text-gray-600">
+        Rendez-vous dans le centre-ville de Céret pour ce concert en accès libre
+      </p>
+    </div>
+  )
 
   return (
     <div className="min-h-screen bg-white">
@@ -294,6 +509,11 @@ export default function ArtistPage({ params }: ArtistPageProps) {
                 {artist.isClosure && (
                   <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
                     CLÔTURE DU FESTIVAL
+                  </span>
+                )}
+                {artist.ticketType === 'gratuit' && (
+                  <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                    CONCERT GRATUIT
                   </span>
                 )}
               </div>
@@ -344,14 +564,29 @@ export default function ArtistPage({ params }: ArtistPageProps) {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto space-y-12">
           
-          {/* Bouton réservation avec composant séparé */}
+          {/* Bouton réservation ou info concert gratuit */}
           <section className="text-center">
-            <ReservationButton
-              ticketType={artist.ticketType}
-              ticketUrl={artist.ticketUrl}
-              billetwebEventId={artist.billetwebEventId}
-              artistName={artist.name}
-            />
+            {artist.ticketType === 'gratuit' ? (
+              <ConcertGratuitInfo />
+            ) : artist.ticketType === 'billetterie' ? (
+              <Link 
+                href="/billetterie"
+                className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+                style={{ 
+                  backgroundColor: '#722f37', 
+                  color: '#f7f3e9'
+                }}
+              >
+                🎫 Réserver mes places
+              </Link>
+            ) : (
+              <ReservationButton
+                ticketType={artist.ticketType}
+                ticketUrl={artist.ticketUrl}
+                billetwebEventId={artist.billetwebEventId}
+                artistName={artist.name}
+              />
+            )}
           </section>
 
           {/* Biographie */}
@@ -375,32 +610,34 @@ export default function ArtistPage({ params }: ArtistPageProps) {
           </section>
 
           {/* Discographie */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
-              🎵 Discographie
-            </h2>
-            
-            <div className="grid gap-6">
-              {artist.discography.map((album, index) => (
-                <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold mb-1" style={{ color: '#1a1a1a' }}>
-                        {album.title}
-                      </h3>
-                      <p className="text-sm font-medium" style={{ color: '#722f37' }}>
-                        {album.year} • {album.label}
-                      </p>
+          {artist.discography && artist.discography.length > 0 && (
+            <section>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
+                🎵 Discographie
+              </h2>
+              
+              <div className="grid gap-6">
+                {artist.discography.map((album, index) => (
+                  <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold mb-1" style={{ color: '#1a1a1a' }}>
+                          {album.title}
+                        </h3>
+                        <p className="text-sm font-medium" style={{ color: '#722f37' }}>
+                          {album.year} • {album.label}
+                        </p>
+                      </div>
                     </div>
+                    <p className="text-gray-700">{album.description}</p>
                   </div>
-                  <p className="text-gray-700">{album.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Vidéos */}
-          {artist.videos.length > 0 && (
+          {artist.videos && artist.videos.length > 0 && (
             <section>
               <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
                 🎬 Vidéos
@@ -439,29 +676,41 @@ export default function ArtistPage({ params }: ArtistPageProps) {
             </h2>
             
             <div className="flex flex-wrap gap-4">
-              <a 
-                href={artist.socials.instagram}
-                className="flex items-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity"
-              >
-                <Instagram className="w-5 h-5" />
-                <span className="font-medium">Instagram</span>
-              </a>
+              {artist.socials.instagram !== '#' && (
+                <a 
+                  href={artist.socials.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  <Instagram className="w-5 h-5" />
+                  <span className="font-medium">Instagram</span>
+                </a>
+              )}
               
-              <a 
-                href={artist.socials.youtube}
-                className="flex items-center space-x-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:opacity-90 transition-opacity"
-              >
-                <Youtube className="w-5 h-5" />
-                <span className="font-medium">YouTube</span>
-              </a>
+              {artist.socials.facebook !== '#' && (
+  <a 
+    href={artist.socials.facebook}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+  >
+    <Facebook className="w-5 h-5" />
+    <span className="font-medium">Facebook</span>
+  </a>
+)}
               
-              <a 
-                href={artist.socials.spotify}
-                className="flex items-center space-x-2 px-4 py-3 bg-green-500 text-white rounded-lg hover:opacity-90 transition-opacity"
-              >
-                <Play className="w-5 h-5" />
-                <span className="font-medium">Spotify</span>
-              </a>
+              {artist.socials.appleMusic !== '#' && (
+                <a 
+                  href={artist.socials.appleMusic}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-4 py-3 bg-black text-white rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  <Apple className="w-5 h-5" />
+                  <span className="font-medium">Apple Music</span>
+                </a>
+              )}
             </div>
           </section>
 
