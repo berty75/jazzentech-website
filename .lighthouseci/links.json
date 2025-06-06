@@ -1,6 +1,10 @@
 {
-  "http://localhost:3000/": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1748796297263-9425.report.html",
-  "http://localhost:3000/artistes": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1748796298098-6834.report.html",
-  "http://localhost:3000/contact": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1748796298952-46939.report.html",
-  "http://localhost:3000/dossier-presse": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1748796299801-72507.report.html"
+  "http://localhost:3000/": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229514126-51556.report.html",
+  "http://localhost:3000/programmation": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229515193-94192.report.html",
+  "http://localhost:3000/contact": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229516094-70763.report.html",
+  "http://localhost:3000/benevoles": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229517123-67435.report.html",
+  "http://localhost:3000/billetterie": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229518127-12280.report.html",
+  "http://localhost:3000/mot-du-president": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229519024-57598.report.html",
+  "http://localhost:3000/artistes/manu-le-prince": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229520136-86779.report.html",
+  "http://localhost:3000/dossier-presse": "https://storage.googleapis.com/lighthouse-infrastructure.appspot.com/reports/1749229521112-60348.report.html"
 }

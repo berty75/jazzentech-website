@@ -164,8 +164,7 @@ export default function Billetterie() {
       <title>Billetterie - Jazz en Tech 2025</title>
       
       {/* Hero Section avec photo festival */}
-      <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 relative overflow-hidden">
-        {/* Image de fond */}
+      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 relative overflow-hidden">        {/* Image de fond */}
         <div className="absolute inset-0">
           <img 
             src="/images/festival-scene.jpg"

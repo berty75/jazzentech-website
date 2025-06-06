@@ -7,7 +7,7 @@ export default function Home() {
       <title>Jazz en Tech - Festival de Jazz Innovation</title>
       
       {/* Hero Section - PADDING TOP CORRIGÉ */}
-      <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pb-24 relative overflow-hidden min-h-[80vh] md:min-h-screen flex items-center">
+      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pb-24 relative overflow-hidden min-h-[80vh] md:min-h-screen flex items-center">
         {/* Éléments artistiques de fond */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-64 h-64 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: '#d4af37' }}></div>
@@ -24,62 +24,57 @@ export default function Home() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              {/* Titre RESPONSIVE */}
-{/* Version alternative avec alignement forcé */}
-{/* Titre RESPONSIVE - LOGO LONG PARFAITEMENT ALIGNÉ */}
-<div className="mb-4 md:mb-6 text-center">
-  <img 
-    src="/images/jazz-en-tech-titre.png" 
-    alt="Festival de Jazz en Tech" 
-    className="mx-auto w-auto max-w-[90%] md:max-w-2xl h-auto block"
-  />
+  <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+  <div className="order-2 lg:order-1">
+  {/* Titre RESPONSIVE - SANS DÉCALAGE */}
+  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white leading-tight">
+    Jazz en Tech
+  </h1>
+  
+  {/* Texte RESPONSIVE */}
+  <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl" style={{ color: '#f7f3e9' }}>
+    Le festival de jazz qui marie tradition et innovation technologique
+  </p>
+  
+  {/* Boutons CORRIGÉS - Billetterie et Programmation */}
+  <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+    <Link
+      href="/billetterie"
+      className="inline-block px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg text-center text-sm sm:text-base"
+      style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+    >
+      Billetterie
+    </Link>
+    <Link
+      href="/programmation"
+      className="inline-block border-2 px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center text-sm sm:text-base"
+      style={{ borderColor: '#d4af37', color: '#d4af37' }}
+    >
+      Programmation
+    </Link>
+  </div>
 </div>
-              {/* Texte RESPONSIVE */}
-              <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl" style={{ color: '#f7f3e9' }}>
-                Le festival de jazz qui marie tradition et innovation technologique
-              </p>
-              
-              {/* Boutons RESPONSIVE - CORRIGÉS */}
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                <Link
-                  href="/billetterie"
-                  className="inline-block px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg text-center text-sm sm:text-base"
-                  style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
-                >
-                  Billetterie & Programmation
-                </Link>
-                <Link
-                  href="/programmation"
-                  className="inline-block border-2 px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center text-sm sm:text-base"
-                  style={{ borderColor: '#d4af37', color: '#d4af37' }}
-                >
-                  Voir la Programmation
-                </Link>
-              </div>
-            </div>
-            
-            {/* AFFICHE OFFICIELLE - RESPONSIVE */}
-            <div className="order-1 lg:order-2 flex justify-center items-start animate-fade-in-right delay-700">
-              <div className="relative group w-full max-w-sm lg:max-w-md">
-                <img 
-                  src="/images/affiche-2025.jpg" 
-                  alt="Affiche Jazz en Tech 2025 - 10ème édition"
-                  className="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
-                />
-                
-                {/* Badge anniversaire avec couleurs jazz - CORRIGÉ RESPONSIVE */}
-                <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 md:-top-4 md:-right-4 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center font-bold shadow-xl" style={{ background: 'linear-gradient(45deg, #d4af37, #b87333)', color: '#1a1a1a' }}>
-                  <div className="text-center">
-                    <div className="text-xs sm:text-xs md:text-sm">10ème</div>
-                    <div className="text-xs sm:text-xs md:text-sm">édition</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+    
+    {/* Ici vous devez ajouter la deuxième colonne (affiche) */}
+    <div className="order-1 lg:order-2 flex justify-center items-start animate-fade-in-right delay-700">
+      <div className="relative group w-full max-w-sm lg:max-w-md">
+        <img 
+          src="/images/affiche-2025.jpg" 
+          alt="Affiche Jazz en Tech 2025 - 10ème édition"
+          className="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
+        />
+        
+        {/* Badge anniversaire */}
+        <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 md:-top-4 md:-right-4 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center font-bold shadow-xl" style={{ background: 'linear-gradient(45deg, #d4af37, #b87333)', color: '#1a1a1a' }}>
+          <div className="text-center">
+            <div className="text-xs sm:text-xs md:text-sm">10ème</div>
+            <div className="text-xs sm:text-xs md:text-sm">édition</div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
       </section>
 
       {/* SECTION CONCERTS PAYANTS */}
@@ -675,7 +670,7 @@ export default function Home() {
                   <iframe
                     width="100%"
                     height="100%"
-                    src="https://www.youtube.com/embed/Gjh-v425HPQ"
+                    src="https://www.youtube.com/embed/3Sif0lacQt8?si=FJpgv_E1Q5C6NjHD"
                     title="Stefano Di Battista - Jazz en Tech"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

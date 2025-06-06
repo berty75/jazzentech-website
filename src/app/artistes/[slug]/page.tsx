@@ -485,8 +485,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
       <title>{artist.name} - Jazz en Tech 2025</title>
       
       {/* Hero Section avec photo de l'artiste */}
-      <section className="relative hero-gradient text-white pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24 overflow-hidden">
-        {/* Image de fond avec overlay */}
+<section className="relative hero-gradient text-white pt-36 pb-16 sm:pt-40 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">        {/* Image de fond avec overlay */}
         <div className="absolute inset-0">
           <img 
             src={artist.image}

@@ -13,7 +13,7 @@ export default function MotDuPresident() {
       <title>Mot du Président - Jazz en Tech 2025</title>
       {/* Hero Section - 10ème anniversaire RESPONSIVE */}
       <section className="relative overflow-hidden">
-        <div className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16 lg:pb-20">
+      <div className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pb-20">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>

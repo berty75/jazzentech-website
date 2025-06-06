@@ -3,8 +3,12 @@ module.exports = {
       collect: {
         url: [
           'http://localhost:3000',
-          'http://localhost:3000/artistes',
-          'http://localhost:3000/contact',
+          'http://localhost:3000/programmation',
+          'http://localhost:3000/contact', 
+          'http://localhost:3000/benevoles',
+          'http://localhost:3000/billetterie',
+          'http://localhost:3000/mot-du-president',
+          'http://localhost:3000/artistes/manu-le-prince', // Page artiste existante
           'http://localhost:3000/dossier-presse'
         ],
         startServerCommand: 'npm run start',

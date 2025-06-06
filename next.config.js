@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ['localhost'],
-      unoptimized: true,
-    },
-  }
-  
-  module.exports = nextConfig
+  images: {
+    unoptimized: true, // Temporaire pour résoudre le problème
+  },
+}
+
+module.exports = nextConfig

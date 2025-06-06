@@ -17,7 +17,11 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const headerHeight = isScrolled ? 'h-20 md:h-24' : 'h-22 md:h-28'
+  // Header plus grand avant scroll, plus petit après
+  const headerHeight = isScrolled ? 'h-20 md:h-24' : 'h-32 md:h-40'
+  
+  // Logo plus gros avant scroll, plus petit après  
+  const logoHeight = isScrolled ? 'h-16 md:h-20' : 'h-24 md:h-32'
 
   return (
     <header 
@@ -29,7 +33,6 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
-          {/* Logo */}
           <Link 
             href="/" 
             className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1"
@@ -37,11 +40,7 @@ export default function Header() {
             <img
               src="/images/jazz-en-tech-logo.png"
               alt="Jazz en Tech Festival"
-              className={`w-auto transition-all duration-300 ${
-                isScrolled 
-                  ? 'h-14 sm:h-16 md:h-18 lg:h-20'
-                  : 'h-16 sm:h-18 md:h-22 lg:h-24'
-              }`}
+              className={`w-auto transition-all duration-300 ${logoHeight}`}
             />
           </Link>
 
@@ -49,7 +48,6 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-6">
             <Navigation />
             
-            {/* CTA Billetterie - Très visible */}
             <Link
               href="/billetterie"
               className="btn-primary flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg animate-pulse"
@@ -84,7 +82,6 @@ export default function Header() {
             <div className="container mx-auto px-4 py-4">
               <Navigation mobile onItemClick={() => setIsMenuOpen(false)} />
               
-              {/* CTA Billetterie mobile */}
               <div className="mt-6 pt-4 border-t border-white/20">
                 <Link
                   href="/billetterie"

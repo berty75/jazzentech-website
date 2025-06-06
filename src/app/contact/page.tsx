@@ -37,7 +37,8 @@ export default function Contact() {
     <div className="min-h-screen bg-gray-50">
        <title>Contact - Jazz en Tech 2025</title>
       {/* Hero Section - COHÉRENT AVEC LES AUTRES PAGES */}
-      <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
+      {/* Hero Section - COHÉRENT AVEC LES AUTRES PAGES */}
+<section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pt-48">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
             Contactez-nous
@@ -117,27 +118,27 @@ export default function Contact() {
               <h3 className="font-semibold text-gray-900 mb-4">Suivez-nous</h3>
               <div className="flex space-x-4">
                 <a 
-                  href="#" 
+                  href="https://facebook.com/festivaljazzentech" 
                   className="focus-minimal w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
                   aria-label="Suivez-nous sur Facebook"
                 >
                   <span className="text-sm font-bold" aria-hidden="true">f</span>
                 </a>
                 <a 
-                  href="#" 
+                  href="https://instagram.com/festivaljazzentech" 
                   className="focus-minimal w-10 h-10 bg-pink-600 text-white rounded-lg flex items-center justify-center hover:bg-pink-700 transition-colors"
                   aria-label="Suivez-nous sur Instagram"
                 >
                   <span className="text-sm font-bold" aria-hidden="true">@</span>
                 </a>
                 <a 
-  href="#" 
-  className="focus-minimal w-10 h-10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
-  style={{ backgroundColor: '#3277cc' }}  // Couleur accessible recommandée
-  aria-label="Suivez-nous sur Twitter"
->
-  <span className="text-sm font-bold text-white" aria-hidden="true">t</span>
-</a>
+                  href="https://twitter.com/jazzentech" 
+                  className="focus-minimal w-10 h-10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+                  style={{ backgroundColor: '#3277cc' }}
+                  aria-label="Suivez-nous sur Twitter"
+                >
+                  <span className="text-sm font-bold text-white" aria-hidden="true">t</span>
+                </a>
               </div>
             </div>
           </div>

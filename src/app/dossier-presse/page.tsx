@@ -70,7 +70,7 @@ export default function DossierPresse() {
     <div className="min-h-screen bg-white">
         <title>Dossier de Presse - Jazz en Tech 2025</title>
       {/* Hero Section */}
-      <section className="hero-gradient text-white pt-24 pb-8 sm:pt-28 sm:pb-12 md:pt-32 md:pb-16">
+      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
             Dossier de Presse
