@@ -35,7 +35,7 @@ export default function Header() {
             className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1"
           >
             <img
-              src="/images/logo-jazz-en-tech.png"
+              src="/images/jazz-en-tech-logo.png"
               alt="Jazz en Tech Festival"
               className={`w-auto transition-all duration-300 ${
                 isScrolled 

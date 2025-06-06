@@ -133,7 +133,7 @@ export default function PlanSite() {
               </ul>
             </div>
 
-            {/* Pages des artistes individuels */}
+            {/* Pages des artistes individuels - TOUS LES ARTISTES */}
             <div 
               className="p-4 md:p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow"
               style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}
@@ -144,6 +144,12 @@ export default function PlanSite() {
               </div>
               
               <ul className="space-y-3 md:space-y-4">
+                {/* Artistes de Saint-Génis (gratuits) */}
+                <li>
+                  <div className="mb-2">
+                    <h4 className="text-xs font-bold uppercase text-gray-500 mb-2">Saint-Génis-des-Fontaines (Gratuit)</h4>
+                  </div>
+                </li>
                 <li>
                   <Link 
                     href="/artistes/manu-le-prince" 
@@ -152,7 +158,7 @@ export default function PlanSite() {
                   >
                     <Music className="w-4 h-4 mr-2" />
                     Manu Le Prince
-                    <span className="ml-auto text-xs text-gray-500">27 juillet</span>
+                    <span className="ml-auto text-xs text-green-600 font-semibold">27 juillet - GRATUIT</span>
                   </Link>
                 </li>
                 <li>
@@ -163,9 +169,19 @@ export default function PlanSite() {
                   >
                     <Music className="w-4 h-4 mr-2" />
                     Florin Gugulica
-                    <span className="ml-auto text-xs text-gray-500">28 juillet</span>
+                    <span className="ml-auto text-xs text-green-600 font-semibold">28 juillet - GRATUIT</span>
                   </Link>
                 </li>
+                
+                {/* Séparateur */}
+                <li>
+                  <div className="border-t border-gray-200 my-3"></div>
+                  <div className="mb-2">
+                    <h4 className="text-xs font-bold uppercase text-gray-500 mb-2">Céret (Payant)</h4>
+                  </div>
+                </li>
+                
+                {/* Artistes de Céret (payants) */}
                 <li>
                   <Link 
                     href="/artistes/stefano-di-battista" 
@@ -190,6 +206,17 @@ export default function PlanSite() {
                 </li>
                 <li>
                   <Link 
+                    href="/artistes/camille-bertault" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#722f37' }}
+                  >
+                    <Music className="w-4 h-4 mr-2" />
+                    Camille Bertault
+                    <span className="ml-auto text-xs text-blue-600 font-semibold">8 août - INVITÉE</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href="/artistes/charlotte-planchou" 
                     className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
                     style={{ color: '#722f37' }}
@@ -204,6 +231,9 @@ export default function PlanSite() {
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <p className="text-xs md:text-sm text-gray-600">
                   🎵 Pages individuelles dédiées à chaque artiste
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  💚 Saint-Génis : concerts gratuits • 💳 Céret : billetterie
                 </p>
               </div>
             </div>
@@ -277,6 +307,19 @@ export default function PlanSite() {
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderColor: '#22c55e'
+                  }}
+                >
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#16a34a' }}>Concerts de Saint-Génis</h3>
+                  <p className="text-xs md:text-sm text-gray-600">27 et 28 juillet 2025</p>
+                  <p className="text-xs text-green-600 font-bold">🎉 ENTRÉE GRATUITE</p>
+                  <p className="text-xs text-gray-500">Manu Le Prince & Florin Gugulica</p>
+                </div>
+                
+                <div 
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
                     backgroundColor: 'rgba(212, 175, 55, 0.1)',
                     borderColor: '#d4af37'
                   }}
@@ -284,24 +327,13 @@ export default function PlanSite() {
                   <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Concerts de Céret</h3>
                   <p className="text-xs md:text-sm text-gray-600">7, 8 et 9 août 2025</p>
                   <p className="text-xs text-gray-500">Via Billetweb - Billetterie principale</p>
-                </div>
-                
-                <div 
-                  className="p-3 md:p-4 rounded-lg border-l-4"
-                  style={{ 
-                    backgroundColor: 'rgba(114, 47, 55, 0.1)',
-                    borderColor: '#722f37'
-                  }}
-                >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Concerts de Saint-Génis</h3>
-                  <p className="text-xs md:text-sm text-gray-600">27 et 28 juillet 2025</p>
-                  <p className="text-xs text-gray-500">Réservation directe disponible</p>
+                  <p className="text-xs text-gray-500 mt-1">🎤 Avec Camille Bertault le 8 août</p>
                 </div>
               </div>
               
               <div className="mt-4 pt-4 border-t border-gray-200">
                 <Link 
-                  href="/billetterie" 
+                  href="/billetterie"
                   className="inline-flex items-center px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105"
                   style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
                 >
@@ -320,12 +352,15 @@ export default function PlanSite() {
               
               <div className="space-y-4">
                 <div 
-                  className="p-3 md:p-4 rounded-lg"
-                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderColor: '#22c55e'
+                  }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Saint-Génis-des-Fontaines</h3>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#16a34a' }}>Saint-Génis-des-Fontaines</h3>
                   <p className="text-xs md:text-sm text-gray-600 mb-1">Cloître historique</p>
-                  <p className="text-xs text-gray-500">27-28 juillet 2025</p>
+                  <p className="text-xs text-green-600 font-bold">27-28 juillet 2025 • GRATUIT</p>
                   <div className="flex items-center text-xs text-gray-500 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span>Pyrénées-Orientales (66)</span>
@@ -338,7 +373,7 @@ export default function PlanSite() {
                 >
                   <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Céret</h3>
                   <p className="text-xs md:text-sm text-gray-600 mb-1">Place de la République</p>
-                  <p className="text-xs text-gray-500">7-8-9 août 2025</p>
+                  <p className="text-xs text-gray-500">7-8-9 août 2025 • Billetterie</p>
                   <div className="flex items-center text-xs text-gray-500 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span>Capitale de l'art moderne</span>
@@ -416,12 +451,15 @@ export default function PlanSite() {
               
               <div className="space-y-3 md:space-y-4">
                 <div 
-                  className="p-3 md:p-4 rounded-lg"
-                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderColor: '#22c55e'
+                  }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Saint-Génis-des-Fontaines</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#16a34a' }}>Saint-Génis-des-Fontaines</p>
                   <p className="text-xs md:text-sm text-gray-600">27-28 juillet 2025</p>
-                  <p className="text-xs text-gray-500">Ouverture du festival</p>
+                  <p className="text-xs text-green-600 font-bold">Ouverture du festival • GRATUIT</p>
                 </div>
                 
                 <div 
@@ -431,6 +469,7 @@ export default function PlanSite() {
                   <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Céret</p>
                   <p className="text-xs md:text-sm text-gray-600">7-8-9 août 2025</p>
                   <p className="text-xs text-gray-500">Cœur du festival - 3 soirées</p>
+                  <p className="text-xs text-gray-500 mt-1">🎤 Avec Camille Bertault le 8/08</p>
                 </div>
                 
                 <div 
@@ -442,7 +481,7 @@ export default function PlanSite() {
                 >
                   <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Billetterie</p>
                   <p className="text-xs md:text-sm text-gray-600">Jusqu'au 25 juillet 23h59</p>
-                  <p className="text-xs text-gray-500">⏰ Vente limitée dans le temps</p>
+                  <p className="text-xs text-gray-500">⏰ Vente limitée dans le temps (Céret uniquement)</p>
                 </div>
               </div>
             </div>
@@ -501,7 +540,7 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>5 concerts exceptionnels</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>6 artistes exceptionnels</span>
                 </div>
                 
                 <div className="flex items-center">
@@ -517,13 +556,13 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>Artistes internationaux</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>2 concerts gratuits</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Navigation rapide - MISE À JOUR */}
+          {/* Navigation rapide */}
           <div 
             className="text-center p-4 md:p-6 rounded-2xl"
             style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}

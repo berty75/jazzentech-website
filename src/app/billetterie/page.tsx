@@ -385,7 +385,7 @@ export default function Billetterie() {
               </h3>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
                   name: 'Stefano Di Battista',
@@ -395,9 +395,16 @@ export default function Billetterie() {
                 },
                 {
                   name: 'Jacky Terrasson',
-                  subtitle: '+ Camille Bertault',
+                  subtitle: 'Piano Solo & Invités',
                   date: '8 AOÛT',
                   image: '/images/jacky-terrasson.jpeg'
+                },
+                {
+                  name: 'Camille Bertault',
+                  subtitle: 'Voix Jazz Française',
+                  date: '8 AOÛT',
+                  image: '/images/camille-bertault.jpg',
+                  special: 'INVITÉE'
                 },
                 {
                   name: 'Charlotte Planchou',
@@ -422,12 +429,33 @@ export default function Billetterie() {
                     <span className="font-semibold">{artist.date}</span>
                   </div>
                   {artist.special && (
-                    <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-bold">
+                    <span className={`px-2 py-1 rounded text-xs font-bold ${
+                      artist.special === 'CLÔTURE' 
+                        ? 'bg-red-100 text-red-800' 
+                        : 'bg-blue-100 text-blue-800'
+                    }`}>
                       {artist.special}
                     </span>
                   )}
                 </div>
               ))}
+            </div>
+            
+            {/* Note sur Camille Bertault */}
+            <div className="mt-6 text-center">
+              <div 
+                className="inline-block p-4 rounded-xl border-2 border-dashed max-w-md mx-auto"
+                style={{ 
+                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                  borderColor: '#d4af37'
+                }}
+              >
+                <p className="text-sm" style={{ color: '#722f37' }}>
+                  <strong>🎤 Camille Bertault</strong> rejoint Jacky Terrasson le 8 août pour une soirée exceptionnelle ! 
+                  Chanteuse de jazz française récompensée aux Victoires du Jazz 2023, 
+                  elle est reconnue pour sa virtuosité vocale et son interprétation unique de standards jazz.
+                </p>
+              </div>
             </div>
           </section>
 
