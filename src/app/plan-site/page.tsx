@@ -147,7 +147,7 @@ export default function PlanSite() {
                 {/* Artistes de Saint-Génis (gratuits) */}
                 <li>
                   <div className="mb-2">
-                    <h4 className="text-xs font-bold uppercase text-gray-500 mb-2">Saint-Génis-des-Fontaines (Gratuit)</h4>
+                    <h3 className="text-xs font-bold uppercase text-gray-500 mb-2">Saint-Génis-des-Fontaines (Gratuit)</h3>
                   </div>
                 </li>
                 <li>

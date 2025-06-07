@@ -65,7 +65,7 @@ export default function PolitiqueConfidentialite() {
                 className="p-3 md:p-4 rounded-lg"
                 style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
               >
-                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#722f37' }}>Service</h4>
+                <h3 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#722f37' }}>Service</h3>
                 <p className="text-xs md:text-sm" style={{ color: '#1a1a1a' }}>
                   Par Service on entend le site web https://www.jazzentech.com exploité par l'association (loi 1901) Jazz En Tech.
                 </p>
@@ -241,9 +241,9 @@ export default function PolitiqueConfidentialite() {
               
               <div className="grid md:grid-cols-2 gap-3 md:gap-4">
                 <div className="bg-white p-3 rounded-lg">
-                  <h4 className="font-semibold text-xs md:text-sm mb-1" style={{ color: '#722f37' }}>
+                  <h3 className="font-semibold text-xs md:text-sm mb-1" style={{ color: '#722f37' }}>
                     Droit d'accès
-                  </h4>
+                  </h3>
                   <p className="text-xs text-gray-600">Aux informations que nous détenons</p>
                 </div>
                 

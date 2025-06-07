@@ -559,15 +559,15 @@ export default function Programmation() {
             Découvrez notre programmation exceptionnelle pour la 10ème édition
           </p>
           <div className="flex items-center justify-center mt-6 space-x-4">
-  <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-    <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
-    <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 concerts payants</span>
-  </div>
-  <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-    <Music className="w-5 h-5" style={{ color: '#d4af37' }} />
-    <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 créneaux gratuits</span>
-  </div>
-</div>
+            <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+              <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
+              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 concerts payants</span>
+            </div>
+            <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+              <Music className="w-5 h-5" style={{ color: '#d4af37' }} />
+              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 créneaux gratuits</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -581,8 +581,8 @@ export default function Programmation() {
               Programme complet - 10ème édition
             </h2>
             
-            {/* Filtres compacts sur 2 lignes */}
-            <div className="mb-8 space-y-4">
+            {/* Filtres améliorés */}
+            <div className="mb-8 space-y-6">
               {/* Ligne 1: Filtres par TYPE */}
               <div className="text-center">
                 <div className="flex justify-center gap-3">
@@ -625,95 +625,44 @@ export default function Programmation() {
                 </div>
               </div>
 
-              {/* Ligne 2: Filtres par DATE */}
-              <div className="overflow-x-auto">
-                <div className="flex justify-center gap-2 min-w-max px-4">
-                  <button 
-                    onClick={() => { setSelectedDate('all'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === 'all' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === 'all' ? '#d4af37' : '#f9f9f9', 
-                      color: selectedDate === 'all' ? '#722f37' : '#6b7280' 
-                    }}
-                  >
-                    TOUTES
-                  </button>
-                  <button 
-                    onClick={() => { setSelectedDate('27'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === '27' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === '27' ? '#722f37' : '#f9f9f9', 
-                      color: selectedDate === '27' ? '#f7f3e9' : '#6b7280' 
-                    }}
-                  >
-                    27 JUIL
-                  </button>
-                  <button 
-                    onClick={() => { setSelectedDate('28'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === '28' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === '28' ? '#b87333' : '#f9f9f9', 
-                      color: selectedDate === '28' ? '#f7f3e9' : '#6b7280' 
-                    }}
-                  >
-                    28 JUIL
-                  </button>
-                  <button 
-                    onClick={() => { setSelectedDate('6'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === '6' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === '6' ? '#d4af37' : '#f9f9f9', 
-                      color: selectedDate === '6' ? '#722f37' : '#6b7280' 
-                    }}
-                  >
-                    6 AOÛT
-                  </button>
-                  <button 
-                    onClick={() => { setSelectedDate('7'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === '7' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === '7' ? '#722f37' : '#f9f9f9', 
-                      color: selectedDate === '7' ? '#f7f3e9' : '#6b7280' 
-                    }}
-                  >
-                    7 AOÛT
-                  </button>
-                  <button 
-                    onClick={() => { setSelectedDate('8'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === '8' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === '8' ? '#b87333' : '#f9f9f9', 
-                      color: selectedDate === '8' ? '#f7f3e9' : '#6b7280' 
-                    }}
-                  >
-                    8 AOÛT
-                  </button>
-                  <button 
-                    onClick={() => { setSelectedDate('9'); handleScroll(); }}
-                    className={`px-3 py-1 rounded-lg font-semibold text-xs transition-all duration-300 ${
-                      selectedDate === '9' ? 'shadow-md' : 'hover:shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: selectedDate === '9' ? '#722f37' : '#f9f9f9', 
-                      color: selectedDate === '9' ? '#f7f3e9' : '#6b7280' 
-                    }}
-                  >
-                    9 AOÛT
-                  </button>
-                </div>
-              </div>
+{/* FILTRES PAR DATE - STYLE BADGES SIMPLES */}
+<div className="mb-8">
+  <div className="text-center">
+    <h3 className="text-lg font-semibold mb-4" style={{ color: '#722f37' }}>
+      Filtrer par date
+    </h3>
+    
+    <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+      {[
+        { key: 'all', label: 'Toutes les dates' },
+        { key: '27', label: '27 Juillet' },
+        { key: '28', label: '28 Juillet' },
+        { key: '6', label: '6 Août' },
+        { key: '7', label: '7 Août' },
+        { key: '8', label: '8 Août' },
+        { key: '9', label: '9 Août' }
+      ].map((date) => (
+        <button 
+          key={date.key}
+          onClick={() => { setSelectedDate(date.key); handleScroll(); }}
+          className={`px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 border ${
+            selectedDate === date.key 
+              ? 'shadow-md transform scale-105' 
+              : 'hover:shadow-sm hover:scale-102'
+          }`}
+          style={{ 
+            backgroundColor: selectedDate === date.key ? '#722f37' : '#f8f9fa',
+            color: selectedDate === date.key ? '#f7f3e9' : '#495057',
+            borderColor: selectedDate === date.key ? '#722f37' : '#dee2e6'
+          }}
+        >
+          {date.label}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
             </div>
 
             {/* Affichage des sections filtrées */}
@@ -855,10 +804,10 @@ export default function Programmation() {
                                 </div>
                                 
                                 {artist.extraBadge && (
-                                  <div className="absolute bottom-16 left-3 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
-                                    {artist.extraBadge}
-                                  </div>
-                                )}
+  <div className="absolute top-12 left-3 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+    {artist.extraBadge}
+  </div>
+)}
                                 
                                 {/* Overlay hover */}
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -891,40 +840,40 @@ export default function Programmation() {
             )}
           </section>
 
-{/* Message pour concerts gratuits uniquement */}
-{selectedView === 'gratuits' && (
-  <section className="text-center">
-    <div 
-      className="inline-flex items-center px-8 py-4 rounded-xl font-bold text-lg shadow-xl"
-      style={{ 
-        backgroundColor: '#d4af37', 
-        color: '#722f37'
-      }}
-    >
-      🎵 Concerts gratuits - Accès libre dans les rues de Céret
-    </div>
-  </section>
-)}
+          {/* Message pour concerts gratuits uniquement */}
+          {selectedView === 'gratuits' && (
+            <section className="text-center">
+              <div 
+                className="inline-flex items-center px-8 py-4 rounded-xl font-bold text-lg shadow-xl"
+                style={{ 
+                  backgroundColor: '#d4af37', 
+                  color: '#722f37'
+                }}
+              >
+                🎵 Concerts gratuits - Accès libre dans les rues de Céret
+              </div>
+            </section>
+          )}
 
-{/* Bouton vers billetterie - SEULEMENT si des concerts payants sont visibles */}
-{currentData.sections.some(section => 
-  section.locations.some(location => 
-    location.artists && location.artists.some(artist => artist.ticketType === 'payant')
-  )
-) && (
-  <section className="text-center">
-    <Link 
-      href="/billetterie"
-      className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-      style={{ 
-        backgroundColor: '#722f37', 
-        color: '#f7f3e9'
-      }}
-    >
-      🎫 Réserver mes places
-    </Link>
-  </section>
-)}
+          {/* Bouton vers billetterie - SEULEMENT si des concerts payants sont visibles */}
+          {currentData.sections.some(section => 
+            section.locations.some(location => 
+              location.artists && location.artists.some(artist => artist.ticketType === 'payant')
+            )
+          ) && (
+            <section className="text-center">
+              <Link 
+                href="/billetterie"
+                className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+                style={{ 
+                  backgroundColor: '#722f37', 
+                  color: '#f7f3e9'
+                }}
+              >
+                🎫 Réserver mes places
+              </Link>
+            </section>
+          )}
 
           {/* Compte à rebours */}
           <section 

@@ -422,7 +422,7 @@ const artistsData = {
       content: [
         "L'ensemble explore un répertoire allant des grands standards du jazz à la bossa nova, en passant par des compositions emblématiques de Miles Davis, Dizzy Gillespie, Herbie Hancock, Sonny Rollins et bien d'autres figures majeures du genre.",
         "À travers des arrangements subtils, une belle complicité musicale et une énergie communicative, le quintette propose un voyage sonore riche en nuances, entre swing, groove et improvisation.",
-        "Le quintet réunit Bernard Poujal à la batterie, Garry Fowler à la guitare, Joel Bergeon au saxophone, Jean-Yves Bouche à la guitare et Albert Woda à la basse.",
+        "Le quintet réunit Bernard Poujal à la batterie, Garry Fowler à la guitare, Joel Bergeon au saxophone, Jean-Yves Bouche à la guitarre et Albert Woda à la basse.",
         "Leur approche respectueuse des traditions du jazz, enrichie d'une sensibilité contemporaine, fait de chaque concert un moment de partage authentique et généreux."
       ]
     },
@@ -450,13 +450,14 @@ const artistsData = {
 }
 
 interface ArtistPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function ArtistPage({ params }: ArtistPageProps) {
-  const artist = artistsData[params.slug as keyof typeof artistsData]
+export default async function ArtistPage({ params }: ArtistPageProps) {
+  const { slug } = await params
+  const artist = artistsData[slug as keyof typeof artistsData]
 
   if (!artist) {
     notFound()
@@ -730,7 +731,7 @@ export default function ArtistPage({ params }: ArtistPageProps) {
 }
 
 // Générer les pages statiques pour tous les artistes
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return Object.keys(artistsData).map((slug) => ({
     slug: slug,
   }))

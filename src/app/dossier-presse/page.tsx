@@ -111,7 +111,7 @@ export default function DossierPresse() {
                 style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
               >
                 <Calendar className="w-8 h-8 mx-auto mb-3" style={{ color: '#722f37' }} />
-                <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>10ème édition</h3>
+                <h2 className="font-bold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>10ème édition</h2>
                 <p className="text-xs md:text-sm text-gray-600">27-28 juillet & 7-8-9 août 2025</p>
               </div>
               

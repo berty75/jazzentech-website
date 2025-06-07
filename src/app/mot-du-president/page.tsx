@@ -282,6 +282,64 @@ export default function MotDuPresident() {
         </div>
       </section>
 
+      {/* Section Vidéos */}
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold text-jazz-red mb-4">Découvrez Jazz en Tech en vidéo</h2>
+              <p className="text-base md:text-lg text-gray-600">
+                Plongez dans l'ambiance unique de notre festival
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+              {/* Première vidéo */}
+              <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="aspect-video rounded-xl overflow-hidden mb-4">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/oLzreIDvkJ8?si=2jgYBaPq1MNRjSqL"
+                    title="Jazz en Tech - Vidéo 1"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <h3 className="font-bold text-lg text-jazz-red text-center mb-2">
+                  Jazz en Tech - Moments d'exception
+                </h3>
+                <p className="text-sm text-gray-600 text-center">
+                  Découvrez l'atmosphère unique de notre festival
+                </p>
+              </div>
+
+              {/* Deuxième vidéo */}
+              <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="aspect-video rounded-xl overflow-hidden mb-4">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/D5HyggB1Iv4?si=XVvYZIDjLxnO4tj2"
+                    title="Jazz en Tech - Vidéo 2"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <h3 className="font-bold text-lg text-jazz-red text-center mb-2">
+                  Dans les coulisses du festival
+                </h3>
+                <p className="text-sm text-gray-600 text-center">
+                  Une immersion dans la préparation de Jazz en Tech
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Signature - RESPONSIVE */}
       <section className="py-12 md:py-16 warm-gradient">
         <div className="container mx-auto px-4">

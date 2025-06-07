@@ -64,9 +64,9 @@ export default function Benevoles() {
             <div className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center mb-4 md:mb-6">
                 <Users className="w-6 h-6 mr-3" style={{ color: '#722f37' }} />
-                <h3 className="text-lg md:text-xl font-semibold" style={{ color: '#722f37' }}>
+                <h2 className="text-lg md:text-xl font-semibold" style={{ color: '#722f37' }}>
                   Les petites missions du quotidien
-                </h3>
+                </h2>
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start">
