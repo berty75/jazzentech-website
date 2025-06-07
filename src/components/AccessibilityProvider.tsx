@@ -7,10 +7,13 @@ interface AccessibilityProviderProps {
   children: React.ReactNode
 }
 
+// 🎛️ Variable pour activer/désactiver axe-core
+const ENABLE_AXE_CORE = false // Mettre à true pour réactiver
+
 export default function AccessibilityProvider({ children }: AccessibilityProviderProps) {
   useEffect(() => {
     // Charger axe-core en développement
-    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    if (ENABLE_AXE_CORE && process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
       import('@axe-core/react').then((axe) => {
         axe.default(React, ReactDOM, 1000)
       }).catch(() => {
