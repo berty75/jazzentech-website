@@ -1,6 +1,7 @@
 'use client'
-import { useState } from 'react'
+import { useState } from 'react' // ← Plus besoin d'useEffect
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,13 +18,31 @@ export default function Contact() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulation d'envoi (remplacez par votre logique d'envoi)
-    setTimeout(() => {
+    try {
+      console.log('Envoi avec EmailJS directement...')
+      
+      // UTILISATION DIRECTE D'EMAILJS (pas de fetch !)
+      const result = await emailjs.send(
+        'service_bddtc5e',
+        'template_kmrs0ln', 
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        },
+        'EgXRsaRKLY5zfIU2_'
+      )
+      
+      console.log('✅ Succès EmailJS:', result)
       setSubmitStatus('success')
-      setIsSubmitting(false)
-      // Reset form après succès
       setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 2000)
+    } catch (error) {
+      console.error('❌ Erreur EmailJS:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

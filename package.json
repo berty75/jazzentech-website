@@ -14,6 +14,7 @@
     "check:accessibility": "npm run lint:a11y && npm run test:a11y"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@headlessui/react": "^2.2.4",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.511.0",
