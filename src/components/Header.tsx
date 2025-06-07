@@ -17,83 +17,82 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Header plus grand avant scroll, plus petit après
-  const headerHeight = isScrolled ? 'h-20 md:h-24' : 'h-32 md:h-40'
-  
-  // Logo plus gros avant scroll, plus petit après  
-  const logoHeight = isScrolled ? 'h-16 md:h-20' : 'h-24 md:h-32'
-
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerHeight}`}
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 header-responsive"
       style={{
         background: '#722f37',
-        boxShadow: isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none'
+        boxShadow: isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
+        height: isScrolled ? '4rem' : '6rem', // 64px scrolled, 96px normal
       }}
     >
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between h-full">
-          <Link 
-            href="/" 
-            className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1"
+          <Link
+            href="/"
+            className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1 flex-shrink-0"
           >
             <img
               src="/images/jazz-en-tech-logo.png"
               alt="Jazz en Tech Festival"
-              className={`w-auto transition-all duration-300 ${logoHeight}`}
+              className="w-auto transition-all duration-300 logo-responsive"
+              style={{
+                height: isScrolled ? '3rem' : '4rem', // 48px scrolled, 64px normal
+                maxHeight: isScrolled ? '3rem' : '4rem',
+              }}
             />
           </Link>
 
-          {/* Navigation desktop + CTA Billetterie */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Navigation />
-            
+          {/* Navigation desktop SEULEMENT (à partir de 1024px) */}
+          <div className="hidden xl:flex items-center space-x-4 2xl:space-x-6 nav-responsive">
+            <div className="nav-items-responsive">
+              <Navigation />
+            </div>
             <Link
               href="/billetterie"
-              className="btn-primary flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg animate-pulse"
-              style={{ 
-                background: 'linear-gradient(45deg, #d4af37, #b87333)', 
+              className="btn-primary flex items-center px-4 py-2 2xl:px-6 2xl:py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg animate-pulse btn-responsive"
+              style={{
+                background: 'linear-gradient(45deg, #d4af37, #b87333)',
                 color: '#1a1a1a',
                 border: '2px solid #d4af37'
               }}
             >
-              <Ticket className="w-5 h-5 mr-2" />
-              <span className="hidden lg:inline">Billetterie</span>
-              <span className="lg:hidden">Billets</span>
+              <Ticket className="w-4 h-4 2xl:w-5 2xl:h-5 mr-1 2xl:mr-2 ticket-responsive" />
+              <span className="hidden 2xl:inline text-responsive-lg">Billetterie</span>
+              <span className="2xl:hidden text-responsive-sm">Billets</span>
             </Link>
           </div>
 
-          {/* Menu burger mobile */}
+          {/* Menu burger pour mobile, tablet ET iPad (jusqu'à 1279px) */}
           <button
-            className="focus-minimal md:hidden text-white hover:text-yellow-300 transition-colors p-2 rounded-lg"
+            className="focus-minimal xl:hidden text-white hover:text-yellow-300 transition-colors p-2 rounded-lg burger-responsive"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Menu"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Menu mobile */}
+        {/* Menu mobile/tablet/iPad */}
         {isMenuOpen && (
-          <div 
-            className="md:hidden absolute top-full left-0 right-0 border-t border-white/20 shadow-lg"
+          <div
+            className="xl:hidden absolute top-full left-0 right-0 border-t border-white/20 shadow-lg mobile-menu-responsive"
             style={{ backgroundColor: '#722f37' }}
           >
-            <div className="container mx-auto px-4 py-4">
+            <div className="container mx-auto px-4 py-3">
               <Navigation mobile onItemClick={() => setIsMenuOpen(false)} />
-              
-              <div className="mt-6 pt-4 border-t border-white/20">
+              <div className="mt-4 pt-3 border-t border-white/20">
                 <Link
                   href="/billetterie"
                   onClick={() => setIsMenuOpen(false)}
-                  className="btn-primary flex items-center justify-center w-full px-6 py-4 rounded-xl font-bold transition-all duration-300 animate-pulse shadow-lg"
-                  style={{ 
-                    background: 'linear-gradient(45deg, #d4af37, #b87333)', 
-                    color: '#1a1a1a' 
+                  className="btn-primary flex items-center justify-center w-full px-6 py-3 rounded-xl font-bold transition-all duration-300 animate-pulse shadow-lg mobile-btn-responsive"
+                  style={{
+                    background: 'linear-gradient(45deg, #d4af37, #b87333)',
+                    color: '#1a1a1a'
                   }}
                 >
-                  <Ticket className="w-5 h-5 mr-2" />
-                  Réserver mes billets
+                  <Ticket className="w-5 h-5 mr-2 mobile-ticket-responsive" />
+                  <span className="mobile-text-responsive">Réserver mes billets</span>
                 </Link>
               </div>
             </div>

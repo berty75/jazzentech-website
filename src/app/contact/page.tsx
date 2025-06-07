@@ -1,7 +1,6 @@
 'use client'
-import { useState } from 'react' // ← Plus besoin d'useEffect
+import { useState } from 'react'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
-import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,59 +13,6 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    try {
-      console.log('🚀 Début envoi EmailJS...')
-      
-      // Initialisation explicite d'EmailJS (important!)
-      emailjs.init('EgXRsaRKLY5zfIU2_')
-      
-      console.log('📝 Données du formulaire:', {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message
-      })
-      
-      // Envoi avec EmailJS
-      const result = await emailjs.send(
-        'service_bddtc5e',
-        'template_kmrs0ln',
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: 'boby.general76@gmail.com', // Email de destination explicite
-          reply_to: formData.email // Pour pouvoir répondre directement
-        },
-        'EgXRsaRKLY5zfIU2_'
-      )
-      
-      console.log('✅ Succès EmailJS:', result)
-      console.log('📊 Status:', result.status)
-      console.log('📧 Text:', result.text)
-      
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      
-    } catch (error) {
-      console.error('❌ Erreur EmailJS complète:', error)
-      console.error('📄 Détails de l\'erreur:', {
-        name: error.name,
-        message: error.message,
-        status: error.status,
-        text: error.text
-      })
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
@@ -74,12 +20,39 @@ export default function Contact() {
     })
   }
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+      
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        throw new Error(result.error)
+      }
+      
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
-       <title>Contact - Jazz en Tech 2025</title>
-      {/* Hero Section - COHÉRENT AVEC LES AUTRES PAGES */}
-      {/* Hero Section - COHÉRENT AVEC LES AUTRES PAGES */}
-<section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pt-48">
+      <title>Contact - Jazz en Tech 2025</title>
+      
+      {/* Hero Section */}
+      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pt-48">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
             Contactez-nous
@@ -192,7 +165,7 @@ export default function Contact() {
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" noValidate>
-                {/* Message de succès accessible */}
+                {/* Message de succès */}
                 {submitStatus === 'success' && (
                   <div 
                     className="mb-4 md:mb-6 p-3 md:p-4 bg-green-50 border border-green-200 rounded-lg"
@@ -208,7 +181,7 @@ export default function Contact() {
                   </div>
                 )}
 
-                {/* Message d'erreur accessible */}
+                {/* Message d'erreur */}
                 {submitStatus === 'error' && (
                   <div 
                     className="mb-4 md:mb-6 p-3 md:p-4 bg-red-50 border border-red-200 rounded-lg"
@@ -336,7 +309,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Checkbox RGPD accessible */}
+                {/* Checkbox RGPD avec couleur Jazz en Tech */}
                 <fieldset className="flex items-start space-x-3">
                   <legend className="sr-only">Consentement RGPD</legend>
                   <input
@@ -354,9 +327,17 @@ export default function Contact() {
                   <div>
                     <label htmlFor="consent" className="text-xs md:text-sm text-gray-600">
                       J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
-                      Voir notre <a href="/politique-confidentialite" className="nav-link hover:underline rounded text-jazz-gold-accessible">
-  politique de confidentialité
-</a>
+                      Voir notre <a 
+                        href="/politique-confidentialite" 
+                        className="font-semibold underline transition-colors"
+                        style={{ 
+                          color: '#722f37',
+                        }}
+                        onMouseEnter={(e) => e.target.style.color = '#8b3a42'}
+                        onMouseLeave={(e) => e.target.style.color = '#722f37'}
+                      >
+                        politique de confidentialité
+                      </a>
                     </label>
                     <div id="consent-help" className="sr-only">
                       Case obligatoire pour accepter le traitement de vos données personnelles
@@ -364,7 +345,7 @@ export default function Contact() {
                   </div>
                 </fieldset>
 
-                {/* Bouton d'envoi accessible */}
+                {/* Bouton d'envoi */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -396,7 +377,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Section FAQ rapide */}
+        {/* Section FAQ avec couleurs Jazz en Tech */}
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
             Questions fréquentes
@@ -405,24 +386,41 @@ export default function Contact() {
             <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-semibold text-gray-900 mb-2">Billetterie</h3>
               <p className="text-gray-600 text-sm">Comment acheter mes billets ? Quand ouvre la billetterie ?</p>
-              <a href="/programmation" className="nav-link hover:underline text-sm font-medium mt-2 inline-block text-jazz-gold-accessible">
-  Voir la programmation →
-</a>
-
+              <a 
+                href="/programmation" 
+                className="text-sm font-semibold mt-2 inline-block underline transition-colors"
+                style={{ color: '#d4af37' }}
+                onMouseEnter={(e) => e.target.style.color = '#b8941f'}
+                onMouseLeave={(e) => e.target.style.color = '#d4af37'}
+              >
+                Voir la programmation →
+              </a>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-semibold text-gray-900 mb-2">Bénévolat</h3>
               <p className="text-gray-600 text-sm">Comment rejoindre l'équipe ? Quelles sont les missions ?</p>
-              <a href="/benevoles" className="nav-link hover:underline text-sm font-medium mt-2 inline-block text-jazz-gold-accessible">
-  Devenir bénévole →
-</a>
+              <a 
+                href="/benevoles" 
+                className="text-sm font-semibold mt-2 inline-block underline transition-colors"
+                style={{ color: '#d4af37' }}
+                onMouseEnter={(e) => e.target.style.color = '#b8941f'}
+                onMouseLeave={(e) => e.target.style.color = '#d4af37'}
+              >
+                Devenir bénévole →
+              </a>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-semibold text-gray-900 mb-2">Artistes</h3>
               <p className="text-gray-600 text-sm">Vous êtes artiste ? Proposez votre projet musical !</p>
-              <a href="/artistes" className="nav-link hover:underline text-sm font-medium mt-2 inline-block text-jazz-gold-accessible">
-  Découvrir les artistes →
-</a>
+              <a 
+                href="/artistes" 
+                className="text-sm font-semibold mt-2 inline-block underline transition-colors"
+                style={{ color: '#d4af37' }}
+                onMouseEnter={(e) => e.target.style.color = '#b8941f'}
+                onMouseLeave={(e) => e.target.style.color = '#d4af37'}
+              >
+                Découvrir les artistes →
+              </a>
             </div>
           </div>
         </div>
