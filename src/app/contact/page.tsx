@@ -19,26 +19,48 @@ export default function Contact() {
     setIsSubmitting(true)
     
     try {
-      console.log('Envoi avec EmailJS directement...')
+      console.log('🚀 Début envoi EmailJS...')
       
-      // UTILISATION DIRECTE D'EMAILJS (pas de fetch !)
+      // Initialisation explicite d'EmailJS (important!)
+      emailjs.init('EgXRsaRKLY5zfIU2_')
+      
+      console.log('📝 Données du formulaire:', {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message
+      })
+      
+      // Envoi avec EmailJS
       const result = await emailjs.send(
         'service_bddtc5e',
-        'template_kmrs0ln', 
+        'template_kmrs0ln',
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
-          message: formData.message
+          message: formData.message,
+          to_email: 'boby.general76@gmail.com', // Email de destination explicite
+          reply_to: formData.email // Pour pouvoir répondre directement
         },
         'EgXRsaRKLY5zfIU2_'
       )
       
       console.log('✅ Succès EmailJS:', result)
+      console.log('📊 Status:', result.status)
+      console.log('📧 Text:', result.text)
+      
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
+      
     } catch (error) {
-      console.error('❌ Erreur EmailJS:', error)
+      console.error('❌ Erreur EmailJS complète:', error)
+      console.error('📄 Détails de l\'erreur:', {
+        name: error.name,
+        message: error.message,
+        status: error.status,
+        text: error.text
+      })
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
