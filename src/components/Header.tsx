@@ -7,15 +7,32 @@ import { useState, useEffect } from 'react'
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isLandscape, setIsLandscape] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY
       setIsScrolled(scrollTop > 50)
     }
+
+    const handleResize = () => {
+      // Détecte le mode paysage sur mobile/tablette
+      setIsLandscape(window.innerHeight < window.innerWidth && window.innerHeight < 600)
+    }
+
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+    handleResize() // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
+
+  // Hauteur adaptative selon l'orientation
+  const headerHeight = isLandscape ? '3rem' : (isScrolled ? '4rem' : '6rem')
+  const logoHeight = isLandscape ? '2rem' : (isScrolled ? '3rem' : '4rem')
 
   return (
     <header
@@ -23,7 +40,7 @@ export default function Header() {
       style={{
         background: '#722f37',
         boxShadow: isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
-        height: isScrolled ? '4rem' : '6rem', // 64px scrolled, 96px normal
+        height: headerHeight,
       }}
     >
       <div className="container mx-auto px-4 h-full">
@@ -37,8 +54,8 @@ export default function Header() {
               alt="Jazz en Tech Festival"
               className="w-auto transition-all duration-300"
               style={{
-                height: isScrolled ? '3rem' : '4rem', // 48px scrolled, 64px normal
-                maxHeight: isScrolled ? '3rem' : '4rem',
+                height: logoHeight,
+                maxHeight: logoHeight,
               }}
             />
           </Link>
@@ -73,26 +90,39 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Menu mobile/tablet - affiché jusqu'à 1023px */}
+        {/* Menu mobile/tablet - ADAPTATIF selon orientation */}
         {isMenuOpen && (
           <div
-            className="lg:hidden absolute top-full left-0 right-0 border-t border-white/20 shadow-lg"
-            style={{ backgroundColor: '#722f37' }}
+            className={`lg:hidden absolute left-0 right-0 border-t border-white/20 shadow-lg ${
+              isLandscape 
+                ? 'top-full max-h-[calc(100vh-3rem)] overflow-y-auto' 
+                : 'top-full'
+            }`}
+            style={{ 
+              backgroundColor: '#722f37',
+              zIndex: 1000
+            }}
           >
-            <div className="container mx-auto px-4 py-4">
-              <Navigation mobile onItemClick={() => setIsMenuOpen(false)} />
-              <div className="mt-4 pt-4 border-t border-white/20">
+            <div className={`container mx-auto px-4 ${isLandscape ? 'py-2' : 'py-4'}`}>
+              <Navigation 
+                mobile 
+                onItemClick={() => setIsMenuOpen(false)} 
+                compact={isLandscape}
+              />
+              <div className={`border-t border-white/20 ${isLandscape ? 'mt-2 pt-2' : 'mt-4 pt-4'}`}>
                 <Link
                   href="/billetterie"
                   onClick={() => setIsMenuOpen(false)}
-                  className="btn-primary flex items-center justify-center w-full px-6 py-3 rounded-xl font-bold transition-all duration-300 animate-pulse shadow-lg"
+                  className={`btn-primary flex items-center justify-center w-full rounded-xl font-bold transition-all duration-300 animate-pulse shadow-lg ${
+                    isLandscape ? 'px-4 py-2 text-sm' : 'px-6 py-3'
+                  }`}
                   style={{
                     background: 'linear-gradient(45deg, #d4af37, #b87333)',
                     color: '#1a1a1a'
                   }}
                 >
-                  <Ticket className="w-5 h-5 mr-2" />
-                  <span>Réserver mes billets</span>
+                  <Ticket className={`mr-2 ${isLandscape ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                  <span>{isLandscape ? 'Billets' : 'Réserver mes billets'}</span>
                 </Link>
               </div>
             </div>
