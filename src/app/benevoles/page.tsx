@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heart, Users, Clock, Phone, Mail, MapPin, Ticket } from 'lucide-react'
+import { Heart, Users, Clock, Mail, MapPin, Ticket } from 'lucide-react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -125,7 +125,7 @@ export default function Benevoles() {
             </div>
           </div>
 
-          {/* Informations pratiques - NOUVELLE SECTION */}
+          {/* Informations pratiques - AVANTAGES CORRIGÉS */}
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
             
             <div 
@@ -152,68 +152,59 @@ export default function Benevoles() {
             >
               <Ticket className="w-8 h-8 mx-auto mb-3" style={{ color: '#722f37' }} />
               <h4 className="font-semibold mb-2" style={{ color: '#722f37' }}>Avantages</h4>
-              <p className="text-sm md:text-base text-gray-600">T-shirt + repas + concerts</p>
+              <p className="text-sm md:text-base text-gray-600">Repas + concerts</p>
             </div>
           </div>
 
-          {/* Témoignages - NOUVELLE SECTION */}
-          <div 
-            className="p-6 md:p-8 rounded-2xl mb-8 md:mb-12"
-            style={{ backgroundColor: 'rgba(114, 47, 55, 0.05)' }}
-          >
-            <h3 className="text-xl md:text-2xl font-bold text-center mb-6 md:mb-8" style={{ color: '#722f37' }}>
-              Ils témoignent
-            </h3>
-            
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm">
-                <p className="text-sm md:text-base italic mb-3" style={{ color: '#1a1a1a' }}>
-                  "Une expérience incroyable ! J'ai découvert le festival sous un autre angle et rencontré des gens formidables."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#d4af37' }}>
-                    <span className="text-sm font-bold" style={{ color: '#722f37' }}>M</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm" style={{ color: '#722f37' }}>Marie</p>
-                    <p className="text-xs text-gray-600">Bénévole depuis 2023</p>
-                  </div>
-                </div>
-              </div>
+{/* Témoignages - SECTION CORRIGÉE */}
+<div 
+  className="p-6 md:p-8 rounded-2xl mb-8 md:mb-12"
+  style={{ backgroundColor: 'rgba(114, 47, 55, 0.05)' }}
+>
+  <h3 className="text-xl md:text-2xl font-bold text-center mb-6 md:mb-8" style={{ color: '#722f37' }}>
+    Ils témoignent
+  </h3>
+  
+  <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+    <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm">
+      <p className="text-sm md:text-base italic mb-3" style={{ color: '#1a1a1a' }}>
+        "Une expérience incroyable ! J'ai découvert le festival sous un autre angle et rencontré des gens formidables."
+      </p>
+      <div className="flex items-center">
+        <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#d4af37' }}>
+          <span className="text-sm font-bold" style={{ color: '#722f37' }}>M</span>
+        </div>
+        <div>
+          <p className="font-semibold text-sm" style={{ color: '#722f37' }}>Marie</p>
+          <p className="text-xs text-gray-600">Bénévole depuis 2023</p>
+        </div>
+      </div>
+    </div>
 
-              <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm">
-                <p className="text-sm md:text-base italic mb-3" style={{ color: '#1a1a1a' }}>
-                  "L'ambiance est extraordinaire, on se sent vraiment utile et on vit le jazz de près !"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 bg-copper-accessible rounded-full flex items-center justify-center mr-3">
-                    <span className="text-sm font-bold text-white">P</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm" style={{ color: '#722f37' }}>Pierre</p>
-                    <p className="text-xs text-gray-600">Bénévole depuis 2022</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div className="bg-white p-4 md:p-6 rounded-xl shadow-sm">
+      <p className="text-sm md:text-base italic mb-3" style={{ color: '#1a1a1a' }}>
+        "L'ambiance est extraordinaire, on se sent vraiment utile et on vit le jazz de près !"
+      </p>
+      <div className="flex items-center">
+        <div className="w-8 h-8 rounded-full flex items-center justify-center mr-3" style={{ backgroundColor: '#b87333' }}>
+          <span className="text-sm font-bold text-white">P</span>
+        </div>
+        <div>
+          <p className="font-semibold text-sm" style={{ color: '#722f37' }}>Pierre</p>
+          <p className="text-xs text-gray-600">Bénévole depuis 2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-          {/* Section contact - COULEURS JAZZ CORRIGÉES */}
+          {/* Section contact - SEULEMENT EMAIL */}
           <div className="text-center">
             <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6" style={{ color: '#722f37' }}>
               Envie de nous rejoindre ?
             </h3>
             
-            <div className="grid sm:grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto mb-6 md:mb-8">
-              <div 
-                className="p-4 md:p-6 rounded-xl text-center"
-                style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
-              >
-                <Phone className="w-6 h-6 mx-auto mb-2" style={{ color: '#722f37' }} />
-                <p className="text-sm font-medium mb-1" style={{ color: '#1a1a1a' }}>Appelez-nous</p>
-                <p className="font-bold" style={{ color: '#722f37' }}>06 08 75 87 67</p>
-              </div>
-
+            <div className="max-w-md mx-auto mb-6 md:mb-8">
               <div 
                 className="p-4 md:p-6 rounded-xl text-center"
                 style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}
