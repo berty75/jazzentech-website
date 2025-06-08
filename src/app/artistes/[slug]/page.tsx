@@ -17,33 +17,51 @@ const artistsData = {
     ticketUrl: 'https://boutique.tourisme-pyrenees-mediterranee.com/evenements/festival-jazzentech-au-cloitre-saint-genis-des-fontaines/manu-le-prince-quartet-bossa-jazz-for-ever',
     ticketType: 'direct' as const,
     biography: {
-      intro: "Chanteuse sans frontières, Manu Le Prince s'est imposée comme l'une des plus belles voix du Latin Jazz français.",
+      intro: "Chanteuse sans frontières, Manu Le Prince s'est imposée au fil des années comme l'une des plus belles voix du Latin Jazz de l'hexagone.",
       content: [
-        "Née à Paris d'une mère française et d'un père chilien, Manu Le Prince grandit entre deux cultures qui nourrissent sa passion pour la musique. Dès son plus jeune âge, elle baigne dans les sonorités latines et découvre la richesse de la bossa nova grâce à son père, grand amateur de João Gilberto et Antonio Carlos Jobim.",
-        "Formée au Conservatoire de Paris, elle perfectionne sa technique vocale tout en développant son style unique, mélange subtil entre sophistication française et sensualité latine. Sa rencontre avec le guitariste brésilien Carlos Silva marque un tournant dans sa carrière : ensemble, ils forment le quartet « Bossa Jazz for Ever » en 2018.",
-        "Son premier album 'Corazón de París' (2020) rencontre un succès critique unanime. La presse spécialisée salue « une voix d'une pureté cristalline au service d'arrangements sophistiqués ». Jazz Magazine lui décerne le prix de la « Révélation Vocale » de l'année.",
-        "Manu Le Prince se produit régulièrement dans les festivals européens les plus prestigieux : Montreux, North Sea Jazz, Jazz à Vienne. Son style unique, entre tradition brésilienne et modernité européenne, conquiert un public de plus en plus large."
+        "Brésilienne de cœur et anglo-argentine de par ses origines, elle se partage depuis plus d'une trentaine d'années entre Paris et Rio-de-Janeiro, mêlant intimement et avec bonheur le Jazz qui a bercé son enfance à la musique brésilienne, tout particulièrement celle de Tom Jobim.",
+        "Manu Le Prince a fait partie de diverses formations dont Magma, Odeurs ou Urban Sax et a aussi à son actif plusieurs albums sous son nom. Son album « Bossa Jazz for Ever » vient d'être réédité par Frémeaux et sera en vente à Saint-Génis-Des-Fontaines.",
+        "Selon Télérama, Manu Le Prince est « un trésor de la musique brésilienne conçu en France ». Elle immense chanteuse de jazz rend hommage à Johnny Alf, père de la bossa, qui a mis en lumière les répertoires de monuments du Jazz tels que Cole Porter ou Wayne Shorter.",
+        "L'album a été enregistré à Rio avec les meilleurs musiciens du cru - dont le saxophoniste arrangeur de Johnny, Idriss Boudrioua et le grand batteur Rafael Barata - en 2013. La voix suave et jazzy de la chanteuse sublime le répertoire du compositeur carioca et rend justice à son œuvre fondamentale."
       ]
     },
     discography: [
       {
-        title: 'Corazón de París',
-        year: '2020',
-        label: 'Blue Note Records',
-        description: 'Premier album studio, mélange parfait de bossa nova traditionnelle et d\'arrangements modernes.'
+        title: 'Madrugada',
+        year: '2003',
+        label: 'Next music',
+        description: 'Premier album marquant ses débuts dans la musique brésilienne.'
       },
       {
-        title: 'Noites Parisienses',
+        title: 'Tribute to Cole Porter',
+        year: '2008',
+        label: 'Sergent Major',
+        description: 'Hommage au grand maître des standards américains.'
+      },
+      {
+        title: 'In a latin mood',
+        year: '2017',
+        label: 'Sergent Major',
+        description: 'Exploration des rythmes latins et de la bossa nova.'
+      },
+      {
+        title: 'Children of the night - Tribute to Wayne Shorter',
         year: '2022',
-        label: 'Blue Note Records', 
-        description: 'Album live enregistré au New Morning, témoigne de l\'énergie scénique du quartet.'
+        label: 'Frémeaux & Associés',
+        description: 'Hommage au grand saxophoniste et compositeur de jazz.'
       },
       {
-        title: 'Saudade Européenne',
+        title: 'Bossa jazz for ever',
         year: '2024',
-        label: 'Blue Note Records',
-        description: 'Dernier opus, exploration des liens entre musique européenne et brésilienne.'
+        label: 'Frémeaux et associés',
+        description: 'Réédition de son album culte, disponible en vente au festival.'
       }
+    ],
+    lineup: [
+      { name: 'Manu Le Prince', instrument: 'voix' },
+      { name: 'Franck Monbaylet', instrument: 'piano' },
+      { name: 'Philippe Brassoud', instrument: 'contrebasse' },
+      { name: 'Christophe Bras', instrument: 'batterie' }
     ],
     videos: [
       {
@@ -70,44 +88,27 @@ const artistsData = {
     ticketType: 'direct' as const,
     badge: '🎭 DOUBLE FORMATION',
     biography: {
-      intro: "Florin Gugulica nous embarque dans son univers musical aux horizons multiples : jazz manouche, taraf balkanique et musique traditionnelle roumaine. Artiste polyvalent, il se produit en sextet pour les concerts payants et en trio pour les concerts gratuits.",
+      intro: "Clarinettiste d'une exceptionnelle virtuosité, Florin Gugulica nous embarque dans son univers musical aux horizons multiples et colorés.",
       content: [
-        "Né en Roumanie dans une famille de musiciens, Florin Gugulica découvre la musique dès l'âge de 5 ans. Son père, violoniste virtuose, lui transmet la passion des musiques traditionnelles des Balkans. À 12 ans, il maîtrise déjà parfaitement le violon et s'essaie aux premières improvisations.",
-        "Son arrivée en France dans les années 2000 marque sa rencontre avec le jazz manouche. Fasciné par l'univers de Django Reinhardt, il développe un style unique mêlant virtuosité balkanique et swing manouche. Cette fusion originale séduit rapidement le public des festivals européens.",
-        "En 2015, il forme le sextet « It's a long Way » avec des musiciens français et roumains. Ensemble, ils créent un répertoire original où se mélangent compositions personnelles et réinterprétations de standards du jazz manouche et de musiques traditionnelles des Balkans.",
-        "Pour Jazz en Tech 2025, Florin présente une particularité unique : il se produit dans deux formations différentes. Le sextet « It's a long Way » pour le concert payant du 28 juillet à Saint-Génis-des-Fontaines, et en trio pour les concerts gratuits des 6, 7 et 9 août à Céret, offrant ainsi deux expériences musicales complémentaires."
+        "Au gré de musiques entendues, découvertes, croisées, inattendues, parfois oubliées, ou encore jouées avec les plus grands du jazz tels que Didier Lockwood, Bireli Lagrène, Stochelo Rosenberg, Hono Winterstein, Diego Imbert, Norig, Rona Hartner, Florin crée, recrée, ré-interprète ou compose.",
+        "Il explore des musiques de tous horizons, genres et influences qui ne semblent en rien se ressembler ni se répondre : le « taraf » aussi bien tzigane que balkanique de son enfance roumaine avec en tête, la fanfare joyeuse et conviviale toujours source de danse populaire.",
+        "Le jazz manouche, où grâce à Django, se fondent l'émotion de l'Europe centrale, le jazz d'outre-Atlantique de l'après-guerre et la joie du bal musette français. Et bien d'autres encore, d'Europe comme d'Orient, à découvrir jusque par-delà le swing.",
+        "Florin Gugulica n'a de cesse de tisser « sa » musique, celle de « son » monde. Son unité n'est ni de lieu ni de temps ni d'action : elle vient de l'intérieur, de « son » intime vie pour s'ériger en miroir harmonieux de la vôtre."
       ]
     },
-    discography: [
-      {
-        title: 'Balkan Swing',
-        year: '2018',
-        label: 'World Music Network',
-        description: 'Premier album du sextet, fusion parfaite entre jazz manouche et musiques traditionnelles.'
-      },
-      {
-        title: 'Routes Nomades',
-        year: '2021',
-        label: 'World Music Network',
-        description: 'Exploration des musiques tsiganes d\'Europe de l\'Est avec des arrangements jazz modernes.'
-      },
-      {
-        title: 'It\'s a long Way',
-        year: '2023',
-        label: 'World Music Network',
-        description: 'Album éponyme du groupe, synthèse de 8 années de recherche musicale.'
-      }
+    lineup: [
+      { name: 'Florin Gugulica', instrument: 'clarinette' },
+      { name: 'José Moléro', instrument: 'trombone' },
+      { name: 'Gwenaël Ollivier', instrument: 'piano' },
+      { name: 'Olivier Lorang', instrument: 'contrebasse' },
+      { name: 'Arnaud Le Meur', instrument: 'batterie' },
+      { name: 'Alain Brunet', instrument: 'trompette (participation)' }
     ],
     videos: [
       {
         id: 'JchABVZGrGE',
         title: 'Florin Gugulica Sextet',
         description: 'Performance du sextet "It\'s a long Way"'
-      },
-      {
-        id: 'sHogMmjL08A',
-        title: 'Florin Gugulica Trio',
-        description: 'Performance en trio pour les concerts gratuits'
       }
     ],
     socials: {
@@ -126,33 +127,52 @@ const artistsData = {
     venue: 'Place de la République, Céret',
     ticketType: 'billetterie' as const,
     biography: {
-      intro: "Amoureux de la mélodie et magicien du timbre, Stefano Di Battista fait résonner les thèmes de Paolo Conte avec une élégance toute italienne.",
+      intro: "Amoureux de la mélodie, magicien du timbre, Stefano Di Battista fait résonner sous un nouveau jour les thèmes rendus célèbres par Paolo Conte, Andrea Bocelli, Lucio Dalla.",
       content: [
-        "Né à Rome en 1969, Stefano Di Battista grandit dans une famille mélomane où résonnent autant Puccini que Miles Davis. Très tôt attiré par le saxophone, il intègre le conservatoire Santa Cecilia où il développe une technique irréprochable tout en cultivant sa sensibilité mélodique.",
-        "Sa carrière décolle véritablement dans les années 1990 lorsqu'il rejoint le quintet de Nicola Conte. Cette collaboration lui permet de développer son style unique, mélange de sophistication bebop et de lyrisme méditerranéen. Sa sonorité chaude et expressive séduit immédiatement le public européen.",
-        "Grand admirateur de Paolo Conte, il développe un répertoire original où les chansons du maître turinois rencontrent l'improvisation jazz. Ses réinterprétations de 'Via con me' ou 'Azzurro' sont devenues des références du genre.",
-        "Stefano Di Battista s'est imposé comme l'une des figures majeures du jazz européen contemporain. Ses collaborations avec des artistes comme Rita Marcotulli ou Fabrizio Bosso témoignent de son influence sur la scène jazz italienne."
+        "Stefano Di Battista débute le saxophone à l'âge de treize ans et suit une formation académique avant de commencer à jouer des musiques de variété. La rencontre avec Massimo Urbani, saxophoniste alto italien marqué par le feu parkérien, joue un rôle déterminant dans son ambition à devenir un musicien de jazz.",
+        "Encouragé à se rendre à Paris par le pianiste Jean-Pierre Como, il séduit rapidement plusieurs musiciens de la capitale française qui lui mettent le pied à l'étrier, comme le pianiste star Michel Petrucciani, le batteur Aldo Romano et le chef d'orchestre Laurent Cugny.",
+        "Même s'il est, dès lors, surtout actif en France, il maintient des liens étroits avec la communauté des jazzmen italiens, enregistrant notamment avec ses compatriotes Enrico Rava (1996), Rita Marcotulli (1998), Daniele Scannapieco (2003) et Dario Rosciglione (2004).",
+        "Fort de son succès public avec plus d'une trentaine de concerts français en quartet, il s'attelle désormais à un nouveau répertoire avec son groupe transalpin, sur son nouvel album intitulé « La Dolce Vita » (mars 2024). Bien plus qu'un simple titre de film, « La Dolce Vita » nous fait pénétrer dans un univers de passion, de style, de désir, de beauté."
       ]
     },
     discography: [
       {
-        title: 'Volare',
-        year: '2000',
-        label: 'Blue Note Italia',
-        description: 'Premier album solo, hommage aux mélodies italiennes immortelles.'
+        title: 'Mille bolle blu',
+        year: '2015',
+        label: 'Jando Music',
+        description: 'Album aux sonorités italiennes contemporaines.'
       },
       {
-        title: 'A Prima Vista',
-        year: '2005',
-        label: 'Blue Note Italia',
-        description: 'Album de standards jazz revisités avec la sensibilité italienne.'
+        title: 'La musica insieme',
+        year: '2015',
+        label: 'Jando Music',
+        description: 'Collaboration avec des musiciens italiens de renom.'
       },
       {
-        title: 'La Dolce Vita',
-        year: '2019',
-        label: 'Warner Music',
-        description: 'Projet autour de l\'univers de Paolo Conte et Federico Fellini.'
+        title: 'Italian Standards',
+        year: '2016',
+        label: 'Casa del Jazz',
+        description: 'Réinterprétation des classiques italiens.'
+      },
+      {
+        title: 'Morricone Stories',
+        year: '2021',
+        label: 'Warner',
+        description: 'Hommage au grand compositeur Ennio Morricone.'
+      },
+      {
+        title: 'La dolce vita',
+        year: '2024',
+        label: 'Warner',
+        description: 'Dernier album, synthèse de son univers musical italien.'
       }
+    ],
+    lineup: [
+      { name: 'Stefano Di Battista', instrument: 'saxophone' },
+      { name: 'Fred Nardin', instrument: 'piano' },
+      { name: 'Daniel Sorrentino', instrument: 'contrebasse' },
+      { name: 'Luigi del Prete', instrument: 'batterie' },
+      { name: 'Matteo Cutello', instrument: 'trompette' }
     ],
     videos: [
       {
@@ -177,33 +197,51 @@ const artistsData = {
     venue: 'Place de la République, Céret',
     ticketType: 'billetterie' as const,
     biography: {
-      intro: "Prix Thelonious Monk 1993, Jacky Terrasson est \"le plus voyageur des pianistes\". Pour cette soirée exceptionnelle, il s'associe à la talentueuse Camille Bertault.",
+      intro: "« Le plus voyageur des pianistes de jazz, un pianiste du bonheur » selon Télérama. Après des études de piano classique, Jacky Terrasson remporte en 1993 le prestigieux Prix du Thelonious Monk Institute of Jazz International Piano Competition.",
       content: [
-        "Né à Berlin en 1966 d'une mère allemande et d'un père martiniquais, Jacky Terrasson grandit à Paris où il découvre le piano à l'âge de 5 ans. Cette triple culture - allemande, française et caribéenne - nourrit dès le départ sa vision cosmopolite de la musique.",
-        "Formé au Conservatoire de Paris, il émigre aux États-Unis dans les années 1990 où il remporte le prestigieux concours Thelonious Monk en 1993. Cette victoire lui ouvre les portes des plus grands clubs new-yorkais et lance sa carrière internationale.",
-        "Son style pianistique, mélange de tradition bebop et de modernité européenne, séduit immédiatement. Brad Mehldau le considère comme une influence majeure, saluant sa 'capacité unique à réinventer les standards sans les trahir'.",
-        "Pour ce concert à Jazz en Tech, Jacky Terrasson s'associe à Camille Bertault, prodige du jazz vocal français. Ensemble, ils revisitent le répertoire jazz avec une fraîcheur et une complicité musicale remarquables."
+        "C'est aux côtés de Betty Carter, Dee Dee Bridgewater, Cassandra Wilson, ou encore Charles Aznavour, Guy Lafitte, Barney Wilen et Ray Brown qu'il débute sa carrière. Il intègre le Berklee College of Music et développe rapidement son style unique.",
+        "Il signe avec le légendaire label Blue Note et son emblématique président Bruce Lundvall, pour une longue et impressionnante aventure de vingt-cinq ans de succès. Cette collaboration lui permet d'enregistrer des albums devenus des références du piano jazz moderne.",
+        "Infatigable globe-trotter, il joue régulièrement dans les plus grands festivals de jazz et de piano en Europe, aux États-Unis, en Amérique du Sud et en Asie. Sa vision cosmopolite de la musique nourrit constamment son jeu et ses compositions.",
+        "« Moving On » le titre de son nouvel album résume parfaitement ses nouvelles aspirations musicales. Pour ce concert exceptionnel à Jazz en Tech, il s'associe à la talentueuse Camille Bertault pour un projet vocal et instrumental d'une rare complicité."
       ]
     },
     discography: [
       {
-        title: 'Reach',
-        year: '1995',
-        label: 'Blue Note Records',
-        description: 'Premier album, immédiatement salué par la critique internationale.'
+        title: 'Gouache',
+        year: '2012',
+        label: 'EmArcy Records',
+        description: 'Album de maturité explorant les couleurs pianistiques.'
       },
       {
-        title: 'What It Is',
-        year: '1998',
-        label: 'Blue Note Records',
-        description: 'Confirmation de son talent avec des compositions personnelles remarquables.'
+        title: 'Take This',
+        year: '2015',
+        label: 'Impulse!',
+        description: 'Retour aux sources du piano jazz contemporain.'
       },
       {
-        title: 'Moving On',
-        year: '2020',
-        label: 'Concord Jazz',
-        description: 'Projet en trio, retour aux sources du piano jazz avec modernité.'
+        title: 'Mother',
+        year: '2016',
+        label: 'Impulse!',
+        description: 'Album personnel et intimiste.'
+      },
+      {
+        title: '53',
+        year: '2019',
+        label: 'Blue Note Records',
+        description: 'Album célébrant ses 53 ans, synthèse de son parcours.'
+      },
+      {
+        title: 'Moving On avec Camille Bertault',
+        year: '2024',
+        label: 'Naïve',
+        description: 'Collaboration exceptionnelle avec la chanteuse Camille Bertault.'
       }
+    ],
+    lineup: [
+      { name: 'Jacky Terrasson', instrument: 'piano' },
+      { name: 'Camille Bertault', instrument: 'voix' },
+      { name: 'Sylvain Romano', instrument: 'contrebasse' },
+      { name: 'Lukmil Perez', instrument: 'batterie' }
     ],
     videos: [
       {
@@ -241,19 +279,19 @@ const artistsData = {
       {
         title: 'En vie',
         year: '2016',
-        label: 'Sunnyside Records',
+        label: 'Sunny Side',
         description: 'Premier album qui lui ouvre les portes de la scène jazz new-yorkaise.'
       },
       {
-        title: 'Pas de Géant',
+        title: 'Pas de géant',
         year: '2018',
-        label: 'Sony France',
+        label: 'Okey',
         description: 'Deuxième album salué par une presse enthousiaste.'
       },
       {
-        title: 'Le Tigre',
+        title: 'Le tigre',
         year: '2020',
-        label: 'Sony',
+        label: 'Masterworks',
         description: 'Troisième album marquant sa maturité artistique.'
       },
       {
@@ -263,11 +301,17 @@ const artistsData = {
         description: 'Collaboration avec David Helbock.'
       },
       {
-        title: 'Bonjour mon amour',
+        title: 'Bonjour Mon Amour',
         year: '2023',
-        label: 'Vita',
+        label: 'Vita Productions',
         description: 'Cinquième album qui lui vaut une Victoire du Jazz.'
       }
+    ],
+    lineup: [
+      { name: 'Jacky Terrasson', instrument: 'piano' },
+      { name: 'Camille Bertault', instrument: 'voix' },
+      { name: 'Sylvain Romano', instrument: 'contrebasse' },
+      { name: 'Lukmil Perez', instrument: 'batterie' }
     ],
     videos: [
       {
@@ -294,27 +338,33 @@ const artistsData = {
     badge: '🏆 PRIX ÉVIDENCE 2025',
     isClosure: true,
     biography: {
-      intro: "\"Une chanteuse pas comme les autres\" - Révélation de l'année 2025 de l'Académie du Jazz, Charlotte Planchou clôturera en beauté cette 10ème édition.",
+      intro: "« Charlotte Planchou est incontestablement une chanteuse pas comme les autres. Une heure de musique gracieuse et habitée ça ne se refuse pas. On n'a pas fini de parler de Charlotte Planchou. » Jazz Magazine - Prix Évidence de l'Académie du Jazz (Révélation de l'année) en mars 2025.",
       content: [
-        "Née à Lyon en 1995, Charlotte Planchou découvre le jazz à l'adolescence grâce à sa professeure de piano qui lui fait écouter Billie Holiday et Ella Fitzgerald. Immédiatement fascinée par la liberté d'expression du jazz vocal, elle décide de se consacrer entièrement à cet art.",
-        "Formée au CNSM de Paris dans la classe de jazz vocal de Sara Lazarus, elle développe rapidement un style personnel mêlant influences traditionnelles et modernité. Sa voix, d'une pureté cristalline, porte une émotion rare qui ne laisse personne indifférent.",
-        "En 2023, elle forme son quartet avec des musiciens de sa génération partageant sa vision du jazz contemporain. Ensemble, ils créent un répertoire original où compositions personnelles côtoient réinterprétations audacieuses de standards.",
-        "Sa réception du Prix Évidence 2025 de l'Académie du Jazz consacre un talent déjà reconnu par ses pairs. Vincent Peirani déclare : 'Charlotte possède cette rare capacité à émouvoir dès les premières notes. C'est le futur du jazz vocal français.'"
+        "Charlotte Planchou intègre d'abord la Haute École de Musique de Lausanne, dans les classes de chant lyrique, où elle se passionne pour le lied allemand. Entre 2015 et 2016, elle intègre la compagnie Opéra Eclaté et parcourt les maisons d'opéra françaises.",
+        "Elle se tourne ensuite vers d'autres répertoires en allant puiser dans le jazz, la chanson, les chansons traditionnelles tziganes ou le cabaret allemand. Elle souhaite « ouvrir » le son du chant, jouer avec ses défauts, laisser vivre sa spontanéité.",
+        "La liberté, elle la trouvera dans le jazz, autour d'Ella Fitzgerald et Nina Simone, mais aussi auprès de Léo Ferré, Henri Salvador ou Édith Piaf. Encouragée par le mécène Peter Schnur à composer ses propres chansons originales, elle mêle tout naturellement dans son répertoire ses compositions et textes en français à des reprises de Gainsbourg, Ferré et Michel Legrand.",
+        "En 2025, elle reçoit le prestigieux Prix Évidence de l'Académie du Jazz pour son album « Le Carillon », consacrant un talent déjà reconnu par ses pairs. Cette récompense distingue un enregistrement exceptionnel d'un jeune talent à sortir de l'anonymat."
       ]
     },
     discography: [
       {
-        title: 'Première Neige',
-        year: '2023',
-        label: 'Jazz Village',
-        description: 'Premier album, immédiatement remarqué pour la maturité de l\'écriture.'
+        title: 'Petite',
+        year: '2021',
+        label: 'Blang music sarl',
+        description: 'Premier album, révélant un talent prometteur.'
       },
       {
-        title: 'Évidence',
+        title: 'Le carillon',
         year: '2024',
-        label: 'Jazz Village',
-        description: 'Second opus, qui lui vaut le Prix Évidence 2025 de l\'Académie du Jazz.'
+        label: 'Quais Son Records',
+        description: 'Album primé au Prix Évidence 2025 de l\'Académie du Jazz.'
       }
+    ],
+    lineup: [
+      { name: 'Charlotte Planchou', instrument: 'voix' },
+      { name: 'Dexter Goldberg', instrument: 'piano' },
+      { name: 'Thomas Posner', instrument: 'contrebasse' },
+      { name: 'Pierre Demange', instrument: 'batterie' }
     ],
     videos: [
       {
@@ -329,7 +379,7 @@ const artistsData = {
       appleMusic: 'https://music.apple.com/fr/artist/charlotte-planchou/1466442533'
     }
   },
-  // NOUVEAUX ARTISTES CONCERTS GRATUITS
+  // ARTISTES CONCERTS GRATUITS (gardés tels quels)
   'cavale-trio': {
     name: 'Cavale Trio',
     subtitle: 'Prêle Abelanet, Damien Guisset, Pierre Baradel',
@@ -422,7 +472,7 @@ const artistsData = {
       content: [
         "L'ensemble explore un répertoire allant des grands standards du jazz à la bossa nova, en passant par des compositions emblématiques de Miles Davis, Dizzy Gillespie, Herbie Hancock, Sonny Rollins et bien d'autres figures majeures du genre.",
         "À travers des arrangements subtils, une belle complicité musicale et une énergie communicative, le quintette propose un voyage sonore riche en nuances, entre swing, groove et improvisation.",
-        "Le quintet réunit Bernard Poujal à la batterie, Garry Fowler à la guitare, Joel Bergeon au saxophone, Jean-Yves Bouche à la guitarre et Albert Woda à la basse.",
+        "Le quintet réunit Bernard Poujal à la batterie, Garry Fowler à la guitare, Joel Bergeon au saxophone, Jean-Yves Bouche à la guitare et Albert Woda à la basse.",
         "Leur approche respectueuse des traditions du jazz, enrichie d'une sensibilité contemporaine, fait de chaque concert un moment de partage authentique et généreux."
       ]
     },
@@ -486,7 +536,8 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
       <title>{artist.name} - Jazz en Tech 2025</title>
       
       {/* Hero Section avec photo de l'artiste */}
-<section className="relative hero-gradient text-white pt-36 pb-16 sm:pt-40 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">        {/* Image de fond avec overlay */}
+      <section className="relative hero-gradient text-white pt-36 pb-16 sm:pt-40 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">
+        {/* Image de fond avec overlay */}
         <div className="absolute inset-0">
           <img 
             src={artist.image}
@@ -609,6 +660,30 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
             </div>
           </section>
 
+          {/* Formation/Lineup */}
+          {artist.lineup && (
+            <section>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
+                🎼 Formation
+              </h2>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                {artist.lineup.map((member, index) => (
+                  <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-lg" style={{ color: '#1a1a1a' }}>
+                        {member.name}
+                      </span>
+                      <span className="text-sm font-medium px-3 py-1 rounded-full" style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
+                        {member.instrument}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* Discographie */}
           {artist.discography && artist.discography.length > 0 && (
             <section>
@@ -689,16 +764,16 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
               )}
               
               {artist.socials.facebook !== '#' && (
-  <a 
-    href={artist.socials.facebook}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
-  >
-    <Facebook className="w-5 h-5" />
-    <span className="font-medium">Facebook</span>
-  </a>
-)}
+                <a 
+                  href={artist.socials.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  <Facebook className="w-5 h-5" />
+                  <span className="font-medium">Facebook</span>
+                </a>
+              )}
               
               {artist.socials.appleMusic !== '#' && (
                 <a 

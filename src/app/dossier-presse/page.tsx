@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 }
 
 export default function DossierPresse() {
-  const coupuresPresse = [
+// Modifiez le tableau coupuresPresse pour remplacer l'article Eurorégion par l'article Alain Brunet
+const coupuresPresse = [
     {
       id: 1,
       journal: "L'Indépendant / Vallespir",
@@ -35,10 +36,31 @@ export default function DossierPresse() {
     },
     {
       id: 4,
-      journal: "Eurorégion",
+      journal: "Jazz Magazine",
       date: "2025",
+      titre: "Interview Alain Brunet",
+      isPdf: true,
+      pdfUrl: "/documents/alain-brunet-jazz-magazine.pdf",
+      description: "Rencontre avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle."
+    }
+  ]
+  
+  // Ajoutez ces articles PDF après le tableau coupuresPresse
+  const articlesPdf = [
+    {
+      id: 1,
+      journal: "Jazz Magazine",
+      date: "Juin 2025",
+      titre: "Interview Alain Brunet",
+      pdfUrl: "/documents/alain-brunet-jazz-magazine.pdf",
+      description: "Rencontre avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle."
+    },
+    {
+      id: 2,
+      journal: "Eurorégion",
+      date: "Mai 2025",
       titre: "Le jazz du monde au rendez-vous des 10 ans du festival Jazz en Tech",
-      image: "/images/presse/euroregion-10ans.jpeg",
+      pdfUrl: "/documents/euroregion-jazz-en-tech-2025.pdf",
       description: "Dossier spécial pour la 10ème édition avec une programmation exceptionnelle d'artistes internationaux."
     }
   ]
@@ -99,10 +121,10 @@ export default function DossierPresse() {
           </div>
         </div>
       </section>
-
+  
       <div className="container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-6xl mx-auto">
-
+  
           {/* Informations clés */}
           <section className="mb-8 md:mb-12">
             <div className="grid md:grid-cols-3 gap-4 md:gap-6">
@@ -134,7 +156,7 @@ export default function DossierPresse() {
               </div>
             </div>
           </section>
-
+  
           {/* Citations presse */}
           <section className="mb-8 md:mb-12">
             <div className="flex items-center mb-6">
@@ -164,16 +186,17 @@ export default function DossierPresse() {
               ))}
             </div>
           </section>
-
-          {/* Revue de presse */}
+  
+          {/* Revue de presse - MODIFIÉE */}
           <section className="mb-8 md:mb-12">
             <div className="flex items-center mb-6">
               <ImageIcon className="w-6 h-6 mr-3" style={{ color: '#722f37' }} />
               <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#722f37' }}>Revue de presse</h2>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              {coupuresPresse.map((article) => (
+            {/* Articles avec images */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8">
+              {coupuresPresse.slice(0, 3).map((article) => (
                 <div key={article.id} className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
                   <div className="relative mb-4 bg-gray-100 rounded-lg overflow-hidden" style={{ height: '250px' }}>
                     <img 
@@ -200,7 +223,6 @@ export default function DossierPresse() {
                     {article.description}
                   </p>
                   
-                  {/* Remplacer le bouton onClick par un lien normal */}
                   <a 
                     href={article.image}
                     target="_blank"
@@ -214,8 +236,95 @@ export default function DossierPresse() {
                 </div>
               ))}
             </div>
+  
+            {/* Articles PDF - NOUVEAU */}
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+              {/* PDF Alain Brunet */}
+              <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div 
+                      className="w-12 h-12 rounded-lg flex items-center justify-center"
+                      style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
+                    >
+                      <Download className="w-6 h-6" style={{ color: '#722f37' }} />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="mb-3">
+                      <span 
+                        className="inline-block px-2 py-1 rounded text-xs font-medium"
+                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)', color: '#722f37' }}
+                      >
+                        Jazz Magazine
+                      </span>
+                      <span className="text-xs text-gray-500 ml-2">Juin 2025</span>
+                    </div>
+                    
+                    <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#1a1a1a' }}>
+                      Interview Alain Brunet
+                    </h3>
+                    <p className="text-xs md:text-sm text-gray-600 mb-4">
+                      Rencontre avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle.
+                    </p>
+                    
+                    <a 
+                      href="/documents/alain-brunet-jazz-magazine.pdf"
+                      download
+                      className="inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:opacity-90 text-sm"
+                      style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Télécharger PDF Alain Brunet
+                    </a>
+                  </div>
+                </div>
+              </div>
+  
+              {/* PDF Eurorégion */}
+              <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div 
+                      className="w-12 h-12 rounded-lg flex items-center justify-center"
+                      style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)' }}
+                    >
+                      <Download className="w-6 h-6" style={{ color: '#722f37' }} />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="mb-3">
+                      <span 
+                        className="inline-block px-2 py-1 rounded text-xs font-medium"
+                        style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)', color: '#722f37' }}
+                      >
+                        Eurorégion
+                      </span>
+                      <span className="text-xs text-gray-500 ml-2">Mai 2025</span>
+                    </div>
+                    
+                    <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#1a1a1a' }}>
+                      Le jazz du monde au rendez-vous des 10 ans du festival Jazz en Tech
+                    </h3>
+                    <p className="text-xs md:text-sm text-gray-600 mb-4">
+                      Dossier spécial pour la 10ème édition avec une programmation exceptionnelle d'artistes internationaux.
+                    </p>
+                    
+                    <a 
+                      href="/documents/euroregion-jazz-en-tech-2025.pdf"
+                      download
+                      className="inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:opacity-90 text-sm"
+                      style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Télécharger PDF
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
-
+  
           {/* Contact presse */}
           <section 
             className="p-6 md:p-8 rounded-xl"
@@ -280,5 +389,5 @@ export default function DossierPresse() {
         </div>
       </div>
     </div>
-  )
+  ) 
 }
