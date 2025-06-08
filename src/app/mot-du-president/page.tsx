@@ -116,8 +116,12 @@ export default function MotDuPresident() {
                     </p>
                   </div>
 
-                  {/* Céret - cœur du festival */}
+                  {/* Céret - cœur du festival AVEC DATE */}
                   <div className="bg-jazz-gold bg-opacity-10 rounded-xl p-4 md:p-6 mb-4 md:mb-6 hover:shadow-md transition-shadow">
+                    <div className="flex items-center mb-3 md:mb-4">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 text-jazz-gold mr-2" />
+                      <span className="font-semibold text-jazz-red text-sm md:text-base">Jeudi 7 août</span>
+                    </div>
                     <h3 className="text-lg md:text-xl font-bold text-jazz-red mb-3 md:mb-4">Céret, cœur du festival</h3>
                     <p className="text-jazz-black text-sm md:text-base leading-relaxed mb-3 md:mb-4">
                       Céret est devenu depuis 3 ans le cœur du festival. L'excellentissime saxophoniste 
@@ -144,8 +148,12 @@ export default function MotDuPresident() {
                     </p>
                   </div>
 
-                  {/* Charlotte Planchou */}
+                  {/* Charlotte Planchou AVEC DATE */}
                   <div className="bg-gray-50 rounded-xl p-4 md:p-6 mb-4 md:mb-6 hover:shadow-md transition-shadow">
+                    <div className="flex items-center mb-3 md:mb-4">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 text-jazz-gold mr-2" />
+                      <span className="font-semibold text-jazz-red text-sm md:text-base">Samedi 9 août</span>
+                    </div>
                     <h3 className="text-base md:text-lg font-semibold text-jazz-red mb-2 md:mb-3">Charlotte Planchou clôture le festival</h3>
                     <p className="text-jazz-black text-sm md:text-base leading-relaxed">
                       Autre chanteuse pour clore les concerts céretans, <strong>Charlotte Planchou</strong>, 
@@ -282,19 +290,19 @@ export default function MotDuPresident() {
         </div>
       </section>
 
-      {/* Section Vidéos */}
+      {/* Section Vidéos CORRIGÉE */}
       <section className="py-12 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8 md:mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-jazz-red mb-4">Découvrez Jazz en Tech en vidéo</h2>
               <p className="text-base md:text-lg text-gray-600">
-                Plongez dans l'ambiance unique de notre festival
+                Jazz en Tech c'est aussi...
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              {/* Première vidéo */}
+              {/* Première vidéo - Arles sur tech */}
               <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="aspect-video rounded-xl overflow-hidden mb-4">
                   <iframe
@@ -308,14 +316,11 @@ export default function MotDuPresident() {
                   ></iframe>
                 </div>
                 <h3 className="font-bold text-lg text-jazz-red text-center mb-2">
-                  Jazz en Tech - Moments d'exception
+                  des moments d'exception
                 </h3>
-                <p className="text-sm text-gray-600 text-center">
-                  Découvrez l'atmosphère unique de notre festival
-                </p>
               </div>
 
-              {/* Deuxième vidéo */}
+              {/* Deuxième vidéo - Javanaise CORRIGÉE */}
               <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="aspect-video rounded-xl overflow-hidden mb-4">
                   <iframe
@@ -329,10 +334,10 @@ export default function MotDuPresident() {
                   ></iframe>
                 </div>
                 <h3 className="font-bold text-lg text-jazz-red text-center mb-2">
-                  Dans les coulisses du festival
+                  un festival transfrontalier
                 </h3>
                 <p className="text-sm text-gray-600 text-center">
-                  Une immersion dans la préparation de Jazz en Tech
+                  24 juillet 2023, concert à Sant Joan de les Abadesses
                 </p>
               </div>
             </div>
