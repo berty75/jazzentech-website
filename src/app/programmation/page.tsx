@@ -86,9 +86,8 @@ const artistsData = {
                 subtitle: '🎤 Quartet',
                 date: 'SAMEDI 9 AOÛT • 21H00',
                 image: '/images/charlotte-planchou.jpg',
-                badge: '🏆 PRIX ÉVIDENCE',
-                badgeColor: '#d4af37',
-                extraBadge: 'CLÔTURE',
+                badge: 'JAZZ VOCAL',
+                badgeColor: '#722f37',
                 slug: 'charlotte-planchou',
                 ticketType: 'payant',
                 dateKey: '9'
@@ -140,12 +139,12 @@ const artistsData = {
                 concerts: [
                   {
                     time: '11H00',
-                    artists: 'David Vilayleck Trio',
+                    artists: 'David Vilayleck Trio et Cavale Trio',
                     location: 'Centre-ville'
                   },
                   {
                     time: '18H00', 
-                    artists: 'Cavale Trio',
+                    artists: 'David Vilayleck Trio et Cavale Trio',
                     location: 'Centre-ville'
                   }
                 ]
@@ -165,7 +164,7 @@ const artistsData = {
             artists: [
               {
                 name: 'CAVALE TRIO',
-                subtitle: '🥁 Prêle Abelanet, Damien Guisset, Pierre Baradel',
+                subtitle: '🥁 Jazz contemporain',
                 date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
                 image: '/images/cavale-trio.jpg',
                 badge: 'JAZZ CONTEMPORAIN',
@@ -176,7 +175,7 @@ const artistsData = {
               },
               {
                 name: 'DAVID VILAYLECK',
-                subtitle: '🎹 Trio Power Jazz',
+                subtitle: '🎹 Piano jazz',
                 date: 'VENDREDI 8 AOÛT • 11H00',
                 image: '/images/david-vilayleck.jpg',
                 badge: 'JAZZ FUSION',
@@ -187,7 +186,7 @@ const artistsData = {
               },
               {
                 name: 'TRITON 66',
-                subtitle: '🎷 Quintet Standards',
+                subtitle: '🎷 Jazz standards',
                 date: 'MERCREDI 6 & JEUDI 7 AOÛT',
                 image: '/images/triton-66.jpg',
                 badge: 'STANDARDS',
@@ -198,10 +197,10 @@ const artistsData = {
               },
               {
                 name: 'FLORIN GUGULICA',
-                subtitle: '🎻 Trio (concerts gratuits)',
+                subtitle: '🎻 Formation trio',
                 date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
                 image: '/images/florin-gugulica-trio.jpg',
-                badge: 'DOUBLE FORMATION',
+                badge: 'JAZZ TRANSFRONTALIER',
                 badgeColor: '#b87333',
                 slug: 'florin-gugulica',
                 ticketType: 'gratuit',
@@ -282,9 +281,8 @@ const artistsData = {
                 subtitle: '🎤 Quartet',
                 date: 'SAMEDI 9 AOÛT • 21H00',
                 image: '/images/charlotte-planchou.jpg',
-                badge: '🏆 PRIX ÉVIDENCE',
-                badgeColor: '#d4af37',
-                extraBadge: 'CLÔTURE',
+                badge: 'JAZZ VOCAL',
+                badgeColor: '#722f37',
                 slug: 'charlotte-planchou',
                 ticketType: 'payant',
                 dateKey: '9'
@@ -341,12 +339,12 @@ const artistsData = {
                 concerts: [
                   {
                     time: '11H00',
-                    artists: 'David Vilayleck Trio',
+                    artists: 'David Vilayleck Trio et Cavale Trio',
                     location: 'Centre-ville'
                   },
                   {
                     time: '18H00', 
-                    artists: 'Cavale Trio',
+                    artists: 'David Vilayleck Trio et Cavale Trio',
                     location: 'Centre-ville'
                   }
                 ]
@@ -366,7 +364,7 @@ const artistsData = {
             artists: [
               {
                 name: 'CAVALE TRIO',
-                subtitle: '🥁 Prêle Abelanet, Damien Guisset, Pierre Baradel',
+                subtitle: '🥁 Jazz contemporain',
                 date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
                 image: '/images/cavale-trio.jpg',
                 badge: 'JAZZ CONTEMPORAIN',
@@ -377,7 +375,7 @@ const artistsData = {
               },
               {
                 name: 'DAVID VILAYLECK',
-                subtitle: '🎹 Trio Power Jazz',
+                subtitle: '🎹 Piano jazz',
                 date: 'VENDREDI 8 AOÛT • 11H00',
                 image: '/images/david-vilayleck.jpg',
                 badge: 'JAZZ FUSION',
@@ -388,7 +386,7 @@ const artistsData = {
               },
               {
                 name: 'TRITON 66',
-                subtitle: '🎷 Quintet Standards',
+                subtitle: '🎷 Jazz standards',
                 date: 'MERCREDI 6 & JEUDI 7 AOÛT',
                 image: '/images/triton-66.jpg',
                 badge: 'STANDARDS',
@@ -399,10 +397,10 @@ const artistsData = {
               },
               {
                 name: 'FLORIN GUGULICA',
-                subtitle: '🎻 Trio (concerts gratuits)',
+                subtitle: '🎻 Formation trio',
                 date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
                 image: '/images/florin-gugulica-trio.jpg',
-                badge: 'DOUBLE FORMATION',
+                badge: 'JAZZ TRANSFRONTALIER',
                 badgeColor: '#b87333',
                 slug: 'florin-gugulica',
                 ticketType: 'gratuit',
@@ -786,28 +784,12 @@ export default function Programmation() {
                                   </div>
                                 </div>
                                 
-                                {/* Badge type de concert */}
-                                <div className={`absolute top-3 right-3 px-2 py-1 rounded-full font-bold ${
-                                  location.artists.length >= 4 ? 'text-xs' : 'text-xs'
-                                }`} style={{ 
-                                  backgroundColor: artist.ticketType === 'payant' ? '#722f37' : '#d4af37', 
-                                  color: artist.ticketType === 'payant' ? '#f7f3e9' : '#722f37' 
-                                }}>
-                                  {artist.ticketType === 'payant' ? 'PAYANT' : 'GRATUIT'}
-                                </div>
-                                
-                                {/* Badge spécifique artiste */}
+                                {/* Badge spécifique artiste - PAS DE BADGE PAYANT/GRATUIT */}
                                 <div className={`absolute top-3 left-3 px-2 py-1 rounded-full font-bold ${
                                   location.artists.length >= 4 ? 'text-xs' : 'text-xs'
                                 }`} style={{ backgroundColor: artist.badgeColor, color: artist.badgeColor === '#d4af37' ? '#722f37' : '#f7f3e9' }}>
                                   {artist.badge}
                                 </div>
-                                
-                                {artist.extraBadge && (
-  <div className="absolute top-12 left-3 px-2 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
-    {artist.extraBadge}
-  </div>
-)}
                                 
                                 {/* Overlay hover */}
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
