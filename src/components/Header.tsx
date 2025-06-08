@@ -30,9 +30,18 @@ export default function Header() {
     }
   }, [])
 
-  // Hauteur adaptative selon l'orientation
-  const headerHeight = isLandscape ? '3rem' : (isScrolled ? '4rem' : '6rem')
-  const logoHeight = isLandscape ? '2rem' : (isScrolled ? '3rem' : '4rem')
+  // Hauteur adaptative selon l'orientation ET la taille d'écran
+  const getHeaderHeight = () => {
+    if (isLandscape) return '3rem' // Mode paysage mobile
+    if (isScrolled) return '5.5rem'  // Scrollé desktop (88px)
+    return '8rem' // Normal desktop (128px)
+  }
+
+  const getLogoHeight = () => {
+    if (isLandscape) return '2rem' // Mode paysage mobile
+    if (isScrolled) return '4.5rem'  // Scrollé desktop (72px)
+    return '6.5rem' // Normal desktop (104px)
+  }
 
   return (
     <header
@@ -40,7 +49,7 @@ export default function Header() {
       style={{
         background: '#722f37',
         boxShadow: isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
-        height: headerHeight,
+        height: getHeaderHeight(),
       }}
     >
       <div className="container mx-auto px-4 h-full">
@@ -54,8 +63,8 @@ export default function Header() {
               alt="Jazz en Tech Festival"
               className="w-auto transition-all duration-300"
               style={{
-                height: logoHeight,
-                maxHeight: logoHeight,
+                height: getLogoHeight(),
+                maxHeight: getLogoHeight(),
               }}
             />
           </Link>
