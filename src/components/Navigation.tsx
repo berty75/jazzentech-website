@@ -14,7 +14,7 @@ const navItems = [
 interface NavigationProps {
   mobile?: boolean
   onItemClick?: () => void
-  compact?: boolean // NOUVEAU : pour le mode paysage
+  compact?: boolean // Mode paysage
 }
 
 export default function Navigation({ mobile = false, onItemClick, compact = false }: NavigationProps) {
@@ -22,7 +22,14 @@ export default function Navigation({ mobile = false, onItemClick, compact = fals
 
   return (
     <nav>
-      <ul className={mobile ? (compact ? "space-y-1 pt-2" : "space-y-2 pt-4") : "flex space-x-6"}>
+      <ul className={
+        mobile 
+          ? (compact 
+              ? "grid grid-cols-2 gap-x-4 gap-y-1 pt-2" // 2 COLONNES en paysage
+              : "space-y-2 pt-4"                         // 1 colonne en portrait
+            )
+          : "flex space-x-6"                             // Desktop normal
+      }>
         {navItems.map((item) => (
           <li key={item.href}>
             <Link
@@ -32,10 +39,10 @@ export default function Navigation({ mobile = false, onItemClick, compact = fals
                 nav-link font-medium transition-all duration-300 hover:scale-105 rounded-lg
                 ${mobile 
                   ? (compact 
-                      ? "block py-1 px-3 text-sm" // Mode paysage compact
-                      : "block py-2 px-3"         // Mode mobile normal
+                      ? "block py-1 px-2 text-sm text-center" // Compact + centré
+                      : "block py-2 px-3"                     // Mobile normal
                     )
-                  : "px-3 py-2"                   // Mode desktop
+                  : "px-3 py-2"                               // Desktop
                 }
                 ${pathname === item.href 
                   ? "font-bold" 
