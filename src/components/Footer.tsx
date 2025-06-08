@@ -11,7 +11,7 @@ function Footer() {
               Jazz en Tech
             </h3>
             <p className="mb-6 leading-relaxed" style={{ color: '#f7f3e9' }}>
-              Le festival qui marie tradition jazz et innovation technologique.
+              Le festival qui fait swinguer les Pyrénées Orientales.
             </p>
             <nav aria-label="Réseaux sociaux">
               <div className="flex space-x-4">

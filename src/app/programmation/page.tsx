@@ -163,8 +163,8 @@ const artistsData = {
             ],
             artists: [
               {
-                name: 'CAVALE TRIO',
-                subtitle: '🥁 Jazz contemporain',
+                name: 'CAVALE',
+                subtitle: '', // SUPPRIMÉ
                 date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
                 image: '/images/cavale-trio.jpg',
                 badge: 'JAZZ CONTEMPORAIN',
@@ -175,7 +175,7 @@ const artistsData = {
               },
               {
                 name: 'DAVID VILAYLECK',
-                subtitle: '🎹 Piano jazz',
+                subtitle: '', // SUPPRIMÉ
                 date: 'VENDREDI 8 AOÛT • 11H00',
                 image: '/images/david-vilayleck.jpg',
                 badge: 'JAZZ FUSION',
@@ -186,7 +186,7 @@ const artistsData = {
               },
               {
                 name: 'TRITON 66',
-                subtitle: '🎷 Jazz standards',
+                subtitle: '', // SUPPRIMÉ
                 date: 'MERCREDI 6 & JEUDI 7 AOÛT',
                 image: '/images/triton-66.jpg',
                 badge: 'STANDARDS',
@@ -197,7 +197,7 @@ const artistsData = {
               },
               {
                 name: 'FLORIN GUGULICA',
-                subtitle: '🎻 Formation trio',
+                subtitle: '', // SUPPRIMÉ
                 date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
                 image: '/images/florin-gugulica-trio.jpg',
                 badge: 'JAZZ TRANSFRONTALIER',
@@ -363,8 +363,8 @@ const artistsData = {
             ],
             artists: [
               {
-                name: 'CAVALE TRIO',
-                subtitle: '🥁 Jazz contemporain',
+                name: 'CAVALE',
+                subtitle: '', // SUPPRIMÉ
                 date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
                 image: '/images/cavale-trio.jpg',
                 badge: 'JAZZ CONTEMPORAIN',
@@ -375,7 +375,7 @@ const artistsData = {
               },
               {
                 name: 'DAVID VILAYLECK',
-                subtitle: '🎹 Piano jazz',
+                subtitle: '', // SUPPRIMÉ
                 date: 'VENDREDI 8 AOÛT • 11H00',
                 image: '/images/david-vilayleck.jpg',
                 badge: 'JAZZ FUSION',
@@ -386,7 +386,7 @@ const artistsData = {
               },
               {
                 name: 'TRITON 66',
-                subtitle: '🎷 Jazz standards',
+                subtitle: '', // SUPPRIMÉ
                 date: 'MERCREDI 6 & JEUDI 7 AOÛT',
                 image: '/images/triton-66.jpg',
                 badge: 'STANDARDS',
@@ -397,7 +397,7 @@ const artistsData = {
               },
               {
                 name: 'FLORIN GUGULICA',
-                subtitle: '🎻 Formation trio',
+                subtitle: '', // SUPPRIMÉ
                 date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
                 image: '/images/florin-gugulica-trio.jpg',
                 badge: 'JAZZ TRANSFRONTALIER',
@@ -769,11 +769,17 @@ export default function Programmation() {
                                   }`}>
                                     {artist.name}
                                   </h5>
-                                  <p className={`opacity-90 mb-2 ${
-                                    location.artists.length >= 4 ? 'text-xs' : 'text-sm'
-                                  }`}>
-                                    {artist.subtitle}
-                                  </p>
+                                  
+                                  {/* Affichage conditionnel du subtitle SEULEMENT pour les concerts payants */}
+                                  {artist.subtitle && (
+                                    <p className={`opacity-90 mb-2 ${
+                                      location.artists.length >= 4 ? 'text-xs' : 'text-sm'
+                                    }`}>
+                                      {artist.subtitle}
+                                    </p>
+                                  )}
+                                  
+                                  {/* Affichage de la date avec calendrier pour TOUS les artistes */}
                                   <div className={`flex items-center ${
                                     location.artists.length >= 4 ? 'text-xs' : 'text-sm'
                                   }`}>
@@ -784,7 +790,7 @@ export default function Programmation() {
                                   </div>
                                 </div>
                                 
-                                {/* Badge spécifique artiste - PAS DE BADGE PAYANT/GRATUIT */}
+                                {/* Badge spécifique artiste */}
                                 <div className={`absolute top-3 left-3 px-2 py-1 rounded-full font-bold ${
                                   location.artists.length >= 4 ? 'text-xs' : 'text-xs'
                                 }`} style={{ backgroundColor: artist.badgeColor, color: artist.badgeColor === '#d4af37' ? '#722f37' : '#f7f3e9' }}>

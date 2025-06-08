@@ -33,7 +33,7 @@ export default function Home() {
   
   {/* Texte RESPONSIVE */}
   <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl" style={{ color: '#f7f3e9' }}>
-  Le festival qui fait swinguer les Pyrénées Orientales 
+  Le festival qui fait swinguer les Pyrénées Orientales 
   </p>
   
   {/* Boutons CORRIGÉS - Billetterie et Programmation */}
@@ -103,28 +103,6 @@ export default function Home() {
           {/* Grille d'images des artistes PAYANTS - 6 CARTES ORDRE CHRONOLOGIQUE */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 max-w-7xl mx-auto">
             
-            {/* Florin Gugulica */}
-            <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl">
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <img 
-                  src="/images/florin-gugulica.jpeg" 
-                  alt="Florin Gugulica"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                
-                {/* Informations overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                  <h3 className="font-bold text-xs md:text-sm mb-1">FLORIN GUGULICA</h3>
-                  <p className="text-xs opacity-90 mb-1">Sextet</p>
-                  <div className="flex items-center text-xs">
-                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
-                    <span>27 JUIL</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-
             {/* Manu Le Prince */}
             <Link href="/artistes/manu-le-prince" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
@@ -138,7 +116,27 @@ export default function Home() {
                 {/* Informations overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
                   <h3 className="font-bold text-xs md:text-sm mb-1">MANU LE PRINCE</h3>
-                  <p className="text-xs opacity-90 mb-1">Quartet « Bossa Jazz »</p>
+                  <div className="flex items-center text-xs">
+                    <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
+                    <span>27 JUIL</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Florin Gugulica */}
+            <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
+                <img 
+                  src="/images/florin-gugulica.jpeg" 
+                  alt="Florin Gugulica"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Informations overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
+                  <h3 className="font-bold text-xs md:text-sm mb-1">FLORIN GUGULICA</h3>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>28 JUIL</span>
@@ -159,7 +157,6 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
                   <h3 className="font-bold text-xs md:text-sm mb-1">STEFANO DI BATTISTA</h3>
-                  <p className="text-xs opacity-90 mb-1">« La Dolce Vita »</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>7 AOÛT</span>
@@ -180,7 +177,6 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
                   <h3 className="font-bold text-xs md:text-sm mb-1">JACKY TERRASSON</h3>
-                  <p className="text-xs opacity-90 mb-1">Trio « Moving On »</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>8 AOÛT</span>
@@ -201,7 +197,6 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
                   <h3 className="font-bold text-xs md:text-sm mb-1">CAMILLE BERTAULT</h3>
-                  <p className="text-xs opacity-90 mb-1">Chanteuse</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>8 AOÛT</span>
@@ -222,7 +217,6 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
                   <h3 className="font-bold text-xs md:text-sm mb-1">CHARLOTTE PLANCHOU</h3>
-                  <p className="text-xs opacity-90 mb-1">Quartet</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>9 AOÛT</span>
@@ -275,7 +269,7 @@ export default function Home() {
           {/* Grille d'artistes concerts gratuits - ORDRE CHRONOLOGIQUE */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             
-            {/* Triton 66 Quintet */}
+            {/* Triton 66 */}
             <Link href="/artistes/triton-66" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
@@ -287,7 +281,6 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
                   <h3 className="font-bold text-sm md:text-lg mb-1">TRITON 66</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Quintet</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>6 & 7 AOÛT</span>
@@ -296,8 +289,13 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Florin Gugulica Trio */}
-            <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl">
+            {/* Florin Gugulica Trio - LIEN VERS VIDÉO */}
+            <a 
+              href="https://www.facebook.com/phl123/videos/676111201850458" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden rounded-lg shadow-xl"
+            >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/florin-gugulica-trio.jpg" 
@@ -308,16 +306,15 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
                   <h3 className="font-bold text-sm md:text-lg mb-1">FLORIN GUGULICA</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Trio</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>6, 7 & 9 AOÛT</span>
                   </div>
                 </div>
               </div>
-            </Link>
+            </a>
 
-            {/* David Vilayleck Trio */}
+            {/* David Vilayleck */}
             <Link href="/artistes/david-vilayleck" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
@@ -329,7 +326,6 @@ export default function Home() {
                 
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
                   <h3 className="font-bold text-sm md:text-lg mb-1">DAVID VILAYLECK</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Trio Piano</p>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>VEN. 8 AOÛT</span>
@@ -338,19 +334,18 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Cavale Trio */}
+            {/* Cavale - NOM CORRIGÉ */}
             <Link href="/artistes/cavale-trio" className="group relative block overflow-hidden rounded-lg shadow-xl">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <img 
                   src="/images/cavale-trio.jpg" 
-                  alt="Cavale Trio"
+                  alt="Cavale"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                  <h3 className="font-bold text-sm md:text-lg mb-1">CAVALE TRIO</h3>
-                  <p className="text-xs md:text-sm opacity-90 mb-2">Jazz contemporain</p>
+                  <h3 className="font-bold text-sm md:text-lg mb-1">CAVALE</h3>
                   <div className="flex items-center text-xs">
                     <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} />
                     <span>8 & 9 AOÛT</span>
@@ -410,10 +405,10 @@ export default function Home() {
               <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Saint-Genis-des-Fontaines</p>
               <div className="text-xs sm:text-sm space-y-2">
                 <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
-                  <strong>• Florin Gugulica Sextet</strong>
+                  <strong>• Manu le Prince</strong>
                 </div>
                 <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(184, 115, 51, 0.1)', color: '#b87333' }}>
-                  <strong>• Manu le Prince Quartet</strong>
+                  <strong>• Florin Gugulica</strong>
                 </div>
               </div>
             </div>
@@ -478,9 +473,7 @@ export default function Home() {
                 Un festival <span style={{ color: '#722f37' }}>unique</span>
               </h2>
               <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 md:mb-8" style={{ color: '#722f37' }}>
-                Jazz en Tech est le premier festival qui unit la richesse du jazz traditionnel 
-                aux innovations technologiques d'aujourd'hui. Une expérience musicale 
-                immersive qui repousse les frontières de l'art.
+                Une expérience musicale immersive qui repousse les frontières de l'art.
               </p>
               <Link 
                 href="/mot-du-president"
@@ -584,33 +577,7 @@ export default function Home() {
             {/* Grille de vidéos payantes - ORDRE CHRONOLOGIQUE */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
               
-              {/* Vidéo 1 - Florin Gugulica Sextet */}
-              <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-                <div className="aspect-video rounded-lg overflow-hidden mb-4">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/JchABVZGrGE"
-                    title="Florin Gugulica Sextet - Jazz en Tech"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="rounded-lg"
-                  ></iframe>
-                </div>
-                <div className="text-center">
-                  <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
-                    🎷 Florin Gugulica Sextet
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600">« It's a long Way »</p>
-                  <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
-                    <Calendar className="w-3 h-3 mr-1" />
-                    <span className="font-semibold">27 JUILLET 2025</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Vidéo 2 - Manu Le Prince */}
+              {/* Vidéo 1 - Manu Le Prince */}
               <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
                 <div className="aspect-video rounded-lg overflow-hidden mb-4">
                   <iframe
@@ -628,7 +595,31 @@ export default function Home() {
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
                     🎤 Manu Le Prince
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Quartet « Bossa Jazz for Ever »</p>
+                  <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+                    <Calendar className="w-3 h-3 mr-1" />
+                    <span className="font-semibold">27 JUILLET 2025</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Vidéo 2 - Florin Gugulica Sextet - NOUVELLE URL */}
+              <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+                <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/CvwmwRXlevk"
+                    title="Florin Gugulica Sextet - Jazz en Tech"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="rounded-lg"
+                  ></iframe>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
+                    🎷 Florin Gugulica
+                  </h3>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">28 JUILLET 2025</span>
@@ -654,7 +645,6 @@ export default function Home() {
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
                     🎷 Stefano Di Battista
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">« La Dolce Vita »</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">7 AOÛT 2025</span>
@@ -680,7 +670,6 @@ export default function Home() {
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
                     🎹 Jacky Terrasson
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Trio « Moving On » + Camille Bertault</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">8 AOÛT 2025</span>
@@ -706,7 +695,6 @@ export default function Home() {
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
                     🎤 Camille Bertault
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Invitée de Jacky Terrasson</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">8 AOÛT 2025</span>
@@ -732,7 +720,6 @@ export default function Home() {
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
                     🎤 Charlotte Planchou
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Quartet</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">9 AOÛT 2025</span>
@@ -757,14 +744,14 @@ export default function Home() {
             {/* Grille de vidéos concerts gratuits - ORDRE CHRONOLOGIQUE */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-7xl mx-auto">
               
-              {/* Vidéo 1 - Triton 66 Quintet */}
+              {/* Vidéo 1 - Triton 66 */}
               <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
                 <div className="aspect-video rounded-lg overflow-hidden mb-4">
                   <iframe
                     width="100%"
                     height="100%"
                     src="https://www.youtube.com/embed/S8n12s-2GjE"
-                    title="Triton 66 Quintet - Jazz en Tech"
+                    title="Triton 66 - Jazz en Tech"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -773,9 +760,8 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
-                    🎷 Triton 66 Quintet
+                    🎷 Triton 66
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Jazz</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">6 & 7 AOÛT</span>
@@ -783,33 +769,32 @@ export default function Home() {
                 </div>
               </div>
 
-{/* Vidéo 2 - Florin Gugulica Trio - Version lien direct sécurisée */}
-<div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
-  <div className="aspect-video rounded-lg overflow-hidden mb-4 relative bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-    <a 
-      href="https://www.facebook.com/phl123/videos/676111201850458" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="text-white text-center hover:scale-105 transition-transform p-4"
-    >
-      <div className="text-4xl mb-2">▶️</div>
-      <div className="text-sm font-semibold">Voir la vidéo sur Facebook</div>
-      <div className="text-xs opacity-75 mt-1">Florin Gugulica Trio</div>
-    </a>
-  </div>
-  <div className="text-center">
-    <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
-      🎻 Florin Gugulica Trio
-    </h3>
-    <p className="text-xs md:text-sm text-gray-600">Jazz manouche</p>
-    <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
-      <Calendar className="w-3 h-3 mr-1" />
-      <span className="font-semibold">6, 7 & 9 AOÛT</span>
-    </div>
-  </div>
-</div>
+              {/* Vidéo 2 - Florin Gugulica Trio - Version lien direct sécurisée */}
+              <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
+                <div className="aspect-video rounded-lg overflow-hidden mb-4 relative bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                  <a 
+                    href="https://www.facebook.com/phl123/videos/676111201850458" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white text-center hover:scale-105 transition-transform p-4"
+                  >
+                    <div className="text-4xl mb-2">▶️</div>
+                    <div className="text-sm font-semibold">Voir la vidéo sur Facebook</div>
+                    <div className="text-xs opacity-75 mt-1">Florin Gugulica Trio</div>
+                  </a>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
+                    🎻 Florin Gugulica
+                  </h3>
+                  <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
+                    <Calendar className="w-3 h-3 mr-1" />
+                    <span className="font-semibold">6, 7 & 9 AOÛT</span>
+                  </div>
+                </div>
+              </div>
 
-              {/* Vidéo 3 - David Vilayleck Trio */}
+              {/* Vidéo 3 - David Vilayleck */}
               <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
                 <div className="aspect-video rounded-lg overflow-hidden mb-4">
                   <iframe
@@ -825,9 +810,8 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
-                    🎹 David Vilayleck Trio
+                    🎹 David Vilayleck
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Piano jazz</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">8 AOÛT - 11H</span>
@@ -835,14 +819,14 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Vidéo 4 - Cavale Trio */}
+              {/* Vidéo 4 - Cavale */}
               <div className="bg-white rounded-xl p-4 shadow-xl transform hover:-translate-y-2 transition-all duration-300 border border-gray-100">
                 <div className="aspect-video rounded-lg overflow-hidden mb-4">
                   <iframe
                     width="100%"
                     height="100%"
                     src="https://www.youtube.com/embed/BZbzXJ0eOcw"
-                    title="Cavale Trio - Jazz en Tech"
+                    title="Cavale - Jazz en Tech"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -851,9 +835,8 @@ export default function Home() {
                 </div>
                 <div className="text-center">
                   <h3 className="font-bold text-base md:text-lg mb-2" style={{ color: '#722f37' }}>
-                    🥁 Cavale Trio
+                    🥁 Cavale
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600">Jazz contemporain</p>
                   <div className="flex items-center justify-center mt-2 text-xs" style={{ color: '#d4af37' }}>
                     <Calendar className="w-3 h-3 mr-1" />
                     <span className="font-semibold">8 & 9 AOÛT</span>

@@ -21,8 +21,8 @@ const artistsData = {
       content: [
         "Brésilienne de cœur et anglo-argentine de par ses origines, elle se partage depuis plus d'une trentaine d'années entre Paris et Rio-de-Janeiro, mêlant intimement et avec bonheur le Jazz qui a bercé son enfance à la musique brésilienne, tout particulièrement celle de Tom Jobim.",
         "Manu Le Prince a fait partie de diverses formations dont Magma, Odeurs ou Urban Sax et a aussi à son actif plusieurs albums sous son nom. Son album « Bossa Jazz for Ever » vient d'être réédité par Frémeaux et sera en vente à Saint-Génis-Des-Fontaines.",
-        "Selon Télérama, Manu Le Prince est « un trésor de la musique brésilienne conçu en France ». Elle immense chanteuse de jazz rend hommage à Johnny Alf, père de la bossa, qui a mis en lumière les répertoires de monuments du Jazz tels que Cole Porter ou Wayne Shorter.",
-        "L'album a été enregistré à Rio avec les meilleurs musiciens du cru - dont le saxophoniste arrangeur de Johnny, Idriss Boudrioua et le grand batteur Rafael Barata - en 2013. La voix suave et jazzy de la chanteuse sublime le répertoire du compositeur carioca et rend justice à son œuvre fondamentale."
+        "Selon Télérama, Manu Le Prince est « un trésor de la musique brésilienne conçu en France ». Cette « immense chanteuse de jazz rend hommage à Johnny Alf, père de la bossa, qui a mis en lumière les répertoires de monuments du Jazz tels que Cole Porter ou Wayne Shorter.",
+        "L'album a été enregistré à Rio avec les meilleurs musiciens du cru - dont le saxophoniste arrangeur de Johnny, Idriss Boudrioua et le grand batteur Rafael Barata - en 2013. La voix suave et jazzy de la chanteuse sublime le répertoire du compositeur carioca et rend justice à son œuvre fondamentale.» Augustin Bondoux / Frémeaux."
       ]
     },
     discography: [
@@ -106,9 +106,15 @@ const artistsData = {
     ],
     videos: [
       {
-        id: 'JchABVZGrGE',
-        title: 'Florin Gugulica Sextet',
-        description: 'Performance du sextet "It\'s a long Way"'
+        id: 'CvwmwRXlevk',
+        title: 'Florin Gugulica Sextet "It\'s a long Way"',
+        description: 'Performance du sextet - Concert payant avec billetterie (28 juillet 2025)'
+      },
+      {
+        id: 'facebook-link',
+        title: 'Florin Gugulica Trio',
+        description: 'Performance du trio - Concerts gratuits à Céret (6, 7 & 9 août 2025)',
+        facebookUrl: 'https://www.facebook.com/phl123/videos/676111201850458'
       }
     ],
     socials: {
@@ -381,7 +387,7 @@ const artistsData = {
   },
   // ARTISTES CONCERTS GRATUITS (gardés tels quels)
   'cavale-trio': {
-    name: 'Cavale Trio',
+    name: 'Cavale',
     subtitle: 'Prêle Abelanet, Damien Guisset, Pierre Baradel',
     genre: 'Jazz Contemporain • Musique Acoustique',
     image: '/images/cavale-trio.jpg',
@@ -409,7 +415,7 @@ const artistsData = {
     videos: [
       {
         id: 'BZbzXJ0eOcw',
-        title: 'Cavale Trio - Performance live',
+        title: 'Cavale - Performance live',
         description: 'Concert du trio avec Prêle Abelanet'
       }
     ],
@@ -711,7 +717,7 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
             </section>
           )}
 
-          {/* Vidéos */}
+          {/* Vidéos - SECTION MODIFIÉE POUR GÉRER YOUTUBE ET FACEBOOK */}
           {artist.videos && artist.videos.length > 0 && (
             <section>
               <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
@@ -722,15 +728,33 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
                 {artist.videos.map((video, index) => (
                   <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
                     <div className="aspect-video">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={`https://www.youtube.com/embed/${video.id}`}
-                        title={video.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
+                      {video.facebookUrl ? (
+                        // Affichage spécial pour le lien Facebook
+                        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                          <a 
+                            href={video.facebookUrl}
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-white text-center hover:scale-105 transition-transform p-8"
+                          >
+                            <div className="text-6xl mb-4">▶️</div>
+                            <div className="text-xl font-bold mb-2">Voir la vidéo sur Facebook</div>
+                            <div className="text-base opacity-90">Florin Gugulica Trio</div>
+                            <div className="text-sm opacity-75 mt-2">Concerts gratuits à Céret</div>
+                          </a>
+                        </div>
+                      ) : (
+                        // Affichage YouTube normal
+                        <iframe
+                          width="100%"
+                          height="100%"
+                          src={`https://www.youtube.com/embed/${video.id}`}
+                          title={video.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      )}
                     </div>
                     <div className="p-4">
                       <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>

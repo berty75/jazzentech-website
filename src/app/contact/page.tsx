@@ -1,28 +1,96 @@
 'use client'
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    phone: '',
     subject: '',
     message: ''
   })
   
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [consentAccepted, setConsentAccepted] = useState(false)
+  const [validationErrors, setValidationErrors] = useState<string[]>([])
+
+  const MESSAGE_MAX_LENGTH = 1500
+  const MESSAGE_MIN_LENGTH = 10
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
+    // Effacer les erreurs de validation quand l'utilisateur tape
+    if (validationErrors.length > 0) {
+      setValidationErrors([])
+    }
+  }
+
+  const handleConsentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConsentAccepted(e.target.checked)
+    // Effacer les erreurs de validation quand l'utilisateur coche
+    if (validationErrors.length > 0) {
+      setValidationErrors([])
+    }
+  }
+
+  const validateForm = (): boolean => {
+    const errors: string[] = []
+    
+    if (!formData.firstName.trim()) {
+      errors.push('Le prénom est obligatoire')
+    }
+    
+    if (!formData.lastName.trim()) {
+      errors.push('Le nom est obligatoire')
+    }
+    
+    if (!formData.email.trim()) {
+      errors.push('L\'email est obligatoire')
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.push('L\'email n\'est pas valide')
+    }
+    
+    if (!formData.phone.trim()) {
+      errors.push('Le numéro de téléphone est obligatoire')
+    }
+    
+    if (!formData.subject) {
+      errors.push('Le sujet est obligatoire')
+    }
+    
+    if (!formData.message.trim()) {
+      errors.push('Le message est obligatoire')
+    } else if (formData.message.trim().length < MESSAGE_MIN_LENGTH) {
+      errors.push(`Le message doit contenir au moins ${MESSAGE_MIN_LENGTH} caractères`)
+    } else if (formData.message.length > MESSAGE_MAX_LENGTH) {
+      errors.push(`Le message ne peut pas dépasser ${MESSAGE_MAX_LENGTH} caractères`)
+    }
+    
+    if (!consentAccepted) {
+      errors.push('Vous devez accepter les conditions de confidentialité pour envoyer votre message')
+    }
+    
+    setValidationErrors(errors)
+    return errors.length === 0
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validation côté client
+    if (!validateForm()) {
+      setSubmitStatus('error')
+      return
+    }
+    
     setIsSubmitting(true)
+    setSubmitStatus('idle')
     
     try {
       const response = await fetch('/api/contact', {
@@ -35,16 +103,30 @@ export default function Contact() {
       
       if (response.ok) {
         setSubmitStatus('success')
-        setFormData({ name: '', email: '', subject: '', message: '' })
+        setFormData({ firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' })
+        setConsentAccepted(false)
+        setValidationErrors([])
       } else {
         throw new Error(result.error)
       }
       
     } catch (error) {
       setSubmitStatus('error')
+      setValidationErrors(['Une erreur s\'est produite lors de l\'envoi. Veuillez réessayer.'])
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  // Fonction pour obtenir la couleur du compteur
+  const getCharacterCountColor = () => {
+    const currentLength = formData.message.length
+    const percentage = (currentLength / MESSAGE_MAX_LENGTH) * 100
+    
+    if (percentage >= 95) return '#dc2626' // Rouge
+    if (percentage >= 85) return '#f59e0b' // Orange
+    if (percentage >= 70) return '#d4af37' // Doré
+    return '#6b7280' // Gris
   }
 
   return (
@@ -81,8 +163,8 @@ export default function Contact() {
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Adresse</h3>
                   <p className="text-gray-600">
-                    123 Avenue des Arts<br />
-                    75001 Paris, France
+                  Céret et Saint-Génis-des-Fontaines (66)<br />
+                  France
                   </p>
                 </div>
               </div>
@@ -94,7 +176,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Téléphone</h3>
-                  <p className="text-gray-600">+33 1 23 45 67 89</p>
+                  <p className="text-gray-600">+33 6 08 75 87 67</p>
                   <p className="text-sm text-gray-500">Lun-Ven 9h-18h</p>
                 </div>
               </div>
@@ -108,21 +190,6 @@ export default function Contact() {
                   <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
                   <p className="text-gray-600">contact@jazzentech.com</p>
                   <p className="text-sm text-gray-500">Réponse sous 24h</p>
-                </div>
-              </div>
-
-              {/* Horaires */}
-              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
-                  <Clock className="w-6 h-6" style={{ color: '#722f37' }} aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Horaires</h3>
-                  <div className="text-gray-600 text-sm space-y-1">
-                    <p>Lundi - Vendredi: 9h - 18h</p>
-                    <p>Samedi: 10h - 16h</p>
-                    <p>Dimanche: Fermé</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -181,49 +248,95 @@ export default function Contact() {
                   </div>
                 )}
 
-                {/* Message d'erreur */}
-                {submitStatus === 'error' && (
+                {/* Messages d'erreur de validation */}
+                {(submitStatus === 'error' || validationErrors.length > 0) && (
                   <div 
                     className="mb-4 md:mb-6 p-3 md:p-4 bg-red-50 border border-red-200 rounded-lg"
                     role="alert"
                     aria-live="assertive"
                   >
-                    <div className="flex items-center space-x-3">
-                      <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600" aria-hidden="true" />
-                      <p className="text-red-800 text-sm md:text-base">
-                        Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.
-                      </p>
+                    <div className="flex items-start space-x-3">
+                      <AlertCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600 mt-0.5" aria-hidden="true" />
+                      <div className="flex-1">
+                        {validationErrors.length > 0 ? (
+                          <div>
+                            <p className="text-red-800 text-sm md:text-base font-semibold mb-2">
+                              Veuillez corriger les erreurs suivantes :
+                            </p>
+                            <ul className="text-red-700 text-sm md:text-base space-y-1">
+                              {validationErrors.map((error, index) => (
+                                <li key={index} className="flex items-start">
+                                  <span className="mr-2">•</span>
+                                  <span>{error}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          <p className="text-red-800 text-sm md:text-base">
+                            Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.
+                          </p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 )}
 
-                {/* Nom et Email */}
+                {/* Prénom et Nom */}
                 <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label 
-                      htmlFor="name" 
+                      htmlFor="firstName" 
                       className="block text-sm font-medium mb-2" 
                       style={{ color: '#1a1a1a' }}
                     >
-                      Nom complet <span aria-label="obligatoire" className="text-red-600">*</span>
+                      Prénom <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
+                      id="firstName"
+                      name="firstName"
                       required
                       aria-required="true"
-                      aria-describedby="name-help"
-                      value={formData.name}
+                      aria-describedby="firstName-help"
+                      value={formData.firstName}
                       onChange={handleChange}
                       className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
-                      placeholder="Votre nom complet"
+                      placeholder="Votre prénom"
                     />
-                    <div id="name-help" className="sr-only">
-                      Saisissez votre nom et prénom
+                    <div id="firstName-help" className="sr-only">
+                      Saisissez votre prénom
                     </div>
                   </div>
 
+                  <div>
+                    <label 
+                      htmlFor="lastName" 
+                      className="block text-sm font-medium mb-2" 
+                      style={{ color: '#1a1a1a' }}
+                    >
+                      Nom <span aria-label="obligatoire" className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      required
+                      aria-required="true"
+                      aria-describedby="lastName-help"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                      placeholder="Votre nom"
+                    />
+                    <div id="lastName-help" className="sr-only">
+                      Saisissez votre nom de famille
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email et Téléphone */}
+                <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label 
                       htmlFor="email" 
@@ -246,6 +359,31 @@ export default function Contact() {
                     />
                     <div id="email-help" className="sr-only">
                       Saisissez une adresse email valide pour que nous puissions vous répondre
+                    </div>
+                  </div>
+
+                  <div>
+                    <label 
+                      htmlFor="phone" 
+                      className="block text-sm font-medium mb-2" 
+                      style={{ color: '#1a1a1a' }}
+                    >
+                      Numéro de téléphone <span aria-label="obligatoire" className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      aria-required="true"
+                      aria-describedby="phone-help"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                      placeholder="+33 6 12 34 56 78"
+                    />
+                    <div id="phone-help" className="text-xs mt-1 text-gray-600">
+                      Pour vous contacter rapidement si nécessaire
                     </div>
                   </div>
                 </div>
@@ -283,7 +421,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Message */}
+                {/* Message avec compteur de caractères */}
                 <div>
                   <label 
                     htmlFor="message" 
@@ -292,24 +430,42 @@ export default function Contact() {
                   >
                     Votre message <span aria-label="obligatoire" className="text-red-600">*</span>
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    aria-required="true"
-                    aria-describedby="message-help"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors resize-y text-sm md:text-base"
-                    placeholder="Décrivez votre demande en détail..."
-                  />
-                  <div id="message-help" className="mt-2 text-xs md:text-sm text-gray-500">
-                    Minimum 10 caractères. Soyez précis pour une réponse adaptée.
+                  <div className="relative">
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      aria-required="true"
+                      aria-describedby="message-help"
+                      rows={5}
+                      maxLength={MESSAGE_MAX_LENGTH}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors resize-y text-sm md:text-base"
+                      placeholder="Décrivez votre demande en détail..."
+                    />
+                    {/* Compteur de caractères */}
+                    <div className="absolute bottom-3 right-3 text-xs font-medium pointer-events-none">
+                      <span 
+                        style={{ color: getCharacterCountColor() }}
+                        className="bg-white px-2 py-1 rounded shadow-sm"
+                      >
+                        {formData.message.length}/{MESSAGE_MAX_LENGTH}
+                      </span>
+                    </div>
+                  </div>
+                  <div id="message-help" className="mt-2 text-xs md:text-sm text-gray-500 flex justify-between">
+                    <span>Entre {MESSAGE_MIN_LENGTH} et {MESSAGE_MAX_LENGTH} caractères. Soyez précis pour une réponse adaptée.</span>
+                    <span 
+                      className="font-medium"
+                      style={{ color: getCharacterCountColor() }}
+                    >
+                      {MESSAGE_MAX_LENGTH - formData.message.length} restants
+                    </span>
                   </div>
                 </div>
 
-                {/* Checkbox RGPD avec couleur Jazz en Tech */}
+                {/* Checkbox RGPD obligatoire avec validation visuelle */}
                 <fieldset className="flex items-start space-x-3">
                   <legend className="sr-only">Consentement RGPD</legend>
                   <input
@@ -318,15 +474,27 @@ export default function Contact() {
                     required
                     aria-required="true"
                     aria-describedby="consent-help"
-                    className="focus-minimal mt-1 w-4 h-4 rounded"
+                    checked={consentAccepted}
+                    onChange={handleConsentChange}
+                    className={`focus-minimal mt-1 w-4 h-4 rounded ${
+                      validationErrors.some(error => error.includes('conditions')) 
+                        ? 'border-red-500' 
+                        : 'border-gray-300'
+                    }`}
                     style={{ 
                       accentColor: '#d4af37',
-                      borderColor: '#d1d5db'
                     }}
                   />
                   <div>
-                    <label htmlFor="consent" className="text-xs md:text-sm text-gray-600">
-                      J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
+                    <label 
+                      htmlFor="consent" 
+                      className={`text-xs md:text-sm ${
+                        validationErrors.some(error => error.includes('conditions'))
+                          ? 'text-red-600' 
+                          : 'text-gray-600'
+                      }`}
+                    >
+                      <span className="text-red-600">*</span> J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
                       Voir notre <a 
                         href="/politique-confidentialite" 
                         className="font-semibold underline transition-colors"
