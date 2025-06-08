@@ -33,7 +33,7 @@ export default function Home() {
   
   {/* Texte RESPONSIVE */}
   <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl" style={{ color: '#f7f3e9' }}>
-    Le festival de jazz qui marie tradition et innovation technologique
+  Le festival qui fait swinguer les Pyrénées orientales 
   </p>
   
   {/* Boutons CORRIGÉS - Billetterie et Programmation */}
