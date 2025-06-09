@@ -75,19 +75,20 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/jazz-en-tech.ico', sizes: 'any', type: 'image/x-icon' },
+      { url: '/jazz-en-tech.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/jazz-en-tech.ico', sizes: '32x32', type: 'image/x-icon' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/jazz-en-tech.ico', sizes: '180x180', type: 'image/x-icon' },
     ],
     other: [
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/jazz-en-tech.ico', sizes: '192x192', type: 'image/x-icon' },
+      { url: '/jazz-en-tech.ico', sizes: '512x512', type: 'image/x-icon' },
     ],
   },
   verification: {
-    google: 'akfSXGjHNdRez9-K4ek5inCasrrMy5xsO_Adr0Ugirs',
+    google: 'ubaL4o8UgQ30SY4PvSeSahpzMDVE3cHRhCaucb57IEk',
   },
 }
 
@@ -110,10 +111,10 @@ export default function RootLayout({
         <meta name="google-site-verification" content="ubaL4o8UgQ30SY4PvSeSahpzMDVE3cHRhCaucb57IEk" />
         
         {/* Favicons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/jazz-en-tech.ico" sizes="any" />
+        <link rel="icon" href="/jazz-en-tech.ico" sizes="16x16" type="image/x-icon" />
+        <link rel="icon" href="/jazz-en-tech.ico" sizes="32x32" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/jazz-en-tech.ico" />
         
         {/* Theme color */}
         <meta name="theme-color" content="#722f37" />
