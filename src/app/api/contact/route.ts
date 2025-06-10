@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     console.log('📤 Tentative d\'envoi email...')
     
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'noreply@jazzentech.com',  // ← CHANGÉ ICI !
       to: [process.env.CONTACT_EMAIL!],
       subject: `[Jazz en Tech] ${subjectLabel} - ${fullName}`,
       html: `<!DOCTYPE html>
