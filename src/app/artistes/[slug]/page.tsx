@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { notFound } from 'next/navigation'
-import { Calendar, MapPin, Clock, Music, Play, Instagram, Apple, Facebook } from 'lucide-react'
+import { Calendar, MapPin, Clock, Music, Instagram, Apple, Facebook } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import dynamic from 'next/dynamic'
+import { Metadata } from 'next'
 import ReservationButton from '@/components/ReservationButton'
+
+// Lazy loading seulement pour la discographie
+const DiscographySection = dynamic(() => import('@/components/DiscographySection'), {
+  loading: () => (
+    <div className="animate-pulse">
+      <div className="h-8 bg-gray-300 rounded w-1/3 mb-6"></div>
+      <div className="space-y-4">
+        {[1,2,3].map(i => (
+          <div key={i} className="bg-gray-300 rounded-xl h-24"></div>
+        ))}
+      </div>
+    </div>
+  )
+})
 
 // Données complètes des artistes
 const artistsData = {
@@ -385,7 +402,7 @@ const artistsData = {
       appleMusic: 'https://music.apple.com/fr/artist/charlotte-planchou/1466442533'
     }
   },
-  // ARTISTES CONCERTS GRATUITS (gardés tels quels)
+  // ARTISTES CONCERTS GRATUITS
   'cavale-trio': {
     name: 'Cavale',
     subtitle: 'Prêle Abelanet, Damien Guisset, Pierre Baradel',
@@ -505,6 +522,239 @@ const artistsData = {
   }
 }
 
+// Génération des métadonnées SEO
+export async function generateMetadata({ params }: ArtistPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const artist = artistsData[slug as keyof typeof artistsData]
+
+  if (!artist) {
+    return {
+      title: 'Artiste non trouvé - Jazz en Tech 2025'
+    }
+  }
+
+  const description = `${artist.name} - ${artist.subtitle}. ${artist.biography.intro.slice(0, 155)}...`
+  const imageUrl = `https://jazzentech.com${artist.image}`
+
+  return {
+    title: `${artist.name} - ${artist.subtitle} | Jazz en Tech 2025`,
+    description,
+    keywords: [
+      artist.name,
+      'Jazz en Tech 2025',
+      'festival jazz',
+      'Céret',
+      'Saint-Génis-des-Fontaines',
+      artist.genre.split(' • ')[0],
+      artist.genre.split(' • ')[1] || '',
+      'concert',
+      'musique'
+    ].filter(Boolean).join(', '),
+    
+    openGraph: {
+      title: `${artist.name} - Jazz en Tech 2025`,
+      description,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `Photo de ${artist.name}`,
+        }
+      ],
+      locale: 'fr_FR',
+      type: 'profile',
+      siteName: 'Jazz en Tech 2025'
+    },
+    
+    twitter: {
+      card: 'summary_large_image',
+      title: `${artist.name} - Jazz en Tech 2025`,
+      description,
+      images: [imageUrl],
+      creator: '@jazzentech'
+    },
+    
+    alternates: {
+      canonical: `https://jazzentech.com/artistes/${slug}`
+    },
+    
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    }
+  }
+}
+
+// Composant pour les données structurées
+const StructuredData = ({ artist }: { artist: any }) => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "name": `${artist.name} - ${artist.subtitle}`,
+    "description": artist.biography.intro,
+    "image": `https://jazzentech.com${artist.image}`,
+    "startDate": artist.date,
+    "location": {
+      "@type": "Place",
+      "name": artist.venue,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": artist.venue.includes('Céret') ? 'Céret' : 'Saint-Génis-des-Fontaines',
+        "addressCountry": "FR"
+      }
+    },
+    "performer": {
+      "@type": "MusicGroup",
+      "name": artist.name,
+      "genre": artist.genre,
+      "description": artist.biography.intro,
+      "image": `https://jazzentech.com${artist.image}`,
+      ...(artist.socials.instagram !== '#' && {
+        "sameAs": [
+          artist.socials.instagram,
+          artist.socials.facebook !== '#' ? artist.socials.facebook : undefined,
+          artist.socials.appleMusic !== '#' ? artist.socials.appleMusic : undefined
+        ].filter(Boolean)
+      })
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Jazz en Tech",
+      "url": "https://jazzentech.com"
+    },
+    ...(artist.ticketUrl && {
+      "offers": {
+        "@type": "Offer",
+        "url": artist.ticketUrl,
+        "availability": "https://schema.org/InStock"
+      }
+    })
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
+
+// Composant image optimisé
+const OptimizedImage = ({ src, alt, className, priority = false }: {
+  src: string
+  alt: string
+  className?: string
+  priority?: boolean
+}) => (
+  <Image
+    src={src}
+    alt={alt}
+    width={600}
+    height={400}
+    className={className}
+    priority={priority}
+    placeholder="blur"
+    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+  />
+)
+
+const ConcertGratuitInfo = () => (
+  <div className="text-center">
+    <div 
+      className="inline-flex items-center px-6 py-4 rounded-xl font-bold text-lg shadow-xl"
+      style={{ 
+        backgroundColor: '#d4af37', 
+        color: '#1a1a1a'
+      }}
+    >
+      🎵 Concert Gratuit - Accès Libre 🎵
+    </div>
+    <p className="mt-4 text-gray-600">
+      Rendez-vous dans le centre-ville de Céret pour ce concert en accès libre
+    </p>
+  </div>
+)
+
+const LineupSection = ({ lineup }: { lineup: Array<{name: string, instrument: string}> }) => (
+  <section aria-labelledby="lineup-heading">
+    <h2 id="lineup-heading" className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
+      🎼 Formation
+    </h2>
+    
+    <div className="grid md:grid-cols-2 gap-4">
+      {lineup.map((member, index) => (
+        <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="flex items-center justify-between">
+            <span className="font-bold text-lg" style={{ color: '#1a1a1a' }}>
+              {member.name}
+            </span>
+            <span className="text-sm font-medium px-3 py-1 rounded-full" style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
+              {member.instrument}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+)
+
+const SocialsSection = ({ socials }: { socials: {instagram: string, facebook: string, appleMusic: string} }) => (
+  <section aria-labelledby="socials-heading">
+    <h2 id="socials-heading" className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
+      🌐 Suivre l'artiste
+    </h2>
+    
+    <div className="flex flex-wrap gap-4">
+      {socials.instagram !== '#' && (
+        <a 
+          href={socials.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity"
+          aria-label="Suivre sur Instagram"
+        >
+          <Instagram className="w-5 h-5" />
+          <span className="font-medium">Instagram</span>
+        </a>
+      )}
+      
+      {socials.facebook !== '#' && (
+        <a 
+          href={socials.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+          aria-label="Suivre sur Facebook"
+        >
+          <Facebook className="w-5 h-5" />
+          <span className="font-medium">Facebook</span>
+        </a>
+      )}
+      
+      {socials.appleMusic !== '#' && (
+        <a 
+          href={socials.appleMusic}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center space-x-2 px-4 py-3 bg-black text-white rounded-lg hover:opacity-90 transition-opacity"
+          aria-label="Écouter sur Apple Music"
+        >
+          <Apple className="w-5 h-5" />
+          <span className="font-medium">Apple Music</span>
+        </a>
+      )}
+    </div>
+  </section>
+)
+
 interface ArtistPageProps {
   params: Promise<{
     slug: string
@@ -519,313 +769,266 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
     notFound()
   }
 
-  // Composant pour les concerts gratuits (pas de bouton réservation)
-  const ConcertGratuitInfo = () => (
-    <div className="text-center">
-      <div 
-        className="inline-flex items-center px-6 py-4 rounded-xl font-bold text-lg shadow-xl"
-        style={{ 
-          backgroundColor: '#d4af37', 
-          color: '#1a1a1a'
-        }}
-      >
-        🎵 Concert Gratuit - Accès Libre 🎵
-      </div>
-      <p className="mt-4 text-gray-600">
-        Rendez-vous dans le centre-ville de Céret pour ce concert en accès libre
-      </p>
-    </div>
-  )
-
   return (
-    <div className="min-h-screen bg-white">
-      <title>{artist.name} - Jazz en Tech 2025</title>
+    <>
+      <StructuredData artist={artist} />
       
-      {/* Hero Section avec photo de l'artiste */}
-      <section className="relative hero-gradient text-white pt-36 pb-16 sm:pt-40 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">
-        {/* Image de fond avec overlay */}
-        <div className="absolute inset-0">
-          <img 
-            src={artist.image}
-            alt={artist.name}
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Badges */}
-            <div className="flex justify-center mb-6">
-              <div className="flex flex-wrap gap-3">
-                {artist.badge && (
-                  <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
-                    {artist.badge}
-                  </span>
-                )}
-                {artist.isClosure && (
-                  <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
-                    CLÔTURE DU FESTIVAL
-                  </span>
-                )}
-                {artist.ticketType === 'gratuit' && (
-                  <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
-                    CONCERT GRATUIT
-                  </span>
-                )}
-              </div>
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4" style={{ color: '#d4af37' }}>
-              {artist.name}
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6" style={{ color: '#f7f3e9' }}>
-              {artist.subtitle}
-            </p>
-            <p className="text-base sm:text-lg mb-8 opacity-90">
-              {artist.genre}
-            </p>
-            
-            {/* PHOTO CIRCULAIRE DE L'ARTISTE */}
-            <div className="flex justify-center mb-8">
-              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
-                <img 
-                  src={artist.image}
-                  alt={artist.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            
-            {/* Infos concert */}
-            <div className="bg-black/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20">
-              <div className="grid md:grid-cols-3 gap-4 text-center">
-                <div className="flex items-center justify-center space-x-2">
-                  <Calendar className="w-5 h-5" style={{ color: '#d4af37' }} />
-                  <span className="font-semibold">{artist.date}</span>
+      <div className="min-h-screen bg-white">
+        {/* Hero Section avec sémantique améliorée */}
+        <header className="relative hero-gradient text-white pt-36 pb-16 sm:pt-40 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">
+          {/* Image de fond optimisée */}
+          <div className="absolute inset-0" aria-hidden="true">
+            <OptimizedImage 
+              src={artist.image}
+              alt={`Photo de ${artist.name} en concert`}
+              className="w-full h-full object-cover opacity-20"
+              priority={true}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Badges */}
+              {(artist.badge || artist.isClosure || artist.ticketType === 'gratuit') && (
+                <div className="flex justify-center mb-6">
+                  <div className="flex flex-wrap gap-3">
+                    {artist.badge && (
+                      <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
+                        {artist.badge}
+                      </span>
+                    )}
+                    {artist.isClosure && (
+                      <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>
+                        CLÔTURE DU FESTIVAL
+                      </span>
+                    )}
+                    {artist.ticketType === 'gratuit' && (
+                      <span className="px-4 py-2 rounded-full text-sm font-bold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                        CONCERT GRATUIT
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex items-center justify-center space-x-2">
-                  <Clock className="w-5 h-5" style={{ color: '#d4af37' }} />
-                  <span className="font-semibold">{artist.time}</span>
+              )}
+              
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4" style={{ color: '#d4af37' }}>
+                {artist.name}
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl mb-6" style={{ color: '#f7f3e9' }}>
+                {artist.subtitle}
+              </p>
+              <p className="text-base sm:text-lg mb-8 opacity-90">
+                {artist.genre}
+              </p>
+              
+              {/* Photo circulaire optimisée */}
+              <div className="flex justify-center mb-8">
+                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                  <OptimizedImage 
+                    src={artist.image}
+                    alt={`Portrait de ${artist.name}, artiste de ${artist.genre}`}
+                    className="w-full h-full object-cover"
+                    priority={true}
+                  />
                 </div>
-                <div className="flex items-center justify-center space-x-2">
-                  <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
-                  <span className="font-semibold text-sm">{artist.venue}</span>
+              </div>
+              
+              {/* Infos concert */}
+              <div className="bg-black/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20">
+                <div className="grid md:grid-cols-3 gap-4 text-center">
+                  <div className="flex items-center justify-center space-x-2">
+                    <Calendar className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
+                    <time className="font-semibold">{artist.date}</time>
+                  </div>
+                  <div className="flex items-center justify-center space-x-2">
+                    <Clock className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
+                    <span className="font-semibold">{artist.time}</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-2">
+                    <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
+                    <span className="font-semibold text-sm">{artist.venue}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto space-y-12">
-          
-          {/* Bouton réservation ou info concert gratuit */}
-          <section className="text-center">
-            {artist.ticketType === 'gratuit' ? (
-              <ConcertGratuitInfo />
-            ) : artist.ticketType === 'billetterie' ? (
-              <Link 
-                href="/billetterie"
-                className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-                style={{ 
-                  backgroundColor: '#722f37', 
-                  color: '#f7f3e9'
-                }}
-              >
-                🎫 Réserver mes places
-              </Link>
-            ) : (
-              <ReservationButton
-                ticketType={artist.ticketType}
-                ticketUrl={artist.ticketUrl}
-                billetwebEventId={artist.billetwebEventId}
-                artistName={artist.name}
-              />
-            )}
-          </section>
-
-          {/* Biographie */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 flex items-center" style={{ color: '#722f37' }}>
-              <Music className="w-6 h-6 mr-3" />
-              Biographie
-            </h2>
+        <main className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto space-y-12">
             
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg font-medium mb-6 leading-relaxed" style={{ color: '#722f37' }}>
-                {artist.biography.intro}
-              </p>
-              
-              {artist.biography.content.map((paragraph, index) => (
-                <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </section>
+            {/* Bouton réservation */}
+            <section aria-labelledby="reservation-heading">
+              <h2 id="reservation-heading" className="sr-only">Réservation</h2>
+              {artist.ticketType === 'gratuit' ? (
+                <ConcertGratuitInfo />
+              ) : artist.ticketType === 'billetterie' ? (
+                <div className="text-center">
+                  <Link 
+                    href="/billetterie"
+                    className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+                    style={{ 
+                      backgroundColor: '#722f37', 
+                      color: '#f7f3e9'
+                    }}
+                    aria-label={`Réserver des places pour ${artist.name}`}
+                  >
+                    🎫 Réserver mes places
+                  </Link>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <ReservationButton
+                    ticketType={artist.ticketType}
+                    ticketUrl={artist.ticketUrl}
+                    billetwebEventId={artist.billetwebEventId}
+                    artistName={artist.name}
+                  />
+                </div>
+              )}
+            </section>
 
-          {/* Formation/Lineup */}
-          {artist.lineup && (
-            <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
-                🎼 Formation
+            {/* Biographie */}
+            <article aria-labelledby="biography-heading">
+              <h2 id="biography-heading" className="text-2xl md:text-3xl font-bold mb-6 flex items-center" style={{ color: '#722f37' }}>
+                <Music className="w-6 h-6 mr-3" aria-hidden="true" />
+                Biographie
               </h2>
               
-              <div className="grid md:grid-cols-2 gap-4">
-                {artist.lineup.map((member, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-lg" style={{ color: '#1a1a1a' }}>
-                        {member.name}
-                      </span>
-                      <span className="text-sm font-medium px-3 py-1 rounded-full" style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
-                        {member.instrument}
-                      </span>
-                    </div>
-                  </div>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg font-medium mb-6 leading-relaxed" style={{ color: '#722f37' }}>
+                  {artist.biography.intro}
+                </p>
+                
+                {artist.biography.content.map((paragraph, index) => (
+                  <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                    {paragraph}
+                  </p>
                 ))}
               </div>
-            </section>
-          )}
+            </article>
 
-          {/* Discographie */}
-          {artist.discography && artist.discography.length > 0 && (
-            <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
-                🎵 Discographie
-              </h2>
-              
-              <div className="grid gap-6">
-                {artist.discography.map((album, index) => (
-                  <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold mb-1" style={{ color: '#1a1a1a' }}>
-                          {album.title}
+            {/* Formation/Lineup */}
+            {artist.lineup && (
+              <Suspense fallback={
+                <div className="animate-pulse">
+                  <div className="h-8 bg-gray-300 rounded w-1/3 mb-6"></div>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[1,2,3,4].map(i => (
+                      <div key={i} className="bg-gray-300 rounded-lg h-16"></div>
+                    ))}
+                  </div>
+                </div>
+              }>
+                <LineupSection lineup={artist.lineup} />
+              </Suspense>
+            )}
+
+            {/* Discographie avec lazy loading */}
+            {artist.discography && artist.discography.length > 0 && (
+              <Suspense fallback={
+                <div className="animate-pulse">
+                  <div className="h-8 bg-gray-300 rounded w-1/3 mb-6"></div>
+                  <div className="space-y-4">
+                    {[1,2,3].map(i => (
+                      <div key={i} className="bg-gray-300 rounded-xl h-24"></div>
+                    ))}
+                  </div>
+                </div>
+              }>
+                <DiscographySection discography={artist.discography} />
+              </Suspense>
+            )}
+
+            {/* SECTION VIDÉOS - ORIGINALE CONSERVÉE */}
+            {artist.videos && artist.videos.length > 0 && (
+              <section aria-labelledby="videos-heading">
+                <h2 id="videos-heading" className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
+                  🎬 Vidéos
+                </h2>
+                
+                <div className="grid gap-6">
+                  {artist.videos.map((video, index) => (
+                    <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+                      <div className="aspect-video">
+                        {video.facebookUrl ? (
+                          // Affichage spécial pour le lien Facebook
+                          <div className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                            <a 
+                              href={video.facebookUrl}
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-white text-center hover:scale-105 transition-transform p-8"
+                              aria-label={`Voir la vidéo ${video.title} sur Facebook`}
+                            >
+                              <div className="text-6xl mb-4" aria-hidden="true">▶️</div>
+                              <div className="text-xl font-bold mb-2">Voir la vidéo sur Facebook</div>
+                              <div className="text-base opacity-90">Florin Gugulica Trio</div>
+                              <div className="text-sm opacity-75 mt-2">Concerts gratuits à Céret</div>
+                            </a>
+                          </div>
+                        ) : (
+                          // Affichage YouTube normal
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${video.id}`}
+                            title={video.title}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            loading="lazy"
+                          ></iframe>
+                        )}
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
+                          {video.title}
                         </h3>
-                        <p className="text-sm font-medium" style={{ color: '#722f37' }}>
-                          {album.year} • {album.label}
-                        </p>
+                        <p className="text-gray-600">{video.description}</p>
                       </div>
                     </div>
-                    <p className="text-gray-700">{album.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
+                  ))}
+                </div>
+              </section>
+            )}
 
-          {/* Vidéos - SECTION MODIFIÉE POUR GÉRER YOUTUBE ET FACEBOOK */}
-          {artist.videos && artist.videos.length > 0 && (
-            <section>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
-                🎬 Vidéos
-              </h2>
-              
-              <div className="grid gap-6">
-                {artist.videos.map((video, index) => (
-                  <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                    <div className="aspect-video">
-                      {video.facebookUrl ? (
-                        // Affichage spécial pour le lien Facebook
-                        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                          <a 
-                            href={video.facebookUrl}
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-white text-center hover:scale-105 transition-transform p-8"
-                          >
-                            <div className="text-6xl mb-4">▶️</div>
-                            <div className="text-xl font-bold mb-2">Voir la vidéo sur Facebook</div>
-                            <div className="text-base opacity-90">Florin Gugulica Trio</div>
-                            <div className="text-sm opacity-75 mt-2">Concerts gratuits à Céret</div>
-                          </a>
-                        </div>
-                      ) : (
-                        // Affichage YouTube normal
-                        <iframe
-                          width="100%"
-                          height="100%"
-                          src={`https://www.youtube.com/embed/${video.id}`}
-                          title={video.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-bold text-lg mb-2" style={{ color: '#722f37' }}>
-                        {video.title}
-                      </h3>
-                      <p className="text-gray-600">{video.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
+            {/* Réseaux sociaux */}
+            <SocialsSection socials={artist.socials} />
 
-          {/* Réseaux sociaux */}
-          <section>
-            <h2 className="text-2xl md:text-3xl font-bold mb-6" style={{ color: '#722f37' }}>
-              🌐 Suivre l'artiste
-            </h2>
-            
-            <div className="flex flex-wrap gap-4">
-              {artist.socials.instagram !== '#' && (
-                <a 
-                  href={artist.socials.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  <Instagram className="w-5 h-5" />
-                  <span className="font-medium">Instagram</span>
-                </a>
-              )}
-              
-              {artist.socials.facebook !== '#' && (
-                <a 
-                  href={artist.socials.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  <Facebook className="w-5 h-5" />
-                  <span className="font-medium">Facebook</span>
-                </a>
-              )}
-              
-              {artist.socials.appleMusic !== '#' && (
-                <a 
-                  href={artist.socials.appleMusic}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 px-4 py-3 bg-black text-white rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  <Apple className="w-5 h-5" />
-                  <span className="font-medium">Apple Music</span>
-                </a>
-              )}
-            </div>
-          </section>
-
-          {/* Retour vers programmation */}
-          <section className="text-center pt-8 border-t border-gray-200">
-            <Link 
-              href="/programmation"
-              className="inline-flex items-center text-lg font-semibold hover:opacity-80 transition-opacity"
-              style={{ color: '#722f37' }}
-            >
-              ← Retour à la programmation
-            </Link>
-          </section>
-        </div>
+            {/* Navigation avec breadcrumb */}
+            <nav aria-label="Breadcrumb" className="text-center pt-8 border-t border-gray-200">
+              <ol className="inline-flex items-center space-x-2">
+                <li>
+                  <Link 
+                    href="/"
+                    className="text-lg font-semibold hover:opacity-80 transition-opacity"
+                    style={{ color: '#722f37' }}
+                  >
+                    Accueil
+                  </Link>
+                </li>
+                <li className="text-gray-500" aria-hidden="true"> → </li>
+                <li>
+                  <Link 
+                    href="/programmation"
+                    className="text-lg font-semibold hover:opacity-80 transition-opacity"
+                    style={{ color: '#722f37' }}
+                  >
+                    Programmation
+                  </Link>
+                </li>
+                <li className="text-gray-500" aria-hidden="true"> → </li>
+                <li>
+                  <span className="text-lg font-semibold text-gray-500">{artist.name}</span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </main>
       </div>
-    </div>
+    </>
   )
 }
 
