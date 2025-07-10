@@ -89,7 +89,7 @@ function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone size={16} style={{ color: '#d4af37' }} aria-hidden="true" />
                 <a 
-                  href="tel:+33608758767"
+                  href="tel:+33637581886"
                   className="nav-link text-sm hover:opacity-80 transition-colors rounded" 
                   style={{ color: '#f7f3e9' }}
                 >
