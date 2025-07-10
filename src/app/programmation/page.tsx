@@ -11,7 +11,7 @@ const artistsData = {
     sections: [
       {
         title: 'CONCERTS AVEC BILLETTERIE',
-        subtitle: '🎫 Réservation obligatoire',
+        subtitle: '🎫 Réservation recommandée',
         color: '#722f37',
         locations: [
           {

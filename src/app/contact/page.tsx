@@ -176,7 +176,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Téléphone</h3>
-                  <p className="text-gray-600">+33 6 08 75 87 67</p>
+                  <p className="text-gray-600">+33 6 37 58 18 86</p>
                   <p className="text-sm text-gray-500">Lun-Ven 9h-18h</p>
                 </div>
               </div>

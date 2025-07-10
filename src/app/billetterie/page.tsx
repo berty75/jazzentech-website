@@ -494,7 +494,7 @@ export default function Billetterie() {
                 <h4 className="font-semibold mb-2" style={{ color: '#1a1a1a' }}>Service client</h4>
                 <p className="text-sm text-gray-600 mb-1">Du lundi au vendredi</p>
                 <p className="font-bold text-sm" style={{ color: '#722f37' }}>
-                  06 08 75 87 67
+                  +33 6 37 58 18 86
                 </p>
               </div>
             </div>

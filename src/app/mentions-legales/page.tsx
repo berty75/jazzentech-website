@@ -58,7 +58,7 @@ export default function MentionsLegales() {
               <div className="flex items-center space-x-2 mt-2">
                 <Phone className="w-4 h-4" style={{ color: '#722f37' }} />
                 <span className="text-sm md:text-base">Téléphone : </span>
-                <span className="font-medium text-sm md:text-base" style={{ color: '#722f37' }}>06 08 75 87 67</span>
+                <span className="font-medium text-sm md:text-base" style={{ color: '#722f37' }}>+33 6 37 58 18 86</span>
               </div>
             </div>
           </section>

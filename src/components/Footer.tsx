@@ -93,7 +93,7 @@ function Footer() {
                   className="nav-link text-sm hover:opacity-80 transition-colors rounded" 
                   style={{ color: '#f7f3e9' }}
                 >
-                  06 08 75 87 67
+                  +33 6 37 58 18 86
                 </a>
               </div>
               <div className="flex items-center space-x-3">
