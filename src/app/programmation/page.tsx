@@ -415,80 +415,137 @@ const artistsData = {
 }
 
 // Composant compte à rebours
+// Composant compte à rebours
 function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
+  // Le festival a commencé ! 🎉
+  const festivalStarted = true
 
-  useEffect(() => {
-    const targetDate = new Date('2025-07-25T23:59:59').getTime()
+  if (festivalStarted) {
+    return (
+      <div className="relative overflow-hidden">
+        {/* Background subtil avec notes de musique */}
+        <div className="absolute inset-0 opacity-8">
+          <div className="absolute top-6 left-12 animate-bounce text-xl">🎵</div>
+          <div className="absolute top-16 right-16 animate-pulse text-lg delay-500">🎶</div>
+          <div className="absolute bottom-12 left-20 animate-bounce text-base delay-1000">🎼</div>
+          <div className="absolute bottom-8 right-8 animate-pulse text-xl delay-700">🎷</div>
+        </div>
 
-    const updateCountdown = () => {
-      const now = new Date().getTime()
-      const difference = targetDate - now
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
-
-        setTimeLeft({ days, hours, minutes, seconds })
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-      }
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="flex justify-center items-center space-x-2 sm:space-x-4">
-      <div 
-        className="text-white rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
-        style={{ backgroundColor: '#722f37' }}
-      >
-        <div className="text-lg sm:text-xl md:text-2xl font-bold">{timeLeft.days}</div>
-        <div className="text-xs uppercase tracking-wide">Jours</div>
+        <div className="relative z-10 flex flex-col items-center justify-center space-y-8 py-8">
+          {/* Titre principal épuré */}
+          <div className="text-center">
+            <h3 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: '#722f37' }}>
+              🎊 LE FESTIVAL EST LÀ ! 🎊
+            </h3>
+            <p className="text-xl md:text-2xl font-semibold mb-6" style={{ color: '#d4af37' }}>
+              Jazz en Tech 2025 • 10ème édition
+            </p>
+          </div>
+          
+          {/* Timeline originale et élégante */}
+          <div className="w-full max-w-2xl mx-auto">
+            <div className="relative">
+              {/* Ligne de temps */}
+              <div className="absolute top-1/2 left-0 right-0 h-1 transform -translate-y-1/2" 
+                   style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }}></div>
+              
+              {/* Points sur la timeline */}
+              <div className="relative flex justify-between items-center">
+                {/* Point Saint-Génis (en cours) */}
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center border-4 shadow-lg animate-pulse"
+                       style={{ 
+                         backgroundColor: '#722f37', 
+                         borderColor: '#d4af37'
+                       }}>
+                    <span className="text-white font-bold text-sm">LIVE</span>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <div className="font-bold text-sm" style={{ color: '#722f37' }}>Saint-Génis</div>
+                    <div className="text-xs" style={{ color: '#d4af37' }}>27-28 juillet</div>
+                    <div className="inline-block px-2 py-1 rounded-full text-xs font-bold mt-1"
+                         style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
+                      EN COURS
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Point Céret (à venir) */}
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center border-4 shadow-lg"
+                       style={{ 
+                         backgroundColor: '#d4af37', 
+                         borderColor: '#722f37'
+                       }}>
+                    <span className="font-bold text-sm" style={{ color: '#722f37' }}>SOON</span>
+                  </div>
+                  <div className="mt-3 text-center">
+                    <div className="font-bold text-sm" style={{ color: '#722f37' }}>Céret</div>
+                    <div className="text-xs" style={{ color: '#d4af37' }}>6-9 août</div>
+                    <div className="inline-block px-2 py-1 rounded-full text-xs font-bold mt-1"
+                         style={{ backgroundColor: '#b87333', color: '#f7f3e9' }}>
+                      BIENTÔT
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Cards avec infos en temps réel */}
+          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto w-full">
+            <div className="text-center p-4 rounded-xl border-2 shadow-sm hover:shadow-md transition-shadow"
+                 style={{ 
+                   backgroundColor: '#f7f3e9',
+                   borderColor: '#d4af37'
+                 }}>
+              <div className="text-2xl mb-2">🎭</div>
+              <div className="font-bold text-sm" style={{ color: '#722f37' }}>ACTUELLEMENT</div>
+              <div className="text-xs font-medium mt-1" style={{ color: '#b87333' }}>Concerts Saint-Génis</div>
+            </div>
+            
+            <div className="text-center p-4 rounded-xl border-2 shadow-sm hover:shadow-md transition-shadow"
+                 style={{ 
+                   backgroundColor: '#f7f3e9',
+                   borderColor: '#722f37'
+                 }}>
+              <div className="text-2xl mb-2">🎪</div>
+              <div className="font-bold text-sm" style={{ color: '#722f37' }}>PROCHAINEMENT</div>
+              <div className="text-xs font-medium mt-1" style={{ color: '#b87333' }}>Céret 6-9 août</div>
+            </div>
+            
+            <div className="text-center p-4 rounded-xl border-2 shadow-sm hover:shadow-md transition-shadow"
+                 style={{ 
+                   backgroundColor: '#f7f3e9',
+                   borderColor: '#b87333'
+                 }}>
+              <div className="text-2xl mb-2">🎵</div>
+              <div className="font-bold text-sm" style={{ color: '#722f37' }}>GRATUITS</div>
+              <div className="text-xs font-medium mt-1" style={{ color: '#b87333' }}>Dans les rues</div>
+            </div>
+          </div>
+          
+          {/* Message principal - Simple et classe */}
+          <div className="text-center max-w-2xl mx-auto">
+            <div className="inline-flex items-center px-8 py-4 rounded-xl font-bold text-base mb-4 transition-all duration-200 hover:shadow-md"
+                 style={{ 
+                   backgroundColor: '#f7f3e9', 
+                   border: '2px solid #d4af37',
+                   color: '#722f37'
+                 }}>
+              🎵 Le jazz résonne dans les Pyrénées-Orientales ! 🎵
+            </div>
+            <p className="text-sm text-gray-600">
+              Suivez-nous sur nos réseaux sociaux pour vivre le festival en direct
+            </p>
+          </div>
+        </div>
       </div>
-      
-      <div className="text-lg sm:text-xl font-bold" style={{ color: '#722f37' }}>:</div>
-      
-      <div 
-        className="text-white rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
-        style={{ backgroundColor: '#722f37' }}
-      >
-        <div className="text-lg sm:text-xl md:text-2xl font-bold">{timeLeft.hours.toString().padStart(2, '0')}</div>
-        <div className="text-xs uppercase tracking-wide">Heures</div>
-      </div>
-      
-      <div className="text-lg sm:text-xl font-bold" style={{ color: '#722f37' }}>:</div>
-      
-      <div 
-        className="rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
-        style={{ backgroundColor: '#d4af37', color: '#722f37' }}
-      >
-        <div className="text-lg sm:text-xl md:text-2xl font-bold">{timeLeft.minutes.toString().padStart(2, '0')}</div>
-        <div className="text-xs uppercase tracking-wide">Min</div>
-      </div>
-      
-      <div className="text-lg sm:text-xl font-bold" style={{ color: '#722f37' }}>:</div>
-      
-      <div 
-        className="rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px] shadow-lg"
-        style={{ backgroundColor: '#d4af37', color: '#722f37' }}
-      >
-        <div className="text-lg sm:text-xl md:text-2xl font-bold">{timeLeft.seconds.toString().padStart(2, '0')}</div>
-        <div className="text-xs uppercase tracking-wide">Sec</div>
-      </div>
-    </div>
-  )
+    )
+  }
+
+  // Code original du compte à rebours (gardé pour référence mais non utilisé)
+  return null
 }
 
 export default function Programmation() {
@@ -879,7 +936,7 @@ export default function Programmation() {
               <CountdownTimer />
               
               <p className="text-xs md:text-sm text-gray-600 mt-4">
-                Plus que quelques mois avant cette 10ème édition exceptionnelle
+                  🎊 La 10ème édition est en cours ! Vivez la magie en direct 🎊
               </p>
             </div>
           </section>

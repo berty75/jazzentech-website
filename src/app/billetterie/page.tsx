@@ -43,119 +43,85 @@ function BilletwebWidget() {
   )
 }
 
-// Composant compte à rebours jazz fun
+// Composant compte à rebours jazz fun MODIFIÉ
 function JazzCountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
+  // Le festival a commencé ! 🎉
+  const festivalStarted = true
 
-  useEffect(() => {
-    const targetDate = new Date('2025-07-25T23:59:59').getTime()
-
-    const updateCountdown = () => {
-      const now = new Date().getTime()
-      const difference = targetDate - now
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000)
-
-        setTimeLeft({ days, hours, minutes, seconds })
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-      }
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="relative">
-      {/* Background musical animé */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-4 left-8 animate-bounce-slow">🎵</div>
-        <div className="absolute top-8 right-12 animate-float delay-500">🎶</div>
-        <div className="absolute bottom-6 left-16 animate-pulse delay-1000">🎼</div>
-        <div className="absolute bottom-4 right-6 animate-bounce delay-700">🎷</div>
-      </div>
-      
-      <div className="relative z-10 text-center">
-        <h3 className="text-xl md:text-2xl font-bold mb-2" style={{ color: '#722f37' }}>
-          🎺 Le jazz arrive ! 🎺
-        </h3>
-        <p className="text-sm md:text-base mb-6 opacity-80">Plus que...</p>
+  if (festivalStarted) {
+    return (
+      <div className="relative">
+        {/* Background musical animé */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-4 left-8 animate-bounce-slow">🎵</div>
+          <div className="absolute top-8 right-12 animate-float delay-500">🎶</div>
+          <div className="absolute bottom-6 left-16 animate-pulse delay-1000">🎼</div>
+          <div className="absolute bottom-4 right-6 animate-bounce delay-700">🎷</div>
+          <div className="absolute top-1/2 left-1/4 animate-spin-slow delay-300">🎺</div>
+          <div className="absolute top-1/3 right-1/4 animate-pulse delay-800">🥁</div>
+        </div>
         
-        <div className="flex justify-center items-center space-x-3 md:space-x-6">
-          {/* Jours - Style vinyle */}
-          <div className="relative">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 flex items-center justify-center transform rotate-45 animate-spin-slow"
-                 style={{ borderColor: '#722f37', backgroundColor: '#1a1a1a' }}>
-              <div className="transform -rotate-45 text-center">
-                <div className="text-lg md:text-xl font-bold text-white">{timeLeft.days}</div>
-                <div className="text-xs text-gray-300">JOURS</div>
+        <div className="relative z-10 text-center">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#722f37' }}>
+            🎊 LE FESTIVAL A COMMENCÉ ! 🎊
+          </h3>
+          <p className="text-lg md:text-xl mb-6 font-bold" style={{ color: '#d4af37' }}>
+            Jazz en Tech 2025 est LIVE !
+          </p>
+          
+          <div className="flex justify-center items-center space-x-6 md:space-x-8 mb-6">
+            {/* Animation de notes qui dansent */}
+            <div className="relative">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center animate-bounce"
+                   style={{ backgroundColor: '#722f37' }}>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl">🎷</div>
+                  <div className="text-xs text-white font-bold">LIVE</div>
+                </div>
               </div>
             </div>
-            <div className="absolute inset-0 rounded-full animate-pulse" 
-                 style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }}></div>
-          </div>
-          
-          <div className="text-2xl font-bold animate-pulse" style={{ color: '#d4af37' }}>♪</div>
-          
-          {/* Heures - Style piano */}
-          <div className="relative">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg flex items-center justify-center"
-                 style={{ 
-                   background: 'linear-gradient(45deg, #d4af37 0%, #b87333 100%)',
-                   color: '#1a1a1a' 
-                 }}>
-              <div className="text-center">
-                <div className="text-lg md:text-xl font-bold">{timeLeft.hours.toString().padStart(2, '0')}</div>
-                <div className="text-xs font-semibold">HEURES</div>
+            
+            <div className="text-3xl font-bold animate-pulse" style={{ color: '#d4af37' }}>♪</div>
+            
+            <div className="relative">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center animate-bounce delay-300"
+                   style={{ backgroundColor: '#d4af37' }}>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl">🎺</div>
+                  <div className="text-xs font-bold" style={{ color: '#722f37' }}>ON AIR</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-3xl font-bold animate-pulse delay-500" style={{ color: '#722f37' }}>♫</div>
+            
+            <div className="relative">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center animate-bounce delay-700"
+                   style={{ backgroundColor: '#b87333' }}>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl">🎹</div>
+                  <div className="text-xs text-white font-bold">JAZZ</div>
+                </div>
               </div>
             </div>
           </div>
           
-          <div className="text-2xl font-bold animate-bounce" style={{ color: '#722f37' }}>♫</div>
-          
-          {/* Minutes - Style saxophone */}
-          <div className="relative">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center transform hover:scale-110 transition-transform"
-                 style={{ backgroundColor: '#b87333', color: '#f7f3e9' }}>
-              <div className="text-center">
-                <div className="text-lg md:text-xl font-bold">{timeLeft.minutes.toString().padStart(2, '0')}</div>
-                <div className="text-xs font-semibold">MIN</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-2xl font-bold animate-pulse delay-500" style={{ color: '#d4af37' }}>♬</div>
-          
-          {/* Secondes - Style trompette */}
-          <div className="relative">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-lg flex items-center justify-center transform rotate-12 animate-bounce-gentle"
-                 style={{ backgroundColor: '#722f37', color: '#d4af37' }}>
-              <div className="text-center transform -rotate-12">
-                <div className="text-lg md:text-xl font-bold">{timeLeft.seconds.toString().padStart(2, '0')}</div>
-                <div className="text-xs font-semibold">SEC</div>
-              </div>
+          <div className="space-y-3">
+            <p className="text-base md:text-lg font-semibold animate-pulse" style={{ color: '#722f37' }}>
+              🔥 En ce moment : concerts à Saint-Génis-des-Fontaines
+            </p>
+            <p className="text-sm md:text-base" style={{ color: '#1a1a1a' }}>
+              Et bientôt à Céret du 6 au 9 août !
+            </p>
+            <div className="inline-flex items-center px-4 py-2 rounded-full font-bold text-sm animate-pulse"
+                 style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)', color: '#722f37' }}>
+              🎫 Billets encore disponibles pour les concerts de Céret
             </div>
           </div>
         </div>
-        
-        <p className="text-xs md:text-sm mt-6 opacity-70">
-          Ventes jusqu'au <strong>25 juillet 2025 à 23h59</strong>
-        </p>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default function Billetterie() {
