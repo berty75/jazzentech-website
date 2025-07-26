@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Navigation from './Navigation'
 import { Menu, X, Ticket } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -58,15 +59,18 @@ export default function Header() {
             href="/"
             className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1 flex-shrink-0"
           >
-            <img
-              src="/images/jazz-en-tech-logo.png"
-              alt="Jazz en Tech Festival"
-              className="w-auto transition-all duration-300"
-              style={{
-                height: getLogoHeight(),
-                maxHeight: getLogoHeight(),
-              }}
-            />
+            <Image
+                src="/images/jazz-en-tech-logo.png"
+                alt="Jazz en Tech Festival"
+                  width={200}
+                  height={104}
+                className="w-auto transition-all duration-300"
+                style={{
+                  height: getLogoHeight(),
+                  maxHeight: getLogoHeight(),
+            }}
+                priority
+              />
           </Link>
 
           {/* Navigation desktop - visible seulement à partir de 1024px (lg) */}
