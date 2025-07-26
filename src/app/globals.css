@@ -270,3 +270,7 @@ header:not(.scrolled) {
 .animate-bounce-gentle {
   animation: bounce-slow 2s ease-in-out infinite;
 }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

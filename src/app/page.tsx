@@ -263,7 +263,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="order-1 lg:order-2 flex justify-center items-start animate-fade-in-right delay-700">
+              <div className="order-1 lg:order-2 flex justify-center items-start opacity-0 animate-[fadeIn_1s_ease-in_0.5s_forwards]">
                 <div className="relative group w-full max-w-sm lg:max-w-md">
                   <OptimizedImage
                     src="/images/affiche-2025.jpg"
