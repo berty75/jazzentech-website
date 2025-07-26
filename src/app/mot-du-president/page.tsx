@@ -1,6 +1,7 @@
 import { Music, Calendar, MapPin, Heart, Award, Users } from 'lucide-react'
 
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Mot du Président - Jazz en Tech 2025',
@@ -41,11 +42,13 @@ export default function MotDuPresident() {
               {/* Photo du président - RESPONSIVE */}
               <div className="relative">
                 <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto">
-                  <img 
-                    src="/images/alain-brunet.jpeg" 
-                    alt="Alain Brunet, Président de Jazz en Tech"
-                    className="w-full h-full object-cover rounded-2xl shadow-2xl"
-                  />
+                <Image 
+                      src="/images/alain-brunet.jpeg" 
+                      alt="Alain Brunet, Président de Jazz en Tech"
+                      width={320}
+                      height={320}
+                      className="w-full h-full object-cover rounded-2xl shadow-2xl"
+                />
                   <div className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-20 md:h-20 bg-jazz-gold rounded-full flex items-center justify-center text-jazz-red font-bold text-xs md:text-sm">
                     <div className="text-center">
                       <div className="text-xs">10ème</div>

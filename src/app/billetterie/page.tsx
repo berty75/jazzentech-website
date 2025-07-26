@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Calendar, MapPin, Clock, Ticket, Star, Music, Users, Headphones, ExternalLink, Info } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // Composant pour le widget Billetweb
 function BilletwebWidget() {
@@ -132,10 +133,13 @@ export default function Billetterie() {
       {/* Hero Section avec photo festival */}
       <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 relative overflow-hidden">        {/* Image de fond */}
         <div className="absolute inset-0">
-          <img 
+        <Image 
             src="/images/festival-scene.jpg"
-            alt="Scène du festival Jazz en Tech"
-            className="w-full h-full object-cover opacity-30"
+                alt="Scène du festival Jazz en Tech"
+                fill
+                className="object-cover opacity-30"
+                sizes="100vw"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
         </div>
@@ -178,11 +182,13 @@ export default function Billetterie() {
          style={{ backgroundColor: '#f7f3e9' }}>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <img 
+        <Image 
             src="/images/manu-le-prince.jpeg"
             alt="Manu Le Prince"
-            className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
-          />
+            width={80}
+        height={80}
+        className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
+        />
           <div>
             <h3 className="text-lg md:text-xl font-bold" style={{ color: '#722f37' }}>
               Manu Le Prince
@@ -223,10 +229,12 @@ export default function Billetterie() {
          style={{ backgroundColor: '#f7f3e9' }}>
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
-          <img 
-            src="/images/florin-gugulica.jpeg"
-            alt="Florin Gugulica"
-            className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
+        <Image 
+              src="/images/florin-gugulica.jpeg"
+                alt="Florin Gugulica"
+                width={80}
+                height={80}
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover"
           />
           <div>
             <h3 className="text-lg md:text-xl font-bold" style={{ color: '#722f37' }}>
@@ -380,11 +388,13 @@ export default function Billetterie() {
                 }
               ].map((artist, index) => (
                 <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow text-center">
-                  <img 
-                    src={artist.image}
-                    alt={artist.name}
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover mx-auto mb-3"
-                  />
+                  <Image 
+                        src={artist.image}
+                        alt={artist.name}
+                        width={80}
+                       height={80}
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover mx-auto mb-3"
+                    />
                   <h4 className="text-sm font-bold mb-1" style={{ color: '#722f37' }}>
                     {artist.name}
                   </h4>

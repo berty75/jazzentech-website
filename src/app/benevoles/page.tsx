@@ -1,6 +1,7 @@
 import React from 'react'
 import { Heart, Users, Clock, Mail, MapPin, Ticket } from 'lucide-react'
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Devenir Bénévole - Jazz en Tech 2025',
@@ -50,11 +51,13 @@ export default function Benevoles() {
 
           {/* Photo du festival - RESPONSIVE */}
           <div className="mb-8 md:mb-12">
-            <img 
-              src="/images/benevoles.jpg" 
-              alt="Scène du festival Jazz en Tech avec musiciens et équipe technique"
-              className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover rounded-2xl shadow-lg"
-            />
+          <Image 
+                src="/images/benevoles.jpg" 
+                alt="Scène du festival Jazz en Tech avec musiciens et équipe technique"
+                width={1200}
+                height={400}
+                className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover rounded-2xl shadow-lg"
+          />
           </div>
 
           {/* Grille des informations - RESPONSIVE */}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Download, Newspaper, Quote, Calendar, Users, Award, ExternalLink, Image as ImageIcon, Phone, Mail } from 'lucide-react'
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Dossier de Presse - Jazz en Tech 2025',
@@ -8,62 +9,85 @@ export const metadata: Metadata = {
 }
 
 export default function DossierPresse() {
-// Modifiez le tableau coupuresPresse pour remplacer l'article Eurorégion par l'article Alain Brunet
+// Tableau coupuresPresse avec 10 images
 const coupuresPresse = [
-    {
-      id: 1,
-      journal: "L'Indépendant / Vallespir",
-      date: "2024",
-      titre: "D'une résidence musicale à la scène de l'Union pour le Florin Gugulica sextet",
-      image: "/images/presse/vallespir-florin-1.jpeg",
-      description: "Florin Gugulica, clarinettiste d'une exceptionnelle virtuosité, nous embarque dans son univers musical aux horizons multiples."
-    },
-    {
-      id: 2,
-      journal: "Vallespir",
-      date: "2024", 
-      titre: "À l'Union, ce fut un exceptionnel concert du Florin Gugulica sextet",
-      image: "/images/presse/vallespir-florin-2.jpeg",
-      description: "Une soirée jazz mémorable avec le sextet de Florin Gugulica dans un voyage musical diversifié."
-    },
-    {
-      id: 3,
-      journal: "Local",
-      date: "2024",
-      titre: "Les Chapitres ont tant aimé Saint-Germain des prés !",
-      image: "/images/presse/arles-chapitres.jpeg", 
-      description: "Jazz à Arles-sur-Tech avec Les Chapitres dans une ambiance conviviale et festive."
-    },
-    {
-      id: 4,
-      journal: "Jazz Magazine",
-      date: "2025",
-      titre: "Interview Alain Brunet",
-      isPdf: true,
-      pdfUrl: "/documents/alain-brunet-jazz-magazine.pdf",
-      description: "Rencontre avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle."
-    }
-  ]
-  
-  // Ajoutez ces articles PDF après le tableau coupuresPresse
-  const articlesPdf = [
-    {
-      id: 1,
-      journal: "Jazz Magazine",
-      date: "Juin 2025",
-      titre: "Interview Alain Brunet",
-      pdfUrl: "/documents/alain-brunet-jazz-magazine.pdf",
-      description: "Rencontre avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle."
-    },
-    {
-      id: 2,
-      journal: "Eurorégion",
-      date: "Mai 2025",
-      titre: "Le jazz du monde au rendez-vous des 10 ans du festival Jazz en Tech",
-      pdfUrl: "/documents/euroregion-jazz-en-tech-2025.pdf",
-      description: "Dossier spécial pour la 10ème édition avec une programmation exceptionnelle d'artistes internationaux."
-    }
-  ]
+  // ANCIENNES (on garde)
+  {
+    id: 1,
+    journal: "L'Indépendant / Vallespir",
+    date: "2024",
+    titre: "D'une résidence musicale à la scène de l'Union pour le Florin Gugulica sextet",
+    image: "/images/presse/vallespir-florin-1.jpeg",
+    description: "Florin Gugulica, clarinettiste d'une exceptionnelle virtuosité, nous embarque dans son univers musical aux horizons multiples."
+  },
+  {
+    id: 2,
+    journal: "Vallespir",
+    date: "2024", 
+    titre: "À l'Union, ce fut un exceptionnel concert du Florin Gugulica sextet",
+    image: "/images/presse/vallespir-florin-2.jpeg",
+    description: "Une soirée jazz mémorable avec le sextet de Florin Gugulica dans un voyage musical diversifié."
+  },
+  {
+    id: 3,
+    journal: "Local",
+    date: "2024",
+    titre: "Les Chapitres ont tant aimé Saint-Germain des prés !",
+    image: "/images/presse/arles-chapitres.jpeg", 
+    description: "Jazz à Arles-sur-Tech avec Les Chapitres dans une ambiance conviviale et festive."
+  },
+  // REMPLACE le PDF "Interview Alain Brunet"
+  {
+    id: 4,
+    journal: "Jazz en Tech",
+    date: "2025",
+    titre: "Rencontre avec Alain Brunet",
+    image: "/images/presse/alain-brunet-interview.jpg",
+    description: "Entretien avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle."
+  },
+  // REMPLACE le PDF "Eurorégion"
+  {
+    id: 5,
+    journal: "L'Indépendant - Eurorégion",
+    date: "10 mai 2025",
+    titre: "Le jazz du monde au rendez-vous des 10 ans du festival Jazz en Tech",
+    image: "/images/presse/euroregion-jazz-monde-page1.jpg",
+    description: "Dossier spécial pour la 10ème édition avec une programmation exceptionnelle d'artistes internationaux."
+  },
+  // NOUVELLES AJOUTÉES
+  {
+    id: 6,
+    journal: "Vallespir",
+    date: "2025",
+    titre: "Une soirée à Saint-Germain-des-Prés avec Alain Brunet",
+    image: "/images/presse/alain-brunet-saint-germain.jpg",
+    description: "Le trompettiste se produit en l'église ce vendredi. Rencontre avec Alain Brunet et son univers musical."
+  },
+  {
+    id: 7,
+    journal: "Festival",
+    date: "2025",
+    titre: "Programmation Jazz en Tech - 10ème édition",
+    image: "/images/presse/programmation-10ans.jpg",
+    description: "Découvrez la programmation complète de cette édition anniversaire avec tous les artistes."
+  },
+  {
+    id: 8,
+    journal: "Les Festivals",
+    date: "2025",
+    titre: "Charlotte Planchou - L'année des 10 ans !",
+    image: "/images/presse/charlotte-planchou-10ans.jpg",
+    description: "Portrait de Charlotte Planchou, récemment nommée 'Vocaliste de l'année 2024' par Jazz Magazine."
+  },
+  {
+    id: 9,
+    journal: "FC",
+    date: "Mai 2025",
+    titre: "Jazz en Tech fête ses 10 ans",
+    image: "/images/presse/conference-presse-10ans.jpg",
+    description: "Conférence de presse pour l'édition anniversaire du festival avec toute l'équipe organisatrice."
+  }
+]
 
   const citations = [
     {
@@ -187,22 +211,24 @@ const coupuresPresse = [
             </div>
           </section>
   
-          {/* Revue de presse - MODIFIÉE */}
+          {/* Revue de presse - TOUTES LES IMAGES */}
           <section className="mb-8 md:mb-12">
             <div className="flex items-center mb-6">
               <ImageIcon className="w-6 h-6 mr-3" style={{ color: '#722f37' }} />
               <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#722f37' }}>Revue de presse</h2>
             </div>
             
-            {/* Articles avec images */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8">
-              {coupuresPresse.slice(0, 3).map((article) => (
+            {/* Articles avec images - TOUTES LES 10 IMAGES */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {coupuresPresse.map((article) => (
                 <div key={article.id} className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
                   <div className="relative mb-4 bg-gray-100 rounded-lg overflow-hidden" style={{ height: '250px' }}>
-                    <img 
+                    <Image 
                       src={article.image}
                       alt={article.titre}
-                      className="w-full h-full object-contain bg-white"
+                      fill
+                      className="object-contain bg-white"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                   
@@ -235,93 +261,6 @@ const coupuresPresse = [
                   </a>
                 </div>
               ))}
-            </div>
-  
-            {/* Articles PDF - NOUVEAU */}
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-              {/* PDF Alain Brunet */}
-              <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div 
-                      className="w-12 h-12 rounded-lg flex items-center justify-center"
-                      style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
-                    >
-                      <Download className="w-6 h-6" style={{ color: '#722f37' }} />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className="mb-3">
-                      <span 
-                        className="inline-block px-2 py-1 rounded text-xs font-medium"
-                        style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)', color: '#722f37' }}
-                      >
-                        Jazz Magazine
-                      </span>
-                      <span className="text-xs text-gray-500 ml-2">Juin 2025</span>
-                    </div>
-                    
-                    <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#1a1a1a' }}>
-                      Interview Alain Brunet
-                    </h3>
-                    <p className="text-xs md:text-sm text-gray-600 mb-4">
-                      Rencontre avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle.
-                    </p>
-                    
-                    <a 
-                      href="/documents/alain-brunet-jazz-magazine.pdf"
-                      download
-                      className="inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:opacity-90 text-sm"
-                      style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Télécharger PDF Alain Brunet
-                    </a>
-                  </div>
-                </div>
-              </div>
-  
-              {/* PDF Eurorégion */}
-              <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div 
-                      className="w-12 h-12 rounded-lg flex items-center justify-center"
-                      style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)' }}
-                    >
-                      <Download className="w-6 h-6" style={{ color: '#722f37' }} />
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className="mb-3">
-                      <span 
-                        className="inline-block px-2 py-1 rounded text-xs font-medium"
-                        style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)', color: '#722f37' }}
-                      >
-                        Eurorégion
-                      </span>
-                      <span className="text-xs text-gray-500 ml-2">Mai 2025</span>
-                    </div>
-                    
-                    <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#1a1a1a' }}>
-                      Le jazz du monde au rendez-vous des 10 ans du festival Jazz en Tech
-                    </h3>
-                    <p className="text-xs md:text-sm text-gray-600 mb-4">
-                      Dossier spécial pour la 10ème édition avec une programmation exceptionnelle d'artistes internationaux.
-                    </p>
-                    
-                    <a 
-                      href="/documents/euroregion-jazz-en-tech-2025.pdf"
-                      download
-                      className="inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:opacity-90 text-sm"
-                      style={{ backgroundColor: '#d4af37', color: '#722f37' }}
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Télécharger PDF
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
   

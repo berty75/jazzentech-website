@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Music, Calendar, MapPin } from 'lucide-react'
 import { Metadata } from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Artistes - Jazz en Tech 2025',
@@ -92,12 +93,14 @@ export default function ArtistesIndex() {
                   aria-label={`Découvrir ${artist.name}, ${artist.type}`}
                 >
                   <div className="aspect-[4/3] relative">
-                    <img 
-                      src={artist.image}
-                      alt={`${artist.name}, artiste ${artist.type}`}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+  <Image 
+    src={artist.image}
+    alt={`${artist.name}, artiste ${artist.type}`}
+    fill
+    className="object-cover"
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
                       <span className="text-xs px-2 py-1 rounded-full font-semibold" style={{ backgroundColor: '#d4af37', color: '#722f37' }}>
                         {artist.type}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Calendar, MapPin, Clock, Music, Ticket } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // Données des artistes organisées par sections
 const artistsData = {
@@ -814,11 +815,12 @@ export default function Programmation() {
                               <div className={`relative ${
                                 location.artists.length >= 4 ? 'aspect-[3/4]' : 'aspect-[4/3]'
                               } rounded-xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2`}>
-                                <img 
+                                <Image 
                                   src={artist.image}
-                                  alt={artist.name}
-                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+                                    alt={artist.name}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
                                   <h5 className={`font-bold mb-1 ${
