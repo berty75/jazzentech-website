@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/programmation`,
-      lastModified: new Date(),
+      lastModified: new Date('2025-07-26'), // Date de dernière modif réelle
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },

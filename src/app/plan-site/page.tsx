@@ -144,10 +144,10 @@ export default function PlanSite() {
               </div>
               
               <ul className="space-y-3 md:space-y-4">
-                {/* Artistes de Saint-Génis (gratuits) */}
+                {/* Artistes concerts payants */}
                 <li>
                   <div className="mb-2">
-                    <h3 className="text-xs font-bold uppercase text-gray-500 mb-2">Saint-Génis-des-Fontaines (Gratuit)</h3>
+                    <h3 className="text-xs font-bold uppercase text-gray-500 mb-2">Concerts Payants</h3>
                   </div>
                 </li>
                 <li>
@@ -158,7 +158,7 @@ export default function PlanSite() {
                   >
                     <Music className="w-4 h-4 mr-2" />
                     Manu Le Prince
-                    <span className="ml-auto text-xs text-green-600 font-semibold">27 juillet - GRATUIT</span>
+                    <span className="ml-auto text-xs text-gray-500">27 juillet</span>
                   </Link>
                 </li>
                 <li>
@@ -169,19 +169,9 @@ export default function PlanSite() {
                   >
                     <Music className="w-4 h-4 mr-2" />
                     Florin Gugulica
-                    <span className="ml-auto text-xs text-green-600 font-semibold">28 juillet - GRATUIT</span>
+                    <span className="ml-auto text-xs text-gray-500">28 juillet</span>
                   </Link>
                 </li>
-                
-                {/* Séparateur */}
-                <li>
-                  <div className="border-t border-gray-200 my-3"></div>
-                  <div className="mb-2">
-                    <h4 className="text-xs font-bold uppercase text-gray-500 mb-2">Céret (Payant)</h4>
-                  </div>
-                </li>
-                
-                {/* Artistes de Céret (payants) */}
                 <li>
                   <Link 
                     href="/artistes/stefano-di-battista" 
@@ -226,6 +216,60 @@ export default function PlanSite() {
                     <span className="ml-auto text-xs text-gray-500">9 août</span>
                   </Link>
                 </li>
+                
+                {/* Séparateur */}
+                <li>
+                  <div className="border-t border-gray-200 my-3"></div>
+                  <div className="mb-2">
+                    <h4 className="text-xs font-bold uppercase text-green-600 mb-2">Concerts Gratuits - 2 Podiums</h4>
+                  </div>
+                </li>
+                
+                {/* Artistes concerts gratuits */}
+                <li>
+                  <Link 
+                    href="/artistes/triton-66" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#722f37' }}
+                  >
+                    <Music className="w-4 h-4 mr-2" />
+                    Triton 66
+                    <span className="ml-auto text-xs text-green-600 font-semibold">6-7 août - GRATUIT</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/artistes/florin-gugulica" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#722f37' }}
+                  >
+                    <Music className="w-4 h-4 mr-2" />
+                    Florin Gugulica Trio
+                    <span className="ml-auto text-xs text-green-600 font-semibold">6,7,9 août - GRATUIT</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/artistes/david-vilayleck" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#722f37' }}
+                  >
+                    <Music className="w-4 h-4 mr-2" />
+                    David Vilayleck
+                    <span className="ml-auto text-xs text-green-600 font-semibold">8 août - GRATUIT</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link 
+                    href="/artistes/cavale-trio" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#722f37' }}
+                  >
+                    <Music className="w-4 h-4 mr-2" />
+                    Cavale
+                    <span className="ml-auto text-xs text-green-600 font-semibold">8-9 août - GRATUIT</span>
+                  </Link>
+                </li>
               </ul>
               
               <div className="mt-4 pt-4 border-t border-gray-200">
@@ -233,7 +277,7 @@ export default function PlanSite() {
                   🎵 Pages individuelles dédiées à chaque artiste
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
-                  💚 Saint-Génis : concerts gratuits • 💳 Céret : billetterie
+                  🎫 Concerts payants • 🎵 Concerts gratuits sur 2 podiums
                 </p>
               </div>
             </div>
@@ -307,27 +351,27 @@ export default function PlanSite() {
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
-                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                    borderColor: '#22c55e'
+                    backgroundColor: 'rgba(114, 47, 55, 0.1)',
+                    borderColor: '#722f37'
                   }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#16a34a' }}>Concerts de Saint-Génis</h3>
-                  <p className="text-xs md:text-sm text-gray-600">27 et 28 juillet 2025</p>
-                  <p className="text-xs text-green-600 font-bold">🎉 ENTRÉE GRATUITE</p>
-                  <p className="text-xs text-gray-500">Manu Le Prince & Florin Gugulica</p>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Concerts Payants</h3>
+                  <p className="text-xs md:text-sm text-gray-600">27-28 juillet & 7-8-9 août 2025</p>
+                  <p className="text-xs text-gray-500">Via Billetweb - Billetterie principale</p>
+                  <p className="text-xs text-gray-500 mt-1">🎤 6 concerts avec billetterie</p>
                 </div>
                 
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                    borderColor: '#d4af37'
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderColor: '#22c55e'
                   }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Concerts de Céret</h3>
-                  <p className="text-xs md:text-sm text-gray-600">7, 8 et 9 août 2025</p>
-                  <p className="text-xs text-gray-500">Via Billetweb - Billetterie principale</p>
-                  <p className="text-xs text-gray-500 mt-1">🎤 Avec Camille Bertault le 8 août</p>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#16a34a' }}>Concerts Gratuits</h3>
+                  <p className="text-xs md:text-sm text-gray-600">6, 7, 8 et 9 août 2025</p>
+                  <p className="text-xs text-green-600 font-bold">🎉 ACCÈS LIBRE - 2 PODIUMS</p>
+                  <p className="text-xs text-gray-500">📍 Bd Maréchal Joffre & Place Picasso</p>
                 </div>
               </div>
               
@@ -354,13 +398,13 @@ export default function PlanSite() {
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
-                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                    borderColor: '#22c55e'
+                    backgroundColor: 'rgba(114, 47, 55, 0.1)',
+                    borderColor: '#722f37'
                   }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#16a34a' }}>Saint-Génis-des-Fontaines</h3>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Saint-Génis-des-Fontaines</h3>
                   <p className="text-xs md:text-sm text-gray-600 mb-1">Cloître historique</p>
-                  <p className="text-xs text-green-600 font-bold">27-28 juillet 2025 • GRATUIT</p>
+                  <p className="text-xs text-gray-500">27-28 juillet 2025 • Concerts payants</p>
                   <div className="flex items-center text-xs text-gray-500 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span>Pyrénées-Orientales (66)</span>
@@ -368,15 +412,34 @@ export default function PlanSite() {
                 </div>
                 
                 <div 
-                  className="p-3 md:p-4 rounded-lg"
-                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
+                    backgroundColor: 'rgba(114, 47, 55, 0.1)',
+                    borderColor: '#722f37'
+                  }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Céret</h3>
-                  <p className="text-xs md:text-sm text-gray-600 mb-1">Place de la République</p>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>Céret - Place de la République</h3>
+                  <p className="text-xs md:text-sm text-gray-600 mb-1">Concerts payants</p>
                   <p className="text-xs text-gray-500">7-8-9 août 2025 • Billetterie</p>
                   <div className="flex items-center text-xs text-gray-500 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span>Capitale de l'art moderne</span>
+                  </div>
+                </div>
+                
+                <div 
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderColor: '#22c55e'
+                  }}
+                >
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#16a34a' }}>Céret - 2 Podiums Gratuits</h3>
+                  <p className="text-xs md:text-sm text-gray-600 mb-1">Bd Maréchal Joffre & Place Picasso</p>
+                  <p className="text-xs text-green-600 font-bold">6-9 août 2025 • ACCÈS LIBRE</p>
+                  <div className="flex items-center text-xs text-gray-500 mt-2">
+                    <MapPin className="w-3 h-3 mr-1" />
+                    <span>11h, 17h et 18h • Navigation GPS</span>
                   </div>
                 </div>
               </div>
@@ -453,35 +516,36 @@ export default function PlanSite() {
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
+                    backgroundColor: 'rgba(114, 47, 55, 0.1)',
+                    borderColor: '#722f37'
+                  }}
+                >
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Saint-Génis-des-Fontaines</p>
+                  <p className="text-xs md:text-sm text-gray-600">27-28 juillet 2025</p>
+                  <p className="text-xs text-gray-500">Ouverture du festival • Concerts payants</p>
+                </div>
+                
+                <div 
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
                     backgroundColor: 'rgba(34, 197, 94, 0.1)',
                     borderColor: '#22c55e'
                   }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#16a34a' }}>Saint-Génis-des-Fontaines</p>
-                  <p className="text-xs md:text-sm text-gray-600">27-28 juillet 2025</p>
-                  <p className="text-xs text-green-600 font-bold">Ouverture du festival • GRATUIT</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#16a34a' }}>Céret - Concerts Gratuits</p>
+                  <p className="text-xs md:text-sm text-gray-600">6-9 août 2025</p>
+                  <p className="text-xs text-green-600 font-bold">2 podiums simultanés • 11h, 17h, 18h</p>
+                  <p className="text-xs text-gray-500 mt-1">📍 Bd Maréchal Joffre & Place Picasso</p>
                 </div>
                 
                 <div 
                   className="p-3 md:p-4 rounded-lg"
                   style={{ backgroundColor: 'rgba(184, 115, 51, 0.2)' }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Céret</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Céret - Concerts Payants</p>
                   <p className="text-xs md:text-sm text-gray-600">7-8-9 août 2025</p>
                   <p className="text-xs text-gray-500">Cœur du festival - 3 soirées</p>
-                  <p className="text-xs text-gray-500 mt-1">🎤 Avec Camille Bertault le 8/08</p>
-                </div>
-                
-                <div 
-                  className="p-3 md:p-4 rounded-lg border-2 border-dashed"
-                  style={{ 
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                    borderColor: '#d4af37'
-                  }}
-                >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#722f37' }}>Billetterie</p>
-                  <p className="text-xs md:text-sm text-gray-600">Jusqu'au 25 juillet 23h59</p>
-                  <p className="text-xs text-gray-500">⏰ Vente limitée dans le temps (Céret uniquement)</p>
+                  <p className="text-xs text-gray-500 mt-1">🎤 Place de la République</p>
                 </div>
               </div>
             </div>
@@ -493,11 +557,11 @@ export default function PlanSite() {
             style={{ backgroundColor: '#722f37' }}
           >
             <div className="flex items-center mb-4 md:mb-6">
-              <Building className="w-6 h-6 mr-3" style={{ color: '#d4af37' }} />
-              <h2 className="text-xl md:text-2xl font-semibold" style={{ color: '#d4af37' }}>
-                À propos de Jazz en Tech
-              </h2>
-            </div>
+  <Building className="w-6 h-6 mr-3" style={{ color: '#d4af37' }} />
+  <h2 className="text-xl md:text-2xl font-semibold" style={{ color: '#d4af37' }}>
+    À propos de Jazz en Tech
+  </h2>
+</div>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
@@ -540,7 +604,7 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>6 artistes exceptionnels</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>10 artistes exceptionnels</span>
                 </div>
                 
                 <div className="flex items-center">
@@ -548,7 +612,7 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>2 lieux magiques</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>3 lieux magiques</span>
                 </div>
                 
                 <div className="flex items-center">
@@ -556,7 +620,7 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>2 concerts gratuits</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>2 podiums gratuits</span>
                 </div>
               </div>
             </div>

@@ -1,9 +1,19 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Calendar, MapPin, Clock, Music, Ticket } from 'lucide-react'
+import { Calendar, MapPin, Clock, Music, Ticket, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+
+const AppleLogo = ({ className = "w-3 h-3" }) => (
+  <svg 
+    className={className}
+    viewBox="0 0 16 16" 
+    fill="currentColor"
+  >
+    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/>
+  </svg>
+)
 
 // Données des artistes organisées par sections
 const artistsData = {
@@ -104,7 +114,7 @@ const artistsData = {
         locations: [
           {
             title: 'PROGRAMME DÉTAILLÉ DES CONCERTS GRATUITS',
-            subtitle: 'Du 6 au 9 août dans les rues de Céret',
+            subtitle: 'Du 6 au 9 août sur les deux podiums de Céret',
             dateKeys: ['6', '7', '8', '9'],
             gratuitSchedule: [
               {
@@ -113,24 +123,39 @@ const artistsData = {
                 concerts: [
                   {
                     time: '18H00',
-                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Triton 66',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
+                    time: '18H00',
+                    artists: 'Florin Gugulica trio',
+                    location: 'Place Picasso'
                   }
                 ]
               },
               {
-                date: 'JEUDI 7 AOÛT', 
+                date: 'JEUDI 7 AOÛT',
                 dateKey: '7',
                 concerts: [
                   {
                     time: '11H00',
-                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Triton 66',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
+                    time: '11H00',
+                    artists: 'Florin Gugulica trio',
+                    location: 'Place Picasso'
+                  },
+                  {
+                    time: '17H00',
+                    artists: 'Florin Gugulica trio',
+                    location: 'Bd Maréchal Joffre'
                   },
                   {
                     time: '18H00',
-                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Triton 66',
+                    location: 'Place Picasso'
                   }
                 ]
               },
@@ -140,13 +165,23 @@ const artistsData = {
                 concerts: [
                   {
                     time: '11H00',
-                    artists: 'David Vilayleck Trio et Cavale Trio',
-                    location: 'Centre-ville'
+                    artists: 'David Vilayleck trio',
+                    location: 'Bd Maréchal Joffre'
                   },
                   {
-                    time: '18H00', 
-                    artists: 'David Vilayleck Trio et Cavale Trio',
-                    location: 'Centre-ville'
+                    time: '11H00',
+                    artists: 'Cavale trio',
+                    location: 'Place Picasso'
+                  },
+                  {
+                    time: '17H00',
+                    artists: 'Cavale trio',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
+                    time: '18H00',
+                    artists: 'David Vilayleck trio',
+                    location: 'Place Picasso'
                   }
                 ]
               },
@@ -155,9 +190,14 @@ const artistsData = {
                 dateKey: '9',
                 concerts: [
                   {
+                    time: '17H00',
+                    artists: 'Cavale trio',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
                     time: '18H00',
-                    artists: 'Cavale Trio + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Florin Gugulica trio',
+                    location: 'Place Picasso'
                   }
                 ]
               }
@@ -165,8 +205,8 @@ const artistsData = {
             artists: [
               {
                 name: 'CAVALE',
-                subtitle: '', // SUPPRIMÉ
-                date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
+                subtitle: '',
+                date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 17H00-18H00',
                 image: '/images/cavale-trio.jpg',
                 badge: 'JAZZ CONTEMPORAIN',
                 badgeColor: '#d4af37',
@@ -176,8 +216,8 @@ const artistsData = {
               },
               {
                 name: 'DAVID VILAYLECK',
-                subtitle: '', // SUPPRIMÉ
-                date: 'VENDREDI 8 AOÛT • 11H00',
+                subtitle: '',
+                date: 'VENDREDI 8 AOÛT • 11H00-18H00',
                 image: '/images/david-vilayleck.jpg',
                 badge: 'JAZZ FUSION',
                 badgeColor: '#b87333',
@@ -187,7 +227,7 @@ const artistsData = {
               },
               {
                 name: 'TRITON 66',
-                subtitle: '', // SUPPRIMÉ
+                subtitle: '',
                 date: 'MERCREDI 6 & JEUDI 7 AOÛT',
                 image: '/images/triton-66.jpg',
                 badge: 'STANDARDS',
@@ -198,7 +238,7 @@ const artistsData = {
               },
               {
                 name: 'FLORIN GUGULICA',
-                subtitle: '', // SUPPRIMÉ
+                subtitle: '',
                 date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
                 image: '/images/florin-gugulica-trio.jpg',
                 badge: 'JAZZ TRANSFRONTALIER',
@@ -304,7 +344,7 @@ const artistsData = {
         locations: [
           {
             title: 'PROGRAMME DÉTAILLÉ DES CONCERTS GRATUITS',
-            subtitle: 'Du 6 au 9 août dans les rues de Céret',
+            subtitle: 'Du 6 au 9 août sur les deux podiums de Céret',
             dateKeys: ['6', '7', '8', '9'],
             gratuitSchedule: [
               {
@@ -313,24 +353,39 @@ const artistsData = {
                 concerts: [
                   {
                     time: '18H00',
-                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Triton 66',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
+                    time: '18H00',
+                    artists: 'Florin Gugulica trio',
+                    location: 'Place Picasso'
                   }
                 ]
               },
               {
-                date: 'JEUDI 7 AOÛT', 
+                date: 'JEUDI 7 AOÛT',
                 dateKey: '7',
                 concerts: [
                   {
                     time: '11H00',
-                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Triton 66',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
+                    time: '11H00',
+                    artists: 'Florin Gugulica trio',
+                    location: 'Place Picasso'
+                  },
+                  {
+                    time: '17H00',
+                    artists: 'Florin Gugulica trio',
+                    location: 'Bd Maréchal Joffre'
                   },
                   {
                     time: '18H00',
-                    artists: 'Triton 66 Quintet + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Triton 66',
+                    location: 'Place Picasso'
                   }
                 ]
               },
@@ -340,13 +395,23 @@ const artistsData = {
                 concerts: [
                   {
                     time: '11H00',
-                    artists: 'David Vilayleck Trio et Cavale Trio',
-                    location: 'Centre-ville'
+                    artists: 'David Vilayleck trio',
+                    location: 'Bd Maréchal Joffre'
                   },
                   {
-                    time: '18H00', 
-                    artists: 'David Vilayleck Trio et Cavale Trio',
-                    location: 'Centre-ville'
+                    time: '11H00',
+                    artists: 'Cavale trio',
+                    location: 'Place Picasso'
+                  },
+                  {
+                    time: '17H00',
+                    artists: 'Cavale trio',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
+                    time: '18H00',
+                    artists: 'David Vilayleck trio',
+                    location: 'Place Picasso'
                   }
                 ]
               },
@@ -355,9 +420,14 @@ const artistsData = {
                 dateKey: '9',
                 concerts: [
                   {
+                    time: '17H00',
+                    artists: 'Cavale trio',
+                    location: 'Bd Maréchal Joffre'
+                  },
+                  {
                     time: '18H00',
-                    artists: 'Cavale Trio + Florin Gugulica Trio',
-                    location: 'Centre-ville'
+                    artists: 'Florin Gugulica trio',
+                    location: 'Place Picasso'
                   }
                 ]
               }
@@ -365,8 +435,8 @@ const artistsData = {
             artists: [
               {
                 name: 'CAVALE',
-                subtitle: '', // SUPPRIMÉ
-                date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 18H00',
+                subtitle: '',
+                date: 'VENDREDI 8 & SAMEDI 9 AOÛT • 17H00-18H00',
                 image: '/images/cavale-trio.jpg',
                 badge: 'JAZZ CONTEMPORAIN',
                 badgeColor: '#d4af37',
@@ -376,8 +446,8 @@ const artistsData = {
               },
               {
                 name: 'DAVID VILAYLECK',
-                subtitle: '', // SUPPRIMÉ
-                date: 'VENDREDI 8 AOÛT • 11H00',
+                subtitle: '',
+                date: 'VENDREDI 8 AOÛT • 11H00-18H00',
                 image: '/images/david-vilayleck.jpg',
                 badge: 'JAZZ FUSION',
                 badgeColor: '#b87333',
@@ -387,7 +457,7 @@ const artistsData = {
               },
               {
                 name: 'TRITON 66',
-                subtitle: '', // SUPPRIMÉ
+                subtitle: '',
                 date: 'MERCREDI 6 & JEUDI 7 AOÛT',
                 image: '/images/triton-66.jpg',
                 badge: 'STANDARDS',
@@ -398,7 +468,7 @@ const artistsData = {
               },
               {
                 name: 'FLORIN GUGULICA',
-                subtitle: '', // SUPPRIMÉ
+                subtitle: '',
                 date: 'MERCREDI 6, JEUDI 7 & SAMEDI 9 AOÛT',
                 image: '/images/florin-gugulica-trio.jpg',
                 badge: 'JAZZ TRANSFRONTALIER',
@@ -415,7 +485,6 @@ const artistsData = {
   }
 }
 
-// Composant compte à rebours
 // Composant compte à rebours
 function CountdownTimer() {
   // Le festival a commencé ! 🎉
@@ -522,7 +591,7 @@ function CountdownTimer() {
                  }}>
               <div className="text-2xl mb-2">🎵</div>
               <div className="font-bold text-sm" style={{ color: '#722f37' }}>GRATUITS</div>
-              <div className="text-xs font-medium mt-1" style={{ color: '#b87333' }}>Dans les rues</div>
+              <div className="text-xs font-medium mt-1" style={{ color: '#b87333' }}>2 podiums</div>
             </div>
           </div>
           
@@ -545,7 +614,6 @@ function CountdownTimer() {
     )
   }
 
-  // Code original du compte à rebours (gardé pour référence mais non utilisé)
   return null
 }
 
@@ -621,7 +689,7 @@ export default function Programmation() {
             </div>
             <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
               <Music className="w-5 h-5" style={{ color: '#d4af37' }} />
-              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>6 créneaux gratuits</span>
+              <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>2 podiums gratuits</span>
             </div>
           </div>
         </div>
@@ -681,44 +749,43 @@ export default function Programmation() {
                 </div>
               </div>
 
-{/* FILTRES PAR DATE - STYLE BADGES SIMPLES */}
-<div className="mb-8">
-  <div className="text-center">
-    <h3 className="text-lg font-semibold mb-4" style={{ color: '#722f37' }}>
-      Filtrer par date
-    </h3>
-    
-    <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
-      {[
-        { key: 'all', label: 'Toutes les dates' },
-        { key: '27', label: '27 Juillet' },
-        { key: '28', label: '28 Juillet' },
-        { key: '6', label: '6 Août' },
-        { key: '7', label: '7 Août' },
-        { key: '8', label: '8 Août' },
-        { key: '9', label: '9 Août' }
-      ].map((date) => (
-        <button 
-          key={date.key}
-          onClick={() => { setSelectedDate(date.key); handleScroll(); }}
-          className={`px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 border ${
-            selectedDate === date.key 
-              ? 'shadow-md transform scale-105' 
-              : 'hover:shadow-sm hover:scale-102'
-          }`}
-          style={{ 
-            backgroundColor: selectedDate === date.key ? '#722f37' : '#f8f9fa',
-            color: selectedDate === date.key ? '#f7f3e9' : '#495057',
-            borderColor: selectedDate === date.key ? '#722f37' : '#dee2e6'
-          }}
-        >
-          {date.label}
-        </button>
-      ))}
-    </div>
-  </div>
-</div>
-
+              {/* FILTRES PAR DATE - STYLE BADGES SIMPLES */}
+              <div className="mb-8">
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold mb-4" style={{ color: '#722f37' }}>
+                    Filtrer par date
+                  </h3>
+                  
+                  <div className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
+                    {[
+                      { key: 'all', label: 'Toutes les dates' },
+                      { key: '27', label: '27 Juillet' },
+                      { key: '28', label: '28 Juillet' },
+                      { key: '6', label: '6 Août' },
+                      { key: '7', label: '7 Août' },
+                      { key: '8', label: '8 Août' },
+                      { key: '9', label: '9 Août' }
+                    ].map((date) => (
+                      <button 
+                        key={date.key}
+                        onClick={() => { setSelectedDate(date.key); handleScroll(); }}
+                        className={`px-4 py-2 rounded-full font-medium text-sm transition-all duration-200 border ${
+                          selectedDate === date.key 
+                            ? 'shadow-md transform scale-105' 
+                            : 'hover:shadow-sm hover:scale-102'
+                        }`}
+                        style={{ 
+                          backgroundColor: selectedDate === date.key ? '#722f37' : '#f8f9fa',
+                          color: selectedDate === date.key ? '#f7f3e9' : '#495057',
+                          borderColor: selectedDate === date.key ? '#722f37' : '#dee2e6'
+                        }}
+                      >
+                        {date.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Affichage des sections filtrées */}
@@ -755,7 +822,7 @@ export default function Programmation() {
                             </p>
                           </div>
                           
-                          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                             {location.gratuitSchedule.map((day, dayIndex) => (
                               <div key={dayIndex} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                                 <h5 className="text-lg font-bold mb-4" style={{ color: '#722f37' }}>
@@ -763,17 +830,53 @@ export default function Programmation() {
                                 </h5>
                                 <div className="space-y-3">
                                   {day.concerts.map((concert, concertIndex) => (
-                                    <div key={concertIndex} className="flex items-center justify-between p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                                      <div>
-                                        <div className="font-semibold text-sm" style={{ color: '#722f37' }}>
+                                    <div key={concertIndex} className="p-3 rounded-lg border" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', borderColor: 'rgba(212, 175, 55, 0.3)' }}>
+                                      <div className="flex items-center justify-between mb-2">
+                                        <div className="font-bold text-sm" style={{ color: '#722f37' }}>
                                           {concert.time}
                                         </div>
-                                        <div className="text-xs text-gray-600">{concert.location}</div>
-                                      </div>
-                                      <div className="text-right">
-                                        <div className="text-sm font-medium" style={{ color: '#1a1a1a' }}>
-                                          {concert.artists}
+                                        {/* Boutons GPS - 3 options */}
+                                        <div className="flex gap-1">
+                                          <a 
+                                            href={`https://maps.google.com/?q=${encodeURIComponent(concert.location + ', Céret')}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center px-2 py-1 rounded text-xs font-medium hover:opacity-80 transition-opacity"
+                                            style={{ backgroundColor: '#4285f4', color: 'white' }}
+                                            title="Ouvrir dans Google Maps"
+                                          >
+                                            <MapPin className="w-3 h-3 mr-1" />
+                                            Maps
+                                          </a>
+                                          <a 
+                                            href={`https://waze.com/ul?q=${encodeURIComponent(concert.location + ', Céret')}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center px-2 py-1 rounded text-xs font-medium hover:opacity-80 transition-opacity"
+                                            style={{ backgroundColor: '#00d4ff', color: 'white' }}
+                                            title="Ouvrir dans Waze"
+                                          >
+                                            🚗
+                                            Waze
+                                          </a>
+                                          <a 
+  href={`https://maps.apple.com/?q=${encodeURIComponent(concert.location + ', Céret')}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center px-2 py-1 rounded text-xs font-medium hover:opacity-80 transition-opacity"
+  style={{ backgroundColor: '#000000', color: 'white' }}
+  title="Ouvrir dans Plans (Apple)"
+>
+  <AppleLogo className="w-3 h-3 mr-1" />
+  Plans
+</a>
                                         </div>
+                                      </div>
+                                      <div className="text-sm font-medium mb-1" style={{ color: '#1a1a1a' }}>
+                                        {concert.artists}
+                                      </div>
+                                      <div className="text-xs" style={{ color: '#b87333' }}>
+                                        📍 {concert.location}
                                       </div>
                                     </div>
                                   ))}
@@ -817,10 +920,11 @@ export default function Programmation() {
                               } rounded-xl overflow-hidden shadow-xl transition-all duration-300 group-hover:shadow-2xl transform group-hover:-translate-y-2`}>
                                 <Image 
                                   src={artist.image}
-                                    alt={artist.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
+                                  alt={artist.name}
+                                  fill
+                                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                                 <div className="absolute bottom-4 left-4 right-4 text-white">
                                   <h5 className={`font-bold mb-1 ${
@@ -897,7 +1001,7 @@ export default function Programmation() {
                   color: '#722f37'
                 }}
               >
-                🎵 Concerts gratuits - Accès libre dans les rues de Céret
+                🎵 Concerts gratuits - 2 podiums dans Céret
               </div>
             </section>
           )}
@@ -938,7 +1042,7 @@ export default function Programmation() {
               <CountdownTimer />
               
               <p className="text-xs md:text-sm text-gray-600 mt-4">
-                  🎊 La 10ème édition est en cours ! Vivez la magie en direct 🎊
+                🎊 La 10ème édition est en cours ! Vivez la magie en direct 🎊
               </p>
             </div>
           </section>
@@ -959,14 +1063,14 @@ export default function Programmation() {
               
               <div>
                 <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Concerts gratuits</h4>
-                <p className="text-xs md:text-sm text-gray-600">11h et 18h dans les rues</p>
-                <p className="text-xs md:text-sm text-gray-600">Accès libre, arrivée libre</p>
+                <p className="text-xs md:text-sm text-gray-600">11h, 17h et 18h</p>
+                <p className="text-xs md:text-sm text-gray-600">2 podiums simultanés</p>
               </div>
               
               <div>
-                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Services</h4>
-                <p className="text-xs md:text-sm text-gray-600">Buvette sur place</p>
-                <p className="text-xs md:text-sm text-gray-600">Parking gratuit à proximité</p>
+                <h4 className="font-semibold mb-2 text-sm md:text-base" style={{ color: '#1a1a1a' }}>Lieux</h4>
+                <p className="text-xs md:text-sm text-gray-600">Bd Maréchal Joffre</p>
+                <p className="text-xs md:text-sm text-gray-600">Place Picasso</p>
               </div>
             </div>
           </section>

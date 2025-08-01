@@ -592,90 +592,91 @@ export default function Home() {
           </section>
 
           {/* Section dates importantes */}
-          <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #722f37 50%, #1a1a1a 100%)' }} aria-labelledby="dates-heading">
-            <div className="absolute inset-0 opacity-20" aria-hidden="true">
-              <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#d4af37' }}></div>
-              <div className="absolute top-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
-              <div className="absolute bottom-20 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
-            </div>
-            
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 id="dates-heading" className="text-xl sm:text-2xl md:text-3xl font-bold mb-4" style={{ color: '#d4af37' }}>
-                  10ème édition - Été 2025
-                </h2>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-                {/* Saint-Génis */}
-                <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
-                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 115, 51, 0.05))', 
-                  border: '2px solid rgba(212, 175, 55, 0.3)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  <div className="relative mb-4 md:mb-6">
-                    <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }} aria-hidden="true"></div>
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#d4af37' }}>
-                      <Calendar className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} aria-hidden="true" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#d4af37' }}>
-                    <time dateTime="2025-07-27/2025-07-28">27-28 Juillet</time>
-                  </h3>
-                  <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Saint-Genis-des-Fontaines</p>
-                  <div className="text-xs sm:text-sm space-y-2">
-                    <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
-                      <strong>• Manu le Prince</strong>
-                    </div>
-                    <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(184, 115, 51, 0.1)', color: '#b87333' }}>
-                      <strong>• Florin Gugulica</strong>
-                    </div>
-                  </div>
-                </article>
-                
-                {/* Céret */}
-                <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
-                  background: 'linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(212, 175, 55, 0.05))', 
-                  border: '2px solid rgba(114, 47, 55, 0.3)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  <div className="relative mb-4 md:mb-6">
-                    <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.3)' }} aria-hidden="true"></div>
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#722f37' }}>
-                      <MapPin className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#d4af37' }}>
-                    <time dateTime="2025-08-06/2025-08-09">6-7-8-9 Août</time>
-                  </h3>
-                  <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Céret, place de la République</p>
-                  <div className="text-xs sm:text-sm space-y-2">
-                    <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
-                      <strong>• Stefano Di Battista, Jacky Terrasson et Camille Bertault, Charlotte Planchou</strong>
-                    </div>
-                    <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(114, 47, 55, 0.15)', color: '#f7f3e9' }}>
-                      <strong>+ concerts gratuits dans les rues de Céret</strong>
-                    </div>
-                  </div>
-                </article>
-              </div>
-              
-              <div className="text-center mt-8 md:mt-12">
-                <Link 
-                  href="/programmation"
-                  className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
-                  style={{ 
-                    backgroundColor: '#d4af37', 
-                    color: '#1a1a1a',
-                    border: '2px solid transparent'
-                  }}
-                  aria-label="Voir toute la programmation détaillée"
-                >
-                  Voir toute la programmation
-                </Link>
-              </div>
-            </div>
-          </section>
+<section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #722f37 50%, #1a1a1a 100%)' }} aria-labelledby="dates-heading">
+  <div className="absolute inset-0 opacity-20" aria-hidden="true">
+    <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#d4af37' }}></div>
+    <div className="absolute top-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
+    <div className="absolute bottom-20 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
+  </div>
+  
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-8 md:mb-12">
+      <h2 id="dates-heading" className="text-xl sm:text-2xl md:text-3xl font-bold mb-4" style={{ color: '#d4af37' }}>
+        10ème édition - Été 2025
+      </h2>
+    </div>
+    
+    <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+      {/* Saint-Génis */}
+      <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
+        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 115, 51, 0.05))', 
+        border: '2px solid rgba(212, 175, 55, 0.3)',
+        backdropFilter: 'blur(10px)'
+      }}>
+        <div className="relative mb-4 md:mb-6">
+          <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }} aria-hidden="true"></div>
+          <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#d4af37' }}>
+            <Calendar className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} aria-hidden="true" />
+          </div>
+        </div>
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#d4af37' }}>
+          <time dateTime="2025-07-27/2025-07-28">27-28 Juillet</time>
+        </h3>
+        <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Saint-Genis-des-Fontaines</p>
+        <div className="text-xs sm:text-sm space-y-2">
+          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
+            <strong>• Manu le Prince</strong>
+          </div>
+          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(184, 115, 51, 0.1)', color: '#b87333' }}>
+            <strong>• Florin Gugulica</strong>
+          </div>
+        </div>
+      </article>
+      
+      {/* Céret */}
+      <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
+        background: 'linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(212, 175, 55, 0.05))', 
+        border: '2px solid rgba(114, 47, 55, 0.3)',
+        backdropFilter: 'blur(10px)'
+      }}>
+        <div className="relative mb-4 md:mb-6">
+          <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.3)' }} aria-hidden="true"></div>
+          <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#722f37' }}>
+            <MapPin className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
+          </div>
+        </div>
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#d4af37' }}>
+          <time dateTime="2025-08-06/2025-08-09">6-7-8-9 Août</time>
+        </h3>
+        <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Céret</p>
+        <div className="text-xs sm:text-sm space-y-2">
+          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
+            <strong>• Stefano Di Battista, Jacky Terrasson et Camille Bertault, Charlotte Planchou</strong>
+          </div>
+          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(114, 47, 55, 0.15)', color: '#f7f3e9' }}>
+            <strong>+ concerts gratuits sur 2 podiums</strong>
+            <div className="text-xs mt-1" style={{ color: '#d4af37' }}>11h, 17h, 18h • Bd Maréchal Joffre & Place Picasso</div>
+          </div>
+        </div>
+      </article>
+    </div>
+    
+    <div className="text-center mt-8 md:mt-12">
+      <Link 
+        href="/programmation"
+        className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
+        style={{ 
+          backgroundColor: '#d4af37', 
+          color: '#1a1a1a',
+          border: '2px solid transparent'
+        }}
+        aria-label="Voir toute la programmation détaillée"
+      >
+        Voir toute la programmation
+      </Link>
+    </div>
+  </div>
+</section>
 
           {/* Section À propos + Vidéos */}
           <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, white 50%, #f7f3e9 100%)' }} aria-labelledby="about-heading">
