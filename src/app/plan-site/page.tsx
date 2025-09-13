@@ -92,6 +92,16 @@ export default function PlanSite() {
                 </li>
                 <li>
                   <Link 
+                    href="/galerie" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#722f37' }}
+                  >
+                    <Camera className="w-4 h-4 mr-2" />
+                    Galerie Photos
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href="/billetterie" 
                     className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
                     style={{ color: '#722f37' }}
@@ -557,11 +567,11 @@ export default function PlanSite() {
             style={{ backgroundColor: '#722f37' }}
           >
             <div className="flex items-center mb-4 md:mb-6">
-  <Building className="w-6 h-6 mr-3" style={{ color: '#d4af37' }} />
-  <h2 className="text-xl md:text-2xl font-semibold" style={{ color: '#d4af37' }}>
-    À propos de Jazz en Tech
-  </h2>
-</div>
+              <Building className="w-6 h-6 mr-3" style={{ color: '#d4af37' }} />
+                <h2 className="text-xl md:text-2xl font-semibold" style={{ color: '#d4af37' }}>
+                  À propos de Jazz en Tech
+                </h2>
+            </div>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>

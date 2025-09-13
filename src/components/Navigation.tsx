@@ -6,6 +6,7 @@ const navItems = [
   { href: '/', label: 'Accueil' },
   { href: '/mot-du-president', label: 'Mot du Président' },
   { href: '/programmation', label: 'Programme' },
+  { href: '/galerie', label: 'Galerie Photos' }, // AJOUTÉ ICI
   { href: '/benevoles', label: 'Bénévoles' },
   { href: '/dossier-presse', label: 'Presse' },
   { href: '/contact', label: 'Contact' },
@@ -23,12 +24,12 @@ export default function Navigation({ mobile = false, onItemClick, compact = fals
   return (
     <nav>
       <ul className={
-        mobile 
-          ? (compact 
-              ? "grid grid-cols-2 gap-x-4 gap-y-1 pt-2" // 2 COLONNES en paysage
-              : "space-y-2 pt-4"                         // 1 colonne en portrait
-            )
-          : "flex space-x-6"                             // Desktop normal
+        mobile
+          ? (compact
+            ? "grid grid-cols-2 gap-x-4 gap-y-1 pt-2" // 2 COLONNES en paysage
+            : "space-y-2 pt-4" // 1 colonne en portrait
+          )
+          : "flex space-x-6" // Desktop normal
       }>
         {navItems.map((item) => (
           <li key={item.href}>
@@ -37,15 +38,15 @@ export default function Navigation({ mobile = false, onItemClick, compact = fals
               onClick={onItemClick}
               className={`
                 nav-link font-medium transition-all duration-300 hover:scale-105 rounded-lg
-                ${mobile 
-                  ? (compact 
-                      ? "block py-1 px-2 text-sm text-center" // Compact + centré
-                      : "block py-2 px-3"                     // Mobile normal
-                    )
-                  : "px-3 py-2"                               // Desktop
+                ${mobile
+                  ? (compact
+                    ? "block py-1 px-2 text-sm text-center" // Compact + centré
+                    : "block py-2 px-3" // Mobile normal
+                  )
+                  : "px-3 py-2" // Desktop
                 }
-                ${pathname === item.href 
-                  ? "font-bold" 
+                ${pathname === item.href
+                  ? "font-bold"
                   : "hover:opacity-80"
                 }
               `}

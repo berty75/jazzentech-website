@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://jazzentech.com'
-  
+
   // Pages statiques principales
   const staticPages = [
     {
@@ -16,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date('2025-07-26'), // Date de dernière modif réelle
       changeFrequency: 'weekly' as const,
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/galerie`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/billetterie`,
