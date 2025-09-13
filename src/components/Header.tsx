@@ -60,7 +60,7 @@ export default function Header() {
             className="nav-link flex items-center hover:opacity-90 transition-all duration-300 rounded-lg p-1 flex-shrink-0"
           >
             <Image
-                src="/images/jazz-en-tech-logo.png"
+                src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/jazz-en-tech-logo_yl2uj4.png"
                 alt="Jazz en Tech Festival"
                   width={200}
                   height={104}

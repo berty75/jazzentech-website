@@ -44,7 +44,7 @@ export default function MotDuPresident() {
               <div className="relative">
                 <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto">
                 <Image 
-                      src="/images/alain-brunet.jpeg" 
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/alain-brunet_gb0jx1.jpg" 
                       alt="Alain Brunet, Président de Jazz en Tech"
                       width={320}
                       height={320}

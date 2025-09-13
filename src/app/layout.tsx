@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     siteName: 'Jazz en Tech',
     images: [
       {
-        url: '/images/affiche-2025.jpg',
+        url: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg',
         width: 1200,
         height: 630,
         alt: 'Jazz en Tech 2025 - Affiche officielle du festival',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Jazz en Tech 2025',
     description: 'Festival de Jazz des Pyrénées Orientales - 10ème édition du 27 juillet au 9 août',
-    images: ['/images/affiche-2025.jpg'],
+    images: ['https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg'],
     site: '@jazzentech',
   },
   robots: {
@@ -185,7 +185,7 @@ export default function RootLayout({
                 url: 'https://jazzentech.com'
               },
               url: 'https://jazzentech.com',
-              image: 'https://jazzentech.com/images/affiche-2025.jpg'
+              image: 'https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg'
             })
           }}
         />

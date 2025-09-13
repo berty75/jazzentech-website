@@ -14,7 +14,7 @@ export default function ArtistesIndex() {
     {
       name: 'Manu Le Prince',
       slug: 'manu-le-prince',
-      image: '/images/manu-le-prince.jpeg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/manu-le-prince_bymuww.jpg',
       date: '27 juillet 2025',
       venue: 'Saint-Génis-des-Fontaines',
       type: 'Bossa Nova'
@@ -22,7 +22,7 @@ export default function ArtistesIndex() {
     {
       name: 'Florin Gugulica',
       slug: 'florin-gugulica', 
-      image: '/images/florin-gugulica.jpeg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/florin-gugulica_iuybea.jpg',
       date: '28 juillet 2025',
       venue: 'Saint-Génis-des-Fontaines',
       type: 'Jazz Manouche'
@@ -30,7 +30,7 @@ export default function ArtistesIndex() {
     {
       name: 'Stefano Di Battista',
       slug: 'stefano-di-battista',
-      image: '/images/stefano-di-battista.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/stefano-di-battista_p7imeu.jpg',
       date: '7 août 2025',
       venue: 'Céret',
       type: 'Jazz Italien'
@@ -38,7 +38,7 @@ export default function ArtistesIndex() {
     {
       name: 'Jacky Terrasson',
       slug: 'jacky-terrasson',
-      image: '/images/jacky-terrasson.jpeg', 
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/jacky-terrasson_c2r3t7.jpg', 
       date: '8 août 2025',
       venue: 'Céret',
       type: 'Piano Jazz'
@@ -46,7 +46,7 @@ export default function ArtistesIndex() {
     {
       name: 'Camille Bertault',
       slug: 'camille-bertault',
-      image: '/images/camille-bertault.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/camille-bertault_ehnf2z.jpg',
       date: '8 août 2025',
       venue: 'Céret',
       type: 'Jazz Vocal'
@@ -54,7 +54,7 @@ export default function ArtistesIndex() {
     {
       name: 'Charlotte Planchou',
       slug: 'charlotte-planchou',
-      image: '/images/charlotte-planchou.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/charlotte-planchou_tumrdd.jpg',
       date: '9 août 2025',
       venue: 'Céret',
       type: 'Jazz Vocal'

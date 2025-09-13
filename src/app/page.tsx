@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     description: 'Le festival de jazz incontournable des Pyrénées-Orientales. Du 27 juillet au 9 août 2025. Programmation exceptionnelle pour cette 10ème édition.',
     images: [
       {
-        url: 'https://jazzentech.com/images/affiche-2025.jpg',
+        url: 'https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg',
         width: 1200,
         height: 630,
         alt: 'Affiche Jazz en Tech 2025 - 10ème édition',
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Jazz en Tech 2025 - Festival de Jazz | 10ème édition',
     description: 'Le festival de jazz incontournable des Pyrénées-Orientales. Du 27 juillet au 9 août 2025.',
-    images: ['https://jazzentech.com/images/affiche-2025.jpg'],
+    images: ['https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg'],
     creator: '@jazzentech'
   },
   
@@ -107,7 +107,7 @@ const StructuredData = () => {
     "@type": "MusicEvent",
     "name": "Jazz en Tech 2025",
     "description": "Festival de jazz à Céret et Saint-Génis-des-Fontaines, 10ème édition du 27 juillet au 9 août 2025",
-    "image": "https://jazzentech.com/images/affiche-2025.jpg",
+    "image": "https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg",
     "startDate": "2025-07-27",
     "endDate": "2025-08-09",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -266,7 +266,7 @@ export default function Home() {
               <div className="order-1 lg:order-2 flex justify-center items-start opacity-0 animate-[fadeIn_1s_ease-in_0.5s_forwards]">
                 <div className="relative group w-full max-w-sm lg:max-w-md">
                   <OptimizedImage
-                    src="/images/affiche-2025.jpg"
+                    src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg"
                     alt="Affiche Jazz en Tech 2025 - 10ème édition du festival de jazz"
                     className="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
                     priority={true}
@@ -318,7 +318,7 @@ export default function Home() {
                 <Link href="/artistes/manu-le-prince" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Manu Le Prince - Concert du 27 juillet">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/manu-le-prince.jpeg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/manu-le-prince_bymuww.jpg"
                       alt="Manu Le Prince - Chanteuse de Bossa Nova et Latin Jazz"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -340,7 +340,7 @@ export default function Home() {
                 <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Florin Gugulica - Concert du 28 juillet">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/florin-gugulica.jpeg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/florin-gugulica_iuybea.jpg"
                       alt="Florin Gugulica - Clarinettiste de Jazz Manouche et Musique Balkanique"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -362,7 +362,7 @@ export default function Home() {
                 <Link href="/artistes/stefano-di-battista" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Stefano Di Battista - Concert du 7 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/stefano-di-battista.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/stefano-di-battista_p7imeu.jpg"
                       alt="Stefano Di Battista - Saxophoniste de Jazz Italien"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -384,7 +384,7 @@ export default function Home() {
                 <Link href="/artistes/jacky-terrasson" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Jacky Terrasson - Concert du 8 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/jacky-terrasson.jpeg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/jacky-terrasson_c2r3t7.jpg"
                       alt="Jacky Terrasson - Pianiste de Jazz"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -406,7 +406,7 @@ export default function Home() {
                 <Link href="/artistes/camille-bertault" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Camille Bertault - Concert du 8 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/camille-bertault.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/camille-bertault_ehnf2z.jpg"
                       alt="Camille Bertault - Chanteuse de Jazz Vocal Contemporain"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -428,7 +428,7 @@ export default function Home() {
                 <Link href="/artistes/charlotte-planchou" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Charlotte Planchou - Concert du 9 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/charlotte-planchou.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/charlotte-planchou_tumrdd.jpg"
                       alt="Charlotte Planchou - Chanteuse de Jazz Vocal Contemporain, Prix Évidence 2025"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -492,7 +492,7 @@ export default function Home() {
                 <Link href="/artistes/triton-66" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Triton 66 - Concerts gratuits des 6 et 7 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/triton-66.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/triton-66_n3dcpl.jpg"
                       alt="Triton 66 - Quintet de Jazz Standards et Swing"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -513,7 +513,7 @@ export default function Home() {
                 <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Florin Gugulica Trio - Concerts gratuits des 6, 7 et 9 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/florin-gugulica-trio.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/florin-gugulica-trio_wejyxd.jpg"
                       alt="Florin Gugulica Trio - Jazz Manouche en concert gratuit"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -534,7 +534,7 @@ export default function Home() {
                 <Link href="/artistes/david-vilayleck" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir David Vilayleck Trio - Concert gratuit du 8 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/david-vilayleck.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/david-vilayleck_kjwhfp.jpg"
                       alt="David Vilayleck Trio - Jazz Power Trio et Jazz Fusion"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
@@ -555,7 +555,7 @@ export default function Home() {
                 <Link href="/artistes/cavale-trio" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Cavale - Concerts gratuits des 8 et 9 août">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <OptimizedImage
-                      src="/images/cavale-trio.jpg"
+                      src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/cavale-trio_j1bwqr.jpg"
                       alt="Cavale - Trio de Jazz Contemporain et Musique Acoustique"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       width={300}
