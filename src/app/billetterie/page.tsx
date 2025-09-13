@@ -134,7 +134,7 @@ export default function Billetterie() {
       <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 relative overflow-hidden">        {/* Image de fond */}
         <div className="absolute inset-0">
         <Image 
-            src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/affiche-2025_xkytzn.jpg"
+            src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg"
                 alt="Affiche Jazz en Tech 2025"
                 fill
                 className="object-cover opacity-30"
@@ -183,7 +183,7 @@ export default function Billetterie() {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
         <Image 
-            src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/manu-le-prince_bymuww.jpg"
+            src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/manu-le-prince_bymuww.jpg"
             alt="Manu Le Prince"
             width={80}
         height={80}
@@ -230,7 +230,7 @@ export default function Billetterie() {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
         <Image 
-              src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/florin-gugulica_iuybea.jpg"
+              src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/florin-gugulica_iuybea.jpg"
                 alt="Florin Gugulica"
                 width={80}
                 height={80}
@@ -364,26 +364,26 @@ export default function Billetterie() {
                   name: 'Stefano Di Battista',
                   subtitle: '« La Dolce Vita »',
                   date: '7 AOÛT',
-                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/stefano-di-battista_p7imeu.jpg'
+                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/stefano-di-battista_p7imeu.jpg'
                 },
                 {
                   name: 'Jacky Terrasson',
                   subtitle: 'Piano Solo & Invités',
                   date: '8 AOÛT',
-                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/jacky-terrasson_c2r3t7.jpg'
+                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/jacky-terrasson_c2r3t7.jpg'
                 },
                 {
                   name: 'Camille Bertault',
                   subtitle: 'Voix Jazz Française',
                   date: '8 AOÛT',
-                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/camille-bertault_ehnf2z.jpg',
+                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/camille-bertault_ehnf2z.jpg',
                   special: 'INVITÉE'
                 },
                 {
                   name: 'Charlotte Planchou',
                   subtitle: 'Quartet - Prix Évidence 2025',
                   date: '9 AOÛT',
-                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/v1757764876/charlotte-planchou_tumrdd.jpg',
+                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/charlotte-planchou_tumrdd.jpg',
                   special: 'CLÔTURE'
                 }
               ].map((artist, index) => (

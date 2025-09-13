@@ -52,7 +52,7 @@ export default function Benevoles() {
           {/* Photo du festival - RESPONSIVE */}
           <div className="mb-8 md:mb-12">
           <Image 
-                src="https://res.cloudinary.com/dpgfensnv/image/upload/v1757764875/benevoles_cwdmh1.jpg" 
+                src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/benevoles_cwdmh1.jpg" 
                 alt="Scène du festival Jazz en Tech avec musiciens et équipe technique"
                 width={1200}
                 height={400}

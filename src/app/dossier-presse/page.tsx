@@ -17,7 +17,7 @@ const coupuresPresse = [
     journal: "L'Indépendant / Vallespir",
     date: "2024",
     titre: "D'une résidence musicale à la scène de l'Union pour le Florin Gugulica sextet",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766715/vallespir-florin-1_gaxcus.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766715/vallespir-florin-1_gaxcus.jpg",
     description: "Florin Gugulica, clarinettiste d'une exceptionnelle virtuosité, nous embarque dans son univers musical aux horizons multiples."
   },
   {
@@ -25,7 +25,7 @@ const coupuresPresse = [
     journal: "Vallespir",
     date: "2024", 
     titre: "À l'Union, ce fut un exceptionnel concert du Florin Gugulica sextet",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766718/vallespir-florin-2_fwrg9k.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766718/vallespir-florin-2_fwrg9k.jpg",
     description: "Une soirée jazz mémorable avec le sextet de Florin Gugulica dans un voyage musical diversifié."
   },
   {
@@ -33,7 +33,7 @@ const coupuresPresse = [
     journal: "Local",
     date: "2024",
     titre: "Les Chapitres ont tant aimé Saint-Germain des prés !",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766693/arles-chapitres_fwlqdu.jpg", 
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766693/arles-chapitres_fwlqdu.jpg", 
     description: "Jazz à Arles-sur-Tech avec Les Chapitres dans une ambiance conviviale et festive."
   },
   {
@@ -41,7 +41,7 @@ const coupuresPresse = [
     journal: "Jazz en Tech",
     date: "2025",
     titre: "Rencontre avec Alain Brunet",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766692/alain-brunet-interview_swapxr.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766692/alain-brunet-interview_swapxr.jpg",
     description: "Entretien avec le président du festival Jazz en Tech pour cette 10ème édition exceptionnelle."
   },
   {
@@ -49,7 +49,7 @@ const coupuresPresse = [
     journal: "L'Indépendant - Eurorégion",
     date: "10 mai 2025",
     titre: "Le jazz du monde au rendez-vous des 10 ans du festival Jazz en Tech",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766700/euroregion-jazz-monde-page1_gkdkls.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766700/euroregion-jazz-monde-page1_gkdkls.jpg",
     description: "Dossier spécial pour la 10ème édition avec une programmation exceptionnelle d'artistes internationaux."
   },
   {
@@ -57,7 +57,7 @@ const coupuresPresse = [
     journal: "Vallespir",
     date: "2025",
     titre: "Une soirée à Saint-Germain-des-Prés avec Alain Brunet",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766692/alain-brunet-saint-germain_sdctx1.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766692/alain-brunet-saint-germain_sdctx1.jpg",
     description: "Le trompettiste se produit en l'église ce vendredi. Rencontre avec Alain Brunet et son univers musical."
   },
   {
@@ -65,7 +65,7 @@ const coupuresPresse = [
     journal: "Festival",
     date: "2025",
     titre: "Programmation Jazz en Tech - 10ème édition",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766711/programmation-10ans_e8sz5q.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766711/programmation-10ans_e8sz5q.jpg",
     description: "Découvrez la programmation complète de cette édition anniversaire avec tous les artistes."
   },
   {
@@ -73,7 +73,7 @@ const coupuresPresse = [
     journal: "Les Festivals",
     date: "2025",
     titre: "Charlotte Planchou - L'année des 10 ans !",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766696/charlotte-planchou-10ans_guzzao.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766696/charlotte-planchou-10ans_guzzao.jpg",
     description: "Portrait de Charlotte Planchou, récemment nommée 'Vocaliste de l'année 2024' par Jazz Magazine."
   },
   {
@@ -81,7 +81,7 @@ const coupuresPresse = [
     journal: "FC",
     date: "Mai 2025",
     titre: "Jazz en Tech fête ses 10 ans",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766697/conference-presse-10ans_qaif2u.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766697/conference-presse-10ans_qaif2u.jpg",
     description: "Conférence de presse pour l'édition anniversaire du festival avec toute l'équipe organisatrice."
   },
   
@@ -91,7 +91,7 @@ const coupuresPresse = [
     journal: "L'Indépendant - Céret-Vallespir",
     date: "9 août 2025",
     titre: "Charlotte Planchou, une voix qui tutoie les anges du jazz",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766705/Jazz_en_Tech_2025_Planchou__xqphoh.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766705/Jazz_en_Tech_2025_Planchou__xqphoh.jpg",
     description: "Avec la prestation à venir de Charlotte Planchou et de son quartet à Céret, le samedi 9 août de 21h sur la place de la République, on entre dans du haut niveau avec cette chanteuse qui n'hésite pas à porter sa voix en marge des normes."
   },
   {
@@ -99,7 +99,7 @@ const coupuresPresse = [
     journal: "L'Indépendant - Céret-Vallespir", 
     date: "6 août 2025",
     titre: "Jacky Terrasson, pianiste de haut vol pour Jazz en Tech",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766708/Jazz_en_tech_2025_Terrasson__aizqaq.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766708/Jazz_en_tech_2025_Terrasson__aizqaq.jpg",
     description: "Une sublime tête d'affiche s'invite le vendredi 8 août à 21h, place de la République, à Céret, pour les 10 ans de Jazz en Tech. El maestro, l'homme aux doigts qui voltigent, le jazzman new-yorkais, et bien plus que ça, Jacky Terrasson et son trio."
   },
   {
@@ -107,7 +107,7 @@ const coupuresPresse = [
     journal: "L'Indépendant - Eurorégion",
     date: "25 juillet 2025",
     titre: "Une décennie de cascade de notes jazzy pour le Festival Jazz en Tech",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766701/Jazz_en_Tech_2025_Battista__z0oabp.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766701/Jazz_en_Tech_2025_Battista__z0oabp.jpg",
     description: "« J'ai 10 ans, si tu m'crois pas hé, t'ar ta gueule à la récré ». Du 27 juillet au 9 août, entrez dans la partition avec Stefano Di Battista et son « La Dolce Vita »."
   },
   {
@@ -115,7 +115,7 @@ const coupuresPresse = [
     journal: "L'Indépendant - Céret-Vallespir",
     date: "7 août 2025", 
     titre: "Quand Camille Bertault rencontre Jacky Terrasson sur la scène de Jazz en Tech",
-    image: "https://res.cloudinary.com/dpgfensnv/image/upload/v1757766703/Jazz_en_tech_2025_Bertault__zfxvu7.jpg",
+    image: "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757766703/Jazz_en_tech_2025_Bertault__zfxvu7.jpg",
     description: "Camille Bertault, une guest jazzy d'importance pour le pianiste Jacky Terrasson. Tous deux se retrouveront sur les planches de Jazz en Tech le vendredi 8 août, place de la République à Céret sur quelques titres qui trouveront preneur parmi la foule bienheureuse."
   }
 ]
