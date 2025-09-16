@@ -47,11 +47,11 @@ export default function MentionsLegales() {
                 <Mail className="w-4 h-4" style={{ color: '#722f37' }} />
                 <span className="text-sm md:text-base">E-mail : </span>
                 <a 
-                  href="mailto:contact@jazzentech.com" 
+                  href="mailto:contactjazzentech@gmail.com" 
                   className="font-medium hover:underline transition-colors text-sm md:text-base"
                   style={{ color: '#722f37' }}
                 >
-                  contact@jazzentech.com
+                  contactjazzentech@gmail.com
                 </a>
               </div>
               

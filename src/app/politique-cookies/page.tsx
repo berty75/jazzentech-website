@@ -416,12 +416,12 @@ export default function PolitiqueCookies() {
                 Pour toute question concernant notre utilisation des cookies, contactez-nous à :
               </p>
               <a 
-                href="mailto:contact@jazzentech.com" 
+                href="mailto:contactjazzentech@gmail.com" 
                 className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90 text-sm md:text-base"
                 style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
               >
                 <Mail className="w-4 h-4 mr-2" />
-                contact@jazzentech.com
+                contactjazzentech@gmail.com
               </a>
             </div>
           </section>

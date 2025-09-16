@@ -470,11 +470,11 @@ export default function PlanSite() {
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-3" style={{ color: '#d4af37' }} />
                   <a 
-                    href="mailto:contact@jazzentech.com" 
+                    href="mailto:contactjazzentech@gmail.com" 
                     className="font-medium hover:underline transition-colors text-sm md:text-base"
                     style={{ color: '#722f37' }}
                   >
-                    contact@jazzentech.com
+                    contactjazzentech@gmail.com
                   </a>
                 </div>
                 

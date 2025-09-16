@@ -80,11 +80,11 @@ function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail size={16} style={{ color: '#d4af37' }} aria-hidden="true" />
                 <a 
-                  href="mailto:contact@jazzentech.com"
+                  href="mailto:contactjazzentech@gmail.com"
                   className="nav-link text-sm hover:opacity-80 transition-colors rounded" 
                   style={{ color: '#f7f3e9' }}
                 >
-                  contact@jazzentech.com
+                  contactjazzentech@gmail.com
                 </a>
               </div>
               <div className="flex items-center space-x-3">

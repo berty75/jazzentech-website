@@ -146,7 +146,7 @@ export default function MotDuPresident() {
                     
                     <div className="flex items-start space-x-3">
                       <div className="w-2 h-2 bg-jazz-gold rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-sm md:text-base">La mairie de Céret, son service culture, ses services techniques</span>
+                      <span className="text-sm md:text-base">La mairie de Céret, son service culture, l'équipe de la médiatheque, les services techniques</span>
                     </div>
                     
                     <div className="flex items-start space-x-3">

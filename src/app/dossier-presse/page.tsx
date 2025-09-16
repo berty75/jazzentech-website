@@ -322,12 +322,12 @@ const coupuresPresse = [
                 <p className="font-semibold text-sm md:text-base mb-1" style={{ color: '#1a1a1a' }}>Alain Brunet</p>
                 <p className="text-xs md:text-sm text-gray-600 mb-3">Président de Jazz en Tech</p>
                 <a 
-                  href="mailto:contact@jazzentech.com" 
+                  href="mailto:contactjazzentech@gmail.com" 
                   className="inline-flex items-center text-xs md:text-sm hover:underline"
                   style={{ color: '#722f37' }}
                 >
                   <Mail className="w-4 h-4 mr-1" />
-                  contact@jazzentech.com
+                  contactjazzentech@gmail.com
                 </a>
               </div>
               

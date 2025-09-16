@@ -214,7 +214,7 @@ export default function Benevoles() {
               >
                 <Mail className="w-6 h-6 mx-auto mb-2" style={{ color: '#722f37' }} />
                 <p className="text-sm font-medium mb-1" style={{ color: '#1a1a1a' }}>Écrivez-nous</p>
-                <p className="font-bold text-sm" style={{ color: '#722f37' }}>contact@jazzentech.com</p>
+                <p className="font-bold text-sm" style={{ color: '#722f37' }}>contactjazzentech@gmail.com</p>
               </div>
             </div>
             
