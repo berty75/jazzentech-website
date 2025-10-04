@@ -6,12 +6,14 @@ import Image from 'next/image'
 import { Camera, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 import Link from 'next/link'
 
+
+
 // Données des photos complètes - AVEC URLs CLOUDINARY
 const photos = [
     // Charlotte Planchou (6 photos)
     {
       id: 1,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767209/2025_C%C3%A9ret_Charlotte_Planchou_01___Jacques_Martinez_tfkeua.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Charlotte_Planchou_01___Jacques_Martinez.jpg',
       alt: 'Charlotte Planchou en concert à Céret - Jazz en Tech 2025',
       category: 'artistes',
       artist: 'Charlotte Planchou',
@@ -20,7 +22,7 @@ const photos = [
     },
     {
       id: 2,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767206/2025_C%C3%A9ret_Charlotte_Planchou_03___Jacques_Martinez_egmmcm.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Charlotte_Planchou_03___Jacques_Martinez.jpg',
       alt: 'Charlotte Planchou sur scène avec sa formation',
       category: 'artistes',
       artist: 'Charlotte Planchou',
@@ -29,7 +31,7 @@ const photos = [
     },
     {
       id: 3,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767203/2025_C%C3%A9ret_Charlotte_Planchou_04___Jacques_Martinez_rrmxj6.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Charlotte_Planchou_04___Jacques_Martinez.jpg',
       alt: 'Charlotte Planchou - Moment musical intense',
       category: 'artistes',
       artist: 'Charlotte Planchou',
@@ -38,7 +40,7 @@ const photos = [
     },
     {
       id: 4,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767201/2025_C%C3%A9ret_Charlotte_Planchou_08___Jacques_Martinez_heeua6.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Charlotte_Planchou_08___Jacques_Martinez.jpg',
       alt: 'Charlotte Planchou et ses musiciens - Salut final',
       category: 'ambiance',
       artist: 'Charlotte Planchou',
@@ -47,7 +49,7 @@ const photos = [
     },
     {
       id: 5,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767198/2025_C%C3%A9ret_Charlotte_Planchou_10___Jacques_Martinez_c17nc2.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Charlotte_Planchou_10___Jacques_Martinez.jpg',
       alt: 'Charlotte Planchou - Performance vocale',
       category: 'artistes',
       artist: 'Charlotte Planchou',
@@ -56,7 +58,7 @@ const photos = [
     },
     {
       id: 6,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767196/2025_C%C3%A9ret_Charlotte_Planchou_13___Jacques_Martinez_luh75w.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Charlotte_Planchou_13___Jacques_Martinez.jpg',
       alt: 'Charlotte Planchou - Energie sur scène',
       category: 'artistes',
       artist: 'Charlotte Planchou',
@@ -67,7 +69,7 @@ const photos = [
     // Jacky Terrasson et Camille Bertault (8 photos)
     {
       id: 7,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767214/2025_C%C3%A9ret_Concert_Jacky_Terrasson_01_Jacques_Martinez_copie_a8v8qf.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_01_Jacques_Martinez.jpg',
       alt: 'Jacky Terrasson et Camille Bertault - Moment de complicité',
       category: 'artistes',
       artist: 'Jacky Terrasson',
@@ -76,7 +78,7 @@ const photos = [
     },
     {
       id: 8,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767191/2025_C%C3%A9ret_Concert_Jacky_Terrasson_03___Jacques_Martinez_yfa7lk.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_03___Jacques_Martinez.jpg',
       alt: 'Jacky Terrasson au piano - Concentration musicale',
       category: 'artistes',
       artist: 'Jacky Terrasson',
@@ -85,7 +87,7 @@ const photos = [
     },
     {
       id: 9,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767181/2025_C%C3%A9ret_Concert_Jacky_Terrasson_Camille_Bertault_02___Jacques_Martinez_sguc02.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_Camille_Bertault_02___Jacques_Martinez.jpg',
       alt: 'Camille Bertault en performance vocale',
       category: 'artistes',
       artist: 'Jacky Terrasson',
@@ -94,7 +96,7 @@ const photos = [
     },
     {
       id: 10,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767187/2025_C%C3%A9ret_Concert_Jacky_Terrasson_05___Jacques_Martinez_isbbor.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_05___Jacques_Martinez.jpg',
       alt: 'Jacky Terrasson - Passion au piano',
       category: 'artistes',
       artist: 'Jacky Terrasson',
@@ -103,7 +105,7 @@ const photos = [
     },
     {
       id: 11,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767186/2025_C%C3%A9ret_Concert_Jacky_Terrasson_08___Jacques_Martinez_kfvfd7.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_08___Jacques_Martinez.jpg',
       alt: 'Jacky Terrasson Trio - Vue de la scène',
       category: 'lieux',
       artist: 'Jacky Terrasson',
@@ -112,7 +114,7 @@ const photos = [
     },
     {
       id: 12,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767184/2025_C%C3%A9ret_Concert_Jacky_Terrasson_09___Jacques_Martinez_xt0edk.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_09___Jacques_Martinez.jpg',
       alt: 'Jacky Terrasson - Présentation du concert',
       category: 'ambiance',
       artist: 'Jacky Terrasson',
@@ -121,7 +123,7 @@ const photos = [
     },
     {
       id: 13,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767177/2025_C%C3%A9ret_Concert_Jacky_Terrasson_Camille_Bertault_07___Jacques_Martinez_snwiyn.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_Camille_Bertault_07___Jacques_Martinez.jpg',
       alt: 'Camille Bertault - Performance scénique',
       category: 'artistes',
       artist: 'Jacky Terrasson',
@@ -130,7 +132,7 @@ const photos = [
     },
     {
       id: 14,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767179/2025_C%C3%A9ret_Concert_Jacky_Terrasson_Camille_Bertault_03___Jacques_Martinez_p7eikc.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_Concert_Jacky_Terrasson_Camille_Bertault_03___Jacques_Martinez.jpg',
       alt: 'Camille Bertault - Expression artistique',
       category: 'artistes',
       artist: 'Jacky Terrasson',
@@ -141,7 +143,7 @@ const photos = [
     // Florin Gugulica Sextet (6 photos) - J'ai utilisé les URLs que vous avez fournies
     {
       id: 15,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767157/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__00___Jacques_Martinez_eqvh7k.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__00___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet dans le cloître de Saint-Génis',
       category: 'lieux',
       artist: 'Florin Gugulica',
@@ -150,7 +152,7 @@ const photos = [
     },
     {
       id: 16,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767154/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__03___Jacques_Martinez_f7s96a.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__03___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet - Ambiance intimiste',
       category: 'artistes',
       artist: 'Florin Gugulica',
@@ -159,7 +161,7 @@ const photos = [
     },
     {
       id: 17,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767152/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__12___Jacques_Martinez_gs6der.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__12___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet - Éclairage magique',
       category: 'ambiance',
       artist: 'Florin Gugulica',
@@ -168,7 +170,7 @@ const photos = [
     },
     {
       id: 18,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767150/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__14___Jacques_Martinez_c3obaw.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__14___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet - Moment musical',
       category: 'artistes',
       artist: 'Florin Gugulica',
@@ -177,7 +179,7 @@ const photos = [
     },
     {
       id: 19,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767148/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__17___Jacques_Martinez_r1cfaw.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__17___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet - Architecture historique',
       category: 'lieux',
       artist: 'Florin Gugulica',
@@ -186,7 +188,7 @@ const photos = [
     },
     {
       id: 20,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767144/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__18___Jacques_Martinez_ba1tkq.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__18___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet - Salut des musiciens',
       category: 'ambiance',
       artist: 'Florin Gugulica',
@@ -195,7 +197,7 @@ const photos = [
     },
     {
       id: 21,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767143/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__20___Jacques_Martinez_wrtean.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__20___Jacques_Martinez.jpg',
       alt: 'Florin Gugulica Sextet - Performance collective',
       category: 'artistes',
       artist: 'Florin Gugulica',
@@ -206,7 +208,7 @@ const photos = [
     // Stefano Di Battista (6 photos)
     {
       id: 22,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767174/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__03___Jacques_Martinez_oudzpv.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__03___Jacques_Martinez.jpg',
       alt: 'Stefano Di Battista au saxophone - La Dolce Vita',
       category: 'artistes',
       artist: 'Stefano Di Battista',
@@ -215,7 +217,7 @@ const photos = [
     },
     {
       id: 23,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767171/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__04___Jacques_Martinez_bjnskt.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__04___Jacques_Martinez.jpg',
       alt: 'Stefano Di Battista - Performance passionate',
       category: 'artistes',
       artist: 'Stefano Di Battista',
@@ -224,7 +226,7 @@ const photos = [
     },
     {
       id: 24,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767167/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__05___Jacques_Martinez_ue4y5u.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__05___Jacques_Martinez.jpg',
       alt: 'Stefano Di Battista - Virtuosité au saxophone',
       category: 'artistes',
       artist: 'Stefano Di Battista',
@@ -233,7 +235,7 @@ const photos = [
     },
     {
       id: 25,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767164/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__06___Jacques_Martinez_lr5jsv.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__06___Jacques_Martinez.jpg',
       alt: 'Stefano Di Battista - Complicité musicale',
       category: 'ambiance',
       artist: 'Stefano Di Battista',
@@ -242,7 +244,7 @@ const photos = [
     },
     {
       id: 26,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767161/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__18___Jacques_Martinez_h0v6wp.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__18___Jacques_Martinez.jpg',
       alt: 'Stefano Di Battista - Jazz italien à Céret',
       category: 'artistes',
       artist: 'Stefano Di Battista',
@@ -251,7 +253,7 @@ const photos = [
     },
     {
       id: 27,
-      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757767159/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__20___Jacques_Martinez_delmn9.jpg',
+      src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_C%C3%A9ret_St%C3%A9fano_Di_Battista__20___Jacques_Martinez.jpg',
       alt: 'Stefano Di Battista - Place de la République',
       category: 'lieux',
       artist: 'Stefano Di Battista',
