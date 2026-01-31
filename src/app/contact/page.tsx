@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Ticket } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -169,15 +169,37 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Téléphone */}
+              {/* Contact Général */}
               <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
                   <Phone className="w-6 h-6" style={{ color: '#722f37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Téléphone</h3>
-                  <p className="text-gray-600">+33 6 37 58 18 86</p>
-                  <p className="text-sm text-gray-500">Lun-Ven 9h-18h</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">Contact général</h3>
+                  <a 
+                    href="tel:+33637581886" 
+                    className="text-gray-900 font-medium hover:opacity-80 transition-colors"
+                  >
+                    06 37 58 18 86
+                  </a>
+                  <p className="text-sm text-gray-500 mt-1">Musiciens, partenaires, presse</p>
+                </div>
+              </div>
+
+              {/* Contact Billetterie */}
+              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
+                  <Ticket className="w-6 h-6" style={{ color: '#d4af37' }} aria-hidden="true" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">Contact billetterie</h3>
+                  <a 
+                    href="tel:+33601864672" 
+                    className="text-gray-900 font-medium hover:opacity-80 transition-colors"
+                  >
+                    06 01 86 46 72
+                  </a>
+                  <p className="text-sm text-gray-500 mt-1">Réservations, remboursements</p>
                 </div>
               </div>
 
@@ -188,8 +210,13 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                  <p className="text-gray-600">contactjazzentech@gmail.com</p>
-                  <p className="text-sm text-gray-500">Réponse sous 24h</p>
+                  <a 
+                    href="mailto:contactjazzentech@gmail.com"
+                    className="text-gray-600 hover:opacity-80 transition-colors"
+                  >
+                    contactjazzentech@gmail.com
+                  </a>
+                  <p className="text-sm text-gray-500 mt-1">Réponse sous 24h</p>
                 </div>
               </div>
             </div>
@@ -501,8 +528,8 @@ export default function Contact() {
                         style={{ 
                           color: '#722f37',
                         }}
-                        onMouseEnter={(e) => e.target.style.color = '#8b3a42'}
-                        onMouseLeave={(e) => e.target.style.color = '#722f37'}
+                        onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#8b3a42'}
+                        onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = '#722f37'}
                       >
                         politique de confidentialité
                       </a>
@@ -558,8 +585,8 @@ export default function Contact() {
                 href="/programmation" 
                 className="text-sm font-semibold mt-2 inline-block underline transition-colors"
                 style={{ color: '#d4af37' }}
-                onMouseEnter={(e) => e.target.style.color = '#b8941f'}
-                onMouseLeave={(e) => e.target.style.color = '#d4af37'}
+                onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#b8941f'}
+                onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = '#d4af37'}
               >
                 Voir la programmation →
               </a>
@@ -571,8 +598,8 @@ export default function Contact() {
                 href="/benevoles" 
                 className="text-sm font-semibold mt-2 inline-block underline transition-colors"
                 style={{ color: '#d4af37' }}
-                onMouseEnter={(e) => e.target.style.color = '#b8941f'}
-                onMouseLeave={(e) => e.target.style.color = '#d4af37'}
+                onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#b8941f'}
+                onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = '#d4af37'}
               >
                 Devenir bénévole →
               </a>
@@ -584,8 +611,8 @@ export default function Contact() {
                 href="/artistes" 
                 className="text-sm font-semibold mt-2 inline-block underline transition-colors"
                 style={{ color: '#d4af37' }}
-                onMouseEnter={(e) => e.target.style.color = '#b8941f'}
-                onMouseLeave={(e) => e.target.style.color = '#d4af37'}
+                onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#b8941f'}
+                onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = '#d4af37'}
               >
                 Découvrir les artistes →
               </a>

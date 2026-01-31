@@ -5,6 +5,8 @@ import Header from '@/components/Header'
 import MainFooter from '@/components/Footer'
 import CookieBanner from '@/components/CookieBanner'
 import AccessibilityProvider from '@/components/AccessibilityProvider'
+import PreventeBanner from '@/components/PreventeBanner'
+import PreventePopup from '@/components/PreventePopup'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -92,7 +94,6 @@ export const metadata: Metadata = {
   },
 }
 
-// Export viewport séparé (recommandé pour Next.js 15+)
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -107,32 +108,28 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        {/* Google Search Console */}
         <meta name="google-site-verification" content="ubaL4o8UgQ30SY4PvSeSahpzMDVE3cHRhCaucb57IEk" />
-        
-        {/* Favicons */}
         <link rel="icon" href="/jazz-en-tech.ico" sizes="any" />
         <link rel="icon" href="/jazz-en-tech.ico" sizes="16x16" type="image/x-icon" />
         <link rel="icon" href="/jazz-en-tech.ico" sizes="32x32" type="image/x-icon" />
         <link rel="apple-touch-icon" href="/jazz-en-tech.ico" />
-        
-        {/* Theme color */}
         <meta name="theme-color" content="#722f37" />
         <meta name="msapplication-TileColor" content="#722f37" />
-        
-        {/* Preconnect pour optimiser les performances */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={inter.className}>
         <AccessibilityProvider>
-          {/* Skip link pour navigation clavier */}
           <a 
             href="#main-content" 
             className="skip-link"
           >
             Aller au contenu principal
           </a>
+          
+          {/* Prévente - Bannière sticky + Popup */}
+          <PreventeBanner />
+          <PreventePopup />
           
           <Header />
           
@@ -144,7 +141,6 @@ export default function RootLayout({
           <CookieBanner />
         </AccessibilityProvider>
         
-        {/* Schema.org pour le festival */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -185,7 +181,7 @@ export default function RootLayout({
                 url: 'https://jazzentech.com'
               },
               url: 'https://jazzentech.com',
-              image: 'https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg'
+              image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg'
             })
           }}
         />

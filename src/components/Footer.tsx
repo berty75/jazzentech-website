@@ -6,6 +6,8 @@ function Footer() {
     <footer style={{ backgroundColor: '#1a1a1a' }} className="text-white" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
+          
+          {/* Colonne 1 : Logo et réseaux sociaux */}
           <div>
             <h3 className="text-2xl font-bold mb-4" style={{ color: '#d4af37' }}>
               Jazz en Tech
@@ -43,6 +45,7 @@ function Footer() {
             </nav>
           </div>
           
+          {/* Colonne 2 : Navigation */}
           <div>
             <h4 className="text-lg font-semibold mb-4" style={{ color: '#d4af37' }}>
               Navigation
@@ -58,6 +61,7 @@ function Footer() {
             </nav>
           </div>
           
+          {/* Colonne 3 : Informations */}
           <div>
             <h4 className="text-lg font-semibold mb-4" style={{ color: '#d4af37' }}>
               Informations
@@ -72,11 +76,13 @@ function Footer() {
             </nav>
           </div>
           
+          {/* Colonne 4 : Contact */}
           <div>
             <h4 className="text-lg font-semibold mb-4" style={{ color: '#d4af37' }}>
               Contact
             </h4>
             <address className="space-y-3 not-italic">
+              {/* Email */}
               <div className="flex items-center space-x-3">
                 <Mail size={16} style={{ color: '#d4af37' }} aria-hidden="true" />
                 <a 
@@ -87,16 +93,30 @@ function Footer() {
                   contactjazzentech@gmail.com
                 </a>
               </div>
+              
+              {/* Contact Général */}
               <div className="flex items-center space-x-3">
                 <Phone size={16} style={{ color: '#d4af37' }} aria-hidden="true" />
-                <a 
-                  href="tel:+33637581886"
-                  className="nav-link text-sm hover:opacity-80 transition-colors rounded" 
-                  style={{ color: '#f7f3e9' }}
-                >
-                  +33 6 37 58 18 86
-                </a>
+                <div className="text-sm" style={{ color: '#f7f3e9' }}>
+                  <span className="opacity-70">Contact : </span>
+                  <a href="tel:+33637581886" className="nav-link hover:opacity-80 transition-colors rounded">
+                    06 37 58 18 86
+                  </a>
+                </div>
               </div>
+              
+              {/* Contact Billetterie */}
+              <div className="flex items-center space-x-3">
+                <Ticket size={16} style={{ color: '#d4af37' }} aria-hidden="true" />
+                <div className="text-sm" style={{ color: '#f7f3e9' }}>
+                  <span className="opacity-70">Billetterie : </span>
+                  <a href="tel:+33601864672" className="nav-link hover:opacity-80 transition-colors rounded">
+                    06 01 86 46 72
+                  </a>
+                </div>
+              </div>
+              
+              {/* Adresse */}
               <div className="flex items-center space-x-3">
                 <MapPin size={16} style={{ color: '#d4af37' }} aria-hidden="true" />
                 <span className="text-sm" style={{ color: '#f7f3e9' }}>
@@ -105,7 +125,7 @@ function Footer() {
               </div>
             </address>
 
-            {/* CTA Billetterie dans footer */}
+            {/* CTA Billetterie */}
             <div className="mt-6">
               <Link
                 href="/billetterie"
@@ -122,6 +142,7 @@ function Footer() {
           </div>
         </div>
         
+        {/* Bas de page */}
         <div className="mt-8 pt-8" style={{ borderTop: '1px solid #722f37' }}>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm mb-4 md:mb-0" style={{ color: '#f7f3e9' }}>

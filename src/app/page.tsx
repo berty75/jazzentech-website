@@ -1,81 +1,51 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
-import { Calendar, Music, Users, Star, MapPin, Ticket, Play } from 'lucide-react'
-
-// Lazy loading des sections lourdes
-const VideoSection = dynamic(() => import('@/components/VideoSection'), {
-  loading: () => (
-    <div className="animate-pulse">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[1,2,3,4,5,6].map(i => (
-          <div key={i} className="bg-gray-300 rounded-xl h-64"></div>
-        ))}
-      </div>
-    </div>
-  )
-})
-
-const FreeVideoSection = dynamic(() => import('@/components/FreeVideoSection'), {
-  loading: () => (
-    <div className="animate-pulse">
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {[1,2,3,4].map(i => (
-          <div key={i} className="bg-gray-300 rounded-xl h-64"></div>
-        ))}
-      </div>
-    </div>
-  )
-})
+import { Calendar, MapPin, Ticket, Music, Users, Star } from 'lucide-react'
 
 // Métadonnées SEO pour la page d'accueil
 export const metadata: Metadata = {
-  title: 'Jazz en Tech 2025 - Festival de Jazz à Céret et Saint-Génis-des-Fontaines | 10ème édition',
-  description: 'Découvrez Jazz en Tech 2025, le festival de jazz incontournable des Pyrénées-Orientales. Du 27 juillet au 9 août 2025 à Céret et Saint-Génis-des-Fontaines. Programmation exceptionnelle avec Manu Le Prince, Florin Gugulica, Stefano Di Battista, Jacky Terrasson, Camille Bertault et Charlotte Planchou.',
+  title: 'Jazz en Tech 2026 - Festival de Jazz à Céret et Saint-Génis-des-Fontaines | 11ème édition',
+  description: 'Découvrez Jazz en Tech 2026, le festival de jazz incontournable des Pyrénées-Orientales. Du 26 juillet au 8 août 2026. Concert événement Erik Truffaz & Antonio Lizana "New Sketches of Spain" en hommage à Miles Davis.',
   keywords: [
-    'Jazz en Tech 2025',
+    'Jazz en Tech 2026',
     'festival jazz',
     'Céret',
     'Saint-Génis-des-Fontaines',
     'Pyrénées-Orientales',
-    'concert',
-    'musique',
-    'jazz manouche',
-    'bossa nova',
-    'été 2025',
-    'Manu Le Prince',
-    'Florin Gugulica',
-    'Stefano Di Battista',
-    'Jacky Terrasson',
-    'Camille Bertault',
-    'Charlotte Planchou',
-    '10ème édition'
+    'Erik Truffaz',
+    'Antonio Lizana',
+    'New Sketches of Spain',
+    'Miles Davis',
+    'hommage Miles Davis 100 ans',
+    'concert jazz',
+    'été 2026',
+    '11ème édition'
   ].join(', '),
   
   openGraph: {
-    title: 'Jazz en Tech 2025 - Festival de Jazz | 10ème édition',
-    description: 'Le festival de jazz incontournable des Pyrénées-Orientales. Du 27 juillet au 9 août 2025. Programmation exceptionnelle pour cette 10ème édition.',
+    title: 'Jazz en Tech 2026 - Festival de Jazz | 11ème édition',
+    description: 'Le festival de jazz incontournable des Pyrénées-Orientales. Erik Truffaz & Antonio Lizana en concert événement.',
     images: [
       {
-        url: 'https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg',
+        url: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_1200/jazz_en_tech_ceret.jpg',
         width: 1200,
         height: 630,
-        alt: 'Affiche Jazz en Tech 2025 - 10ème édition',
+        alt: 'Affiche Jazz en Tech 2026 - 11ème édition',
       }
     ],
     locale: 'fr_FR',
     type: 'website',
-    siteName: 'Jazz en Tech 2025',
+    siteName: 'Jazz en Tech 2026',
     url: 'https://jazzentech.com'
   },
   
   twitter: {
     card: 'summary_large_image',
-    title: 'Jazz en Tech 2025 - Festival de Jazz | 10ème édition',
-    description: 'Le festival de jazz incontournable des Pyrénées-Orientales. Du 27 juillet au 9 août 2025.',
-    images: ['https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg'],
+    title: 'Jazz en Tech 2026 - Festival de Jazz | 11ème édition',
+    description: 'Erik Truffaz & Antonio Lizana - Hommage à Miles Davis',
+    images: ['https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_1200/jazz_en_tech_ceret.jpg'],
     creator: '@jazzentech'
   },
   
@@ -105,17 +75,17 @@ const StructuredData = () => {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "MusicEvent",
-    "name": "Jazz en Tech 2025",
-    "description": "Festival de jazz à Céret et Saint-Génis-des-Fontaines, 10ème édition du 27 juillet au 9 août 2025",
-    "image": "https://jazzentech.comhttps://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg",
-    "startDate": "2025-07-27",
-    "endDate": "2025-08-09",
+    "name": "Jazz en Tech 2026 - Erik Truffaz & Antonio Lizana",
+    "description": "Concert événement New Sketches of Spain - Hommage à Miles Davis pour ses 100 ans",
+    "image": "https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_1200/jazz_en_tech_ceret.jpg",
+    "startDate": "2026-07-26",
+    "endDate": "2026-08-08",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
     "location": [
       {
         "@type": "Place",
-        "name": "Cloître Saint-Génis-des-Fontaines",
+        "name": "Saint-Génis-des-Fontaines",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Saint-Génis-des-Fontaines",
@@ -125,7 +95,7 @@ const StructuredData = () => {
       },
       {
         "@type": "Place",
-        "name": "Place de la République",
+        "name": "Céret",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Céret",
@@ -137,33 +107,13 @@ const StructuredData = () => {
     "performer": [
       {
         "@type": "MusicGroup",
-        "name": "Manu Le Prince",
-        "genre": "Bossa Nova, Latin Jazz"
+        "name": "Erik Truffaz",
+        "genre": "Jazz, Electro-Jazz, Trompette"
       },
       {
         "@type": "MusicGroup",
-        "name": "Florin Gugulica",
-        "genre": "Jazz Manouche, Musique Balkanique"
-      },
-      {
-        "@type": "MusicGroup",
-        "name": "Stefano Di Battista",
-        "genre": "Jazz Italien, Saxophone"
-      },
-      {
-        "@type": "MusicGroup",
-        "name": "Jacky Terrasson",
-        "genre": "Piano Jazz"
-      },
-      {
-        "@type": "MusicGroup",
-        "name": "Camille Bertault",
-        "genre": "Jazz Vocal Contemporain"
-      },
-      {
-        "@type": "MusicGroup",
-        "name": "Charlotte Planchou",
-        "genre": "Jazz Vocal Contemporain"
+        "name": "Antonio Lizana",
+        "genre": "Flamenco, Jazz, Saxophone"
       }
     ],
     "organizer": {
@@ -173,9 +123,12 @@ const StructuredData = () => {
     },
     "offers": {
       "@type": "Offer",
-      "url": "https://jazzentech.com/billetterie",
+      "url": "https://www.billetweb.fr/shop.php?event=jazz-en-tech",
       "availability": "https://schema.org/InStock",
-      "priceCurrency": "EUR"
+      "price": "20",
+      "priceCurrency": "EUR",
+      "validFrom": "2026-02-01",
+      "priceValidUntil": "2026-03-01"
     }
   }
 
@@ -186,28 +139,6 @@ const StructuredData = () => {
     />
   )
 }
-
-// Composant image optimisé
-const OptimizedImage = ({ src, alt, className, priority = false, width = 400, height = 500 }: {
-  src: string
-  alt: string
-  className?: string
-  priority?: boolean
-  width?: number
-  height?: number
-}) => (
-  <Image
-    src={src}
-    alt={alt}
-    width={width}
-    height={height}
-    className={className}
-    priority={priority}
-    // Supprime ces deux lignes :
-    // placeholder="blur"
-    // blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-  />
-)
 
 export default function Home() {
   return (
@@ -236,11 +167,15 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="order-2 lg:order-1">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-white leading-tight">
-                  Jazz en Tech
+                  Jazz en Tech <span style={{ color: '#d4af37' }}>2026</span>
                 </h1>
                 
-                <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl" style={{ color: '#f7f3e9' }}>
+                <p className="text-base sm:text-lg md:text-xl mb-3 max-w-2xl" style={{ color: '#f7f3e9' }}>
                   Le festival qui fait swinguer les Pyrénées Orientales 
+                </p>
+                
+                <p className="text-sm sm:text-base mb-6 md:mb-8 font-medium" style={{ color: '#d4af37' }}>
+                  Programmation complète dévoilée très bientôt !
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
@@ -248,36 +183,36 @@ export default function Home() {
                     href="/billetterie"
                     className="inline-block px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg text-center text-sm sm:text-base"
                     style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
-                    aria-label="Accéder à la billetterie Jazz en Tech 2025"
+                    aria-label="Accéder à la billetterie Jazz en Tech 2026"
                   >
                     Billetterie
                   </Link>
                   <Link
-                    href="/programmation"
+                    href="#evenement"
                     className="inline-block border-2 px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center text-sm sm:text-base"
                     style={{ borderColor: '#d4af37', color: '#d4af37' }}
-                    aria-label="Découvrir la programmation Jazz en Tech 2025"
+                    aria-label="Découvrir le concert événement"
                   >
-                    Programmation
+                    Concert événement
                   </Link>
                 </div>
               </div>
               
               <div className="order-1 lg:order-2 flex justify-center items-start opacity-0 animate-[fadeIn_1s_ease-in_0.5s_forwards]">
                 <div className="relative group w-full max-w-sm lg:max-w-md">
-                  <OptimizedImage
-                    src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/affiche-2025_xkytzn.jpg"
-                    alt="Affiche Jazz en Tech 2025 - 10ème édition du festival de jazz"
+                  <Image
+                    src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/jazz_en_tech_ceret.jpg"
+                    alt="Affiche Jazz en Tech 2026 - 11ème édition du festival de jazz"
                     className="w-full rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-500"
                     priority={true}
                     width={400}
                     height={600}
                   />
                   
-                  {/* Badge anniversaire */}
+                  {/* Badge édition */}
                   <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 md:-top-4 md:-right-4 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center font-bold shadow-xl" style={{ background: 'linear-gradient(45deg, #d4af37, #b87333)', color: '#1a1a1a' }}>
                     <div className="text-center">
-                      <div className="text-xs sm:text-xs md:text-sm">10ème</div>
+                      <div className="text-xs sm:text-xs md:text-sm">11ème</div>
                       <div className="text-xs sm:text-xs md:text-sm">édition</div>
                     </div>
                   </div>
@@ -288,166 +223,196 @@ export default function Home() {
         </header>
 
         <main>
-          {/* Section concerts payants */}
-          <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, rgba(212, 175, 55, 0.1) 50%, #f7f3e9 100%)' }} aria-labelledby="paid-concerts-heading">
+          {/* Section Concert Événement Erik Truffaz */}
+          <section id="evenement" className="py-16 md:py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #722f37 100%)' }} aria-labelledby="evenement-heading">
             {/* Éléments décoratifs */}
-            <div className="absolute inset-0 opacity-20" aria-hidden="true">
-              <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
-              <div className="absolute top-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
-              <div className="absolute bottom-10 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
+            <div className="absolute inset-0 opacity-10" aria-hidden="true">
+              <div className="absolute top-10 left-10 w-32 h-32 rounded-full blur-3xl" style={{ backgroundColor: '#d4af37' }}></div>
+              <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full blur-3xl" style={{ backgroundColor: '#b87333' }}></div>
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 id="paid-concerts-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
-                  🎫 Concerts payants avec billetterie
-                </h2>
-                <p className="text-base md:text-lg max-w-2xl mx-auto mb-4" style={{ color: '#1a1a1a' }}>
-                  Découvrez les artistes exceptionnels de cette 10ème édition
-                </p>
-                <div className="inline-flex items-center px-3 md:px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)', border: '2px solid #722f37' }}>
-                  <Ticket className="w-3 h-3 md:w-4 md:h-4 mr-2" style={{ color: '#722f37' }} aria-hidden="true" />
-                  <span className="text-xs md:text-sm font-medium" style={{ color: '#722f37' }}>Réservation obligatoire</span>
+              {/* Badge hommage */}
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', border: '2px solid #d4af37' }}>
+                  <Music className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
+                  <span className="text-sm font-semibold" style={{ color: '#d4af37' }}>HOMMAGE À MILES DAVIS • 100 ANS</span>
                 </div>
               </div>
 
-              {/* Grille d'artistes payants */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 max-w-7xl mx-auto">
-                
-                {/* Manu Le Prince */}
-                <Link href="/artistes/manu-le-prince" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Manu Le Prince - Concert du 27 juillet">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/manu-le-prince_bymuww.jpg"
-                      alt="Manu Le Prince - Chanteuse de Bossa Nova et Latin Jazz"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                      <h3 className="font-bold text-xs md:text-sm mb-1">MANU LE PRINCE</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-07-27">27 JUIL</time>
-                      </div>
+              <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                {/* Photo */}
+                <div className="relative">
+                  <Image
+                    src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/erik_truffaz_antonio_lizana_jazz.jpg"
+                    alt="Erik Truffaz et Antonio Lizana en concert"
+                    className="w-full rounded-2xl shadow-2xl"
+                    width={600}
+                    height={400}
+                  />
+                  <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg shadow-lg" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>
+                    <span className="text-sm font-bold">© Antonio Barce</span>
+                  </div>
+                </div>
+
+                {/* Contenu */}
+                <div className="text-white">
+                  <h2 id="evenement-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
+                    Erik Truffaz & Antonio Lizana
+                  </h2>
+                  <p className="text-xl sm:text-2xl mb-2" style={{ color: '#d4af37' }}>
+                    "New Sketches of Spain"
+                  </p>
+                  <p className="text-base mb-6" style={{ color: '#f7f3e9' }}>
+                    Inspiré du chef-d'œuvre de Miles Davis
+                  </p>
+
+                  {/* Infos concert */}
+                  <div className="flex flex-wrap gap-4 mb-6">
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
+                      <Calendar className="w-5 h-5" style={{ color: '#d4af37' }} />
+                      <span>Mercredi 5 août 2026</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
+                      <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
+                      <span>Céret • 21h</span>
                     </div>
                   </div>
-                </Link>
 
-                {/* Florin Gugulica */}
-                <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Florin Gugulica - Concert du 28 juillet">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/florin-gugulica_iuybea.jpg"
-                      alt="Florin Gugulica - Clarinettiste de Jazz Manouche et Musique Balkanique"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                      <h3 className="font-bold text-xs md:text-sm mb-1">FLORIN GUGULICA</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-07-28">28 JUIL</time>
-                      </div>
+                  {/* Tarif prévente */}
+                  <div className="rounded-xl p-6 mb-6" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '2px solid rgba(212, 175, 55, 0.3)' }}>
+                    <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif prévente du 1er février au 1er mars</p>
+                    <div className="flex items-center gap-4">
+                      <span className="text-3xl font-bold" style={{ color: '#d4af37' }}>20€</span>
+                      <span className="text-xl line-through" style={{ color: '#888' }}>25€</span>
+                      <span className="px-3 py-1 rounded-full text-sm font-semibold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>-20%</span>
                     </div>
                   </div>
-                </Link>
 
-                {/* Stefano Di Battista */}
-                <Link href="/artistes/stefano-di-battista" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Stefano Di Battista - Concert du 7 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/stefano-di-battista_p7imeu.jpg"
-                      alt="Stefano Di Battista - Saxophoniste de Jazz Italien"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                      <h3 className="font-bold text-xs md:text-sm mb-1">STEFANO DI BATTISTA</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-07">7 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Jacky Terrasson */}
-                <Link href="/artistes/jacky-terrasson" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Jacky Terrasson - Concert du 8 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/jacky-terrasson_c2r3t7.jpg"
-                      alt="Jacky Terrasson - Pianiste de Jazz"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                      <h3 className="font-bold text-xs md:text-sm mb-1">JACKY TERRASSON</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-08">8 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Camille Bertault */}
-                <Link href="/artistes/camille-bertault" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Camille Bertault - Concert du 8 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/camille-bertault_ehnf2z.jpg"
-                      alt="Camille Bertault - Chanteuse de Jazz Vocal Contemporain"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                      <h3 className="font-bold text-xs md:text-sm mb-1">CAMILLE BERTAULT</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-08">8 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                {/* Charlotte Planchou */}
-                <Link href="/artistes/charlotte-planchou" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Charlotte Planchou - Concert du 9 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/charlotte-planchou_tumrdd.jpg"
-                      alt="Charlotte Planchou - Chanteuse de Jazz Vocal Contemporain, Prix Évidence 2025"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-2 md:p-3 text-white">
-                      <h3 className="font-bold text-xs md:text-sm mb-1">CHARLOTTE PLANCHOU</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-09">9 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
+                  {/* LIEN BILLETWEB DIRECT */}
+                  <a
+                    href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl"
+                    style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+                  >
+                    Réserver ma place
+                  </a>
+                </div>
               </div>
 
+              {/* Citation François Lacharme */}
+              <div className="max-w-4xl mx-auto mt-16">
+                <blockquote className="relative p-8 rounded-2xl" style={{ backgroundColor: 'rgba(247, 243, 233, 0.05)', borderLeft: '4px solid #d4af37' }}>
+                  <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: '#f7f3e9' }}>
+                    « Fasciné par la découverte de musiques liées à la tradition populaire espagnole [...] et par certaines expressions du patrimoine culturel de ce pays [...], le trompettiste Miles Davis en a donné sa vision intense et poétisée dans "Sketches of Spain", chef-d'œuvre marquant l'ouverture du jazz aux musiques du monde.
+                  </p>
+                  <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: '#f7f3e9' }}>
+                    Disciple émancipé de son glorieux aîné, Erik Truffaz est devenu l'une des principales figures de la trompette électro-jazz [...] Sa rencontre avec le saxophoniste et chanteur de flamenco Antonio Lizana, [...] devait se sceller par un projet ambitieux : proposer leur vision contemporaine de ces "Esquisses d'Espagne" dont le génie a traversé les décennies [...] »
+                  </p>
+                  <footer className="flex items-center gap-3">
+                    <div className="w-12 h-0.5" style={{ backgroundColor: '#d4af37' }}></div>
+                    <cite className="not-italic font-semibold" style={{ color: '#d4af37' }}>François Lacharme</cite>
+                  </footer>
+                </blockquote>
+              </div>
+
+              {/* Distribution */}
+              <div className="max-w-4xl mx-auto mt-12">
+                <h3 className="text-xl font-bold mb-6 text-center" style={{ color: '#d4af37' }}>Distribution</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { name: 'Erik Truffaz', role: 'Trompette' },
+                    { name: 'Antonio Lizana', role: 'Chant, saxophone alto, flûte' },
+                    { name: 'Renaud Gabriel Pion', role: 'Clarinette basse, cor anglais, arrangements' },
+                    { name: 'Ana Perez', role: 'Danse flamenco' },
+                    { name: 'Pau Figueres', role: 'Guitare flamenco' },
+                    { name: 'Arin Keshishi', role: 'Basse électrique' },
+                    { name: 'Manuel de la Torre', role: 'Batterie' },
+                    { name: 'Vincent Thomas', role: 'Percussions' },
+                  ].map((artist, index) => (
+                    <div key={index} className="p-4 rounded-xl text-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                      <p className="font-semibold text-white text-sm">{artist.name}</p>
+                      <p className="text-xs mt-1" style={{ color: '#b87333' }}>{artist.role}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section dates importantes */}
+          <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, rgba(212, 175, 55, 0.1) 50%, #f7f3e9 100%)' }} aria-labelledby="dates-heading">
+            <div className="absolute inset-0 opacity-20" aria-hidden="true">
+              <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
+              <div className="absolute bottom-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
+              <div className="absolute top-1/2 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
+            </div>
+            
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="text-center mb-8 md:mb-12">
+                <h2 id="dates-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
+                  Les rendez-vous de l'été 2026
+                </h2>
+                {/* Message programmation complète à venir */}
+                <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: '#b87333' }}>
+                  🎷 D'autres artistes et concerts seront annoncés prochainement !
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+                {/* Saint-Génis */}
+                <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
+                  background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 115, 51, 0.05))', 
+                  border: '2px solid rgba(212, 175, 55, 0.3)',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  <div className="relative mb-4 md:mb-6">
+                    <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }} aria-hidden="true"></div>
+                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#d4af37' }}>
+                      <Calendar className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} aria-hidden="true" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#722f37' }}>
+                    <time dateTime="2026-07-26/2026-07-27">26-27 Juillet</time>
+                  </h3>
+                  <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#1a1a1a' }}>Saint-Génis-des-Fontaines</p>
+                  <div className="text-xs sm:text-sm p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#722f37' }}>
+                    <p className="font-semibold">Programme complet du festival</p>
+                    <p className="mt-1">dévoilé prochainement !</p>
+                  </div>
+                </article>
+                
+                {/* Céret */}
+                <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
+                  background: 'linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(212, 175, 55, 0.05))', 
+                  border: '2px solid rgba(114, 47, 55, 0.3)',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  <div className="relative mb-4 md:mb-6">
+                    <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.3)' }} aria-hidden="true"></div>
+                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#722f37' }}>
+                      <MapPin className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
+                    </div>
+                  </div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#722f37' }}>
+                    <time dateTime="2026-08-05/2026-08-08">5-6-7-8 Août</time>
+                  </h3>
+                  <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#1a1a1a' }}>Céret</p>
+                  <div className="text-xs sm:text-sm space-y-2">
+                    <div className="p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
+                      <p className="font-bold" style={{ color: '#722f37' }}>Mercredi 5 août • 21h</p>
+                      <p style={{ color: '#d4af37' }}>Erik Truffaz & Antonio Lizana</p>
+                      <p className="text-xs mt-1" style={{ color: '#b87333' }}>"New Sketches of Spain"</p>
+                    </div>
+                    <div className="p-2 rounded-lg text-xs" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', color: '#722f37' }}>
+                      + autres concerts à venir
+                    </div>
+                  </div>
+                </article>
+              </div>
+              
               <div className="text-center mt-8 md:mt-12">
                 <Link 
                   href="/billetterie"
@@ -456,7 +421,7 @@ export default function Home() {
                     backgroundColor: '#722f37', 
                     color: '#f7f3e9'
                   }}
-                  aria-label="Réserver vos places pour les concerts payants"
+                  aria-label="Réserver vos places"
                 >
                   Réserver mes places
                 </Link>
@@ -464,221 +429,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Section concerts gratuits */}
-          <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, rgba(212, 175, 55, 0.1) 50%, #f7f3e9 100%)' }} aria-labelledby="free-concerts-heading">
-            <div className="absolute inset-0 opacity-20" aria-hidden="true">
-              <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
-              <div className="absolute top-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
-              <div className="absolute bottom-10 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
-            </div>
-
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 id="free-concerts-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
-                  🎵 Concerts gratuits
-                </h2>
-                <p className="text-base md:text-lg md:text-xl max-w-3xl mx-auto mb-4" style={{ color: '#1a1a1a' }}>
-                  Du 6 au 9 août le jazz vivra dans les rues de Céret
-                </p>
-                <div className="inline-flex items-center px-3 md:px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)', border: '2px solid #d4af37' }}>
-                  <MapPin className="w-3 h-3 md:w-4 md:h-4 mr-2" style={{ color: '#d4af37' }} aria-hidden="true" />
-                  <span className="text-xs md:text-sm font-medium" style={{ color: '#d4af37' }}>Centre-ville de Céret</span>
-                </div>
-              </div>
-
-              {/* Grille artistes concerts gratuits */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-                
-                <Link href="/artistes/triton-66" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Triton 66 - Concerts gratuits des 6 et 7 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/triton-66_n3dcpl.jpg"
-                      alt="Triton 66 - Quintet de Jazz Standards et Swing"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                      <h3 className="font-bold text-sm md:text-lg mb-1">TRITON 66</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-06">6 & 7 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link href="/artistes/florin-gugulica" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Florin Gugulica Trio - Concerts gratuits des 6, 7 et 9 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/florin-gugulica-trio_wejyxd.jpg"
-                      alt="Florin Gugulica Trio - Jazz Manouche en concert gratuit"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                      <h3 className="font-bold text-sm md:text-lg mb-1">FLORIN GUGULICA</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-06">6, 7 & 9 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link href="/artistes/david-vilayleck" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir David Vilayleck Trio - Concert gratuit du 8 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764876/david-vilayleck_kjwhfp.jpg"
-                      alt="David Vilayleck Trio - Jazz Power Trio et Jazz Fusion"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                      <h3 className="font-bold text-sm md:text-lg mb-1">DAVID VILAYLECK</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-08">VEN. 8 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                <Link href="/artistes/cavale-trio" className="group relative block overflow-hidden rounded-lg shadow-xl" aria-label="Découvrir Cavale - Concerts gratuits des 8 et 9 août">
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <OptimizedImage
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/cavale-trio_j1bwqr.jpg"
-                      alt="Cavale - Trio de Jazz Contemporain et Musique Acoustique"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 text-white">
-                      <h3 className="font-bold text-sm md:text-lg mb-1">CAVALE</h3>
-                      <div className="flex items-center text-xs">
-                        <Calendar className="w-3 h-3 mr-1" style={{ color: '#d4af37' }} aria-hidden="true" />
-                        <time dateTime="2025-08-08">8 & 9 AOÛT</time>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-              </div>
-
-              <div className="text-center mt-8 md:mt-12">
-                <Link 
-                  href="/programmation"
-                  className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
-                  style={{ 
-                    backgroundColor: '#d4af37', 
-                    color: '#1a1a1a'
-                  }}
-                  aria-label="Voir le planning détaillé des concerts gratuits"
-                >
-                  Voir le planning détaillé
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {/* Section dates importantes */}
-<section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #722f37 50%, #1a1a1a 100%)' }} aria-labelledby="dates-heading">
-  <div className="absolute inset-0 opacity-20" aria-hidden="true">
-    <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#d4af37' }}></div>
-    <div className="absolute top-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
-    <div className="absolute bottom-20 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
-  </div>
-  
-  <div className="container mx-auto px-4 relative z-10">
-    <div className="text-center mb-8 md:mb-12">
-      <h2 id="dates-heading" className="text-xl sm:text-2xl md:text-3xl font-bold mb-4" style={{ color: '#d4af37' }}>
-        10ème édition - Été 2025
-      </h2>
-    </div>
-    
-    <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-      {/* Saint-Génis */}
-      <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
-        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 115, 51, 0.05))', 
-        border: '2px solid rgba(212, 175, 55, 0.3)',
-        backdropFilter: 'blur(10px)'
-      }}>
-        <div className="relative mb-4 md:mb-6">
-          <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }} aria-hidden="true"></div>
-          <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#d4af37' }}>
-            <Calendar className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} aria-hidden="true" />
-          </div>
-        </div>
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#d4af37' }}>
-          <time dateTime="2025-07-27/2025-07-28">27-28 Juillet</time>
-        </h3>
-        <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Saint-Genis-des-Fontaines</p>
-        <div className="text-xs sm:text-sm space-y-2">
-          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
-            <strong>• Manu le Prince</strong>
-          </div>
-          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(184, 115, 51, 0.1)', color: '#b87333' }}>
-            <strong>• Florin Gugulica</strong>
-          </div>
-        </div>
-      </article>
-      
-      {/* Céret */}
-      <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
-        background: 'linear-gradient(135deg, rgba(114, 47, 55, 0.1), rgba(212, 175, 55, 0.05))', 
-        border: '2px solid rgba(114, 47, 55, 0.3)',
-        backdropFilter: 'blur(10px)'
-      }}>
-        <div className="relative mb-4 md:mb-6">
-          <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.3)' }} aria-hidden="true"></div>
-          <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#722f37' }}>
-            <MapPin className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
-          </div>
-        </div>
-        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3" style={{ color: '#d4af37' }}>
-          <time dateTime="2025-08-06/2025-08-09">6-7-8-9 Août</time>
-        </h3>
-        <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base" style={{ color: '#f7f3e9' }}>Céret</p>
-        <div className="text-xs sm:text-sm space-y-2">
-          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#d4af37' }}>
-            <strong>• Stefano Di Battista, Jacky Terrasson et Camille Bertault, Charlotte Planchou</strong>
-          </div>
-          <div className="p-2 rounded-lg" style={{ backgroundColor: 'rgba(114, 47, 55, 0.15)', color: '#f7f3e9' }}>
-            <strong>+ concerts gratuits sur 2 podiums</strong>
-            <div className="text-xs mt-1" style={{ color: '#d4af37' }}>11h, 17h, 18h • Bd Maréchal Joffre & Place Picasso</div>
-          </div>
-        </div>
-      </article>
-    </div>
-    
-    <div className="text-center mt-8 md:mt-12">
-      <Link 
-        href="/programmation"
-        className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
-        style={{ 
-          backgroundColor: '#d4af37', 
-          color: '#1a1a1a',
-          border: '2px solid transparent'
-        }}
-        aria-label="Voir toute la programmation détaillée"
-      >
-        Voir toute la programmation
-      </Link>
-    </div>
-  </div>
-</section>
-
-          {/* Section À propos + Vidéos */}
+          {/* Section À propos */}
           <section className="py-12 md:py-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f7f3e9 0%, white 50%, #f7f3e9 100%)' }} aria-labelledby="about-heading">
             <div className="absolute inset-0 opacity-20" aria-hidden="true">
               <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#722f37' }}></div>
@@ -687,9 +438,7 @@ export default function Home() {
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-              
-              {/* Festival unique */}
-              <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center mb-16 md:mb-24">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
                 <div>
                   <h2 id="about-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6" style={{ color: '#1a1a1a' }}>
                     Un festival <span style={{ color: '#722f37' }}>unique</span>
@@ -708,108 +457,40 @@ export default function Home() {
                   </Link>
                 </div>
                 
-                {/* Design responsive */}
-                <div className="relative">
-                  <div className="hidden md:block relative w-64 h-64 md:w-80 md:h-80 mx-auto">
-                    {/* Version desktop avec positions absolues */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#1a1a1a' }}>
-                        <Music className="w-8 h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
-                      </div>
-                      <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Artistes</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Exceptionnels</div>
+                <div className="grid grid-cols-2 gap-4 max-w-sm mx-auto">
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#1a1a1a' }}>
+                      <Music className="w-8 h-8 text-white" aria-hidden="true" />
                     </div>
-                    
-                    <div className="absolute top-1/2 right-0 transform -translate-y-1/2 text-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform -rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#722f37' }}>
-                        <Users className="w-8 h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
-                      </div>
-                      <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Public</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Passionné</div>
-                    </div>
-                    
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#b87333' }}>
-                        <Calendar className="w-8 h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
-                      </div>
-                      <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Événements</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Inoubliables</div>
-                    </div>
-                    
-                    <div className="absolute top-1/2 left-0 transform -translate-y-1/2 text-center">
-                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-2 md:mb-3 shadow-lg transform -rotate-12 hover:scale-110 transition-all duration-300" style={{ backgroundColor: '#d4af37' }}>
-                        <Star className="w-8 h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} aria-hidden="true" />
-                      </div>
-                      <div className="text-xs md:text-sm font-bold" style={{ color: '#1a1a1a' }}>Expérience</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Unique</div>
-                    </div>
+                    <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Artistes</div>
+                    <div className="text-xs" style={{ color: '#722f37' }}>Exceptionnels</div>
                   </div>
-
-                  {/* Version mobile */}
-                  <div className="block md:hidden grid grid-cols-2 gap-4 max-w-sm mx-auto">
-                    <div className="text-center">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#1a1a1a' }}>
-                        <Music className="w-8 h-8 text-white" aria-hidden="true" />
-                      </div>
-                      <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Artistes</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Exceptionnels</div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#722f37' }}>
+                      <Users className="w-8 h-8 text-white" aria-hidden="true" />
                     </div>
-                    
-                    <div className="text-center">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#722f37' }}>
-                        <Users className="w-8 h-8 text-white" aria-hidden="true" />
-                      </div>
-                      <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Public</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Passionné</div>
+                    <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Public</div>
+                    <div className="text-xs" style={{ color: '#722f37' }}>Passionné</div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#d4af37' }}>
+                      <Star className="w-8 h-8" style={{ color: '#1a1a1a' }} aria-hidden="true" />
                     </div>
-                    
-                    <div className="text-center">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#d4af37' }}>
-                        <Star className="w-8 h-8" style={{ color: '#1a1a1a' }} aria-hidden="true" />
-                      </div>
-                      <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Expérience</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Unique</div>
+                    <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Expérience</div>
+                    <div className="text-xs" style={{ color: '#722f37' }}>Unique</div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#b87333' }}>
+                      <Calendar className="w-8 h-8 text-white" aria-hidden="true" />
                     </div>
-                    
-                    <div className="text-center">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 shadow-lg mx-auto" style={{ backgroundColor: '#b87333' }}>
-                        <Calendar className="w-8 h-8 text-white" aria-hidden="true" />
-                      </div>
-                      <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Événements</div>
-                      <div className="text-xs" style={{ color: '#722f37' }}>Inoubliables</div>
-                    </div>
+                    <div className="text-sm font-bold" style={{ color: '#1a1a1a' }}>Événements</div>
+                    <div className="text-xs" style={{ color: '#722f37' }}>Inoubliables</div>
                   </div>
                 </div>
               </div>
-
-              {/* Vidéos concerts payants avec lazy loading */}
-              <Suspense fallback={
-                <div className="animate-pulse mb-16 md:mb-24">
-                  <div className="h-8 bg-gray-300 rounded w-1/2 mx-auto mb-8"></div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[1,2,3,4,5,6].map(i => (
-                      <div key={i} className="bg-gray-300 rounded-xl h-64"></div>
-                    ))}
-                  </div>
-                </div>
-              }>
-                <VideoSection />
-              </Suspense>
-
-              {/* Vidéos concerts gratuits avec lazy loading */}
-              <Suspense fallback={
-                <div className="animate-pulse">
-                  <div className="h-8 bg-gray-300 rounded w-1/2 mx-auto mb-8"></div>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="bg-gray-300 rounded-xl h-64"></div>
-                    ))}
-                  </div>
-                </div>
-              }>
-                <FreeVideoSection />
-              </Suspense>
-
             </div>
           </section>
 
@@ -823,19 +504,20 @@ export default function Home() {
             
             <div className="container mx-auto px-4 text-center relative z-10">
               <h2 id="cta-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-                Prêt pour cette 10ème édition ?
+                Prêt pour cette 11ème édition ?
               </h2>
               <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
-                Réservez vos billets dès maintenant pour vivre Jazz en Tech 2025
+                Réservez vos places dès maintenant pour le concert événement Erik Truffaz & Antonio Lizana
               </p>
-              <Link 
-                href="/billetterie" 
+              <a 
+                href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-2xl text-sm sm:text-base"
                 style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
-                aria-label="Réserver vos billets pour Jazz en Tech 2025"
               >
                 Réserver mes billets
-              </Link>
+              </a>
             </div>
           </section>
         </main>
