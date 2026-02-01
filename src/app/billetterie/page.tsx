@@ -153,12 +153,12 @@ export default function Billetterie() {
             </div>
 
             {/* Colonne droite - Widget (3/5) */}
-            <div className="lg:col-span-3 bg-white">
-              <div className="p-3 flex items-center justify-center gap-2" style={{ background: 'linear-gradient(90deg, #722f37 0%, #1a1a1a 100%)' }}>
+            <div className="lg:col-span-3 bg-white flex flex-col">
+              <div className="p-3 flex items-center justify-center gap-2 flex-shrink-0" style={{ background: 'linear-gradient(90deg, #722f37 0%, #1a1a1a 100%)' }}>
                 <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
                 <span className="font-semibold text-white">Réservation en ligne</span>
               </div>
-              <div className="p-4">
+              <div className="p-4 flex-1 overflow-y-auto" style={{ maxHeight: '650px' }}>
                 <BilletwebWidget />
               </div>
             </div>
