@@ -3,12 +3,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Calendar, MapPin, Ticket, Music, Users, Star } from 'lucide-react'
-import { useModal } from '@/components/ModalContext'
+import { Calendar, MapPin, Music, Users, Star } from 'lucide-react'
 
 export default function Home() {
-  const { openModal } = useModal()
-
   return (
     <>
       <div className="min-h-screen bg-white">
@@ -45,13 +42,13 @@ export default function Home() {
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                  <button
-                    onClick={() => openModal()}
+                  <Link
+                    href="/billetterie"
                     className="inline-block px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-lg text-center text-sm sm:text-base"
                     style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
                   >
                     Billetterie
-                  </button>
+                  </Link>
                   <Link
                     href="#evenement"
                     className="inline-block border-2 px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center text-sm sm:text-base"
@@ -154,14 +151,14 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* BOUTON OUVRE LE MODAL */}
-                  <button
-                    onClick={() => openModal()}
+                  {/* LINK VERS BILLETTERIE */}
+                  <Link
+                    href="/billetterie"
                     className="inline-block px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl"
                     style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
                   >
                     Réserver ma place
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -218,7 +215,6 @@ export default function Home() {
                 <h2 id="dates-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4" style={{ color: '#722f37' }}>
                   Les rendez-vous de l'été 2026
                 </h2>
-                {/* Message programmation complète à venir */}
                 <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: '#b87333' }}>
                   🎷 D'autres artistes et concerts seront annoncés prochainement !
                 </p>
@@ -277,8 +273,8 @@ export default function Home() {
               </div>
               
               <div className="text-center mt-8 md:mt-12">
-                <button 
-                  onClick={() => openModal()}
+                <Link 
+                  href="/billetterie"
                   className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
                   style={{ 
                     backgroundColor: '#722f37', 
@@ -286,7 +282,7 @@ export default function Home() {
                   }}
                 >
                   Réserver mes places
-                </button>
+                </Link>
               </div>
             </div>
           </section>
@@ -371,13 +367,13 @@ export default function Home() {
               <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
                 Réservez vos places dès maintenant pour le concert événement Erik Truffaz & Antonio Lizana
               </p>
-              <button 
-                onClick={() => openModal()}
+              <Link 
+                href="/billetterie"
                 className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 shadow-2xl text-sm sm:text-base"
                 style={{ backgroundColor: '#1a1a1a', color: '#d4af37' }}
               >
                 Réserver mes billets
-              </button>
+              </Link>
             </div>
           </section>
         </main>

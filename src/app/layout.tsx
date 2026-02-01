@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { ModalProvider } from '@/components/ModalContext'
 import PreventeBanner from '@/components/PreventeBanner'
 import PreventePopup from '@/components/PreventePopup'
 import './globals.css'
@@ -82,15 +81,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
-        <ModalProvider>
-          <PreventeBanner />
-          <PreventePopup />
-          <Header />
-          <div className="flex-1">
-            {children}
-          </div>
-          <Footer />
-        </ModalProvider>
+        <PreventeBanner />
+        <PreventePopup />
+        <Header />
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   )

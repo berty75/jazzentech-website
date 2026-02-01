@@ -1,13 +1,12 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { X, Music } from 'lucide-react'
-import { useModal } from './ModalContext'
 
 const PreventeBanner = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 })
-  const { openModal } = useModal()
 
   const endDate = new Date('2026-03-01T23:59:59')
 
@@ -80,13 +79,13 @@ const PreventeBanner = () => {
           </span>
         </div>
 
-        <button
-          onClick={() => openModal()}
+        <Link
+          href="/billetterie"
           className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 hover:scale-105 flex-shrink-0"
           style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
         >
           Réserver
-        </button>
+        </Link>
       </div>
 
       <button

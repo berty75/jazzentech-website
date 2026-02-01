@@ -1,14 +1,13 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import { X, Calendar, Music } from 'lucide-react'
-import { useModal } from './ModalContext'
 
 const PreventePopup = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  const { openModal } = useModal()
 
   const endDate = new Date('2026-03-01T23:59:59')
   const MAX_VIEWS = 4
@@ -58,11 +57,6 @@ const PreventePopup = () => {
     if (e.target === e.currentTarget) {
       handleClose()
     }
-  }
-
-  const handleReserve = () => {
-    handleClose()
-    openModal()
   }
 
   if (!isVisible) return null
@@ -152,13 +146,14 @@ const PreventePopup = () => {
               ))}
             </div>
 
-            <button
-              onClick={handleReserve}
+            <Link
+              href="/billetterie"
+              onClick={handleClose}
               className="inline-block w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl"
               style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
             >
               Réserver ma place
-            </button>
+            </Link>
 
             <button
               type="button"
