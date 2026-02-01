@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Calendar, MapPin, Clock, Ticket, Music, Phone, CheckCircle, Shield, Mail } from 'lucide-react'
+import { Calendar, MapPin, Clock, Ticket, Music, CheckCircle, Shield, Mail, X } from 'lucide-react'
 import Image from 'next/image'
 
 // Composant compte à rebours
@@ -53,10 +53,182 @@ function PreventeCountdown() {
   )
 }
 
+// Composant Widget Billetweb
+function BilletwebWidget() {
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = 'https://www.billetweb.fr/js/export.js'
+    script.async = true
+    document.head.appendChild(script)
+
+    return () => {
+      const existingScript = document.querySelector('script[src="https://www.billetweb.fr/js/export.js"]')
+      if (existingScript) {
+        document.head.removeChild(existingScript)
+      }
+    }
+  }, [])
+
+  return (
+    <a 
+      title="Vente de billets en ligne" 
+      href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
+      className="shop_frame"
+      target="_blank"
+      data-src="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
+      data-max-width="100%"
+      data-initial-height="550"
+      data-scrolling="yes"
+      data-id="jazz-en-tech"
+      data-resize="1"
+    >
+      Vente de billets en ligne
+    </a>
+  )
+}
+
+// Super Modal Billetweb - Optimisé Mobile
+function SuperModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  // Fermer avec Escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    if (isOpen) {
+      window.addEventListener('keydown', handleEscape)
+    }
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <>
+      {/* Overlay avec blur */}
+      <div 
+        className="fixed inset-0 z-[100] transition-opacity duration-300"
+        style={{ 
+          background: 'radial-gradient(ellipse at center, rgba(114, 47, 55, 0.85) 0%, rgba(26, 26, 26, 0.95) 100%)',
+          backdropFilter: 'blur(8px)'
+        }}
+        onClick={onClose}
+      />
+      
+      {/* Modal centré - responsive */}
+      <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div 
+          className="relative w-full sm:max-w-lg bg-white sm:rounded-2xl rounded-t-2xl shadow-2xl overflow-hidden animate-[modalIn_0.3s_ease-out]"
+          style={{ maxHeight: '90vh' }}
+        >
+          {/* Header avec gradient */}
+          <div 
+            className="relative p-3 sm:p-4 text-center"
+            style={{ 
+              background: 'linear-gradient(135deg, #722f37 0%, #1a1a1a 100%)'
+            }}
+          >
+            {/* Barre de swipe mobile */}
+            <div className="sm:hidden w-12 h-1 bg-white/30 rounded-full mx-auto mb-2"></div>
+            
+            {/* Bouton fermer */}
+            <button
+              onClick={onClose}
+              className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 rounded-full transition-all duration-200 hover:scale-110"
+              style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
+              aria-label="Fermer"
+            >
+              <X className="w-5 h-5" style={{ color: '#d4af37' }} />
+            </button>
+            
+            {/* Titre */}
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <Ticket className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#d4af37' }} />
+              <span className="font-bold text-white text-sm sm:text-base">Réservation</span>
+            </div>
+            <p className="text-xs sm:text-sm" style={{ color: '#d4af37' }}>
+              Erik Truffaz & Antonio Lizana
+            </p>
+            <p className="text-xs mt-1 hidden sm:block" style={{ color: 'rgba(247, 243, 233, 0.7)' }}>
+              Mer. 5 août 2026 • 21h • Céret
+            </p>
+          </div>
+          
+          {/* Widget Billetweb */}
+          <div 
+            className="p-2 sm:p-4 overflow-y-auto"
+            style={{ height: 'calc(90vh - 120px)', maxHeight: '500px' }}
+          >
+            <BilletwebWidget />
+          </div>
+          
+          {/* Footer */}
+          <div 
+            className="p-2 sm:p-3 border-t flex items-center justify-center gap-4 sm:gap-6 text-xs"
+            style={{ 
+              backgroundColor: 'rgba(247, 243, 233, 0.8)', 
+              borderColor: 'rgba(212, 175, 55, 0.3)' 
+            }}
+          >
+            <div className="flex items-center gap-1" style={{ color: '#722f37' }}>
+              <Shield className="w-3 h-3" />
+              <span>Paiement sécurisé</span>
+            </div>
+            <div className="flex items-center gap-1" style={{ color: '#722f37' }}>
+              <Mail className="w-3 h-3" />
+              <span>E-billet immédiat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Animation CSS */}
+      <style jsx global>{`
+        @keyframes modalIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </>
+  )
+}
+
 export default function Billetterie() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Ouvrir le modal automatiquement si ?reserve=true dans l'URL
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('reserve') === 'true') {
+        setIsModalOpen(true)
+      }
+    }
+  }, [])
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f7f3e9' }}>
       <title>Billetterie Prévente - Jazz en Tech 2026</title>
+      
+      {/* Super Modal */}
+      <SuperModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       
       {/* Hero compact */}
       <header className="hero-gradient text-white pt-32 pb-6 sm:pt-36 sm:pb-8">
@@ -141,17 +313,15 @@ export default function Billetterie() {
                   </div>
                 </div>
 
-                {/* Bouton achat */}
-                <a
-                  href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full block text-center px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg"
+                {/* Bouton ouvre la modal */}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full text-center px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
                   style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
                 >
-                  <Ticket className="w-5 h-5 inline mr-2" />
+                  <Ticket className="w-5 h-5" />
                   Réserver mes places
-                </a>
+                </button>
 
                 {/* Garanties */}
                 <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs text-gray-500">

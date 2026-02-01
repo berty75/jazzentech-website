@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import { X, Music } from 'lucide-react'
+import { useModal } from './ModalContext'
 
 const PreventeBanner = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 })
+  const { openModal } = useModal()
 
   const endDate = new Date('2026-03-01T23:59:59')
 
@@ -19,7 +21,7 @@ const PreventeBanner = () => {
     }
 
     const now = new Date()
-    const startDate = new Date('2026-01-01T00:00:00') // Pour tester - remettre 2026-02-01 en prod
+    const startDate = new Date('2026-01-01T00:00:00')
     if (now >= startDate && now <= endDate) {
       setIsVisible(true)
     }
@@ -78,19 +80,15 @@ const PreventeBanner = () => {
           </span>
         </div>
 
-        {/* LIEN BILLETWEB CORRECT */}
-        <a
-          href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => openModal()}
           className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 hover:scale-105 flex-shrink-0"
           style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
         >
           Réserver
-        </a>
+        </button>
       </div>
 
-      {/* Bouton fermer */}
       <button
         type="button"
         onClick={handleDismiss}
