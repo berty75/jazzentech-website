@@ -33,7 +33,7 @@ function BilletwebWidget() {
 
 export default function Billetterie() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 })
-  const endDate = new Date('2026-03-01T23:59:59')
+  const endDate = new Date('2026-03-10T23:59:59')
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -112,7 +112,7 @@ export default function Billetterie() {
 
               {/* Tarif */}
               <div className="rounded-xl p-4 mb-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif prévente jusqu'au 1er mars</p>
+                <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif prévente jusqu'au 10 mars</p>
                 <div className="flex items-center gap-3">
                   <span className="text-3xl font-bold" style={{ color: '#d4af37' }}>20€</span>
                   <span className="text-xl line-through" style={{ color: '#666' }}>25€</span>

@@ -9,7 +9,7 @@ const PreventePopup = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
-  const endDate = new Date('2026-03-01T23:59:59')
+  const endDate = new Date('2026-03-10T23:59:59')
   const MAX_VIEWS = 4
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const PreventePopup = () => {
             </div>
 
             <div className="rounded-xl p-4 mb-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid rgba(212, 175, 55, 0.5)' }}>
-              <p className="text-sm mb-1" style={{ color: '#f7f3e9' }}>Tarif prévente jusqu'au 1er mars</p>
+              <p className="text-sm mb-1" style={{ color: '#f7f3e9' }}>Tarif prévente jusqu'au 10 mars</p>
               <div className="flex items-center justify-center gap-3">
                 <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>20€</span>
                 <span className="text-lg line-through" style={{ color: '#999' }}>25€</span>

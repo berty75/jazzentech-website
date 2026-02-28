@@ -8,7 +8,7 @@ const PreventeBanner = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 })
 
-  const endDate = new Date('2026-03-01T23:59:59')
+  const endDate = new Date('2026-03-10T23:59:59')
 
   useEffect(() => {
     const dismissed = localStorage.getItem('prevente-banner-dismissed')

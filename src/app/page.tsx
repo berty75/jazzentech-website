@@ -143,7 +143,7 @@ export default function Home() {
 
                   {/* Tarif prévente */}
                   <div className="rounded-xl p-6 mb-6" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '2px solid rgba(212, 175, 55, 0.3)' }}>
-                    <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif prévente du 1er février au 1er mars</p>
+                    <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif prévente du 1er février au 10 mars</p>
                     <div className="flex items-center gap-4">
                       <span className="text-3xl font-bold" style={{ color: '#d4af37' }}>20€</span>
                       <span className="text-xl line-through" style={{ color: '#888' }}>25€</span>
