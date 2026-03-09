@@ -124,10 +124,10 @@ export default function Billetterie() {
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', border: '1px solid #d4af37' }}>
             <Ticket className="w-4 h-4" style={{ color: '#d4af37' }} />
-            <span className="text-sm font-semibold" style={{ color: '#d4af37' }}>11ème ÉDITION</span>
+            <span className="text-sm font-semibold text-white">11ème ÉDITION</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
-            Billetterie <span style={{ color: '#d4af37' }}>2026</span>
+            Billetterie <span className="text-white">2026</span>
           </h1>
           <p className="text-base sm:text-lg max-w-3xl mx-auto" style={{ color: '#f7f3e9' }}>
             Réservez vos places pour les concerts de l'été
