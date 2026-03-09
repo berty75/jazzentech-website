@@ -8,19 +8,21 @@ const PreventeBanner = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 })
 
-  const endDate = new Date('2026-03-10T23:59:59')
+  // Prévente Ladyva : jusqu'au 15 avril 2026
+  const endDate = new Date('2026-04-15T23:59:59')
+  const startDate = new Date('2026-03-01T00:00:00')
 
   useEffect(() => {
     const dismissed = localStorage.getItem('prevente-banner-dismissed')
     if (dismissed) {
       const dismissedTime = parseInt(dismissed)
+      // Réapparaît après 24h
       if (Date.now() - dismissedTime < 24 * 60 * 60 * 1000) {
         return
       }
     }
 
     const now = new Date()
-    const startDate = new Date('2026-01-01T00:00:00')
     if (now >= startDate && now <= endDate) {
       setIsVisible(true)
     }
@@ -68,17 +70,18 @@ const PreventeBanner = () => {
         
         <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-xs sm:text-sm">
           <span className="font-semibold">
-            🎺 Erik Truffaz & Antonio Lizana
+            🎹 Ladyva & Barcelona Big Blues Band
           </span>
           
           <span className="hidden sm:inline" style={{ color: '#d4af37' }}>•</span>
           
           <span className="text-xs">
-            <strong style={{ color: '#d4af37' }}>20€ au lieu de 25€</strong>
+            <strong style={{ color: '#d4af37' }}>17€ au lieu de 22€</strong>
             <span className="hidden sm:inline" style={{ color: '#f7f3e9' }}> • Plus que {timeLeft.days}j {timeLeft.hours}h</span>
           </span>
         </div>
 
+        {/* Lien vers billetterie */}
         <Link
           href="/billetterie"
           className="px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 hover:scale-105 flex-shrink-0"
@@ -88,6 +91,7 @@ const PreventeBanner = () => {
         </Link>
       </div>
 
+      {/* Bouton fermer */}
       <button
         type="button"
         onClick={handleDismiss}

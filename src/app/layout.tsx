@@ -80,7 +80,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
-      <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
+      <body className={`${inter.className} antialiased min-h-screen flex flex-col hero-gradient`}>
         <PreventeBanner />
         <PreventePopup />
         <Header />

@@ -15,10 +15,11 @@ const navItems = [
 interface NavigationProps {
   mobile?: boolean
   onItemClick?: () => void
-  compact?: boolean // Mode paysage
+  compact?: boolean
+  isScrolled?: boolean
 }
 
-export default function Navigation({ mobile = false, onItemClick, compact = false }: NavigationProps) {
+export default function Navigation({ mobile = false, onItemClick, compact = false, isScrolled = false }: NavigationProps) {
   const pathname = usePathname()
 
   return (
@@ -51,8 +52,8 @@ export default function Navigation({ mobile = false, onItemClick, compact = fals
                 }
               `}
               style={{
-                color: pathname === item.href ? '#d4af37' : '#f7f3e9',
-                backgroundColor: mobile && pathname === item.href ? 'rgba(212, 175, 55, 0.1)' : 'transparent'
+                color: pathname === item.href ? (isScrolled || mobile ? '#d4af37' : '#1a1a1a') : '#f7f3e9',
+                backgroundColor: mobile && pathname === item.href ? 'rgba(90, 30, 37, 0.6)' : 'transparent'
               }}
             >
               {item.label}

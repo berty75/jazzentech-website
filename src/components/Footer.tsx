@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Ticket } from 'lucid
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: '#1a1a1a' }} className="text-white" role="contentinfo">
+    <footer className="text-white" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           

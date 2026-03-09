@@ -1,11 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-// Liste des chemins à bloquer (redirection vers accueil)
-const BLOCKED_PATHS = [
-  '/programmation',
-  '/artistes',
-]
+// Plus de chemins bloqués pour 2026
+const BLOCKED_PATHS: string[] = []
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -16,17 +13,12 @@ export function middleware(request: NextRequest) {
   )
 
   if (isBlocked) {
-    // Rediriger vers la page d'accueil
     return NextResponse.redirect(new URL('/', request.url))
   }
 
   return NextResponse.next()
 }
 
-// Configurer les chemins sur lesquels le middleware s'applique
 export const config = {
-  matcher: [
-    '/programmation/:path*',
-    '/artistes/:path*',
-  ]
+  matcher: []
 }

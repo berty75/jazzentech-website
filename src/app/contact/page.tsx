@@ -130,13 +130,13 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <title>Contact - Jazz en Tech 2025</title>
       
       {/* Hero Section */}
-      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pt-48">
+      <section className="text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pt-48">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             Contactez-nous
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
@@ -150,19 +150,19 @@ export default function Contact() {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Informations de contact */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">
+            <h2 className="text-2xl font-bold text-white mb-8">
               Restons en contact
             </h2>
             
             <div className="space-y-6">
               {/* Adresse */}
-              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start space-x-4 p-6 rounded-xl shadow-sm hover:shadow-md" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
                   <MapPin className="w-6 h-6" style={{ color: '#d4af37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Adresse</h3>
-                  <p className="text-gray-600">
+                  <h3 className="font-semibold text-white mb-1">Adresse</h3>
+                  <p className="text-stone-300">
                   Céret et Saint-Génis-des-Fontaines (66)<br />
                   France
                   </p>
@@ -170,60 +170,60 @@ export default function Contact() {
               </div>
 
               {/* Contact Général */}
-              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start space-x-4 p-6 rounded-xl shadow-sm hover:shadow-md" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}>
-                  <Phone className="w-6 h-6" style={{ color: '#722f37' }} aria-hidden="true" />
+                  <Phone className="w-6 h-6" style={{ color: '#f7f3e9' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Contact général</h3>
+                  <h3 className="font-semibold text-white mb-1">Contact général</h3>
                   <a 
                     href="tel:+33637581886" 
-                    className="text-gray-900 font-medium hover:opacity-80 transition-colors"
+                    className="text-white font-medium hover:opacity-80 transition-colors"
                   >
                     06 37 58 18 86
                   </a>
-                  <p className="text-sm text-gray-500 mt-1">Musiciens, partenaires, presse</p>
+                  <p className="text-sm text-stone-300 mt-1">Musiciens, partenaires, presse</p>
                 </div>
               </div>
 
               {/* Contact Billetterie */}
-              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start space-x-4 p-6 rounded-xl shadow-sm hover:shadow-md" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
                   <Ticket className="w-6 h-6" style={{ color: '#d4af37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Contact billetterie</h3>
+                  <h3 className="font-semibold text-white mb-1">Contact billetterie</h3>
                   <a 
                     href="tel:+33601864672" 
-                    className="text-gray-900 font-medium hover:opacity-80 transition-colors"
+                    className="text-white font-medium hover:opacity-80 transition-colors"
                   >
                     06 01 86 46 72
                   </a>
-                  <p className="text-sm text-gray-500 mt-1">Réservations, remboursements</p>
+                  <p className="text-sm text-stone-300 mt-1">Réservations, remboursements</p>
                 </div>
               </div>
 
               {/* Email */}
-              <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-start space-x-4 p-6 rounded-xl shadow-sm hover:shadow-md" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
                   <Mail className="w-6 h-6" style={{ color: '#d4af37' }} aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                  <h3 className="font-semibold text-white mb-1">Email</h3>
                   <a 
                     href="mailto:contactjazzentech@gmail.com"
-                    className="text-gray-600 hover:opacity-80 transition-colors"
+                    className="text-stone-300 hover:opacity-80 transition-colors"
                   >
                     contactjazzentech@gmail.com
                   </a>
-                  <p className="text-sm text-gray-500 mt-1">Réponse sous 24h</p>
+                  <p className="text-sm text-stone-300 mt-1">Réponse sous 24h</p>
                 </div>
               </div>
             </div>
 
             {/* Réseaux sociaux */}
-            <div className="mt-8 p-6 bg-white rounded-xl shadow-sm">
-              <h3 className="font-semibold text-gray-900 mb-4">Suivez-nous</h3>
+            <div className="mt-8 p-6 rounded-xl" style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+              <h3 className="font-semibold text-white mb-4">Suivez-nous</h3>
               <div className="flex space-x-4">
                 <a 
                   href="https://facebook.com/festivaljazzentech" 
@@ -253,8 +253,8 @@ export default function Contact() {
 
           {/* Formulaire de contact */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <div className="rounded-2xl shadow-lg p-8" style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+              <h2 className="text-2xl font-bold text-white mb-6">
                 Envoyez-nous un message
               </h2>
 
@@ -262,13 +262,13 @@ export default function Contact() {
                 {/* Message de succès */}
                 {submitStatus === 'success' && (
                   <div 
-                    className="mb-4 md:mb-6 p-3 md:p-4 bg-green-50 border border-green-200 rounded-lg"
+                    className="mb-4 md:mb-6 p-3 md:p-4 border rounded-lg"
                     role="alert"
                     aria-live="polite"
                   >
                     <div className="flex items-center space-x-3">
-                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-600" aria-hidden="true" />
-                      <p className="text-green-800 text-sm md:text-base">
+                      <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-400" aria-hidden="true" />
+                      <p className="text-green-400 text-sm md:text-base">
                         Votre message a été envoyé avec succès ! Nous vous répondrons sous 24h.
                       </p>
                     </div>
@@ -278,7 +278,7 @@ export default function Contact() {
                 {/* Messages d'erreur de validation */}
                 {(submitStatus === 'error' || validationErrors.length > 0) && (
                   <div 
-                    className="mb-4 md:mb-6 p-3 md:p-4 bg-red-50 border border-red-200 rounded-lg"
+                    className="mb-4 md:mb-6 p-3 md:p-4 border border-red-500/30 rounded-lg"
                     role="alert"
                     aria-live="assertive"
                   >
@@ -287,10 +287,10 @@ export default function Contact() {
                       <div className="flex-1">
                         {validationErrors.length > 0 ? (
                           <div>
-                            <p className="text-red-800 text-sm md:text-base font-semibold mb-2">
+                            <p className="text-red-400 text-sm md:text-base font-semibold mb-2">
                               Veuillez corriger les erreurs suivantes :
                             </p>
-                            <ul className="text-red-700 text-sm md:text-base space-y-1">
+                            <ul className="text-red-300 text-sm md:text-base space-y-1">
                               {validationErrors.map((error, index) => (
                                 <li key={index} className="flex items-start">
                                   <span className="mr-2">•</span>
@@ -300,7 +300,7 @@ export default function Contact() {
                             </ul>
                           </div>
                         ) : (
-                          <p className="text-red-800 text-sm md:text-base">
+                          <p className="text-red-400 text-sm md:text-base">
                             Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.
                           </p>
                         )}
@@ -315,7 +315,7 @@ export default function Contact() {
                     <label 
                       htmlFor="firstName" 
                       className="block text-sm font-medium mb-2" 
-                      style={{ color: '#1a1a1a' }}
+                      style={{ color: '#f7f3e9' }}
                     >
                       Prénom <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
@@ -328,7 +328,7 @@ export default function Contact() {
                       aria-describedby="firstName-help"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base text-white placeholder-stone-500" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                       placeholder="Votre prénom"
                     />
                     <div id="firstName-help" className="sr-only">
@@ -340,7 +340,7 @@ export default function Contact() {
                     <label 
                       htmlFor="lastName" 
                       className="block text-sm font-medium mb-2" 
-                      style={{ color: '#1a1a1a' }}
+                      style={{ color: '#f7f3e9' }}
                     >
                       Nom <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
@@ -353,7 +353,7 @@ export default function Contact() {
                       aria-describedby="lastName-help"
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base text-white placeholder-stone-500" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                       placeholder="Votre nom"
                     />
                     <div id="lastName-help" className="sr-only">
@@ -368,7 +368,7 @@ export default function Contact() {
                     <label 
                       htmlFor="email" 
                       className="block text-sm font-medium mb-2" 
-                      style={{ color: '#1a1a1a' }}
+                      style={{ color: '#f7f3e9' }}
                     >
                       Adresse email <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
@@ -381,7 +381,7 @@ export default function Contact() {
                       aria-describedby="email-help"
                       value={formData.email}
                       onChange={handleChange}
-                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base text-white placeholder-stone-500" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                       placeholder="votre@email.com"
                     />
                     <div id="email-help" className="sr-only">
@@ -393,7 +393,7 @@ export default function Contact() {
                     <label 
                       htmlFor="phone" 
                       className="block text-sm font-medium mb-2" 
-                      style={{ color: '#1a1a1a' }}
+                      style={{ color: '#f7f3e9' }}
                     >
                       Numéro de téléphone <span aria-label="obligatoire" className="text-red-600">*</span>
                     </label>
@@ -406,10 +406,10 @@ export default function Contact() {
                       aria-describedby="phone-help"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base text-white placeholder-stone-500" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                       placeholder="+33 6 12 34 56 78"
                     />
-                    <div id="phone-help" className="text-xs mt-1 text-gray-600">
+                    <div id="phone-help" className="text-xs mt-1 text-stone-300">
                       Pour vous contacter rapidement si nécessaire
                     </div>
                   </div>
@@ -420,7 +420,7 @@ export default function Contact() {
                   <label 
                     htmlFor="subject" 
                     className="block text-sm font-medium mb-2" 
-                    style={{ color: '#1a1a1a' }}
+                    style={{ color: '#f7f3e9' }}
                   >
                     Sujet <span aria-label="obligatoire" className="text-red-600">*</span>
                   </label>
@@ -432,7 +432,7 @@ export default function Contact() {
                     aria-describedby="subject-help"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors text-sm md:text-base"
+                    className="form-focus w-full px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base text-white placeholder-stone-500" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                   >
                     <option value="">Choisissez un sujet</option>
                     <option value="info">Demande d'informations générales</option>
@@ -443,7 +443,7 @@ export default function Contact() {
                     <option value="technique">Support technique</option>
                     <option value="autre">Autre demande</option>
                   </select>
-                  <div id="subject-help" className="text-xs mt-1 text-gray-600">
+                  <div id="subject-help" className="text-xs mt-1 text-stone-300">
                     Sélectionnez le sujet qui correspond le mieux à votre demande
                   </div>
                 </div>
@@ -453,7 +453,7 @@ export default function Contact() {
                   <label 
                     htmlFor="message" 
                     className="block text-sm font-medium mb-2" 
-                    style={{ color: '#1a1a1a' }}
+                    style={{ color: '#f7f3e9' }}
                   >
                     Votre message <span aria-label="obligatoire" className="text-red-600">*</span>
                   </label>
@@ -468,20 +468,20 @@ export default function Contact() {
                       maxLength={MESSAGE_MAX_LENGTH}
                       value={formData.message}
                       onChange={handleChange}
-                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 border border-gray-300 rounded-lg transition-colors resize-y text-sm md:text-base"
+                      className="form-focus w-full px-3 md:px-4 py-2 md:py-3 rounded-lg transition-colors resize-y text-sm md:text-base text-white placeholder-stone-500" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                       placeholder="Décrivez votre demande en détail..."
                     />
                     {/* Compteur de caractères */}
                     <div className="absolute bottom-3 right-3 text-xs font-medium pointer-events-none">
                       <span 
                         style={{ color: getCharacterCountColor() }}
-                        className="bg-white px-2 py-1 rounded shadow-sm"
+                        className="px-2 py-1 rounded shadow-sm"
                       >
                         {formData.message.length}/{MESSAGE_MAX_LENGTH}
                       </span>
                     </div>
                   </div>
-                  <div id="message-help" className="mt-2 text-xs md:text-sm text-gray-500 flex justify-between">
+                  <div id="message-help" className="mt-2 text-xs md:text-sm text-stone-300 flex justify-between">
                     <span>Entre {MESSAGE_MIN_LENGTH} et {MESSAGE_MAX_LENGTH} caractères. Soyez précis pour une réponse adaptée.</span>
                     <span 
                       className="font-medium"
@@ -506,7 +506,7 @@ export default function Contact() {
                     className={`focus-minimal mt-1 w-4 h-4 rounded ${
                       validationErrors.some(error => error.includes('conditions')) 
                         ? 'border-red-500' 
-                        : 'border-gray-300'
+                        : 'border-stone-600'
                     }`}
                     style={{ 
                       accentColor: '#d4af37',
@@ -518,7 +518,7 @@ export default function Contact() {
                       className={`text-xs md:text-sm ${
                         validationErrors.some(error => error.includes('conditions'))
                           ? 'text-red-600' 
-                          : 'text-gray-600'
+                          : 'text-stone-300'
                       }`}
                     >
                       <span className="text-red-600">*</span> J'accepte que mes données personnelles soient utilisées pour traiter ma demande.
@@ -526,7 +526,7 @@ export default function Contact() {
                         href="/politique-confidentialite" 
                         className="font-semibold underline transition-colors"
                         style={{ 
-                          color: '#722f37',
+                          color: '#f7f3e9',
                         }}
                         onMouseEnter={(e) => (e.target as HTMLAnchorElement).style.color = '#8b3a42'}
                         onMouseLeave={(e) => (e.target as HTMLAnchorElement).style.color = '#722f37'}
@@ -574,13 +574,13 @@ export default function Contact() {
 
         {/* Section FAQ avec couleurs Jazz en Tech */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+          <h2 className="text-2xl font-bold text-white mb-8 text-center">
             Questions fréquentes
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-gray-900 mb-2">Billetterie</h3>
-              <p className="text-gray-600 text-sm">Comment acheter mes billets ? Quand ouvre la billetterie ?</p>
+            <div className="rounded-xl p-6 transition-shadow" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+              <h3 className="font-semibold text-white mb-2">Billetterie</h3>
+              <p className="text-stone-300 text-sm">Comment acheter mes billets ? Quand ouvre la billetterie ?</p>
               <a 
                 href="/programmation" 
                 className="text-sm font-semibold mt-2 inline-block underline transition-colors"
@@ -591,9 +591,9 @@ export default function Contact() {
                 Voir la programmation →
               </a>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-gray-900 mb-2">Bénévolat</h3>
-              <p className="text-gray-600 text-sm">Comment rejoindre l'équipe ? Quelles sont les missions ?</p>
+            <div className="rounded-xl p-6 transition-shadow" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+              <h3 className="font-semibold text-white mb-2">Bénévolat</h3>
+              <p className="text-stone-300 text-sm">Comment rejoindre l'équipe ? Quelles sont les missions ?</p>
               <a 
                 href="/benevoles" 
                 className="text-sm font-semibold mt-2 inline-block underline transition-colors"
@@ -604,9 +604,9 @@ export default function Contact() {
                 Devenir bénévole →
               </a>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="font-semibold text-gray-900 mb-2">Artistes</h3>
-              <p className="text-gray-600 text-sm">Vous êtes artiste ? Proposez votre projet musical !</p>
+            <div className="rounded-xl p-6 transition-shadow" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+              <h3 className="font-semibold text-white mb-2">Artistes</h3>
+              <p className="text-stone-300 text-sm">Vous êtes artiste ? Proposez votre projet musical !</p>
               <a 
                 href="/artistes" 
                 className="text-sm font-semibold mt-2 inline-block underline transition-colors"

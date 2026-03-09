@@ -1,0 +1,16 @@
+{
+  "name": "Jazz en Tech - Festival de Jazz",
+  "short_name": "Jazz en Tech",
+  "description": "Festival de jazz dans les Pyrénées-Orientales",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#722f37",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

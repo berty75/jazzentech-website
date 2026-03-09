@@ -9,7 +9,7 @@ const PreventePopup = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
-  const endDate = new Date('2026-03-10T23:59:59')
+  const endDate = new Date('2026-04-15T23:59:59')
   const MAX_VIEWS = 4
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const PreventePopup = () => {
     if (viewCount >= MAX_VIEWS) return
 
     const now = new Date()
-    const startDate = new Date('2026-01-01T00:00:00')
+    const startDate = new Date('2026-03-01T00:00:00')
     
     if (now >= startDate && now <= endDate) {
       const timeout = setTimeout(() => {
@@ -73,10 +73,10 @@ const PreventePopup = () => {
           
           <div className="absolute inset-0">
             <Image
-              src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/erik_truffaz_antonio_lizana_jazz.jpg"
-              alt="Erik Truffaz en concert"
+              src="https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_800,h_900,f_auto,q_auto/Barcelona_Big_Blues_Band_mrqfct.jpg"
+              alt="Barcelona Big Blues Band"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               priority
             />
             <div 
@@ -99,26 +99,26 @@ const PreventePopup = () => {
           <div className="relative p-6 sm:p-8 text-center z-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: '1px solid #d4af37' }}>
               <Music className="w-4 h-4" style={{ color: '#d4af37' }} />
-              <span className="text-xs font-semibold" style={{ color: '#d4af37' }}>HOMMAGE À MILES DAVIS • 100 ANS</span>
+              <span className="text-xs font-semibold" style={{ color: '#d4af37' }}>BOOGIE-WOOGIE • BLUES</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1 drop-shadow-lg">
-              Erik Truffaz & Antonio Lizana
+              Ladyva & Barcelona Big Blues Band
             </h2>
             <p className="text-lg sm:text-xl mb-2 drop-shadow-lg" style={{ color: '#d4af37' }}>
-              "New Sketches of Spain"
+              Soirée Boogie-Woogie explosive
             </p>
 
             <div className="inline-flex items-center gap-2 mb-4 text-sm px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', color: '#f7f3e9' }}>
               <Calendar className="w-4 h-4" style={{ color: '#d4af37' }} />
-              <span>Mercredi 5 août 2026 • 21h • Céret</span>
+              <span>Vendredi 7 août 2026 • 21h • Céret</span>
             </div>
 
             <div className="rounded-xl p-4 mb-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid rgba(212, 175, 55, 0.5)' }}>
-              <p className="text-sm mb-1" style={{ color: '#f7f3e9' }}>Tarif prévente jusqu'au 10 mars</p>
+              <p className="text-sm mb-1" style={{ color: '#f7f3e9' }}>Tarif prévente jusqu'au 15 avril</p>
               <div className="flex items-center justify-center gap-3">
-                <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>20€</span>
-                <span className="text-lg line-through" style={{ color: '#999' }}>25€</span>
+                <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>17€</span>
+                <span className="text-lg line-through" style={{ color: '#999' }}>22€</span>
               </div>
             </div>
 

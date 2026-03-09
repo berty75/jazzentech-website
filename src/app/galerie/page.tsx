@@ -6,7 +6,22 @@ import Image from 'next/image'
 import { Camera, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 import Link from 'next/link'
 
+// Fonction helper pour les transformations Cloudinary avec crop intelligent
+const getCloudinaryUrl = (src: string, width = 600, height = 400) => {
+  // Transforme l'URL pour ajouter le crop intelligent centré sur le sujet
+  return src.replace(
+    '/upload/',
+    `/upload/c_fill,g_auto:subject,w_${width},h_${height},q_auto,f_auto/`
+  )
+}
 
+// URL originale pour la lightbox (haute qualité sans crop)
+const getCloudinaryUrlFull = (src: string) => {
+  return src.replace(
+    '/upload/',
+    '/upload/q_auto,f_auto/'
+  )
+}
 
 // Données des photos complètes - AVEC URLs CLOUDINARY
 const photos = [
@@ -140,7 +155,7 @@ const photos = [
       caption: 'Camille Bertault - Expression unique'
     },
   
-    // Florin Gugulica Sextet (6 photos) - J'ai utilisé les URLs que vous avez fournies
+    // Florin Gugulica Sextet (6 photos)
     {
       id: 15,
       src: 'https://res.cloudinary.com/dpgfensnv/image/upload/2025_St_G%C3%A9nis_des_Fontaines_Florin_Guguliaca_Sextet__00___Jacques_Martinez.jpg',
@@ -280,7 +295,7 @@ const artists = [
 export default function Galerie() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedArtist, setSelectedArtist] = useState('all')
-  const [lightboxImage, setLightboxImage] = useState(null)
+  const [lightboxImage, setLightboxImage] = useState<typeof photos[0] | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const filteredPhotos = photos.filter(photo => {
@@ -289,7 +304,7 @@ export default function Galerie() {
     return categoryMatch && artistMatch
   })
 
-  const openLightbox = (photo, index) => {
+  const openLightbox = (photo: typeof photos[0], index: number) => {
     setLightboxImage(photo)
     setCurrentImageIndex(index)
   }
@@ -312,7 +327,7 @@ export default function Galerie() {
 
   // Gestion des touches clavier
   React.useEffect(() => {
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: KeyboardEvent) => {
       if (!lightboxImage) return
       if (e.key === 'ArrowRight') nextImage()
       if (e.key === 'ArrowLeft') prevImage()
@@ -324,13 +339,13 @@ export default function Galerie() {
   }, [lightboxImage, currentImageIndex, filteredPhotos])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <title>Galerie Photos - Jazz en Tech 2025</title>
       
       {/* Hero Section */}
-      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16">
+      <section className="text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             Les concerts de l'édition 2025 en images
           </h1>
           <div className="max-w-4xl mx-auto">
@@ -363,7 +378,7 @@ export default function Galerie() {
           
           {/* Filtres par catégorie */}
           <div className="mb-6 md:mb-8">
-            <h2 className="text-xl md:text-2xl font-bold mb-6 text-center" style={{ color: '#722f37' }}>
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-white">
               <Camera className="w-6 h-6 inline mr-3" />
               Parcourir la galerie
             </h2>
@@ -371,7 +386,7 @@ export default function Galerie() {
             <div className="space-y-4">
               {/* Filtres par catégorie */}
               <div>
-                <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: '#722f37' }}>
+                <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: '#d4af37' }}>
                   Par catégorie
                 </h3>
                 <div className="flex flex-wrap justify-center gap-2 md:gap-3">
@@ -383,16 +398,16 @@ export default function Galerie() {
                         selectedCategory === category.key ? 'shadow-lg' : 'hover:shadow-md'
                       }`}
                       style={{
-                        backgroundColor: selectedCategory === category.key ? '#722f37' : '#f3f4f6',
-                        color: selectedCategory === category.key ? '#f7f3e9' : '#6b7280'
+                        backgroundColor: selectedCategory === category.key ? '#722f37' : 'rgba(26, 26, 26, 0.5)',
+                        color: selectedCategory === category.key ? '#f7f3e9' : '#f7f3e9'
                       }}
                     >
                       {category.label}
                       <span 
                         className="ml-2 px-2 py-1 rounded-full text-xs font-bold"
                         style={{
-                          backgroundColor: selectedCategory === category.key ? '#d4af37' : '#e5e7eb',
-                          color: selectedCategory === category.key ? '#722f37' : '#6b7280'
+                          backgroundColor: selectedCategory === category.key ? '#d4af37' : 'rgba(212, 175, 55, 0.2)',
+                          color: selectedCategory === category.key ? '#722f37' : '#d4af37'
                         }}
                       >
                         {category.count}
@@ -404,7 +419,7 @@ export default function Galerie() {
 
               {/* Filtres par artiste */}
               <div>
-                <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: '#722f37' }}>
+                <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: '#d4af37' }}>
                   Par artiste
                 </h3>
                 <div className="flex flex-wrap justify-center gap-2 md:gap-3">
@@ -416,16 +431,16 @@ export default function Galerie() {
                         selectedArtist === artist.key ? 'shadow-lg' : 'hover:shadow-md'
                       }`}
                       style={{
-                        backgroundColor: selectedArtist === artist.key ? '#d4af37' : '#f8f9fa',
-                        color: selectedArtist === artist.key ? '#722f37' : '#6b7280'
+                        backgroundColor: selectedArtist === artist.key ? '#d4af37' : 'rgba(26, 26, 26, 0.5)',
+                        color: selectedArtist === artist.key ? '#722f37' : '#f7f3e9'
                       }}
                     >
                       {artist.label}
                       <span 
                         className="ml-2 px-2 py-1 rounded-full text-xs font-bold"
                         style={{
-                          backgroundColor: selectedArtist === artist.key ? '#722f37' : '#e9ecef',
-                          color: selectedArtist === artist.key ? '#f7f3e9' : '#6b7280'
+                          backgroundColor: selectedArtist === artist.key ? '#722f37' : 'rgba(212, 175, 55, 0.2)',
+                          color: selectedArtist === artist.key ? '#f7f3e9' : '#d4af37'
                         }}
                       >
                         {artist.count}
@@ -444,168 +459,168 @@ export default function Galerie() {
             </p>
           </div>
 
-{/* Grille de photos - Layout uniforme */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-  {filteredPhotos.map((photo, index) => (
-    <div
-      key={photo.id}
-      className="group cursor-pointer relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 bg-white"
-      onClick={() => openLightbox(photo, index)}
-    >
-      <div className="relative h-64 w-full">
-        <Image
-          src={photo.src}
-          alt={photo.alt}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-        />
-        
-        {/* Overlay au hover */}
-        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <div className="text-center p-4">
-            <Camera className="w-8 h-8 text-white mx-auto mb-2" />
-            <p className="text-white text-sm font-medium">Cliquer pour agrandir</p>
+          {/* Grille de photos - Layout uniforme avec crop intelligent Cloudinary */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredPhotos.map((photo, index) => (
+              <div
+                key={photo.id}
+                className="group cursor-pointer relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                onClick={() => openLightbox(photo, index)}
+              >
+                <div className="relative h-64 w-full">
+                  <Image
+                    src={getCloudinaryUrl(photo.src, 600, 400)}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  />
+                  
+                  {/* Overlay au hover */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-center p-4">
+                      <Camera className="w-8 h-8 text-white mx-auto mb-2" />
+                      <p className="text-white text-sm font-medium">Cliquer pour agrandir</p>
+                    </div>
+                  </div>
+
+                  {/* Badge catégorie */}
+                  <div 
+                    className="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-bold"
+                    style={{
+                      backgroundColor: photo.category === 'artistes' ? '#722f37' : 
+                                     photo.category === 'ambiance' ? '#d4af37' : '#b87333',
+                      color: photo.category === 'artistes' ? '#f7f3e9' : 
+                            photo.category === 'ambiance' ? '#722f37' : '#f7f3e9'
+                    }}
+                  >
+                    {photo.category.charAt(0).toUpperCase() + photo.category.slice(1)}
+                  </div>
+
+                  {/* Badge artiste */}
+                  <div 
+                    className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium"
+                    style={{
+                      backgroundColor: 'rgba(0,0,0,0.7)',
+                      color: '#f7f3e9'
+                    }}
+                  >
+                    {photo.artist}
+                  </div>
+                </div>
+
+                {/* Légende */}
+                <div className="p-4" style={{ backgroundColor: 'rgba(26, 26, 26, 0.7)' }}>
+                  <p className="text-sm font-medium mb-1 h-10 overflow-hidden text-white">
+                    {photo.caption}
+                  </p>
+                  <p className="text-xs" style={{ color: '#b87333' }}>
+                    © Jacques Martinez - {photo.year}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
 
-        {/* Badge catégorie */}
-        <div 
-          className="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-bold"
-          style={{
-            backgroundColor: photo.category === 'artistes' ? '#722f37' : 
-                           photo.category === 'ambiance' ? '#d4af37' : '#b87333',
-            color: photo.category === 'artistes' ? '#f7f3e9' : 
-                  photo.category === 'ambiance' ? '#722f37' : '#f7f3e9'
-          }}
-        >
-          {photo.category.charAt(0).toUpperCase() + photo.category.slice(1)}
-        </div>
+          {/* Message si aucune photo */}
+          {filteredPhotos.length === 0 && (
+            <div className="text-center py-12">
+              <Camera className="w-16 h-16 mx-auto mb-4 opacity-50" style={{ color: '#d4af37' }} />
+              <h3 className="text-xl font-bold mb-2 text-white">
+                Aucune photo trouvée
+              </h3>
+              <p style={{ color: '#f7f3e9' }}>
+                Aucune photo ne correspond à vos critères de filtrage
+              </p>
+            </div>
+          )}
 
-        {/* Badge artiste */}
-        <div 
-          className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium"
-          style={{
-            backgroundColor: 'rgba(0,0,0,0.7)',
-            color: '#f7f3e9'
-          }}
-        >
-          {photo.artist}
-        </div>
-      </div>
-
-      {/* Légende */}
-      <div className="p-4" style={{ backgroundColor: 'rgba(247, 243, 233, 0.9)' }}>
-        <p className="text-sm font-medium mb-1 h-10 overflow-hidden" style={{ color: '#722f37' }}>
-          {photo.caption}
-        </p>
-        <p className="text-xs" style={{ color: '#b87333' }}>
-          © Jacques Martinez - {photo.year}
-        </p>
-      </div>
-    </div>
-  ))}
-</div>
-
-{/* Message si aucune photo */}
-{filteredPhotos.length === 0 && (
-  <div className="text-center py-12">
-    <Camera className="w-16 h-16 mx-auto mb-4 opacity-50" style={{ color: '#722f37' }} />
-    <h3 className="text-xl font-bold mb-2" style={{ color: '#722f37' }}>
-      Aucune photo trouvée
-    </h3>
-    <p className="text-gray-600">
-      Aucune photo ne correspond à vos critères de filtrage
-    </p>
-  </div>
-)}
-
-{/* Bouton retour programmation */}
-<div className="text-center mt-12 md:mt-16">
-  <Link
-    href="/programmation"
-    className="inline-block px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-    style={{
-      backgroundColor: '#722f37',
-      color: '#f7f3e9'
-    }}
-  >
-    Découvrir la programmation 2025
-  </Link>
-</div>
-      </div>
-    </div>
-
-    {/* Lightbox Modal */}
-    {lightboxImage && (
-      <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
-        <div className="relative max-w-6xl max-h-full">
-          
-          {/* Bouton fermer */}
-          <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center"
-            style={{ backdropFilter: 'blur(10px)' }}
-          >
-            <X className="w-6 h-6" />
-          </button>
-
-          {/* Bouton précédent */}
-          <button
-            onClick={prevImage}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center"
-            style={{ backdropFilter: 'blur(10px)' }}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          {/* Bouton suivant */}
-          <button
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center"
-            style={{ backdropFilter: 'blur(10px)' }}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Image principale */}
-          <div className="relative">
-            <Image
-              src={lightboxImage.src}
-              alt={lightboxImage.alt}
-              width={1200}
-              height={800}
-              className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
-            />
-            
-            {/* Légende en bas */}
-            <div 
-              className="absolute bottom-0 left-0 right-0 p-4 md:p-6 rounded-b-lg"
-              style={{ 
-                background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
-                backdropFilter: 'blur(10px)'
+          {/* Bouton retour programmation */}
+          <div className="text-center mt-12 md:mt-16">
+            <Link
+              href="/programmation"
+              className="inline-block px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+              style={{
+                backgroundColor: '#d4af37',
+                color: '#1a1a1a'
               }}
             >
-              <p className="text-white text-sm md:text-base font-medium mb-1">
-                {lightboxImage.caption}
-              </p>
-              <p className="text-gray-300 text-xs md:text-sm">
-                © Jacques Martinez - {lightboxImage.year} • {lightboxImage.artist}
-              </p>
-            </div>
-
-            {/* Compteur */}
-            <div 
-              className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white"
-              style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(10px)' }}
-            >
-              {currentImageIndex + 1} / {filteredPhotos.length}
-            </div>
+              Découvrir la programmation 2025
+            </Link>
           </div>
         </div>
       </div>
-    )}
-  </div>
-)
+
+      {/* Lightbox Modal - Image complète haute qualité */}
+      {lightboxImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
+          <div className="relative max-w-6xl max-h-full">
+            
+            {/* Bouton fermer */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center"
+              style={{ backdropFilter: 'blur(10px)' }}
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Bouton précédent */}
+            <button
+              onClick={prevImage}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center"
+              style={{ backdropFilter: 'blur(10px)' }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Bouton suivant */}
+            <button
+              onClick={nextImage}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black bg-opacity-50 text-white hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center"
+              style={{ backdropFilter: 'blur(10px)' }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Image principale - Version complète sans crop */}
+            <div className="relative">
+              <Image
+                src={getCloudinaryUrlFull(lightboxImage.src)}
+                alt={lightboxImage.alt}
+                width={1200}
+                height={800}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+              />
+              
+              {/* Légende en bas */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 p-4 md:p-6 rounded-b-lg"
+                style={{ 
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
+                  backdropFilter: 'blur(10px)'
+                }}
+              >
+                <p className="text-white text-sm md:text-base font-medium mb-1">
+                  {lightboxImage.caption}
+                </p>
+                <p className="text-gray-300 text-xs md:text-sm">
+                  © Jacques Martinez - {lightboxImage.year} • {lightboxImage.artist}
+                </p>
+              </div>
+
+              {/* Compteur */}
+              <div 
+                className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium text-white"
+                style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(10px)' }}
+              >
+                {currentImageIndex + 1} / {filteredPhotos.length}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
 }

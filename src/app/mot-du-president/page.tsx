@@ -10,18 +10,18 @@ export const metadata: Metadata = {
 
 export default function MotDuPresident() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <title>Mot du Président - Jazz en Tech 2025</title>
       {/* Hero Section - 10ème anniversaire RESPONSIVE */}
       <section className="relative overflow-hidden">
-      <div className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pb-20">
+      <div className="text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16 lg:pb-20">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <div className="inline-block bg-jazz-gold text-jazz-red px-3 md:px-4 py-2 rounded-full font-bold text-xs md:text-sm mb-4">
+                <div className="inline-block bg-jazz-gold text-white px-3 md:px-4 py-2 rounded-full font-bold text-xs md:text-sm mb-4">
                   🎉 10ème Anniversaire - Bilan
                 </div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-jazz-gold">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-white">
                   Mot du Président
                 </h1>
                 <p className="text-base sm:text-lg md:text-xl text-warm-cream leading-relaxed mb-4 md:mb-6">
@@ -50,7 +50,7 @@ export default function MotDuPresident() {
                       height={320}
                       className="w-full h-full object-cover rounded-2xl shadow-2xl"
                 />
-                  <div className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-20 md:h-20 bg-jazz-gold rounded-full flex items-center justify-center text-jazz-red font-bold text-xs md:text-sm">
+                  <div className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-20 md:h-20 bg-jazz-gold rounded-full flex items-center justify-center text-white font-bold text-xs md:text-sm">
                     <div className="text-center">
                       <div className="text-xs">10ème</div>
                       <div className="text-xs">édition</div>
@@ -64,19 +64,19 @@ export default function MotDuPresident() {
       </section>
 
       {/* Section Remerciements - PRINCIPAL */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             
             {/* Titre principal */}
             <div className="text-center mb-8 md:mb-12">
-              <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full font-bold text-sm mb-4">
+              <div className="inline-block px-4 py-2 rounded-full font-bold text-sm mb-4" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', color: '#d4af37', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
                 ✅ Bilan 10ème édition
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-jazz-red mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Un très beau succès
               </h2>
-              <p className="text-base md:text-lg text-gray-600">
+              <p className="text-base md:text-lg text-stone-300">
                 Retour sur une 10ème édition couronnée de succès
               </p>
             </div>
@@ -85,21 +85,21 @@ export default function MotDuPresident() {
               <div className="lg:col-span-2 space-y-6 md:space-y-8">
                 
                 {/* Bilan de fréquentation - TEXTE EXACT */}
-                <div className="bg-warm-cream rounded-2xl p-6 md:p-8">
-                  <h3 className="text-xl md:text-2xl font-bold text-jazz-red mb-6 flex items-center">
+                <div className="rounded-2xl p-6 md:p-8" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center">
                     <Users className="w-5 h-5 md:w-6 md:h-6 mr-3" />
                     Bilan de fréquentation
                   </h3>
                   
                   <div className="space-y-4 md:space-y-6">
-                    <p className="text-base md:text-lg text-jazz-black leading-relaxed">
+                    <p className="text-base md:text-lg text-white leading-relaxed">
                       La 10ème édition de Jazz en Tech qui s'est déroulée dans les Pyrénées-Orientales 
                       à Saint-Génis-des-Fontaines (27/28 juillet) et Céret (6-9 août) a connu un très beau succès.
                     </p>
                     
                     <div className="border-l-4 border-jazz-gold pl-4">
-                      <h4 className="font-semibold text-jazz-red mb-2">Saint-Génis-des-Fontaines</h4>
-                      <p className="text-sm md:text-base text-gray-700">
+                      <h4 className="font-semibold text-white mb-2">Saint-Génis-des-Fontaines</h4>
+                      <p className="text-sm md:text-base text-stone-300">
                         Le cloître roman de Saint-Génis-des-Fontaines fît le plein les deux soirs au point 
                         que quelques personnes ne purent accéder, à notre plus grand regret, à ce lieu 
                         historique à la belle acoustique.
@@ -107,8 +107,8 @@ export default function MotDuPresident() {
                     </div>
                     
                     <div className="border-l-4 border-jazz-gold pl-4">
-                      <h4 className="font-semibold text-jazz-red mb-2">Céret</h4>
-                      <p className="text-sm md:text-base text-gray-700">
+                      <h4 className="font-semibold text-white mb-2">Céret</h4>
+                      <p className="text-sm md:text-base text-stone-300">
                         A Céret, la place de la République connut une affluence record à deux reprises 
                         les 7 et 8 août. Les 500 chaises disposées par les services techniques de la ville 
                         furent toutes occupées. Le 9 août, si quelques chaises restèrent disponibles, 
@@ -117,8 +117,8 @@ export default function MotDuPresident() {
                       </p>
                     </div>
                     
-                    <div className="bg-jazz-gold bg-opacity-10 p-4 rounded-lg">
-                      <p className="text-base md:text-lg text-jazz-black font-medium">
+                    <div className="p-4 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
+                      <p className="text-base md:text-lg text-white font-medium">
                         Le bilan de cette 10ème édition est donc un bon bilan en termes de fréquentation 
                         et de qualité des concerts ce qui nous permet d'envisager 2026 avec plus de sérénité.
                       </p>
@@ -127,7 +127,7 @@ export default function MotDuPresident() {
                 </div>
 
                 {/* Remerciements détaillés - TEXTE EXACT */}
-                <div className="bg-jazz-red text-white rounded-2xl p-6 md:p-8">
+                <div className="text-white rounded-2xl p-6 md:p-8" style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
                   <h3 className="text-xl md:text-2xl font-bold mb-6 flex items-center">
                     <Heart className="w-5 h-5 md:w-6 md:h-6 mr-3" />
                     Nos remerciements chaleureux
@@ -199,8 +199,8 @@ export default function MotDuPresident() {
                 <div className="lg:sticky lg:top-8 space-y-4 md:space-y-6">
                   
                   {/* Informations pratiques 2025 */}
-                  <div className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 shadow-sm">
-                    <h3 className="text-base md:text-lg font-bold text-jazz-red mb-4 md:mb-6 flex items-center">
+                  <div className="rounded-2xl p-4 md:p-6" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                    <h3 className="text-base md:text-lg font-bold text-white mb-4 md:mb-6 flex items-center">
                       <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                       Édition 2025
                     </h3>
@@ -209,17 +209,17 @@ export default function MotDuPresident() {
                       <div>
                         <div className="flex items-center mb-2">
                           <Calendar className="w-3 h-3 md:w-4 md:h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-jazz-black text-sm md:text-base">Dates</span>
+                          <span className="font-semibold text-white text-sm md:text-base">Dates</span>
                         </div>
-                        <div className="text-gray-600 ml-5 md:ml-6 text-sm md:text-base">27 juillet - 9 août</div>
+                        <div className=" ml-5 md:ml-6 text-sm md:text-base" style={{ color: '#f7f3e9' }}>27 juillet - 9 août</div>
                       </div>
                       
                       <div>
                         <div className="flex items-center mb-2">
                           <MapPin className="w-3 h-3 md:w-4 md:h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-jazz-black text-sm md:text-base">Lieux</span>
+                          <span className="font-semibold text-white text-sm md:text-base">Lieux</span>
                         </div>
-                        <div className="text-gray-600 ml-5 md:ml-6 space-y-1 text-sm md:text-base">
+                        <div className=" ml-5 md:ml-6 space-y-1 text-sm md:text-base" style={{ color: '#f7f3e9' }}>
                           <div>• Saint-Génis-des-Fontaines</div>
                           <div>• Céret</div>
                         </div>
@@ -228,9 +228,9 @@ export default function MotDuPresident() {
                       <div>
                         <div className="flex items-center mb-2">
                           <Music className="w-3 h-3 md:w-4 md:h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-jazz-black text-sm md:text-base">Artistes</span>
+                          <span className="font-semibold text-white text-sm md:text-base">Artistes</span>
                         </div>
-                        <div className="text-gray-600 ml-5 md:ml-6 space-y-1 text-sm md:text-base">
+                        <div className=" ml-5 md:ml-6 space-y-1 text-sm md:text-base" style={{ color: '#f7f3e9' }}>
                           <div>• Manu le Prince</div>
                           <div>• Florin Gugulica</div>
                           <div>• Stefano Di Battista</div>
@@ -243,32 +243,32 @@ export default function MotDuPresident() {
                   </div>
 
                   {/* Nos engagements */}
-                  <div className="bg-jazz-gold bg-opacity-10 rounded-2xl p-4 md:p-6 border border-jazz-gold border-opacity-30">
-                    <h3 className="text-base md:text-lg font-bold text-jazz-red mb-4 md:mb-6 flex items-center">
+                  <div className="rounded-2xl p-4 md:p-6" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                    <h3 className="text-base md:text-lg font-bold text-white mb-4 md:mb-6 flex items-center">
                       <Heart className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                       Nos engagements
                     </h3>
                     
                     <div className="space-y-3 md:space-y-4">
                       <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 md:w-10 md:h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-sm md:text-lg">🚲</span>
                         </div>
                         <div>
-                          <div className="font-semibold text-jazz-black text-sm md:text-base">Mobilités douces</div>
-                          <div className="text-xs md:text-sm text-gray-600 mt-1">
+                          <div className="font-semibold text-white text-sm md:text-base">Mobilités douces</div>
+                          <div className="text-xs md:text-sm text-stone-300 mt-1">
                             Pour nous rejoindre, privilégiez les mobilités douces
                           </div>
                         </div>
                       </div>
                       
                       <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center flex-shrink-0">
                           <span className="text-sm md:text-lg">💜</span>
                         </div>
                         <div>
-                          <div className="font-semibold text-jazz-black text-sm md:text-base">Contre les violences</div>
-                          <div className="text-xs md:text-sm text-gray-600 mt-1">
+                          <div className="font-semibold text-white text-sm md:text-base">Contre les violences</div>
+                          <div className="text-xs md:text-sm text-stone-300 mt-1">
                             Jazz en Tech participe contre les violences faites aux femmes
                           </div>
                         </div>
@@ -277,14 +277,14 @@ export default function MotDuPresident() {
                   </div>
 
                   {/* CTA - Vision 2026 */}
-                  <div className="bg-jazz-red text-white rounded-2xl p-4 md:p-6 text-center">
+                  <div className="text-white rounded-2xl p-4 md:p-6 text-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
                     <h4 className="font-bold mb-2 md:mb-3 text-sm md:text-base">À l'année prochaine</h4>
                     <p className="text-xs md:text-sm text-warm-cream mb-3 md:mb-4">
                       Rendez-vous en 2026 pour une 11ème édition festive et heureuse
                     </p>
                     <a 
                       href="/galerie" 
-                      className="inline-block bg-jazz-gold text-jazz-red px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-sm md:text-base"
+                      className="inline-block bg-jazz-gold text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors text-sm md:text-base"
                     >
                       Revivre l'édition 2025
                     </a>
@@ -297,19 +297,19 @@ export default function MotDuPresident() {
       </section>
 
       {/* Section Vidéos - CONSERVÉE */}
-      <section className="py-12 md:py-20 bg-gray-50">
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-jazz-red mb-4">Découvrez Jazz en Tech en vidéo</h2>
-              <p className="text-base md:text-lg text-gray-600">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Découvrez Jazz en Tech en vidéo</h2>
+              <p className="text-base md:text-lg text-stone-300">
                 Jazz en Tech c'est aussi...
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8">
               {/* Première vidéo - Arles sur tech */}
-              <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
                 <div className="aspect-video rounded-xl overflow-hidden mb-4">
                   <iframe
                     width="100%"
@@ -321,13 +321,13 @@ export default function MotDuPresident() {
                     allowFullScreen
                   ></iframe>
                 </div>
-                <h3 className="font-bold text-lg text-jazz-red text-center mb-2">
+                <h3 className="font-bold text-lg text-center mb-2" style={{ color: '#d4af37' }}>
                   des moments d'exception
                 </h3>
               </div>
 
               {/* Deuxième vidéo - Javanaise */}
-              <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-shadow" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
                 <div className="aspect-video rounded-xl overflow-hidden mb-4">
                   <iframe
                     width="100%"
@@ -339,10 +339,10 @@ export default function MotDuPresident() {
                     allowFullScreen
                   ></iframe>
                 </div>
-                <h3 className="font-bold text-lg text-jazz-red text-center mb-2">
+                <h3 className="font-bold text-lg text-center mb-2" style={{ color: '#d4af37' }}>
                   un festival transfrontalier
                 </h3>
-                <p className="text-sm text-gray-600 text-center">
+                <p className="text-sm text-center" style={{ color: '#f7f3e9' }}>
                   24 juillet 2023, concert à Sant Joan de les Abadesses
                 </p>
               </div>
@@ -352,16 +352,16 @@ export default function MotDuPresident() {
       </section>
 
       {/* Signature - RESPONSIVE */}
-      <section className="py-12 md:py-16 warm-gradient">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-lg">
+            <div className="rounded-2xl p-6 md:p-8 shadow-lg" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
               <div className="w-16 h-16 md:w-20 md:h-20 bg-jazz-red rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 text-white text-lg md:text-2xl font-bold">
                 AB
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-jazz-red mb-2">Alain Brunet</h3>
-              <p className="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">Président de Jazz en Tech</p>
-              <p className="text-xs md:text-sm text-gray-500 italic">
+              <h3 className="text-lg md:text-xl font-bold text-white mb-2">Alain Brunet</h3>
+              <p className="mb-3 md:mb-4 text-sm md:text-base" style={{ color: '#d4af37' }}>Président de Jazz en Tech</p>
+              <p className="text-xs md:text-sm italic" style={{ color: '#f7f3e9' }}>
                 "Merci à tous ceux qui ont rendu possible cette 10ème édition exceptionnelle."
               </p>
             </div>

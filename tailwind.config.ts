@@ -45,7 +45,7 @@ const config: Config = {
   },
   plugins: [
     // Plugin pour les variantes d'orientation
-    function({ addVariant }) {
+    function({ addVariant }: { addVariant: any }) {
       // Mode paysage général
       addVariant('landscape', '@media (orientation: landscape)')
       

@@ -9,6 +9,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLandscape, setIsLandscape] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,13 +18,13 @@ export default function Header() {
     }
 
     const handleResize = () => {
-      // Détecte le mode paysage sur mobile/tablette
       setIsLandscape(window.innerHeight < window.innerWidth && window.innerHeight < 600)
+      setIsMobile(window.innerWidth < 1024)
     }
 
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('resize', handleResize)
-    handleResize() // Check initial state
+    handleResize()
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -46,10 +47,10 @@ export default function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: '#722f37',
-        boxShadow: isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.1)' : 'none',
+        background: (isScrolled || isMenuOpen) ? '#722f37' : 'transparent',
+        boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.3)' : 'none',
         height: getHeaderHeight(),
       }}
     >
@@ -76,15 +77,17 @@ export default function Header() {
           {/* Navigation desktop - visible seulement à partir de 1024px (lg) */}
           <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <div>
-              <Navigation />
+              <Navigation isScrolled={isScrolled} />
             </div>
             <Link
               href="/billetterie"
-              className="btn-primary flex items-center px-4 py-2 xl:px-6 xl:py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg animate-pulse"
+              className="btn-primary flex items-center px-4 py-2 xl:px-6 xl:py-3 rounded-xl font-bold transition-all duration-500 transform hover:scale-105 animate-glow-pulse"
               style={{
-                background: 'linear-gradient(45deg, #d4af37, #b87333)',
-                color: '#1a1a1a',
-                border: '2px solid #d4af37'
+                background: isScrolled 
+                  ? 'linear-gradient(45deg, #d4af37, #b87333)' 
+                  : '#1a1a1a',
+                color: isScrolled ? '#1a1a1a' : '#d4af37',
+                border: isScrolled ? '2px solid #d4af37' : '2px solid #1a1a1a',
               }}
             >
               <Ticket className="w-4 h-4 xl:w-5 xl:h-5 mr-1 xl:mr-2" />
@@ -113,6 +116,7 @@ export default function Header() {
             }`}
             style={{ 
               backgroundColor: '#722f37',
+              backdropFilter: 'blur(10px)',
               zIndex: 1000
             }}
           >
@@ -126,12 +130,13 @@ export default function Header() {
                 <Link
                   href="/billetterie"
                   onClick={() => setIsMenuOpen(false)}
-                  className={`btn-primary flex items-center justify-center w-full rounded-xl font-bold transition-all duration-300 animate-pulse shadow-lg ${
+                  className={`btn-primary flex items-center justify-center w-full rounded-xl font-bold transition-all duration-500 animate-glow-pulse ${
                     isLandscape ? 'px-4 py-2 text-sm' : 'px-6 py-3'
                   }`}
                   style={{
                     background: 'linear-gradient(45deg, #d4af37, #b87333)',
-                    color: '#1a1a1a'
+                    color: '#1a1a1a',
+                    border: '2px solid #d4af37'
                   }}
                 >
                   <Ticket className={`mr-2 ${isLandscape ? 'w-4 h-4' : 'w-5 h-5'}`} />

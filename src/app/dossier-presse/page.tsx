@@ -168,12 +168,12 @@ const coupuresPresse = [
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
         <title>Dossier de Presse - Jazz en Tech 2025</title>
       {/* Hero Section */}
-      <section className="hero-gradient text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16">
+      <section className="text-white pt-36 pb-8 sm:pt-40 sm:pb-12 md:pt-44 md:pb-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={{ color: '#d4af37' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             Dossier de Presse
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-6" style={{ color: '#f7f3e9' }}>
@@ -186,14 +186,14 @@ const coupuresPresse = [
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm md:text-base"
-            style={{ backgroundColor: '#d4af37', color: '#722f37' }}
+            style={{ backgroundColor: '#d4af37', color: '#f7f3e9' }}
           >
             <Download className="w-5 h-5 mr-2" />
             Télécharger le dossier complet (PDF)
           </a>
           
           <div className="flex items-center justify-center mt-6">
-            <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
+            <div className="flex items-center space-x-2 bg-opacity-10 rounded-full px-4 py-2">
               <Newspaper className="w-5 h-5" style={{ color: '#d4af37' }} />
               <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>Relations Presse</span>
             </div>
@@ -209,29 +209,29 @@ const coupuresPresse = [
             <div className="grid md:grid-cols-3 gap-4 md:gap-6">
               <div 
                 className="text-center p-4 md:p-6 rounded-xl"
-                style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+                style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
               >
-                <Calendar className="w-8 h-8 mx-auto mb-3" style={{ color: '#722f37' }} />
-                <h2 className="font-bold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>10ème édition</h2>
-                <p className="text-xs md:text-sm text-gray-600">27-28 juillet & 7-8-9 août 2025</p>
+                <Calendar className="w-8 h-8 mx-auto mb-3" style={{ color: '#f7f3e9' }} />
+                <h2 className="font-bold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>10ème édition</h2>
+                <p className="text-xs md:text-sm text-stone-300">27-28 juillet & 7-8-9 août 2025</p>
               </div>
               
               <div 
                 className="text-center p-4 md:p-6 rounded-xl"
-                style={{ backgroundColor: 'rgba(114, 47, 55, 0.1)' }}
+                style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
               >
-                <Users className="w-8 h-8 mx-auto mb-3" style={{ color: '#722f37' }} />
-                <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>5 concerts</h3>
-                <p className="text-xs md:text-sm text-gray-600">Artistes internationaux</p>
+                <Users className="w-8 h-8 mx-auto mb-3" style={{ color: '#f7f3e9' }} />
+                <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>5 concerts</h3>
+                <p className="text-xs md:text-sm text-stone-300">Artistes internationaux</p>
               </div>
               
               <div 
                 className="text-center p-4 md:p-6 rounded-xl"
-                style={{ backgroundColor: 'rgba(184, 115, 51, 0.1)' }}
+                style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
               >
-                <Award className="w-8 h-8 mx-auto mb-3" style={{ color: '#722f37' }} />
-                <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#722f37' }}>2 lieux magiques</h3>
-                <p className="text-xs md:text-sm text-gray-600">Saint-Génis & Céret</p>
+                <Award className="w-8 h-8 mx-auto mb-3" style={{ color: '#f7f3e9' }} />
+                <h3 className="font-bold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>2 lieux magiques</h3>
+                <p className="text-xs md:text-sm text-stone-300">Saint-Génis & Céret</p>
               </div>
             </div>
           </section>
@@ -239,8 +239,8 @@ const coupuresPresse = [
           {/* Citations presse */}
           <section className="mb-8 md:mb-12">
             <div className="flex items-center mb-6">
-              <Quote className="w-6 h-6 mr-3" style={{ color: '#722f37' }} />
-              <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#722f37' }}>Ce qu'en dit la presse</h2>
+              <Quote className="w-6 h-6 mr-3" style={{ color: '#f7f3e9' }} />
+              <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#f7f3e9' }}>Ce qu'en dit la presse</h2>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
@@ -249,17 +249,17 @@ const coupuresPresse = [
                   key={index}
                   className="p-4 md:p-6 rounded-xl border-l-4"
                   style={{ 
-                    backgroundColor: 'rgba(212, 175, 55, 0.05)',
+                    backgroundColor: 'rgba(26, 26, 26, 0.6)',
                     borderColor: '#d4af37'
                   }}
                 >
                   <Quote className="w-5 h-5 mb-3" style={{ color: '#d4af37' }} />
-                  <p className="text-xs md:text-sm italic mb-3" style={{ color: '#1a1a1a' }}>
+                  <p className="text-xs md:text-sm italic mb-3" style={{ color: '#f7f3e9' }}>
                     « {citation.texte} »
                   </p>
                   <div className="text-xs">
-                    <p className="font-semibold" style={{ color: '#722f37' }}>{citation.source}</p>
-                    <p className="text-gray-600">{citation.artiste}</p>
+                    <p className="font-semibold" style={{ color: '#f7f3e9' }}>{citation.source}</p>
+                    <p className="text-stone-300">{citation.artiste}</p>
                   </div>
                 </div>
               ))}
@@ -269,21 +269,21 @@ const coupuresPresse = [
           {/* Revue de presse - TRIÉE PAR ORDRE CHRONOLOGIQUE */}
           <section className="mb-8 md:mb-12">
             <div className="flex items-center mb-6">
-              <ImageIcon className="w-6 h-6 mr-3" style={{ color: '#722f37' }} />
-              <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#722f37' }}>Revue de presse</h2>
-              <span className="ml-3 text-sm text-gray-500">(du plus récent au plus ancien)</span>
+              <ImageIcon className="w-6 h-6 mr-3" style={{ color: '#f7f3e9' }} />
+              <h2 className="text-xl md:text-2xl font-bold" style={{ color: '#f7f3e9' }}>Revue de presse</h2>
+              <span className="ml-3 text-sm text-stone-300">(du plus récent au plus ancien)</span>
             </div>
             
             {/* Articles avec images - ORDRE CHRONOLOGIQUE DÉCROISSANT */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {coupuresPresse.map((article) => (
-                <div key={article.id} className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="relative mb-4 bg-gray-100 rounded-lg overflow-hidden" style={{ height: '250px' }}>
+                <div key={article.id} className="rounded-xl p-4 md:p-6 transition-shadow" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                  <div className="relative mb-4 rounded-lg overflow-hidden" style={{ height: '250px' }}>
                     <Image 
                       src={article.image}
                       alt={article.titre}
                       fill
-                      className="object-contain bg-white"
+                      className="object-contain"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
@@ -291,17 +291,17 @@ const coupuresPresse = [
                   <div className="mb-3">
                     <span 
                       className="inline-block px-2 py-1 rounded text-xs font-medium"
-                      style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)', color: '#722f37' }}
+                      style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)', color: '#f7f3e9' }}
                     >
                       {article.journal}
                     </span>
-                    <span className="text-xs text-gray-500 ml-2">{article.date}</span>
+                    <span className="text-xs text-stone-300 ml-2">{article.date}</span>
                   </div>
                   
-                  <h3 className="font-bold text-sm md:text-base mb-2 line-clamp-2" style={{ color: '#1a1a1a' }}>
+                  <h3 className="font-bold text-sm md:text-base mb-2 line-clamp-2" style={{ color: '#f7f3e9' }}>
                     {article.titre}
                   </h3>
-                  <p className="text-xs md:text-sm text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-xs md:text-sm text-stone-300 mb-4 line-clamp-3">
                     {article.description}
                   </p>
                   
@@ -310,7 +310,7 @@ const coupuresPresse = [
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs md:text-sm font-medium hover:underline flex items-center"
-                    style={{ color: '#722f37' }}
+                    style={{ color: '#f7f3e9' }}
                   >
                     <ExternalLink className="w-4 h-4 mr-1" />
                     Voir en grand
@@ -323,9 +323,9 @@ const coupuresPresse = [
           {/* Contact presse */}
           <section 
             className="p-6 md:p-8 rounded-xl"
-            style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}
+            style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
           >
-            <h3 className="text-lg md:text-xl font-bold mb-6 text-center" style={{ color: '#722f37' }}>
+            <h3 className="text-lg md:text-xl font-bold mb-6 text-center" style={{ color: '#f7f3e9' }}>
               Contact Relations Presse
             </h3>
             
@@ -333,16 +333,16 @@ const coupuresPresse = [
               <div className="text-center">
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)' }}
+                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}
                 >
-                  <Users className="w-6 h-6" style={{ color: '#722f37' }} />
+                  <Users className="w-6 h-6" style={{ color: '#f7f3e9' }} />
                 </div>
-                <p className="font-semibold text-sm md:text-base mb-1" style={{ color: '#1a1a1a' }}>Alain Brunet</p>
-                <p className="text-xs md:text-sm text-gray-600 mb-3">Président de Jazz en Tech</p>
+                <p className="font-semibold text-sm md:text-base mb-1" style={{ color: '#f7f3e9' }}>Alain Brunet</p>
+                <p className="text-xs md:text-sm text-stone-300 mb-3">Président de Jazz en Tech</p>
                 <a 
                   href="mailto:contactjazzentech@gmail.com" 
                   className="inline-flex items-center text-xs md:text-sm hover:underline"
-                  style={{ color: '#722f37' }}
+                  style={{ color: '#f7f3e9' }}
                 >
                   <Mail className="w-4 h-4 mr-1" />
                   contactjazzentech@gmail.com
@@ -352,16 +352,16 @@ const coupuresPresse = [
               <div className="text-center">
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3"
-                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}
+                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}
                 >
-                  <Phone className="w-6 h-6" style={{ color: '#722f37' }} />
+                  <Phone className="w-6 h-6" style={{ color: '#f7f3e9' }} />
                 </div>
-                <p className="font-semibold text-sm md:text-base mb-1" style={{ color: '#1a1a1a' }}>Téléphone</p>
-                <p className="text-xs md:text-sm text-gray-600 mb-3">Contact direct</p>
+                <p className="font-semibold text-sm md:text-base mb-1" style={{ color: '#f7f3e9' }}>Téléphone</p>
+                <p className="text-xs md:text-sm text-stone-300 mb-3">Contact direct</p>
                 <a 
                   href="tel:0608758767"
                   className="text-sm md:text-base font-medium"
-                  style={{ color: '#722f37' }}
+                  style={{ color: '#f7f3e9' }}
                 >
                   06 08 75 87 67
                 </a>
@@ -374,7 +374,7 @@ const coupuresPresse = [
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold transition-all duration-300 hover:opacity-90 text-sm md:text-base"
-                style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}
+                style={{ backgroundColor: '#d4af37', color: '#f7f3e9' }}
               >
                 <Download className="w-4 h-4 mr-2" />
                 Dossier complet (PDF)
