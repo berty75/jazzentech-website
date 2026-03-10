@@ -356,17 +356,17 @@ export default function Galerie() {
             <p className="text-sm md:text-base mb-6" style={{ color: '#f7f3e9' }}>
               En voici quelques images.
             </p>
-            <p className="text-sm font-medium" style={{ color: '#d4af37' }}>
+            <p className="text-sm font-medium text-white">
               Photographies : <strong>© Jacques Martinez</strong>
             </p>
           </div>
           <div className="flex items-center justify-center mt-6 space-x-4">
             <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-              <Camera className="w-5 h-5" style={{ color: '#d4af37' }} />
+              <Camera className="w-5 h-5 text-white" />
               <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>{photos.length} photos</span>
             </div>
             <div className="flex items-center space-x-2 bg-white bg-opacity-10 rounded-full px-4 py-2">
-              <Filter className="w-5 h-5" style={{ color: '#d4af37' }} />
+              <Filter className="w-5 h-5 text-white" />
               <span className="text-sm font-medium" style={{ color: '#f7f3e9' }}>4 artistes</span>
             </div>
           </div>
@@ -386,7 +386,7 @@ export default function Galerie() {
             <div className="space-y-4">
               {/* Filtres par catégorie */}
               <div>
-                <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: '#d4af37' }}>
+                <h3 className="text-lg font-semibold mb-3 text-center text-white">
                   Par catégorie
                 </h3>
                 <div className="flex flex-wrap justify-center gap-2 md:gap-3">
@@ -419,7 +419,7 @@ export default function Galerie() {
 
               {/* Filtres par artiste */}
               <div>
-                <h3 className="text-lg font-semibold mb-3 text-center" style={{ color: '#d4af37' }}>
+                <h3 className="text-lg font-semibold mb-3 text-center text-white">
                   Par artiste
                 </h3>
                 <div className="flex flex-wrap justify-center gap-2 md:gap-3">
