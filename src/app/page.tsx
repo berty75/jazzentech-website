@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, MapPin, Music, Users, Star } from 'lucide-react'
+import SoutenirTicker from '@/components/SoutenirTicker'
 
 export default function Home() {
   return (
@@ -58,6 +59,9 @@ export default function Home() {
                     Concert événement
                   </Link>
                 </div>
+
+                {/* Banderole soutien */}
+                <SoutenirTicker inline />
               </div>
               
               <div className="order-1 lg:order-2 flex justify-center items-start opacity-0 animate-[fadeIn_1s_ease-in_0.5s_forwards]">
