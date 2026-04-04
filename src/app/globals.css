@@ -253,3 +253,16 @@ header:not(.scrolled) {
 .btn-hero:hover::before {
   left: 100%;
 }
+/* ── Ticker / Banderole défilante ── */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}

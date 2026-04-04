@@ -49,7 +49,9 @@ export default function Header() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background: (isScrolled || isMenuOpen) ? '#722f37' : 'transparent',
+      background: (isScrolled || isMenuOpen) 
+        ? '#722f37' 
+        : 'transparent',
         boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.3)' : 'none',
         height: getHeaderHeight(),
       }}

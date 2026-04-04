@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import PreventeBanner from '@/components/PreventeBanner'
 import PreventePopup from '@/components/PreventePopup'
+import SoutenirTicker from '@/components/SoutenirTicker'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -83,6 +84,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased min-h-screen flex flex-col hero-gradient`}>
         <PreventeBanner />
         <PreventePopup />
+        <SoutenirTicker />
         <Header />
         <div className="flex-1">
           {children}
