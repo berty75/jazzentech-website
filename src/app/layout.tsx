@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import PreventeBanner from '@/components/PreventeBanner'
 import PreventePopup from '@/components/PreventePopup'
+import SoutenirTicker from '@/components/SoutenirTicker'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -84,6 +85,10 @@ export default function RootLayout({
         <PreventeBanner />
         <PreventePopup />
         <Header />
+        <SoutenirTicker />
+        {/* Espaceur ticker : plein sur mobile, minime sur desktop */}
+        <div className="block md:hidden h-[3.25rem] flex-shrink-0" />
+        <div className="hidden md:block h-2 flex-shrink-0" />
         <div className="flex-1">
           {children}
         </div>
