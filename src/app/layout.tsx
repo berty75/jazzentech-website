@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import PreventeBanner from '@/components/PreventeBanner'
-import PreventePopup from '@/components/PreventePopup'
-import SoutenirTicker from '@/components/SoutenirTicker'
+import ConvexClerkProvider from '@/components/ConvexClerkProvider'
+import SiteShell from '@/components/SiteShell'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -82,17 +79,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col hero-gradient`}>
-        <PreventeBanner />
-        <PreventePopup />
-        <Header />
-        <SoutenirTicker />
-        {/* Espaceur ticker : plein sur mobile, minime sur desktop */}
-        <div className="block md:hidden h-[3.25rem] flex-shrink-0" />
-        <div className="hidden md:block h-2 flex-shrink-0" />
-        <div className="flex-1">
-          {children}
-        </div>
-        <Footer />
+        <ConvexClerkProvider>
+          <SiteShell>
+            {children}
+          </SiteShell>
+        </ConvexClerkProvider>
       </body>
     </html>
   )

@@ -60,7 +60,7 @@ const PreventeBanner = () => {
 
   return (
     <div 
-      className="fixed top-0 left-0 right-0 z-[60] py-2 px-4 shadow-lg"
+      className="relative w-full py-3 px-4"
       style={{ 
         background: 'linear-gradient(90deg, #722f37 0%, #1a1a1a 50%, #722f37 100%)',
       }}

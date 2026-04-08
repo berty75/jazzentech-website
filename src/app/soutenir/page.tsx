@@ -1,6 +1,7 @@
-import { Heart, Star, Award, Crown, Users, ExternalLink, CheckCircle2, Info } from 'lucide-react'
+import { Heart, Star, Award, Crown, Users, CheckCircle2, Info } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import DonateButton from '@/components/DonateButton'
 
 export const metadata: Metadata = {
   title: 'Soutenir Jazz en Tech 2026',
@@ -97,7 +98,7 @@ export default function SoutenirPage() {
           <div className="container mx-auto px-4 text-center">
             <div className="inline-block px-3 py-2 rounded-full font-bold text-xs mb-4"
               style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', color: '#d4af37', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-              ❤️ Financement participatif — HelloAsso
+              ❤️ Soutenez le festival — Paiement sécurisé Stripe
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 leading-tight text-white">
               Soutenez Jazz en Tech 2026
@@ -138,7 +139,7 @@ export default function SoutenirPage() {
       </section>
 
       {/* Paliers */}
-      <section className="py-10 md:py-16">
+      <section id="paliers" className="py-10 md:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
 
@@ -198,20 +199,11 @@ export default function SoutenirPage() {
                   </ul>
 
                   {/* CTA */}
-                  <a
-                    href={`https://www.helloasso.com/associations/jazz-en-tech/formulaires/1`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm transition-colors hover:opacity-90"
-                    style={{
-                      backgroundColor: p.featured ? '#d4af37' : 'rgba(212, 175, 55, 0.15)',
-                      color: p.featured ? '#1a1a1a' : '#d4af37',
-                      border: p.featured ? 'none' : '1px solid rgba(212, 175, 55, 0.4)'
-                    }}
-                  >
-                    Donner {p.montant} €
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+                  <DonateButton
+                    amount={p.montant}
+                    label={`Donner ${p.montant} €`}
+                    featured={p.featured}
+                  />
                 </div>
               ))}
             </div>
@@ -226,18 +218,18 @@ export default function SoutenirPage() {
             style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
               <Heart className="w-5 h-5 text-jazz-gold" />
-              Pourquoi HelloAsso ?
+              Paiement sécurisé
             </h3>
             <div className="grid sm:grid-cols-3 gap-4 text-center text-sm">
               <div className="rounded-xl p-4" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
-                <div className="text-2xl font-bold mb-2" style={{ color: '#d4af37' }}>0 %</div>
-                <p className="text-white font-semibold text-xs">Commission</p>
-                <p className="text-stone-400 text-xs mt-1">100 % de votre don va au festival</p>
+                <div className="text-2xl font-bold mb-2" style={{ color: '#d4af37' }}>100 %</div>
+                <p className="text-white font-semibold text-xs">Sécurisé</p>
+                <p className="text-stone-400 text-xs mt-1">Paiement via Stripe</p>
               </div>
               <div className="rounded-xl p-4" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
                 <div className="text-2xl mb-2">🧾</div>
-                <p className="text-white font-semibold text-xs">Reçu fiscal auto</p>
-                <p className="text-stone-400 text-xs mt-1">Envoyé automatiquement par email</p>
+                <p className="text-white font-semibold text-xs">Reçu fiscal (Cerfa)</p>
+                <p className="text-stone-400 text-xs mt-1">Envoyé par email après votre don</p>
               </div>
               <div className="rounded-xl p-4" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
                 <div className="text-2xl mb-2">🔒</div>

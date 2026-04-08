@@ -1,24 +1,29 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { jwtVerify } from 'jose'
 
-// Plus de chemins bloqués pour 2026
-const BLOCKED_PATHS: string[] = []
+const SECRET = new TextEncoder().encode(process.env.ADMIN_SECRET || 'jazz-en-tech-secret-change-me')
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl
 
-  // Vérifier si le chemin commence par un des chemins bloqués
-  const isBlocked = BLOCKED_PATHS.some(path => 
-    pathname === path || pathname.startsWith(`${path}/`)
-  )
-
-  if (isBlocked) {
-    return NextResponse.redirect(new URL('/', request.url))
+  // Ne pas protéger les pages login et ses sous-pages
+  if (!pathname.startsWith('/dashboard') || pathname.startsWith('/dashboard/login')) {
+    return NextResponse.next()
   }
 
-  return NextResponse.next()
+  const token = req.cookies.get('jet-admin-token')?.value
+  if (!token) {
+    return NextResponse.redirect(new URL('/dashboard/login', req.url))
+  }
+
+  try {
+    await jwtVerify(token, SECRET)
+    return NextResponse.next()
+  } catch {
+    return NextResponse.redirect(new URL('/dashboard/login', req.url))
+  }
 }
 
 export const config = {
-  matcher: []
+  matcher: ['/dashboard/:path*'],
 }

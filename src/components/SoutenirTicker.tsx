@@ -1,3 +1,4 @@
+// PATH: src/components/SoutenirTicker.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -18,14 +19,18 @@ const TRACK = [...MESSAGES, ...MESSAGES]
 export default function SoutenirTicker() {
   const [dismissed, setDismissed] = useState(true)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const val = sessionStorage.getItem('ticker-dismissed')
     if (!val) setDismissed(false)
 
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+    handleResize()
+    return () => { window.removeEventListener('scroll', handleScroll); window.removeEventListener('resize', handleResize) }
   }, [])
 
   const dismiss = () => {
@@ -35,13 +40,15 @@ export default function SoutenirTicker() {
 
   if (dismissed) return null
 
-  const topOffset = isScrolled ? '5.5rem' : '8rem'
+  const topOffset = isScrolled ? '5.5rem' : '7rem'
 
   return (
     <div
-      className="fixed left-0 right-0 z-40 overflow-hidden transition-all duration-500"
+      className="fixed right-0 z-40 overflow-hidden transition-all duration-500"
       style={{
         top: topOffset,
+        left: isMobile ? '0px' : (isScrolled ? '0px' : '190px'),
+        borderRadius: (isMobile || isScrolled) ? '0' : '16px 0 0 16px',
         background: 'linear-gradient(90deg, rgba(114,47,55,0.97) 0%, rgba(26,10,14,0.97) 50%, rgba(114,47,55,0.97) 100%)',
         borderBottom: '1px solid rgba(212, 175, 55, 0.5)',
         height: '3.25rem',
@@ -49,27 +56,16 @@ export default function SoutenirTicker() {
     >
       {/* Fondu gauche */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        className="absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none"
         style={{ background: 'linear-gradient(to right, rgba(114,47,55,1), transparent)' }}
       />
-
-      {/* Bouton CTA */}
-      <Link
-        href="/soutenir"
-        className="absolute left-0 top-0 bottom-0 z-20 flex items-center gap-2 px-3 font-bold transition-all hover:opacity-90 whitespace-nowrap"
-        style={{ background: '#d4af37', color: '#1a1a1a' }}
-      >
-        <Heart className="w-4 h-4 flex-shrink-0" />
-        <span className="hidden sm:inline text-sm">Nous soutenir</span>
-        <span className="sm:hidden text-xs">Don</span>
-      </Link>
 
       {/* Piste défilante */}
       <div
         className="absolute inset-0 flex items-center overflow-hidden"
-        style={{ left: '7rem', right: '3rem' }}
+        style={{ left: '0.5rem', right: isMobile ? '6rem' : '12rem' }}
       >
-        <div className="ticker-track">
+        <div className="ticker-track-reverse">
           {TRACK.map((msg, i) => (
             <span
               key={i}
@@ -85,9 +81,20 @@ export default function SoutenirTicker() {
 
       {/* Fondu droit */}
       <div
-        className="absolute right-12 top-0 bottom-0 w-16 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, rgba(26,10,14,0.97), transparent)' }}
+        className="absolute top-0 bottom-0 w-16 z-10 pointer-events-none"
+        style={{ right: isMobile ? '6rem' : '12rem', background: 'linear-gradient(to left, rgba(26,10,14,0.97), transparent)' }}
       />
+
+      {/* Bouton CTA à droite */}
+      <Link
+        href="/soutenir"
+        className="absolute right-12 top-0 bottom-0 z-20 flex items-center gap-1 px-2 sm:px-4 font-bold transition-all hover:opacity-90 whitespace-nowrap"
+        style={{ background: '#d4af37', color: '#1a1a1a' }}
+      >
+        <Heart className="w-4 h-4 flex-shrink-0" />
+        <span className="hidden sm:inline text-sm">Nous soutenir</span>
+        <span className="sm:hidden text-xs">Don</span>
+      </Link>
 
       {/* Fermer */}
       <button

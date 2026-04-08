@@ -18,17 +18,17 @@ export default function MotDuPresident() {
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <div className="inline-block bg-jazz-gold text-jazz-noir px-3 md:px-4 py-2 rounded-full font-bold text-xs md:text-sm mb-4"
-                  style={{ color: '#1a1a1a' }}>
+                <div
+                  className="inline-block px-3 md:px-4 py-2 rounded-full font-bold text-xs md:text-sm mb-4"
+                  style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+                >
                   🎺 11ème édition — 2026
                 </div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-white">
                   Mot du Président
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl text-warm-cream leading-relaxed mb-4 md:mb-6">
-                  Onze ans de passion pour le jazz dans les Pyrénées-Orientales.
-                  Cette édition 2026 rend hommage à deux géants dont nous célébrons le centenaire
-                  de la naissance : Miles Davis et John Coltrane.
+                <p className="text-base sm:text-lg text-warm-cream leading-relaxed mb-4">
+                  Chers amis de Jazz en Tech
                 </p>
                 <div className="flex items-center space-x-3 md:space-x-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-jazz-gold bg-opacity-20 rounded-full flex items-center justify-center">
@@ -50,8 +50,10 @@ export default function MotDuPresident() {
                     height={320}
                     className="w-full h-full object-cover rounded-2xl shadow-2xl"
                   />
-                  <div className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-20 md:h-20 bg-jazz-gold rounded-full flex items-center justify-center font-bold text-xs md:text-sm"
-                    style={{ color: '#1a1a1a' }}>
+                  <div
+                    className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 w-16 h-16 md:w-20 md:h-20 bg-jazz-gold rounded-full flex items-center justify-center font-bold text-xs md:text-sm"
+                    style={{ color: '#1a1a1a' }}
+                  >
                     <div className="text-center">
                       <div className="text-xs">11ème</div>
                       <div className="text-xs">édition</div>
@@ -64,127 +66,107 @@ export default function MotDuPresident() {
         </div>
       </section>
 
-      {/* Lettre du président */}
+      {/* Lettre complète */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-
-            <div className="text-center mb-8 md:mb-12">
-              <div className="inline-block px-4 py-2 rounded-full font-bold text-sm mb-4"
-                style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', color: '#d4af37', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                ✉️ Message d'Alain Brunet
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Festival Jazz en Tech — 11ème édition
-              </h2>
-            </div>
-
             <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-              <div className="lg:col-span-2 space-y-6 md:space-y-8">
 
-                {/* Texte principal */}
-                <div className="rounded-2xl p-6 md:p-8"
-                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center">
-                    <Star className="w-5 h-5 md:w-6 md:h-6 mr-3 text-jazz-gold" />
-                    Une édition anniversaire
-                  </h3>
-                  <div className="space-y-4 md:space-y-5 text-stone-200 leading-relaxed">
-                    <p className="text-base md:text-lg">Chères amies, chers amis,</p>
-                    <p className="text-base md:text-lg">
-                      C'est avec une immense fierté et une grande émotion que je vous convie à la
-                      <strong className="text-white"> 11ème édition de Jazz en Tech</strong>, qui se tiendra
-                      les <strong className="text-white">5, 6, 7 et 8 août 2026</strong> à Céret,
-                      au cœur des Pyrénées-Orientales.
-                    </p>
-                    <p className="text-base md:text-lg">
-                      Cette édition revêt une signification particulière : en 2026, nous célébrons le
-                      <strong className="text-white"> centenaire de la naissance de deux titans du jazz</strong> —
-                      <strong className="text-jazz-gold"> Miles Davis</strong> (26 mai 1926) et
-                      <strong className="text-jazz-gold"> John Coltrane</strong> (23 septembre 1926).
-                      Ces deux géants ont révolutionné la musique du XXème siècle et leur héritage
-                      continue d'irriguer le jazz contemporain. Jazz en Tech leur rendra un hommage
-                      digne de leur immense contribution à la musique mondiale.
-                    </p>
-                    <p className="text-base md:text-lg">
-                      Après dix éditions couronnées de succès, notre festival s'est imposé comme
-                      un rendez-vous incontournable de l'été culturel en Occitanie. Nous avons su
-                      créer un espace unique où excellence artistique et convivialité se conjuguent
-                      dans le cadre exceptionnel de Céret.
-                    </p>
-                  </div>
-                </div>
+              {/* Texte principal — mot pour mot */}
+              <div className="lg:col-span-2 space-y-6">
 
-                {/* Hommage Miles & Coltrane */}
-                <div className="rounded-2xl p-6 md:p-8"
-                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center">
-                    <Music className="w-5 h-5 md:w-6 md:h-6 mr-3 text-jazz-gold" />
-                    Hommage au centenaire
-                  </h3>
-                  <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="rounded-xl p-5"
-                      style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                      <div className="text-3xl mb-3">🎺</div>
-                      <h4 className="font-bold text-white text-lg mb-2">Miles Davis</h4>
-                      <p className="text-stone-300 text-sm leading-relaxed">
-                        26 mai 1926 — 28 septembre 1991.
-                        Le « Prince des Ténèbres » a sans cesse réinventé le jazz,
-                        du bebop au jazz modal, du cool jazz au jazz fusion.
-                        <em className="text-jazz-gold"> Kind of Blue</em>,
-                        <em className="text-jazz-gold"> Bitches Brew</em>…
-                        son œuvre demeure une boussole pour les musiciens du monde entier.
+                {/* Programmation */}
+                <div
+                  className="rounded-2xl p-6 md:p-8"
+                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                >
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Star className="w-5 h-5 text-jazz-gold flex-shrink-0" />
+                    La programmation 2026
+                  </h2>
+                  <div className="space-y-5 text-stone-200 leading-relaxed text-base md:text-lg">
+                    <p>
+                      L'année 2026 après 2025, édition couronnée de succès pour Jazz en Tech, verra
+                      notre festival continuer son développement pour la plus grande satisfaction du
+                      public.
+                    </p>
+
+                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
+                      <p className="font-semibold text-white mb-1">Mercredi 5 août — 21h</p>
+                      <p>
+                        Coup d'envoi de la 11<sup>ème</sup> édition à Céret mercredi 5 août 21h. Un hommage
+                        majestueux à Miles Davis, « Picasso du jazz » selon Pascal Anquetil, dont nous
+                        fêterons avec éclat le 100<sup>ème</sup> anniversaire de la naissance. Le trompettiste Eric
+                        Truffaz et le saxophoniste-chanteur Antonio Lizana, magnifiquement entourés
+                        procéderont à une relecture du fameux disque devenu culte <em>Sketches of Spain</em>.
                       </p>
                     </div>
-                    <div className="rounded-xl p-5"
-                      style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                      <div className="text-3xl mb-3">🎷</div>
-                      <h4 className="font-bold text-white text-lg mb-2">John Coltrane</h4>
-                      <p className="text-stone-300 text-sm leading-relaxed">
-                        23 septembre 1926 — 17 juillet 1967.
-                        « Trane » a poussé le saxophone et l'improvisation jazz à leurs
-                        limites absolues avec une quête spirituelle sans pareille.
-                        <em className="text-jazz-gold"> A Love Supreme</em> reste
-                        l'une des œuvres les plus transcendantes de la musique moderne.
+
+                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
+                      <p className="font-semibold text-white mb-1">Jeudi 6 août — 21h</p>
+                      <p>
+                        Le lendemain, jeudi 6 août 21h ce sera autour de John Coltrane né aussi en
+                        1926 et hélas trop tôt décédé (1967), géant du jazz s'il en est, d'être célébré à
+                        Céret par le Big Band de Christophe Dal Sasso et la formidable soliste Sophie
+                        Alour dans le rôle si je puis dire, de John Coltrane autour d'une œuvre majeure
+                        <em> Africa Brass</em> et de quelques autres….
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
+                      <p className="font-semibold text-white mb-1">Vendredi 7 août — 21h</p>
+                      <p>
+                        Vendredi 7 août 21h, la pianiste chanteuse Ladyva entourée des gaillards du
+                        Barcelone Big band Blues revisiteront quelques grands standards du jazz dont
+                        notamment des fameux Boogie-Woogie sont Ladyva est l'une des plus grandes
+                        spécialistes au monde. Swing maximum assuré !
+                      </p>
+                    </div>
+
+                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
+                      <p className="font-semibold text-white mb-1">Samedi 8 août — Soirée de clôture</p>
+                      <p>
+                        Enfin samedi 8 août, soirée de clôture, devrait être aussi une soirée
+                        particulièrement festive dont le programme est en cours de finalisation et
+                        dépendra des moyens budgétaires que nous parviendrons à mobiliser dans les
+                        toutes prochaines semaines.
                       </p>
                     </div>
                   </div>
                 </div>
 
                 {/* Appel au soutien */}
-                <div className="text-white rounded-2xl p-6 md:p-8"
-                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                  <h3 className="text-xl md:text-2xl font-bold mb-6 flex items-center">
-                    <Heart className="w-5 h-5 md:w-6 md:h-6 mr-3" />
-                    Un appel à votre soutien
-                  </h3>
-                  <div className="space-y-4 text-warm-cream leading-relaxed">
-                    <p className="text-base md:text-lg">
-                      Je dois vous faire part d'une réalité : notre mécène principal, qui nous
-                      accompagnait fidèlement depuis plusieurs années, ne pourra pas renouveler
-                      son soutien pour cette édition. Cette situation nous oblige à mobiliser
-                      l'ensemble de notre réseau de donateurs et de partenaires.
+                <div
+                  className="rounded-2xl p-6 md:p-8 text-white"
+                  style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                >
+                  <h2 className="text-xl md:text-2xl font-bold mb-6 flex items-center gap-3">
+                    <Heart className="w-5 h-5 flex-shrink-0" />
+                    Votre soutien est essentiel
+                  </h2>
+                  <div className="space-y-5 leading-relaxed text-base md:text-lg text-warm-cream">
+                    <p className="text-white font-semibold text-lg md:text-xl">
+                      Cher public, ce programme qui présente de nouvelles ambitions en
+                      regard de l'an dernier, ne pourra être concrétisé sans votre
+                      concours.
                     </p>
-                    <p className="text-base md:text-lg">
-                      Jazz en Tech est une association à but non lucratif, animée par des bénévoles
-                      passionnés. Sans votre soutien, il nous serait impossible de maintenir le
-                      niveau d'exigence artistique qui fait la réputation de notre festival.
-                      Chaque don, quel qu'en soit le montant, contribue directement à la réalisation
-                      de cette 11ème édition.
+                    <p>
+                      A cette fin, nous mettons en œuvre une forme de financement participatif via
+                      notre site web. La raison en est que notre premier et très important mécène
+                      depuis des années n'est plus en mesure de nous soutenir.
                     </p>
-                    <p className="text-base md:text-lg">
-                      En tant que donateur, vous bénéficiez d'une
-                      <strong className="text-jazz-gold"> déduction fiscale de 66 %</strong> sur vos impôts
-                      (Jazz en Tech est reconnue association d'intérêt général).
-                      Et en contrepartie de votre générosité, nous avons prévu des avantages exclusifs
-                      à chaque palier de don.
+                    <p>
+                      Si vous nous l'accordez, votre soutien financier, fera l'objet d'une
+                      défiscalisation car le festival est juridiquement porté par une association loi
+                      1901 reconnue d'intérêt général. Vous trouverez en cliquant sur le bouton
+                      ci-dessous les explications sur la manière de procéder.
                     </p>
                   </div>
                   <div className="mt-8">
                     <Link
                       href="/soutenir"
-                      className="inline-flex items-center gap-2 bg-jazz-gold font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-colors text-base"
-                      style={{ color: '#1a1a1a' }}
+                      className="inline-flex items-center gap-2 font-bold px-6 py-3 rounded-xl hover:bg-yellow-400 transition-colors text-base"
+                      style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
                     >
                       <Heart className="w-5 h-5" />
                       Soutenir Jazz en Tech 2026
@@ -192,22 +174,57 @@ export default function MotDuPresident() {
                   </div>
                 </div>
 
-                {/* Clôture */}
-                <div className="rounded-2xl p-6 md:p-8"
-                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                  <div className="space-y-4 text-stone-200 leading-relaxed">
-                    <p className="text-base md:text-lg">
-                      Je remercie chaleureusement tous ceux qui nous font confiance depuis onze ans :
-                      la Mairie de Céret, son service culture et ses services techniques,
-                      la Région Occitanie, le Département des Pyrénées-Orientales, la Spedidam,
-                      nos bénévoles toujours au rendez-vous, et bien sûr vous,
-                      fidèles festivaliers qui donnez son sens à l'aventure Jazz en Tech.
-                    </p>
-                    <p className="text-base md:text-lg">
-                      À très bientôt sous les étoiles de Céret.
-                    </p>
-                  </div>
-                  <div className="mt-8 pt-6 border-t border-white border-opacity-20 flex items-center space-x-4">
+                {/* Pourquoi soutenir */}
+                <div
+                  className="rounded-2xl p-6 md:p-8"
+                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                >
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Music className="w-5 h-5 text-jazz-gold flex-shrink-0" />
+                    Pourquoi soutenir Jazz en Tech
+                  </h2>
+                  <ul className="space-y-4 text-stone-200 leading-relaxed text-base md:text-lg">
+                    <li className="flex items-start gap-3">
+                      <span className="text-jazz-gold mt-1 flex-shrink-0">◆</span>
+                      <p>
+                        Parce que Jazz en Tech veut vous offrir, année après année, une
+                        programmation exigeante, éclectique, portée par des artistes nationaux et
+                        internationaux de très haut niveau.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-jazz-gold mt-1 flex-shrink-0">◆</span>
+                      <p>
+                        Parce que nous nous voulons continuer à vous proposer des concerts à prix
+                        abordables, restant accessibles au plus grand nombre.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-jazz-gold mt-1 flex-shrink-0">◆</span>
+                      <p>
+                        Parce que notre objectif est et sera de vous offrir toujours mieux, et qu'au-delà
+                        du jazz et du spectacle vivant, Jazz en Tech se veut un festival humaniste,
+                        écoresponsable, respectueux de l'environnement, soutenant l'égalité homme
+                        femme et s'associant à la lutte contre toutes violences et exclusions.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-jazz-gold mt-1 flex-shrink-0">◆</span>
+                      <p>
+                        Parce qu'enfin, cette année, nous souhaitons vous offrir un festival grandiose,
+                        inédit, pour fêter avec vous le centième anniversaire de la naissance de deux
+                        géants du jazz, Miles Davis et John Coltrane.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Signature */}
+                <div
+                  className="rounded-2xl p-6 md:p-8"
+                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                >
+                  <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-jazz-red rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                       AB
                     </div>
@@ -224,50 +241,48 @@ export default function MotDuPresident() {
               <div className="lg:col-span-1">
                 <div className="lg:sticky lg:top-8 space-y-4 md:space-y-6">
 
-                  <div className="rounded-2xl p-4 md:p-6"
-                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                    <h3 className="text-base md:text-lg font-bold text-white mb-4 flex items-center">
-                      <Calendar className="w-4 h-4 mr-2 text-jazz-gold" />
-                      Édition 2026
+                  {/* Dates */}
+                  <div
+                    className="rounded-2xl p-4 md:p-6"
+                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                  >
+                    <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-jazz-gold" />
+                      Programme 2026
                     </h3>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="flex items-center mb-1">
-                          <Calendar className="w-4 h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-white text-sm">Dates</span>
+                    <div className="space-y-3 text-sm">
+                      {[
+                        { date: 'Mer. 5 août', titre: 'Eric Truffaz & Antonio Lizana', desc: 'Hommage Miles Davis — Sketches of Spain' },
+                        { date: 'Jeu. 6 août', titre: 'Big Band Dal Sasso & Sophie Alour', desc: 'Hommage John Coltrane — Africa Brass' },
+                        { date: 'Ven. 7 août', titre: 'Ladyva & Barcelona Big Band Blues', desc: 'Boogie-Woogie & grands standards' },
+                        { date: 'Sam. 8 août', titre: 'Soirée de clôture', desc: 'Programme en cours de finalisation' },
+                      ].map((c, i) => (
+                        <div key={i} className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
+                          <p className="font-bold text-jazz-gold text-xs">{c.date} — 21h</p>
+                          <p className="text-white font-semibold text-xs mt-0.5">{c.titre}</p>
+                          <p className="text-stone-400 text-xs mt-0.5">{c.desc}</p>
                         </div>
-                        <div className="ml-6 text-sm" style={{ color: '#f7f3e9' }}>5, 6, 7 et 8 août 2026</div>
-                      </div>
-                      <div>
-                        <div className="flex items-center mb-1">
-                          <MapPin className="w-4 h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-white text-sm">Lieu</span>
-                        </div>
-                        <div className="ml-6 text-sm" style={{ color: '#f7f3e9' }}>Céret, Pyrénées-Orientales</div>
-                      </div>
-                      <div>
-                        <div className="flex items-center mb-1">
-                          <Star className="w-4 h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-white text-sm">Hommage</span>
-                        </div>
-                        <div className="ml-6 text-sm" style={{ color: '#f7f3e9' }}>
-                          <div>🎺 Miles Davis (1926–1991)</div>
-                          <div className="mt-1">🎷 John Coltrane (1926–1967)</div>
-                          <div className="mt-1 text-xs text-stone-400">Centenaire de leur naissance</div>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex items-center mb-1">
-                          <Users className="w-4 h-4 text-jazz-gold mr-2" />
-                          <span className="font-semibold text-white text-sm">Association</span>
-                        </div>
-                        <div className="ml-6 text-sm" style={{ color: '#f7f3e9' }}>Loi 1901 — d'intérêt général</div>
-                      </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="rounded-2xl p-4 md:p-6 text-center"
-                    style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                  {/* Lieu */}
+                  <div
+                    className="rounded-2xl p-4 md:p-6"
+                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                  >
+                    <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-jazz-gold" />
+                      Lieu
+                    </h3>
+                    <p className="text-sm" style={{ color: '#f7f3e9' }}>Céret, Pyrénées-Orientales</p>
+                  </div>
+
+                  {/* Déduction fiscale */}
+                  <div
+                    className="rounded-2xl p-4 md:p-6 text-center"
+                    style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                  >
                     <div className="text-4xl font-bold text-jazz-gold mb-1">66%</div>
                     <p className="text-white text-sm font-semibold mb-2">de déduction fiscale</p>
                     <p className="text-stone-400 text-xs leading-relaxed">
@@ -276,23 +291,29 @@ export default function MotDuPresident() {
                     </p>
                   </div>
 
-                  <div className="text-white rounded-2xl p-4 md:p-6 text-center"
-                    style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                  {/* CTA soutenir */}
+                  <div
+                    className="text-white rounded-2xl p-4 md:p-6 text-center"
+                    style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                  >
                     <h4 className="font-bold mb-2 text-sm">Soutenez le festival</h4>
                     <p className="text-xs text-warm-cream mb-4">
                       Chaque don contribue directement à la programmation artistique
                     </p>
                     <Link
                       href="/soutenir"
-                      className="inline-block bg-jazz-gold font-bold px-5 py-3 rounded-xl hover:bg-yellow-400 transition-colors text-sm"
-                      style={{ color: '#1a1a1a' }}
+                      className="inline-block font-bold px-5 py-3 rounded-xl hover:bg-yellow-400 transition-colors text-sm"
+                      style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
                     >
                       Faire un don →
                     </Link>
                   </div>
 
-                  <div className="rounded-2xl p-4 md:p-6"
-                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                  {/* Billetterie */}
+                  <div
+                    className="rounded-2xl p-4 md:p-6"
+                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
+                  >
                     <h4 className="font-bold text-white mb-3 text-sm">Réserver vos places</h4>
                     <p className="text-stone-400 text-xs mb-4">Concerts 5, 6, 7 et 8 août 2026 à Céret</p>
                     <Link
