@@ -1,10 +1,11 @@
+// PATH: src/components/Navigation.tsx
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 // Labels : full = affiché à xl+, short = affiché à lg uniquement
 const navItems = [
-  { href: '/', label: 'Accueil', short: 'Accueil' },
+  { href: '/accueil', label: 'Accueil', short: 'Accueil' },
   { href: '/mot-du-president', label: 'Mot du Président', short: 'Président' },
   { href: '/programmation', label: 'Programme', short: 'Programme' },
   { href: '/soutenir', label: 'Soutenir', short: 'Soutenir' },

@@ -1,17 +1,16 @@
 // PATH: src/app/api/stripe/webhook/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { writeFile, readFile, mkdir } from 'fs/promises'
-import { resolve } from 'path'
+import { ConvexHttpClient } from 'convex/browser'
+import { api } from '../../../../../convex/_generated/api'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-const DONATIONS_FILE = resolve(process.cwd(), 'data/donations.json')
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 const BREVO_API_KEY = process.env.BREVO_API_KEY
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const ADMIN_EMAIL = 'contactjazzentech@gmail.com'
 
 async function sendEmail(to: string, subject: string, html: string) {
-  // Try Brevo first
   if (BREVO_API_KEY) {
     try {
       const res = await fetch('https://api.brevo.com/v3/smtp/email', {
@@ -27,7 +26,6 @@ async function sendEmail(to: string, subject: string, html: string) {
       if (res.ok) { console.log(`Email sent via Brevo to ${to}`); return }
     } catch {}
   }
-  // Fallback Resend
   if (RESEND_API_KEY) {
     try {
       const { Resend } = await import('resend')
@@ -55,16 +53,12 @@ ${content}
 </td></tr></table></td></tr></table></body></html>`
 }
 
-async function saveDonation(donation: any) {
-  const dir = resolve(process.cwd(), 'data')
-  try { await mkdir(dir, { recursive: true }) } catch {}
-  let donations = []
-  try {
-    const raw = await readFile(DONATIONS_FILE, 'utf-8')
-    donations = JSON.parse(raw)
-  } catch {}
-  donations.unshift(donation)
-  await writeFile(DONATIONS_FILE, JSON.stringify(donations, null, 2))
+function getPalier(amountEur: number): string {
+  if (amountEur >= 1000) return 'grand-mecene'
+  if (amountEur >= 500) return 'mecene'
+  if (amountEur >= 200) return 'passionne'
+  if (amountEur >= 50) return 'soutien'
+  return 'fan'
 }
 
 export async function POST(req: NextRequest) {
@@ -85,7 +79,8 @@ export async function POST(req: NextRequest) {
       const customFields = (session as any).custom_fields || []
       const prenom = customFields.find((f: any) => f.key === 'prenom')?.text?.value || ''
       const nom = customFields.find((f: any) => f.key === 'nom')?.text?.value || ''
-      const amount = (session.amount_total || 0) / 100
+      const amountCents = session.amount_total || 0
+      const amountEur = amountCents / 100
       const donorEmail = session.customer_details?.email || session.customer_email || ''
       const donorName = `${prenom} ${nom}`.trim() || 'Anonyme'
 
@@ -98,37 +93,47 @@ export async function POST(req: NextRequest) {
         }
       } catch {}
 
-      const donation = {
-        id: session.id,
-        amount,
-        currency: session.currency,
-        email: donorEmail,
-        phone: session.customer_details?.phone || '',
-        prenom,
-        nom,
-        name: donorName,
-        address: session.customer_details?.address || null,
-        payment_method: paymentMethodType,
-        date: new Date().toISOString(),
-        status: 'completed',
-        cerfa_generated: false,
-      }
+      const addr = session.customer_details?.address
 
-      await saveDonation(donation)
+      // Sauvegarder dans Convex
+      try {
+        await convex.mutation(api.donations.createDonation, {
+          firstName: prenom || 'Anonyme',
+          lastName: nom || '',
+          email: donorEmail,
+          phone: session.customer_details?.phone || undefined,
+          address: addr ? [addr.line1, addr.line2].filter(Boolean).join(', ') : undefined,
+          city: addr?.city || undefined,
+          postalCode: addr?.postal_code || undefined,
+          country: addr?.country || undefined,
+          amount: amountCents,
+          amountEur,
+          palier: getPalier(amountEur),
+          stripePaymentId: session.id,
+          stripeStatus: 'succeeded',
+          paymentMethod: paymentMethodType,
+          displayName: true,
+        })
+        console.log(`Donation saved to Convex: ${amountEur}€ from ${donorName}`)
+      } catch (err: any) {
+        console.error('Convex save error:', err.message)
+      }
 
       // 1. Email de remerciement au donateur
       if (donorEmail) {
+        const deduction = Math.round(amountEur * 0.66)
+        const coutReel = Math.round(amountEur * 0.34)
         await sendEmail(
           donorEmail,
           'Merci pour votre don ! - Jazz en Tech 2026',
           emailTemplate(`
             <p>Cher(e) ${donorName},</p>
-            <p>Un immense <strong>merci</strong> pour votre don de <strong>${amount} EUR</strong> au profit du festival Jazz en Tech !</p>
+            <p>Un immense <strong>merci</strong> pour votre don de <strong>${amountEur} EUR</strong> au profit du festival Jazz en Tech !</p>
             <p>Votre generosite est precieuse. Grace a vous, la 11eme edition du festival pourra voir le jour a Ceret et Saint-Genis-des-Fontaines cet ete.</p>
             <table style="margin:20px 0;background:#fafaf8;border:1px solid #e5e2dc;border-radius:8px;width:100%;"><tr>
-            <td style="padding:16px 20px;text-align:center;"><span style="font-size:11px;color:#999;text-transform:uppercase;">Votre don</span><br/><strong style="font-size:22px;color:#722f37;">${amount} EUR</strong></td>
-            <td style="padding:16px 20px;text-align:center;"><span style="font-size:11px;color:#999;text-transform:uppercase;">Deduction fiscale (66%)</span><br/><strong style="font-size:22px;color:#16a34a;">${Math.round(amount * 0.66)} EUR</strong></td>
-            <td style="padding:16px 20px;text-align:center;"><span style="font-size:11px;color:#999;text-transform:uppercase;">Cout reel</span><br/><strong style="font-size:22px;color:#333;">${Math.round(amount * 0.34)} EUR</strong></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="font-size:11px;color:#999;text-transform:uppercase;">Votre don</span><br/><strong style="font-size:22px;color:#722f37;">${amountEur} EUR</strong></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="font-size:11px;color:#999;text-transform:uppercase;">Deduction fiscale (66%)</span><br/><strong style="font-size:22px;color:#16a34a;">${deduction} EUR</strong></td>
+            <td style="padding:16px 20px;text-align:center;"><span style="font-size:11px;color:#999;text-transform:uppercase;">Cout reel</span><br/><strong style="font-size:22px;color:#333;">${coutReel} EUR</strong></td>
             </tr></table>
             <p>Votre <strong>recu fiscal (Cerfa)</strong> vous sera envoye prochainement par email, vous permettant de deduire 66% de votre don de vos impots.</p>
             <p>Musicalement,<br/><strong>Alain Brunet</strong><br/>President de Jazz en Tech</p>
@@ -140,14 +145,14 @@ export async function POST(req: NextRequest) {
       const pmLabel = paymentMethodType === 'card' ? 'Carte bancaire' : paymentMethodType === 'sepa_debit' ? 'SEPA' : paymentMethodType
       await sendEmail(
         ADMIN_EMAIL,
-        `Nouveau don de ${amount} EUR - ${donorName}`,
+        `Nouveau don de ${amountEur} EUR - ${donorName}`,
         emailTemplate(`
           <h2 style="color:#722f37;margin:0 0 16px;">Nouveau don recu !</h2>
           <table style="width:100%;border-collapse:collapse;">
           <tr><td style="padding:8px 0;color:#999;font-size:13px;width:120px;">Donateur</td><td style="padding:8px 0;font-weight:600;">${donorName}</td></tr>
           <tr><td style="padding:8px 0;color:#999;font-size:13px;">Email</td><td style="padding:8px 0;"><a href="mailto:${donorEmail}" style="color:#722f37;">${donorEmail}</a></td></tr>
           <tr><td style="padding:8px 0;color:#999;font-size:13px;">Telephone</td><td style="padding:8px 0;">${session.customer_details?.phone || 'Non renseigne'}</td></tr>
-          <tr><td style="padding:8px 0;color:#999;font-size:13px;">Montant</td><td style="padding:8px 0;font-weight:700;font-size:20px;color:#16a34a;">${amount} EUR</td></tr>
+          <tr><td style="padding:8px 0;color:#999;font-size:13px;">Montant</td><td style="padding:8px 0;font-weight:700;font-size:20px;color:#16a34a;">${amountEur} EUR</td></tr>
           <tr><td style="padding:8px 0;color:#999;font-size:13px;">Paiement</td><td style="padding:8px 0;">${pmLabel}</td></tr>
           </table>
           <div style="margin-top:20px;padding:16px;background:#f0fdf4;border-radius:8px;text-align:center;">

@@ -1,3 +1,4 @@
+// PATH: convex/donations.ts
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
@@ -7,17 +8,28 @@ export const createDonation = mutation({
     firstName: v.string(),
     lastName: v.string(),
     email: v.string(),
+    phone: v.optional(v.string()),
     address: v.optional(v.string()),
     city: v.optional(v.string()),
     postalCode: v.optional(v.string()),
+    country: v.optional(v.string()),
     amount: v.number(),
     amountEur: v.number(),
     palier: v.string(),
+    message: v.optional(v.string()),
     stripePaymentId: v.string(),
     stripeStatus: v.string(),
+    paymentMethod: v.optional(v.string()),
     displayName: v.boolean(),
   },
   handler: async (ctx, args) => {
+    // Vérifie le doublon Stripe
+    const existing = await ctx.db
+      .query("donations")
+      .withIndex("by_stripe", (q) => q.eq("stripePaymentId", args.stripePaymentId))
+      .first();
+    if (existing) return existing._id;
+
     const id = await ctx.db.insert("donations", {
       ...args,
       cerfaGenerated: false,
@@ -25,16 +37,17 @@ export const createDonation = mutation({
     });
 
     // Ajouter ou mettre à jour le client dans la base
-    const existing = await ctx.db
+    const existingClient = await ctx.db
       .query("clients")
       .withIndex("by_email", (q) => q.eq("email", args.email))
       .first();
 
-    if (!existing) {
+    if (!existingClient) {
       await ctx.db.insert("clients", {
         firstName: args.firstName,
         lastName: args.lastName,
         email: args.email,
+        phone: args.phone,
         editions: ["2026"],
         source: "donation",
         unsubscribed: false,
@@ -50,12 +63,12 @@ export const createDonation = mutation({
 export const markCerfaGenerated = mutation({
   args: {
     donationId: v.id("donations"),
-    cerfaStorageId: v.string(),
+    cerfaHash: v.string(),
   },
   handler: async (ctx, args) => {
     await ctx.db.patch(args.donationId, {
       cerfaGenerated: true,
-      cerfaStorageId: args.cerfaStorageId,
+      cerfaHash: args.cerfaHash,
       cerfaSentAt: Date.now(),
     });
   },
@@ -83,6 +96,15 @@ export const getDashboardStats = query({
     const totalCollected = succeeded.reduce((sum, d) => sum + d.amountEur, 0);
     const totalDonors = new Set(succeeded.map((d) => d.email)).size;
     const cerfaPending = succeeded.filter((d) => !d.cerfaGenerated).length;
+    const cerfaGenerated = succeeded.filter((d) => d.cerfaGenerated).length;
+
+    const now = new Date();
+    const thisMonth = succeeded
+      .filter((d) => {
+        const dd = new Date(d.createdAt);
+        return dd.getMonth() === now.getMonth() && dd.getFullYear() === now.getFullYear();
+      })
+      .reduce((sum, d) => sum + d.amountEur, 0);
 
     const byPalier = succeeded.reduce((acc, d) => {
       acc[d.palier] = (acc[d.palier] || 0) + 1;
@@ -94,6 +116,8 @@ export const getDashboardStats = query({
       totalDonors,
       totalDonations: succeeded.length,
       cerfaPending,
+      cerfaGenerated,
+      thisMonth,
       byPalier,
     };
   },

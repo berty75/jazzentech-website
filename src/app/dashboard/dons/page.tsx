@@ -2,14 +2,10 @@
 'use client'
 
 import { Euro, ChevronDown, ChevronUp, Phone, MapPin } from 'lucide-react'
-import { useState, useEffect, Fragment } from 'react'
+import { useState } from 'react'
 import DashboardShell from '@/components/DashboardShell'
-
-type Donation = {
-  id: string; amount: number; email: string; name: string; prenom: string; nom: string;
-  phone: string; address: any; message: string; date: string; status: string;
-  cerfa_generated: boolean; payment_method: string;
-}
+import { useQuery } from 'convex/react'
+import { api } from '../../../../convex/_generated/api'
 
 const paymentLabels: Record<string, string> = {
   card: 'Carte bancaire',
@@ -22,20 +18,10 @@ const paymentLabels: Record<string, string> = {
 }
 
 export default function DonsPage() {
-  const [donations, setDonations] = useState<Donation[]>([])
-  const [loading, setLoading] = useState(true)
+  const donations = useQuery(api.donations.listDonations)
   const [expanded, setExpanded] = useState<string | null>(null)
 
-  useEffect(() => {
-    fetch('/api/donations').then(r => r.json()).then(d => { setDonations(d); setLoading(false) }).catch(() => setLoading(false))
-  }, [])
-
-  const total = donations.reduce((s, d) => s + d.amount, 0)
-
-  const formatAddress = (addr: any) => {
-    if (!addr) return null
-    return [addr.line1, addr.line2, `${addr.postal_code || ''} ${addr.city || ''}`.trim(), addr.country].filter(Boolean).join(', ')
-  }
+  const total = donations?.reduce((s, d) => s + d.amountEur, 0) || 0
 
   return (
     <DashboardShell>
@@ -43,11 +29,11 @@ export default function DonsPage() {
         <div className="mb-6 md:mb-8">
           <h2 className="text-xl md:text-2xl" style={{ fontWeight: 700, color: '#1a1a1a' }}>Dons</h2>
           <p style={{ fontSize: '14px', color: '#888', marginTop: '4px' }}>
-            {donations.length} don(s) — Total : <span style={{ fontWeight: 700, color: '#16a34a' }}>{total} €</span>
+            {donations?.length || 0} don(s) — Total : <span style={{ fontWeight: 700, color: '#16a34a' }}>{total} €</span>
           </p>
         </div>
 
-        {loading ? (
+        {donations === undefined ? (
           <p style={{ color: '#999' }}>Chargement...</p>
         ) : donations.length === 0 ? (
           <div className="rounded-xl p-8 text-center" style={{ background: '#fff', border: '1px solid #e5e2dc' }}>
@@ -57,23 +43,22 @@ export default function DonsPage() {
         ) : (
           <div className="space-y-3">
             {donations.map((d) => {
-              const isExpanded = expanded === d.id
+              const isExpanded = expanded === d._id
+              const fullName = `${d.firstName} ${d.lastName}`.trim() || 'Anonyme'
+              const addrStr = [d.address, `${d.postalCode || ''} ${d.city || ''}`.trim(), d.country].filter(Boolean).join(', ')
               return (
-                <div key={d.id} className="rounded-xl overflow-hidden" style={{ background: '#fff', border: '1px solid #e5e2dc' }}>
-                  <button
-                    onClick={() => setExpanded(isExpanded ? null : d.id)}
-                    className="w-full text-left"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-                  >
+                <div key={d._id} className="rounded-xl overflow-hidden" style={{ background: '#fff', border: '1px solid #e5e2dc' }}>
+                  <button onClick={() => setExpanded(isExpanded ? null : d._id)} className="w-full text-left"
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
                     <div className="flex items-center justify-between px-4 sm:px-5 py-4 gap-3">
                       <div className="min-w-0 flex-1">
-                        <p className="truncate" style={{ fontSize: '14px', fontWeight: 600, color: '#1a1a1a' }}>{d.name || 'Anonyme'}</p>
+                        <p className="truncate" style={{ fontSize: '14px', fontWeight: 600, color: '#1a1a1a' }}>{fullName}</p>
                         <p className="truncate" style={{ fontSize: '12px', color: '#999' }}>
-                          {new Date(d.date).toLocaleDateString('fr-FR')} — {d.email}
+                          {new Date(d.createdAt).toLocaleDateString('fr-FR')} — {d.email}
                         </p>
                       </div>
                       <div className="flex items-center gap-2 shrink-0">
-                        <span style={{ fontSize: '18px', fontWeight: 700, color: '#16a34a' }}>{d.amount} €</span>
+                        <span style={{ fontSize: '18px', fontWeight: 700, color: '#16a34a' }}>{d.amountEur} €</span>
                         {isExpanded ? <ChevronUp className="w-4 h-4" style={{ color: '#999' }} /> : <ChevronDown className="w-4 h-4" style={{ color: '#999' }} />}
                       </div>
                     </div>
@@ -83,34 +68,34 @@ export default function DonsPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3" style={{ fontSize: '13px' }}>
                         <div>
                           <p style={{ color: '#999', fontSize: '11px', textTransform: 'uppercase', marginBottom: '2px' }}>Paiement</p>
-                          <p style={{ color: '#1a1a1a' }}>{paymentLabels[d.payment_method] || d.payment_method || '—'}</p>
+                          <p style={{ color: '#1a1a1a', margin: 0 }}>{paymentLabels[d.paymentMethod || ''] || d.paymentMethod || '—'}</p>
                         </div>
                         <div>
-                          <p style={{ color: '#999', fontSize: '11px', textTransform: 'uppercase', marginBottom: '2px' }}>Statut</p>
-                          <p style={{ color: '#1a1a1a' }}>{d.status || '—'}</p>
+                          <p style={{ color: '#999', fontSize: '11px', textTransform: 'uppercase', marginBottom: '2px' }}>Palier</p>
+                          <p style={{ color: '#1a1a1a', margin: 0, textTransform: 'capitalize' }}>{d.palier}</p>
                         </div>
                         {d.phone && (
                           <div className="flex items-center gap-1">
-                            <Phone className="w-3 h-3" style={{ color: '#999' }} />
+                            <Phone className="w-3 h-3 shrink-0" style={{ color: '#999' }} />
                             <span style={{ color: '#1a1a1a' }}>{d.phone}</span>
                           </div>
                         )}
-                        {d.address && (
+                        {addrStr && (
                           <div className="flex items-start gap-1 sm:col-span-2">
                             <MapPin className="w-3 h-3 mt-0.5 shrink-0" style={{ color: '#999' }} />
-                            <span style={{ color: '#1a1a1a' }}>{formatAddress(d.address)}</span>
+                            <span style={{ color: '#1a1a1a', wordBreak: 'break-word' }}>{addrStr}</span>
                           </div>
                         )}
                         {d.message && (
                           <div className="sm:col-span-2">
                             <p style={{ color: '#999', fontSize: '11px', textTransform: 'uppercase', marginBottom: '2px' }}>Message</p>
-                            <p style={{ color: '#1a1a1a', fontStyle: 'italic' }}>{d.message}</p>
+                            <p style={{ color: '#1a1a1a', fontStyle: 'italic', margin: 0 }}>{d.message}</p>
                           </div>
                         )}
                         <div>
                           <p style={{ color: '#999', fontSize: '11px', textTransform: 'uppercase', marginBottom: '2px' }}>Cerfa</p>
-                          <p style={{ color: d.cerfa_generated ? '#16a34a' : '#d97706' }}>
-                            {d.cerfa_generated ? 'Généré' : 'En attente'}
+                          <p style={{ color: d.cerfaGenerated ? '#16a34a' : '#d97706', fontWeight: 500, margin: 0 }}>
+                            {d.cerfaGenerated ? '✓ Généré' : '⏳ En attente'}
                           </p>
                         </div>
                       </div>

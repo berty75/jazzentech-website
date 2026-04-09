@@ -67,7 +67,9 @@
     "payment_method": "card",
     "date": "2026-04-08T09:40:26.632Z",
     "status": "completed",
-    "cerfa_generated": false
+    "cerfa_generated": true,
+    "cerfa_hash": "E352739B9DF6F19E",
+    "cerfa_filename": "cerfa-E352739B9DF6F19E.pdf"
   },
   {
     "id": "cs_test_a181Ydn7GDt1ebGLoHPQfrjDyk9R2RFLYMaHkzOeJufG6dcj0QSuJRCBRE",

@@ -195,7 +195,7 @@ export default function MotDuPresident() {
                     <li className="flex items-start gap-3">
                       <span className="text-jazz-gold mt-1 flex-shrink-0">◆</span>
                       <p>
-                        Parce que nous nous voulons continuer à vous proposer des concerts à prix
+                        Parce que nous voulons continuer à vous proposer des concerts à prix
                         abordables, restant accessibles au plus grand nombre.
                       </p>
                     </li>
@@ -214,6 +214,13 @@ export default function MotDuPresident() {
                         Parce qu'enfin, cette année, nous souhaitons vous offrir un festival grandiose,
                         inédit, pour fêter avec vous le centième anniversaire de la naissance de deux
                         géants du jazz, Miles Davis et John Coltrane.
+                      </p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-jazz-gold mt-1 flex-shrink-0">◆</span>
+                      <p>
+                        Toute l'équipe de Jazz en Tech vous remercie très sincèrement par avance
+                        de votre précieux soutien.
                       </p>
                     </li>
                   </ul>

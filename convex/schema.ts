@@ -1,3 +1,4 @@
+// PATH: convex/schema.ts
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
@@ -8,18 +9,23 @@ export default defineSchema({
     firstName: v.string(),
     lastName: v.string(),
     email: v.string(),
+    phone: v.optional(v.string()),
     address: v.optional(v.string()),
     city: v.optional(v.string()),
     postalCode: v.optional(v.string()),
+    country: v.optional(v.string()),
     // Don
     amount: v.number(),          // montant en centimes (ex: 5000 = 50€)
     amountEur: v.number(),       // montant en euros (ex: 50)
     palier: v.string(),          // "fan" | "soutien" | "passionne" | "mecene" | "grand-mecene"
+    message: v.optional(v.string()),
     // Stripe
     stripePaymentId: v.string(),
     stripeStatus: v.string(),    // "succeeded" | "pending" | "failed"
+    paymentMethod: v.optional(v.string()), // "card" | "sepa_debit" | etc.
     // Cerfa
     cerfaGenerated: v.boolean(),
+    cerfaHash: v.optional(v.string()),
     cerfaStorageId: v.optional(v.string()),
     cerfaSentAt: v.optional(v.number()),
     // Affichage nom sur site
