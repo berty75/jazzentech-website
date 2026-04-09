@@ -1,26 +1,15 @@
 // PATH: src/app/dashboard/messagerie/page.tsx
 'use client'
 
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { LogOut, LayoutDashboard, Heart, FileText, Mail, Settings, Loader2, Send, Plus, X, Bold, Italic, Link2, Image, AlignLeft, AlignCenter, Type, Palette, Users, Search, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Loader2, Send, Plus, X, Bold, Italic, Link2, Image, AlignLeft, AlignCenter, Type, Palette, Users, Search } from 'lucide-react'
 import { useState, useRef, useCallback, useEffect } from 'react'
-
-const nav = [
-  { href: '/dashboard', label: 'Vue d\'ensemble', icon: LayoutDashboard },
-  { href: '/dashboard/dons', label: 'Dons', icon: Heart },
-  { href: '/dashboard/contacts', label: 'Contacts', icon: Users },
-  { href: '/dashboard/cerfa', label: 'Cerfa', icon: FileText },
-  { href: '/dashboard/messagerie', label: 'Messagerie', icon: Mail },
-  { href: '/dashboard/settings', label: 'Parametres', icon: Settings },
-]
+import DashboardShell from '@/components/DashboardShell'
 
 const editorColors = ['#722f37', '#d4af37', '#b87333', '#1a1a1a', '#16a34a', '#2563eb', '#dc2626', '#ffffff']
 
 type Contact = { _id: string; firstName: string; lastName: string; email: string; editions: string[]; unsubscribed: boolean }
 
 export default function MessageriePage() {
-  const router = useRouter()
   const editorRef = useRef<HTMLDivElement>(null)
   const [subject, setSubject] = useState('')
   const [recipientInput, setRecipientInput] = useState('')
@@ -32,7 +21,6 @@ export default function MessageriePage() {
   const [htmlSource, setHtmlSource] = useState('')
   const [showColors, setShowColors] = useState(false)
 
-  // Contacts from Convex
   const [contacts, setContacts] = useState<Contact[]>([])
   const [showContacts, setShowContacts] = useState(false)
   const [contactSearch, setContactSearch] = useState('')
@@ -53,7 +41,7 @@ export default function MessageriePage() {
     if (editorRef.current) {
       const url = window.prompt('URL du bouton :', 'https://jazzentech.com/billetterie')
       if (!url) return
-      const text = window.prompt('Texte du bouton :', 'Reserver mes places')
+      const text = window.prompt('Texte du bouton :', 'Réserver mes places')
       if (!text) return
       editorRef.current.innerHTML += '<p><a href="' + url + '" style="display:inline-block;background:#722f37;color:white;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">' + text + '</a></p>'
     }
@@ -90,12 +78,7 @@ export default function MessageriePage() {
   const removeRecipient = (email: string) => setRecipients(recipients.filter(r => r !== email))
 
   const addAllFiltered = () => {
-    const filtered = contacts.filter(c => {
-      const match = !contactSearch || `${c.firstName} ${c.lastName} ${c.email}`.toLowerCase().includes(contactSearch.toLowerCase())
-      const matchYear = !contactFilter || c.editions?.includes(contactFilter)
-      return match && matchYear
-    })
-    const newEmails = filtered.map(c => c.email).filter(e => !recipients.includes(e))
+    const newEmails = filteredContacts.map(c => c.email).filter(e => !recipients.includes(e))
     setRecipients([...recipients, ...newEmails])
     setShowContacts(false)
   }
@@ -108,10 +91,10 @@ export default function MessageriePage() {
       <div style="background:linear-gradient(135deg,#722f37,#b87333,#d4af37);padding:32px 24px;text-align:center;border-radius:12px 12px 0 0;">
         <img src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_120/jazz_en_tech_logo_smkogd.png" width="60" height="60" alt="Jazz en Tech" style="display:block;margin:0 auto 12px;" />
         <h1 style="color:#fff;margin:0;font-size:24px;font-weight:700;font-family:Georgia,serif;">Jazz en Tech 2026</h1>
-        <p style="color:rgba(255,255,255,0.85);margin:8px 0 0;font-size:14px;">11eme edition - Ceret & Saint-Genis-des-Fontaines</p>
+        <p style="color:rgba(255,255,255,0.85);margin:8px 0 0;font-size:14px;">11ème édition - Céret & Saint-Genis-des-Fontaines</p>
       </div>
       <div style="padding:32px 28px;background:#fff;border:1px solid #e5e2dc;border-top:none;border-radius:0 0 12px 12px;font-size:15px;line-height:1.7;color:#333;">${content}</div>
-      <p style="text-align:center;color:#999;font-size:12px;margin-top:16px;">Association Jazz en Tech - Ceret (66)<br/>
+      <p style="text-align:center;color:#999;font-size:12px;margin-top:16px;">Association Jazz en Tech - Céret (66)<br/>
       <a href="https://jazzentech.com" style="color:#722f37;">jazzentech.com</a></p>
     </div>`
   }
@@ -126,7 +109,7 @@ export default function MessageriePage() {
     }
     if (!subject || !finalRecipients.length) { setError('Ajoutez un objet et au moins un destinataire'); return }
     const content = getRawContent()
-    if (!content.trim()) { setError('Ecrivez votre message'); return }
+    if (!content.trim()) { setError('Écrivez votre message'); return }
     setLoading(true); setError(''); setResult(null)
     try {
       const res = await fetch('/api/newsletter', {
@@ -138,14 +121,12 @@ export default function MessageriePage() {
         setResult(data)
         if (data.errors > 0) {
           const errs = data.results?.filter((r: any) => r.status === 'error').map((r: any) => r.email + ': ' + r.error).join(', ')
-          setError(errs || 'Erreurs lors de l envoi')
+          setError(errs || 'Erreurs lors de l\'envoi')
         }
       } else setError(data.error || 'Erreur')
-    } catch { setError('Erreur reseau') }
+    } catch { setError('Erreur réseau') }
     finally { setLoading(false) }
   }
-
-  const handleLogout = async () => { await fetch('/api/auth', { method: 'DELETE' }); router.push('/dashboard/login') }
 
   const years = [...new Set(contacts.flatMap(c => c.editions || []))].sort()
 
@@ -160,214 +141,195 @@ export default function MessageriePage() {
   const toolBtn: React.CSSProperties = { background: 'none', border: '1px solid #e5e2dc', borderRadius: '6px', padding: '6px 8px', cursor: 'pointer', color: '#555', display: 'flex', alignItems: 'center', justifyContent: 'center' }
 
   return (
-    <div className="min-h-screen flex" style={{ background: '#f5f3ef' }}>
-      <aside className="hidden md:flex flex-col w-[240px] border-r" style={{ background: '#fff', borderColor: '#e5e2dc' }}>
-        <div className="px-6 py-5 border-b" style={{ borderColor: '#e5e2dc' }}>
-          <h1 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: '16px', fontWeight: 700, color: '#1a1a1a' }}>JAZZ EN TECH</h1>
-          <p style={{ fontSize: '11px', color: '#999', marginTop: '2px' }}>Administration</p>
+    <DashboardShell>
+      <div className="p-4 sm:p-6 md:p-10 max-w-4xl">
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl" style={{ fontWeight: 700, color: '#1a1a1a' }}>Nouvelle newsletter</h2>
+          <p style={{ fontSize: '14px', color: '#888', marginTop: '4px' }}>Composez et envoyez votre email</p>
         </div>
-        <nav className="flex-1 px-3 py-4">
-          {nav.map((item) => {
-            const active = item.href === '/dashboard/messagerie'
-            return (
-              <Link key={item.href} href={item.href} className="flex items-center gap-3 px-3 py-2.5 rounded-lg mb-1 text-sm transition-colors"
-                style={{ background: active ? 'rgba(114,47,55,0.08)' : 'transparent', color: active ? '#722f37' : '#666', fontWeight: active ? 600 : 400, textDecoration: 'none' }}>
-                <item.icon className="w-4 h-4" /> {item.label}
-              </Link>
-            )
-          })}
-        </nav>
-        <div className="px-3 py-4 border-t" style={{ borderColor: '#e5e2dc' }}>
-          <button onClick={handleLogout} className="flex items-center gap-3 px-3 py-2.5 rounded-lg w-full text-sm"
-            style={{ color: '#999', background: 'none', border: 'none', cursor: 'pointer' }}>
-            <LogOut className="w-4 h-4" /> Deconnexion
-          </button>
-        </div>
-      </aside>
 
-      <main className="flex-1 overflow-auto">
-        <div className="p-6 md:p-10 max-w-4xl">
-          <div className="mb-8">
-            <h2 style={{ fontSize: '24px', fontWeight: 700, color: '#1a1a1a' }}>Nouvelle newsletter</h2>
-            <p style={{ fontSize: '14px', color: '#888', marginTop: '4px' }}>Composez et envoyez votre email</p>
+        {/* Recipients */}
+        <div className="mb-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+            <label style={labelStyle}>Destinataires ({recipients.length})</label>
+            <button onClick={() => setShowContacts(!showContacts)}
+              className="flex items-center gap-1 text-xs px-3 py-1.5 rounded-md self-start"
+              style={{ color: '#722f37', background: 'none', border: '1px solid #722f37', cursor: 'pointer' }}>
+              <Users className="w-3 h-3" /> {showContacts ? 'Masquer contacts' : 'Choisir depuis la base'}
+            </button>
           </div>
 
-          {/* Recipients */}
-          <div className="mb-5">
-            <div className="flex items-center justify-between mb-2">
-              <label style={labelStyle}>Destinataires ({recipients.length})</label>
-              <button onClick={() => setShowContacts(!showContacts)}
-                style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', color: '#722f37', background: 'none', border: '1px solid #722f37', borderRadius: '6px', padding: '6px 12px', cursor: 'pointer' }}>
-                <Users className="w-3 h-3" /> {showContacts ? 'Masquer contacts' : 'Choisir depuis la base'}
-              </button>
-            </div>
+          <div className="flex gap-2">
+            <input type="email" value={recipientInput} onChange={(e) => setRecipientInput(e.target.value)}
+              placeholder="email@exemple.com" style={{ ...inputStyle, flex: 1 }}
+              onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addRecipient() } }} />
+            <button onClick={() => addRecipient()}
+              className="flex items-center gap-1 px-3 sm:px-4 rounded-lg text-sm shrink-0"
+              style={{ background: '#722f37', color: '#fff', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+              <Plus className="w-4 h-4" /> <span className="hidden sm:inline">Ajouter</span>
+            </button>
+          </div>
 
-            <div className="flex gap-2">
-              <input type="email" value={recipientInput} onChange={(e) => setRecipientInput(e.target.value)}
-                placeholder="email@exemple.com" style={{ ...inputStyle, flex: 1 }}
-                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addRecipient() } }} />
-              <button onClick={() => addRecipient()}
-                style={{ background: '#722f37', color: '#fff', border: 'none', borderRadius: '8px', padding: '0 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', whiteSpace: 'nowrap' }}>
-                <Plus className="w-4 h-4" /> Ajouter
-              </button>
-            </div>
-
-            {/* Contact picker */}
-            {showContacts && (
-              <div className="mt-3 rounded-xl p-4" style={{ background: '#fff', border: '1px solid #e5e2dc' }}>
-                <div className="flex gap-2 mb-3">
-                  <div className="flex-1 relative">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#999' }} />
-                    <input type="text" value={contactSearch} onChange={(e) => setContactSearch(e.target.value)}
-                      placeholder="Rechercher..." style={{ ...inputStyle, paddingLeft: '36px', height: '36px', fontSize: '13px' }} />
-                  </div>
+          {/* Contact picker */}
+          {showContacts && (
+            <div className="mt-3 rounded-xl p-3 sm:p-4" style={{ background: '#fff', border: '1px solid #e5e2dc' }}>
+              <div className="flex flex-col sm:flex-row gap-2 mb-3">
+                <div className="flex-1 relative">
+                  <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2" style={{ color: '#999' }} />
+                  <input type="text" value={contactSearch} onChange={(e) => setContactSearch(e.target.value)}
+                    placeholder="Rechercher..." style={{ ...inputStyle, paddingLeft: '36px', height: '36px', fontSize: '13px' }} />
+                </div>
+                <div className="flex gap-2">
                   <select value={contactFilter} onChange={(e) => setContactFilter(e.target.value)}
                     style={{ height: '36px', padding: '0 10px', fontSize: '12px', background: '#f7f6f3', border: '1px solid #ddd', borderRadius: '6px', color: '#555' }}>
-                    <option value="">Toutes editions</option>
+                    <option value="">Toutes éditions</option>
                     {years.map(y => <option key={y} value={y}>{y}</option>)}
                   </select>
                   <button onClick={addAllFiltered}
-                    style={{ fontSize: '12px', padding: '0 12px', background: '#722f37', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer', whiteSpace: 'nowrap' }}>
-                    + Ajouter tous ({filteredContacts.length})
+                    className="text-xs px-3 rounded-md shrink-0"
+                    style={{ background: '#722f37', color: '#fff', border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}>
+                    + Tous ({filteredContacts.length})
                   </button>
                 </div>
-                <div style={{ maxHeight: '200px', overflow: 'auto' }}>
-                  {filteredContacts.slice(0, 50).map(c => {
-                    const added = recipients.includes(c.email)
-                    return (
-                      <div key={c._id} className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-gray-50" style={{ fontSize: '13px' }}>
-                        <div>
-                          <span style={{ fontWeight: 500, color: '#1a1a1a' }}>{c.firstName} {c.lastName}</span>
-                          <span style={{ color: '#999', marginLeft: '8px' }}>{c.email}</span>
-                        </div>
-                        {added ? (
-                          <span style={{ fontSize: '11px', color: '#16a34a' }}>Ajoute</span>
-                        ) : (
-                          <button onClick={() => addRecipient(c.email)}
-                            style={{ fontSize: '11px', color: '#722f37', background: 'none', border: '1px solid #e5e2dc', borderRadius: '4px', padding: '2px 8px', cursor: 'pointer' }}>
-                            + Ajouter
-                          </button>
-                        )}
+              </div>
+              <div style={{ maxHeight: '200px', overflow: 'auto' }}>
+                {filteredContacts.slice(0, 50).map(c => {
+                  const added = recipients.includes(c.email)
+                  return (
+                    <div key={c._id} className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-gray-50 gap-2" style={{ fontSize: '13px' }}>
+                      <div className="min-w-0">
+                        <span className="truncate block sm:inline" style={{ fontWeight: 500, color: '#1a1a1a' }}>{c.firstName} {c.lastName}</span>
+                        <span className="truncate block sm:inline sm:ml-2" style={{ color: '#999', fontSize: '12px' }}>{c.email}</span>
                       </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-
-            {recipients.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-3">
-                {recipients.slice(0, 20).map((r) => (
-                  <span key={r} className="flex items-center gap-1 rounded-full px-3 py-1 text-sm" style={{ background: '#f0eee9', color: '#555' }}>
-                    {r}
-                    <button onClick={() => removeRecipient(r)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 2px', color: '#999' }}>
-                      <X className="w-3 h-3" />
-                    </button>
-                  </span>
-                ))}
-                {recipients.length > 20 && (
-                  <span className="rounded-full px-3 py-1 text-sm" style={{ background: '#f0eee9', color: '#722f37', fontWeight: 500 }}>
-                    +{recipients.length - 20} autres
-                  </span>
-                )}
-                {recipients.length > 1 && (
-                  <button onClick={() => setRecipients([])}
-                    style={{ fontSize: '12px', color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>
-                    Tout supprimer
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Subject */}
-          <div className="mb-5">
-            <label style={labelStyle}>Objet</label>
-            <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)}
-              placeholder="Objet de votre newsletter" style={inputStyle} />
-          </div>
-
-          {/* Editor */}
-          <div className="mb-5">
-            <div className="flex items-center justify-between mb-2">
-              <label style={{ ...labelStyle, margin: 0 }}>Message</label>
-              <button onClick={() => {
-                if (!showSource) setHtmlSource(editorRef.current?.innerHTML || '')
-                else if (editorRef.current) editorRef.current.innerHTML = htmlSource
-                setShowSource(!showSource)
-              }} style={{ fontSize: '12px', color: '#722f37', background: 'none', border: 'none', cursor: 'pointer' }}>
-                {showSource ? '< Editeur visuel' : 'Code HTML'}
-              </button>
-            </div>
-
-            {!showSource && (
-              <div className="flex flex-wrap gap-1 mb-0 p-2 rounded-t-lg" style={{ background: '#fff', border: '1px solid #ddd', borderBottom: 'none' }}>
-                <button onClick={() => exec('bold')} style={toolBtn} title="Gras"><Bold className="w-4 h-4" /></button>
-                <button onClick={() => exec('italic')} style={toolBtn} title="Italique"><Italic className="w-4 h-4" /></button>
-                <button onClick={openLinkModal} style={toolBtn} title="Lien"><Link2 className="w-4 h-4" /></button>
-                <button onClick={() => exec('justifyLeft')} style={toolBtn} title="Gauche"><AlignLeft className="w-4 h-4" /></button>
-                <button onClick={() => exec('justifyCenter')} style={toolBtn} title="Centrer"><AlignCenter className="w-4 h-4" /></button>
-                <div style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
-                <button onClick={() => exec('formatBlock', 'h2')} style={toolBtn} title="Titre"><Type className="w-4 h-4" /></button>
-                <button onClick={() => exec('formatBlock', 'p')} style={{ ...toolBtn, fontSize: '12px' }}>P</button>
-                <button onClick={() => exec('insertUnorderedList')} style={{ ...toolBtn, fontSize: '14px' }}>* -</button>
-                <div style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
-                <div style={{ position: 'relative' }}>
-                  <button onClick={() => setShowColors(!showColors)} style={toolBtn}><Palette className="w-4 h-4" /></button>
-                  {showColors && (
-                    <div className="absolute top-full left-0 mt-1 p-2 rounded-lg flex gap-1 z-50" style={{ background: '#fff', border: '1px solid #ddd', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-                      {editorColors.map(c => (
-                        <button key={c} onClick={() => { exec('foreColor', c); setShowColors(false) }}
-                          style={{ width: '24px', height: '24px', borderRadius: '4px', background: c, border: '1px solid #ddd', cursor: 'pointer' }} />
-                      ))}
+                      {added ? (
+                        <span className="shrink-0 text-xs" style={{ color: '#16a34a' }}>Ajouté</span>
+                      ) : (
+                        <button onClick={() => addRecipient(c.email)}
+                          className="shrink-0 text-xs px-2 py-0.5 rounded"
+                          style={{ color: '#722f37', background: 'none', border: '1px solid #e5e2dc', cursor: 'pointer' }}>
+                          + Ajouter
+                        </button>
+                      )}
                     </div>
-                  )}
-                </div>
-                <div style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
-                <button onClick={openButtonModal} style={{ ...toolBtn, fontSize: '12px', gap: '4px' }}>Bouton</button>
-                <button onClick={openImageModal} style={toolBtn}><Image className="w-4 h-4" /></button>
-                <button onClick={insertDivider} style={{ ...toolBtn, fontSize: '12px' }}>--</button>
+                  )
+                })}
               </div>
-            )}
+            </div>
+          )}
 
-            {showSource ? (
-              <textarea value={htmlSource} onChange={(e) => setHtmlSource(e.target.value)}
-                style={{ width: '100%', height: '400px', padding: '14px', fontSize: '13px', fontFamily: 'monospace', color: '#1a1a1a', background: '#f7f6f3', border: '1px solid #ddd', borderRadius: '8px', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
-            ) : (
-              <div ref={editorRef} contentEditable suppressContentEditableWarning
-                style={{ minHeight: '300px', padding: '16px', fontSize: '14px', lineHeight: '1.7', color: '#1a1a1a', background: '#fff', border: '1px solid #ddd', borderRadius: '0 0 8px 8px', outline: 'none', boxSizing: 'border-box' }}
-                onFocus={(e) => { if (!e.currentTarget.textContent?.trim()) e.currentTarget.innerHTML = '<p>Cher(e) ami(e) du jazz,</p><p><br></p><p>Musicalement,<br>L\'equipe Jazz en Tech</p>' }}
-              />
-            )}
+          {recipients.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {recipients.slice(0, 20).map((r) => (
+                <span key={r} className="flex items-center gap-1 rounded-full px-3 py-1 text-xs sm:text-sm" style={{ background: '#f0eee9', color: '#555' }}>
+                  <span className="truncate max-w-[150px] sm:max-w-none">{r}</span>
+                  <button onClick={() => removeRecipient(r)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 2px', color: '#999' }}>
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              ))}
+              {recipients.length > 20 && (
+                <span className="rounded-full px-3 py-1 text-sm" style={{ background: '#f0eee9', color: '#722f37', fontWeight: 500 }}>
+                  +{recipients.length - 20} autres
+                </span>
+              )}
+              {recipients.length > 1 && (
+                <button onClick={() => setRecipients([])}
+                  style={{ fontSize: '12px', color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px' }}>
+                  Tout supprimer
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Subject */}
+        <div className="mb-5">
+          <label style={labelStyle}>Objet</label>
+          <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)}
+            placeholder="Objet de votre newsletter" style={inputStyle} />
+        </div>
+
+        {/* Editor */}
+        <div className="mb-5">
+          <div className="flex items-center justify-between mb-2">
+            <label style={{ ...labelStyle, margin: 0 }}>Message</label>
+            <button onClick={() => {
+              if (!showSource) setHtmlSource(editorRef.current?.innerHTML || '')
+              else if (editorRef.current) editorRef.current.innerHTML = htmlSource
+              setShowSource(!showSource)
+            }} style={{ fontSize: '12px', color: '#722f37', background: 'none', border: 'none', cursor: 'pointer' }}>
+              {showSource ? '‹ Éditeur visuel' : 'Code HTML'}
+            </button>
           </div>
 
-          <details className="mb-5">
-            <summary style={{ fontSize: '13px', color: '#722f37', cursor: 'pointer', marginBottom: '8px' }}>Apercu de l&apos;email final</summary>
-            <div className="rounded-lg p-4 overflow-auto" style={{ background: '#e5e2dc', maxHeight: '500px' }}>
-              <div dangerouslySetInnerHTML={{ __html: getPreviewHtml() }} />
-            </div>
-          </details>
-
-          {error && (
-            <div className="mb-4 rounded-lg p-3" style={{ background: '#fef2f2', border: '1px solid #fecaca' }}>
-              <p style={{ color: '#991b1b', fontSize: '13px', margin: 0 }}>{error}</p>
+          {!showSource && (
+            <div className="flex flex-wrap gap-1 mb-0 p-2 rounded-t-lg" style={{ background: '#fff', border: '1px solid #ddd', borderBottom: 'none' }}>
+              <button onClick={() => exec('bold')} style={toolBtn} title="Gras"><Bold className="w-4 h-4" /></button>
+              <button onClick={() => exec('italic')} style={toolBtn} title="Italique"><Italic className="w-4 h-4" /></button>
+              <button onClick={openLinkModal} style={toolBtn} title="Lien"><Link2 className="w-4 h-4" /></button>
+              <button onClick={() => exec('justifyLeft')} style={toolBtn} title="Gauche"><AlignLeft className="w-4 h-4" /></button>
+              <button onClick={() => exec('justifyCenter')} style={toolBtn} title="Centrer"><AlignCenter className="w-4 h-4" /></button>
+              <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
+              <button onClick={() => exec('formatBlock', 'h2')} style={toolBtn} title="Titre"><Type className="w-4 h-4" /></button>
+              <button onClick={() => exec('formatBlock', 'p')} style={{ ...toolBtn, fontSize: '12px' }}>P</button>
+              <button onClick={() => exec('insertUnorderedList')} style={{ ...toolBtn, fontSize: '14px' }}>• -</button>
+              <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
+              <div style={{ position: 'relative' }}>
+                <button onClick={() => setShowColors(!showColors)} style={toolBtn}><Palette className="w-4 h-4" /></button>
+                {showColors && (
+                  <div className="absolute top-full left-0 mt-1 p-2 rounded-lg flex gap-1 z-50" style={{ background: '#fff', border: '1px solid #ddd', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                    {editorColors.map(c => (
+                      <button key={c} onClick={() => { exec('foreColor', c); setShowColors(false) }}
+                        style={{ width: '24px', height: '24px', borderRadius: '4px', background: c, border: '1px solid #ddd', cursor: 'pointer' }} />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
+              <button onClick={openButtonModal} style={{ ...toolBtn, fontSize: '12px', gap: '4px' }}>Bouton</button>
+              <button onClick={openImageModal} style={toolBtn}><Image className="w-4 h-4" /></button>
+              <button onClick={insertDivider} style={{ ...toolBtn, fontSize: '12px' }}>--</button>
             </div>
           )}
-          {result && (
-            <div className="mb-4 rounded-lg p-3" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0' }}>
-              <p style={{ color: '#166534', fontSize: '13px', margin: 0 }}>
-                {result.sent} email(s) envoye(s){result.errors > 0 ? `, ${result.errors} erreur(s)` : ''}
-              </p>
-            </div>
-          )}
 
-          <button onClick={handleSend} disabled={loading}
-            style={{ background: '#722f37', color: '#fff', border: 'none', borderRadius: '10px', padding: '14px 28px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', opacity: loading ? 0.6 : 1 }}>
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-4 h-4" />}
-            {loading ? 'Envoi en cours...' : `Envoyer (${recipients.length} destinataire${recipients.length > 1 ? 's' : ''})`}
-          </button>
+          {showSource ? (
+            <textarea value={htmlSource} onChange={(e) => setHtmlSource(e.target.value)}
+              style={{ width: '100%', height: '300px', padding: '14px', fontSize: '13px', fontFamily: 'monospace', color: '#1a1a1a', background: '#f7f6f3', border: '1px solid #ddd', borderRadius: '8px', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
+          ) : (
+            <div ref={editorRef} contentEditable suppressContentEditableWarning
+              style={{ minHeight: '250px', padding: '16px', fontSize: '14px', lineHeight: '1.7', color: '#1a1a1a', background: '#fff', border: '1px solid #ddd', borderRadius: '0 0 8px 8px', outline: 'none', boxSizing: 'border-box' }}
+              onFocus={(e) => { if (!e.currentTarget.textContent?.trim()) e.currentTarget.innerHTML = '<p>Cher(e) ami(e) du jazz,</p><p><br></p><p>Musicalement,<br>L\'équipe Jazz en Tech</p>' }}
+            />
+          )}
         </div>
-      </main>
-    </div>
+
+        <details className="mb-5">
+          <summary style={{ fontSize: '13px', color: '#722f37', cursor: 'pointer', marginBottom: '8px' }}>Aperçu de l&apos;email final</summary>
+          <div className="rounded-lg p-3 sm:p-4 overflow-auto" style={{ background: '#e5e2dc', maxHeight: '500px' }}>
+            <div dangerouslySetInnerHTML={{ __html: getPreviewHtml() }} />
+          </div>
+        </details>
+
+        {error && (
+          <div className="mb-4 rounded-lg p-3" style={{ background: '#fef2f2', border: '1px solid #fecaca' }}>
+            <p style={{ color: '#991b1b', fontSize: '13px', margin: 0 }}>{error}</p>
+          </div>
+        )}
+        {result && (
+          <div className="mb-4 rounded-lg p-3" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0' }}>
+            <p style={{ color: '#166534', fontSize: '13px', margin: 0 }}>
+              {result.sent} email(s) envoyé(s){result.errors > 0 ? `, ${result.errors} erreur(s)` : ''}
+            </p>
+          </div>
+        )}
+
+        <button onClick={handleSend} disabled={loading}
+          className="flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm w-full sm:w-auto justify-center"
+          style={{ background: '#722f37', color: '#fff', border: 'none', fontWeight: 600, cursor: 'pointer', opacity: loading ? 0.6 : 1 }}>
+          {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-4 h-4" />}
+          {loading ? 'Envoi en cours...' : `Envoyer (${recipients.length} destinataire${recipients.length > 1 ? 's' : ''})`}
+        </button>
+      </div>
+    </DashboardShell>
   )
 }
