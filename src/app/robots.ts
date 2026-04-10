@@ -1,3 +1,4 @@
+// PATH: src/app/robots.ts
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,12 +7,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/debug/', '/api/'],
+        disallow: ['/dashboard/', '/admin/', '/debug/', '/api/'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/admin/', '/debug/'],
+        disallow: ['/dashboard/', '/admin/', '/debug/'],
       }
     ],
     sitemap: 'https://jazzentech.com/sitemap.xml',

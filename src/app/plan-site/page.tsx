@@ -1,4 +1,4 @@
-// src/app/plan-site/page.tsx
+// PATH: src/app/plan-site/page.tsx
 import React from 'react'
 import Link from 'next/link'
 import { 
@@ -62,7 +62,7 @@ export default function PlanSite() {
               <ul className="space-y-3 md:space-y-4">
                 <li>
                   <Link 
-                    href="/" 
+                    href="/accueil" 
                     className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
                     style={{ color: '#d4af37' }}
                   >
@@ -122,6 +122,16 @@ export default function PlanSite() {
                 </li>
                 <li>
                   <Link 
+                    href="/soutenir" 
+                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
+                    style={{ color: '#d4af37' }}
+                  >
+                    <Heart className="w-4 h-4 mr-2" />
+                    Soutenir le Festival
+                  </Link>
+                </li>
+                <li>
+                  <Link 
                     href="/dossier-presse" 
                     className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
                     style={{ color: '#d4af37' }}
@@ -143,152 +153,47 @@ export default function PlanSite() {
               </ul>
             </div>
 
-            {/* Pages des artistes individuels - TOUS LES ARTISTES */}
+            {/* Programmation 2026 */}
             <div 
               className="p-4 md:p-6 rounded-2xl transition-shadow"
               style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
             >
               <div className="flex items-center mb-4 md:mb-6">
                 <Star className="w-6 h-6 mr-3" style={{ color: "#f7f3e9" }} />
-                <h2 className="text-lg md:text-2xl font-semibold" style={{ color: '#f7f3e9' }}>Artistes 2025</h2>
+                <h2 className="text-lg md:text-2xl font-semibold" style={{ color: '#f7f3e9' }}>Programmation 2026</h2>
               </div>
               
               <ul className="space-y-3 md:space-y-4">
-                {/* Artistes concerts payants */}
-                <li>
-                  <div className="mb-2">
-                    <h3 className="text-xs font-bold uppercase text-stone-400 mb-2">Concerts Payants</h3>
-                  </div>
+                <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Mer. 5 août — 21h</p>
+                  <p className="text-sm font-semibold text-white mt-1">Eric Truffaz &amp; Antonio Lizana</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Hommage Miles Davis — Sketches of Spain</p>
                 </li>
-                <li>
-                  <Link 
-                    href="/artistes/manu-le-prince" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Manu Le Prince
-                    <span className="ml-auto text-xs text-stone-400">27 juillet</span>
-                  </Link>
+                <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Jeu. 6 août — 21h</p>
+                  <p className="text-sm font-semibold text-white mt-1">Big Band Christophe Dal Sasso &amp; Sophie Alour</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Hommage John Coltrane — Africa Brass</p>
                 </li>
-                <li>
-                  <Link 
-                    href="/artistes/florin-gugulica" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Florin Gugulica
-                    <span className="ml-auto text-xs text-stone-400">28 juillet</span>
-                  </Link>
+                <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Ven. 7 août — 21h</p>
+                  <p className="text-sm font-semibold text-white mt-1">Ladyva &amp; Barcelona Big Band Blues</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Boogie-Woogie &amp; grands standards du jazz</p>
                 </li>
-                <li>
-                  <Link 
-                    href="/artistes/stefano-di-battista" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Stefano Di Battista
-                    <span className="ml-auto text-xs text-stone-400">7 août</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/artistes/jacky-terrasson" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Jacky Terrasson
-                    <span className="ml-auto text-xs text-stone-400">8 août</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/artistes/camille-bertault" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Camille Bertault
-                    <span className="ml-auto text-xs text-amber-400 font-semibold">8 août - INVITÉE</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/artistes/charlotte-planchou" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Charlotte Planchou
-                    <span className="ml-auto text-xs text-stone-400">9 août</span>
-                  </Link>
-                </li>
-                
-                {/* Séparateur */}
-                <li>
-                  <div className="border-t border-opacity-20 my-3"></div>
-                  <div className="mb-2">
-                    <h4 className="text-xs font-bold uppercase text-amber-400 mb-2">Concerts Gratuits - 2 Podiums</h4>
-                  </div>
-                </li>
-                
-                {/* Artistes concerts gratuits */}
-                <li>
-                  <Link 
-                    href="/artistes/triton-66" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Triton 66
-                    <span className="ml-auto text-xs text-amber-400 font-semibold">6-7 août - GRATUIT</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/artistes/florin-gugulica" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Florin Gugulica Trio
-                    <span className="ml-auto text-xs text-amber-400 font-semibold">6,7,9 août - GRATUIT</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/artistes/david-vilayleck" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    David Vilayleck
-                    <span className="ml-auto text-xs text-amber-400 font-semibold">8 août - GRATUIT</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link 
-                    href="/artistes/cavale-trio" 
-                    className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm md:text-base"
-                    style={{ color: '#d4af37' }}
-                  >
-                    <Music className="w-4 h-4 mr-2" />
-                    Cavale
-                    <span className="ml-auto text-xs text-amber-400 font-semibold">8-9 août - GRATUIT</span>
-                  </Link>
+                <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Sam. 8 août — Soirée de clôture</p>
+                  <p className="text-sm font-semibold text-white mt-1">Programme en cours de finalisation</p>
                 </li>
               </ul>
               
               <div className="mt-4 pt-4 border-t border-opacity-20">
-                <p className="text-xs md:text-sm text-stone-300">
-                  🎵 Pages individuelles dédiées à chaque artiste
-                </p>
-                <p className="text-xs text-stone-400 mt-1">
-                  🎫 Concerts payants • 🎵 Concerts gratuits sur 2 podiums
-                </p>
+                <Link 
+                  href="/programmation"
+                  className="flex items-center font-medium transition-all duration-300 hover:translate-x-1 text-sm"
+                  style={{ color: '#d4af37' }}
+                >
+                  <Music className="w-4 h-4 mr-2" />
+                  Voir la programmation complète →
+                </Link>
               </div>
             </div>
 
@@ -366,9 +271,9 @@ export default function PlanSite() {
                   }}
                 >
                   <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Concerts Payants</h3>
-                  <p className="text-xs md:text-sm text-stone-300">27-28 juillet & 7-8-9 août 2025</p>
+                  <p className="text-xs md:text-sm text-stone-300">5, 6, 7 & 8 août 2026 — Céret</p>
                   <p className="text-xs text-stone-400">Via Billetweb - Billetterie principale</p>
-                  <p className="text-xs text-stone-400 mt-1">🎤 6 concerts avec billetterie</p>
+                  <p className="text-xs text-stone-400 mt-1">🎤 4 soirées exceptionnelles</p>
                 </div>
                 
                 <div 
@@ -379,9 +284,8 @@ export default function PlanSite() {
                   }}
                 >
                   <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#b87333' }}>Concerts Gratuits</h3>
-                  <p className="text-xs md:text-sm text-stone-300">6, 7, 8 et 9 août 2025</p>
-                  <p className="text-xs text-amber-400 font-bold">🎉 ACCÈS LIBRE - 2 PODIUMS</p>
-                  <p className="text-xs text-stone-400">📍 Bd Maréchal Joffre & Place Picasso</p>
+                  <p className="text-xs md:text-sm text-stone-300">Programme en cours de finalisation</p>
+                  <p className="text-xs text-amber-400 font-bold">🎉 ACCÈS LIBRE</p>
                 </div>
               </div>
               
@@ -412,12 +316,12 @@ export default function PlanSite() {
                     borderColor: '#d4af37'
                   }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Saint-Génis-des-Fontaines</h3>
-                  <p className="text-xs md:text-sm text-stone-300 mb-1">Cloître historique</p>
-                  <p className="text-xs text-stone-400">27-28 juillet 2025 • Concerts payants</p>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Céret</h3>
+                  <p className="text-xs md:text-sm text-stone-300 mb-1">5, 6, 7 & 8 août 2026</p>
+                  <p className="text-xs text-stone-400">Concerts payants • 4 soirées</p>
                   <div className="flex items-center text-xs text-stone-400 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
-                    <span>Pyrénées-Orientales (66)</span>
+                    <span>Pyrénées-Orientales (66) — Capitale de l'art moderne</span>
                   </div>
                 </div>
                 
@@ -428,28 +332,12 @@ export default function PlanSite() {
                     borderColor: '#d4af37'
                   }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Céret - Place de la République</h3>
-                  <p className="text-xs md:text-sm text-stone-300 mb-1">Concerts payants</p>
-                  <p className="text-xs text-stone-400">7-8-9 août 2025 • Billetterie</p>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Saint-Génis-des-Fontaines</h3>
+                  <p className="text-xs md:text-sm text-stone-300 mb-1">Cloître historique</p>
+                  <p className="text-xs text-stone-400">Programme en cours de finalisation</p>
                   <div className="flex items-center text-xs text-stone-400 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
-                    <span>Capitale de l'art moderne</span>
-                  </div>
-                </div>
-                
-                <div 
-                  className="p-3 md:p-4 rounded-lg border-l-4"
-                  style={{ 
-                    backgroundColor: 'rgba(26, 26, 26, 0.4)',
-                    borderColor: '#b87333'
-                  }}
-                >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#b87333' }}>Céret - 2 Podiums Gratuits</h3>
-                  <p className="text-xs md:text-sm text-stone-300 mb-1">Bd Maréchal Joffre & Place Picasso</p>
-                  <p className="text-xs text-amber-400 font-bold">6-9 août 2025 • ACCÈS LIBRE</p>
-                  <div className="flex items-center text-xs text-stone-400 mt-2">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    <span>11h, 17h et 18h • Navigation GPS</span>
+                    <span>Pyrénées-Orientales (66)</span>
                   </div>
                 </div>
               </div>
@@ -530,32 +418,42 @@ export default function PlanSite() {
                     borderColor: '#d4af37'
                   }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Saint-Génis-des-Fontaines</p>
-                  <p className="text-xs md:text-sm text-stone-300">27-28 juillet 2025</p>
-                  <p className="text-xs text-stone-400">Ouverture du festival • Concerts payants</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Mercredi 5 août 2026 — 21h</p>
+                  <p className="text-xs md:text-sm text-stone-300">Eric Truffaz & Antonio Lizana</p>
+                  <p className="text-xs text-stone-400">Hommage Miles Davis — Sketches of Spain</p>
                 </div>
                 
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
                     backgroundColor: 'rgba(26, 26, 26, 0.4)',
-                    borderColor: '#b87333'
+                    borderColor: '#d4af37'
                   }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#b87333' }}>Céret - Concerts Gratuits</p>
-                  <p className="text-xs md:text-sm text-stone-300">6-9 août 2025</p>
-                  <p className="text-xs text-amber-400 font-bold">2 podiums simultanés • 11h, 17h, 18h</p>
-                  <p className="text-xs text-stone-400 mt-1">📍 Bd Maréchal Joffre & Place Picasso</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Jeudi 6 août 2026 — 21h</p>
+                  <p className="text-xs md:text-sm text-stone-300">Big Band Dal Sasso & Sophie Alour</p>
+                  <p className="text-xs text-stone-400">Hommage John Coltrane — Africa Brass</p>
                 </div>
                 
+                <div 
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ 
+                    backgroundColor: 'rgba(26, 26, 26, 0.4)',
+                    borderColor: '#d4af37'
+                  }}
+                >
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Vendredi 7 août 2026 — 21h</p>
+                  <p className="text-xs md:text-sm text-stone-300">Ladyva & Barcelona Big Band Blues</p>
+                  <p className="text-xs text-stone-400">Boogie-Woogie & grands standards</p>
+                </div>
+
                 <div 
                   className="p-3 md:p-4 rounded-lg"
                   style={{ backgroundColor: 'rgba(184, 115, 51, 0.2)' }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Céret - Concerts Payants</p>
-                  <p className="text-xs md:text-sm text-stone-300">7-8-9 août 2025</p>
-                  <p className="text-xs text-stone-400">Cœur du festival - 3 soirées</p>
-                  <p className="text-xs text-stone-400 mt-1">🎤 Place de la République</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Samedi 8 août 2026</p>
+                  <p className="text-xs md:text-sm text-stone-300">Soirée de clôture</p>
+                  <p className="text-xs text-stone-400">Programme en cours de finalisation</p>
                 </div>
               </div>
             </div>
@@ -606,7 +504,7 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>10ème édition en 2025</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>11ème édition en 2026</span>
                 </div>
                 
                 <div className="flex items-center">
@@ -614,7 +512,7 @@ export default function PlanSite() {
                     className="w-3 h-3 rounded-full mr-2"
                     style={{ backgroundColor: '#d4af37' }}
                   ></div>
-                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>10 artistes exceptionnels</span>
+                  <span className="text-xs md:text-sm" style={{ color: '#f7f3e9' }}>Hommage Miles Davis &amp; Coltrane</span>
                 </div>
                 
                 <div className="flex items-center">

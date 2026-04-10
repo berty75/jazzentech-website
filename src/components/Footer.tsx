@@ -1,3 +1,4 @@
+// PATH: src/components/Footer.tsx
 import Link from 'next/link'
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Ticket } from 'lucide-react'
 
@@ -52,11 +53,12 @@ function Footer() {
             </h4>
             <nav aria-label="Navigation footer - Pages principales">
               <ul className="space-y-2">
-                <li><Link href="/" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Accueil</Link></li>
+                <li><Link href="/accueil" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Accueil</Link></li>
                 <li><Link href="/mot-du-president" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Mot du Président</Link></li>
                 <li><Link href="/programmation" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Programmation</Link></li>
                 <li><Link href="/galerie" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Galerie Photos</Link></li>
                 <li><Link href="/billetterie" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Billetterie</Link></li>
+                <li><Link href="/soutenir" className="nav-link hover:opacity-80 transition-colors rounded" style={{ color: '#f7f3e9' }}>Soutenir le festival</Link></li>
               </ul>
             </nav>
           </div>
@@ -146,7 +148,7 @@ function Footer() {
         <div className="mt-8 pt-8" style={{ borderTop: '1px solid #722f37' }}>
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm mb-4 md:mb-0" style={{ color: '#f7f3e9' }}>
-              © 2025 Jazz en Tech. Tous droits réservés.
+              © 2026 Jazz en Tech. Tous droits réservés.
             </p>
             <nav aria-label="Liens légaux">
               <div className="flex space-x-6 text-sm">
