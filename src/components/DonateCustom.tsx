@@ -2,7 +2,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Loader2, Heart, ChevronUp, ChevronDown } from 'lucide-react'
+import { Loader2, Heart, ChevronUp, ChevronDown, Info } from 'lucide-react'
 
 const STEP = 100
 const MIN = 1001
@@ -13,8 +13,10 @@ export default function DonateCustom() {
 
   const numAmount = parseFloat(amount) || 0
   const isValid = numAmount >= MIN
+  const deduction66 = isValid ? Math.round(numAmount * 0.66) : 0
   const coutReel = isValid ? Math.round(numAmount * 0.34) : 0
-  const deduction = isValid ? Math.round(numAmount * 0.66) : 0
+  // Revenu imposable minimum pour déduire la totalité (don = 20% du revenu)
+  const revenuMin = isValid ? numAmount * 5 : 0
 
   const increment = () => {
     const current = numAmount || MIN - STEP
@@ -83,14 +85,12 @@ export default function DonateCustom() {
             }}
             onKeyDown={(e) => { if (e.key === 'Enter') handleDonate() }}
           />
-          {/* € label */}
           <span
             className="absolute right-16 top-1/2 -translate-y-1/2 text-xl font-bold"
             style={{ color: '#d4af37' }}
           >
             €
           </span>
-          {/* Chevrons */}
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex flex-col gap-0.5">
             <button
               onClick={increment}
@@ -131,24 +131,37 @@ export default function DonateCustom() {
           {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
             <>
               <Heart className="w-4 h-4" />
-              {isValid ? `Donner ${numAmount} €` : 'Donner'}
+              {isValid ? `Donner ${numAmount.toLocaleString('fr-FR')} €` : 'Donner'}
             </>
           )}
         </button>
       </div>
 
-      {/* Déduction en temps réel */}
+      {/* Détail fiscal */}
       {isValid && (
-        <div
-          className="flex flex-wrap items-center gap-4 sm:gap-6 p-3 rounded-lg text-sm"
-          style={{ backgroundColor: 'rgba(212, 175, 55, 0.06)' }}
-        >
-          <span style={{ color: 'rgba(247, 243, 233, 0.6)' }}>
-            Déduction fiscale (66%) : <strong style={{ color: '#16a34a' }}>{deduction} €</strong>
-          </span>
-          <span style={{ color: 'rgba(247, 243, 233, 0.6)' }}>
-            Coût réel : <strong style={{ color: '#d4af37' }}>{coutReel} €</strong>
-          </span>
+        <div className="space-y-3">
+          <div
+            className="flex flex-wrap items-center gap-4 sm:gap-6 p-3 rounded-lg text-sm"
+            style={{ backgroundColor: 'rgba(212, 175, 55, 0.06)' }}
+          >
+            <span style={{ color: 'rgba(247, 243, 233, 0.6)' }}>
+              Réduction d&apos;impôt (66%) : <strong style={{ color: '#16a34a' }}>{deduction66.toLocaleString('fr-FR')} €</strong>
+            </span>
+            <span style={{ color: 'rgba(247, 243, 233, 0.6)' }}>
+              Coût réel : <strong style={{ color: '#d4af37' }}>{coutReel.toLocaleString('fr-FR')} €</strong>
+            </span>
+          </div>
+
+          <div className="flex items-start gap-2 p-3 rounded-lg text-xs leading-relaxed"
+            style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)', border: '1px solid rgba(114, 47, 55, 0.3)' }}>
+            <Info className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: '#d4af37' }} />
+            <p style={{ color: 'rgba(247, 243, 233, 0.5)' }}>
+              La déduction de 66 % est plafonnée à 20 % de votre revenu imposable (art. 200 du CGI).
+              Pour déduire la totalité de ce don, votre revenu imposable doit être d&apos;au moins{' '}
+              <strong style={{ color: '#f7f3e9' }}>{revenuMin.toLocaleString('fr-FR')} €</strong>.
+              L&apos;excédent éventuel est reportable sur les 5 années suivantes.
+            </p>
+          </div>
         </div>
       )}
 
