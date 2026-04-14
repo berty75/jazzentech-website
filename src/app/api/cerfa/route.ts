@@ -104,6 +104,7 @@ async function generateCerfaPdf(donation: any, hash: string): Promise<Uint8Array
   drawField('Adresse', '10 rue Companyo, 66400 Ceret, France')
   drawField('SIRET', '838 417 012 00013 -- APE 9499Z')
   drawField('RNA', 'W662007356')
+  drawField('Création', 'Créée le 23 janvier 2018, parution au JO du 3 février 2018')
   y -= 15
 
   // === SECTION 2: DONATEUR ===
