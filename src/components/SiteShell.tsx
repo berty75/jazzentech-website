@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SoutenirTicker from '@/components/SoutenirTicker'
 import HeroLogo from '@/components/HeroLogo'
+import DonorBar from '@/components/DonorBar'
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -26,6 +27,9 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         {children}
       </div>
       <Footer />
+      {/* Espace pour ne pas cacher le bas du footer derrière la barre sticky */}
+      <div className="h-10 sm:h-11" />
+      <DonorBar />
     </>
   )
 }

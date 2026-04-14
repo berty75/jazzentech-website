@@ -1,11 +1,14 @@
 // PATH: src/components/Footer.tsx
+'use client'
+
 import Link from 'next/link'
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Ticket } from 'lucide-react'
+import DonorWall from '@/components/DonorWall'
 
 function Footer() {
   return (
     <footer className="text-white" role="contentinfo">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 pb-16">
         <div className="grid md:grid-cols-4 gap-8">
           
           {/* Colonne 1 : Logo et réseaux sociaux */}
@@ -144,6 +147,9 @@ function Footer() {
           </div>
         </div>
         
+        {/* Mur des donateurs */}
+        <DonorWall />
+
         {/* Bas de page */}
         <div className="mt-8 pt-8" style={{ borderTop: '1px solid #722f37' }}>
           <div className="flex flex-col md:flex-row justify-between items-center">

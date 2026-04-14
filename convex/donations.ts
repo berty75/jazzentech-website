@@ -130,3 +130,34 @@ export const getDonation = query({
     return await ctx.db.get(args.id);
   },
 });
+
+// Liste des donateurs publics (pour affichage sur le site)
+export const listPublicDonors = query({
+  args: {},
+  handler: async (ctx) => {
+    const donations = await ctx.db
+      .query("donations")
+      .withIndex("by_date")
+      .order("desc")
+      .collect();
+
+    const succeeded = donations.filter((d) => d.stripeStatus === "succeeded");
+
+    // Dédupliquer par email, garder le montant total
+    const byEmail = new Map<string, { name: string; total: number; palier: string }>();
+    for (const d of succeeded) {
+      const name = `${d.firstName} ${d.lastName}`.trim();
+      if (!name || name === "Anonyme") continue;
+      const existing = byEmail.get(d.email);
+      if (existing) {
+        existing.total += d.amountEur;
+      } else {
+        byEmail.set(d.email, { name, total: d.amountEur, palier: d.palier });
+      }
+    }
+
+    return Array.from(byEmail.values())
+      .sort((a, b) => b.total - a.total)
+      .map((d) => ({ name: d.name, palier: d.palier }));
+  },
+});

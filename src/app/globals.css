@@ -278,3 +278,7 @@ header:not(.scrolled) {
 .ticker-track:hover {
   animation-play-state: paused;
 }
+@keyframes donorScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
