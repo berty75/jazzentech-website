@@ -1,7 +1,9 @@
+// PATH: src/app/soutenir/page.tsx
 import { Heart, Star, Award, Crown, Users, CheckCircle2, Info } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import DonateButton from '@/components/DonateButton'
+import DonateCustom from '@/components/DonateCustom'
 
 export const metadata: Metadata = {
   title: 'Soutenir Jazz en Tech 2026',
@@ -105,7 +107,7 @@ export default function SoutenirPage() {
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-warm-cream leading-relaxed max-w-2xl mx-auto mb-6">
               La 11ème édition a besoin de vous. Notre mécène principal ne peut cette année 
-              renouveler son soutien. Chaque don, quel qu'en soit le montant, 
+              renouveler son soutien. Chaque don, quel qu&apos;en soit le montant, 
               est décisif pour la réalisation de cette édition anniversaire.
             </p>
             {/* Déduction fiscale */}
@@ -114,7 +116,7 @@ export default function SoutenirPage() {
               <span className="text-3xl font-bold text-jazz-gold">66%</span>
               <div className="text-left">
                 <p className="text-white font-semibold text-sm">de déduction fiscale</p>
-                <p className="text-stone-400 text-xs">Association loi 1901 d'intérêt général</p>
+                <p className="text-stone-400 text-xs">Association loi 1901 d&apos;intérêt général</p>
               </div>
             </div>
           </div>
@@ -128,8 +130,8 @@ export default function SoutenirPage() {
             style={{ backgroundColor: 'rgba(212, 175, 55, 0.07)', border: '1px solid rgba(212, 175, 55, 0.25)' }}>
             <Info className="w-5 h-5 text-jazz-gold flex-shrink-0 mt-0.5" />
             <p className="text-sm text-stone-300 leading-relaxed">
-              Jazz en Tech est une association reconnue d'intérêt général (loi 1901).
-              Vos dons ouvrent droit à une <strong className="text-white">réduction d'impôt de 66 %</strong> du montant versé
+              Jazz en Tech est une association reconnue d&apos;intérêt général (loi 1901).
+              Vos dons ouvrent droit à une <strong className="text-white">réduction d&apos;impôt de 66 %</strong> du montant versé
               (dans la limite de 20 % du revenu imposable, art. 200 du CGI).
               La colonne <em>Coût réel</em> ci-dessous indique ce que représente votre don
               après déduction. Un reçu fiscal vous sera automatiquement adressé via HelloAsso.
@@ -207,6 +209,10 @@ export default function SoutenirPage() {
                 </div>
               ))}
             </div>
+
+            {/* Montant libre */}
+            <DonateCustom />
+
           </div>
         </div>
       </section>
