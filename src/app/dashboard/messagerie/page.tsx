@@ -16,7 +16,9 @@ type FormatState = {
 
 export default function MessageriePage() {
   const editorRef = useRef<HTMLDivElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [subject, setSubject] = useState('')
+  const [uploading, setUploading] = useState(false)
   const [recipientInput, setRecipientInput] = useState('')
   const [recipients, setRecipients] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
@@ -78,10 +80,41 @@ export default function MessageriePage() {
     insertAtCursor('<p><a href="' + url + '" style="display:inline-block;background:#722f37;color:white;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">' + text + '</a></p><p><br></p>')
   }
 
-  const openImageModal = () => {
-    const url = window.prompt("URL de l'image :", 'https://')
-    if (!url) return
-    insertAtCursor('<p><img src="' + url + '" style="max-width:100%;border-radius:8px;" /></p><p><br></p>')
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    // Reset input pour permettre le re-upload du même fichier
+    e.target.value = ''
+
+    // Vérif côté client
+    if (!file.type.startsWith('image/')) {
+      setError('Seules les images sont acceptees (JPG, PNG, WebP)')
+      return
+    }
+    if (file.size > 500 * 1024) {
+      const sizeMB = (file.size / 1024 / 1024).toFixed(1)
+      setError(`Image trop lourde (${sizeMB} Mo). Maximum : 500 Ko. Compressez-la avant.`)
+      return
+    }
+
+    setUploading(true)
+    setError('')
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      const res = await fetch('/api/upload-image', { method: 'POST', body: formData })
+      const data = await res.json()
+      if (res.ok && data.url) {
+        insertAtCursor('<p><img src="' + data.url + '" style="max-width:100%;border-radius:8px;" /></p><p><br></p>')
+      } else {
+        setError(data.error || 'Erreur upload')
+      }
+    } catch {
+      setError('Erreur reseau lors de l\'upload')
+    } finally {
+      setUploading(false)
+    }
   }
 
   const openLinkModal = () => {
@@ -340,7 +373,10 @@ export default function MessageriePage() {
               </div>
               <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
               <button onClick={openButtonModal} style={{ ...toolBtn, fontSize: '12px', gap: '4px' }}>Bouton</button>
-              <button onClick={openImageModal} style={toolBtn} title="Image"><Image className="w-4 h-4" /></button>
+              <button onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                style={toolBtn} title="Ajouter une image (500 Ko max)">
+                {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Image className="w-4 h-4" />}
+              </button>
               <button onClick={insertDivider} style={{ ...toolBtn, fontSize: '12px' }}>--</button>
             </div>
           )}
@@ -396,6 +432,18 @@ export default function MessageriePage() {
             </>
           )}
         </div>
+
+        {/* Hidden file input for image upload */}
+        <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileUpload}
+          style={{ display: 'none' }} />
+
+        {uploading && (
+          <div className="mb-4 rounded-lg p-3 flex items-center gap-2"
+            style={{ background: '#eff6ff', border: '1px solid #bfdbfe' }}>
+            <Loader2 className="w-4 h-4 animate-spin" style={{ color: '#2563eb' }} />
+            <p style={{ color: '#1e40af', fontSize: '13px', margin: 0 }}>Upload de l&apos;image en cours...</p>
+          </div>
+        )}
 
         {/* Apercu */}
         <details className="mb-5">
