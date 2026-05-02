@@ -1,7 +1,7 @@
 // PATH: src/app/dashboard/messagerie/page.tsx
 'use client'
 
-import { Loader2, Send, Plus, X, Bold, Italic, Link2, Image, AlignLeft, AlignCenter, Type, Palette, Users, Search } from 'lucide-react'
+import { Loader2, Send, Plus, X, Bold, Italic, Link2, Image, AlignLeft, AlignCenter, Type, Palette, Users, Search, List, ListOrdered } from 'lucide-react'
 import { useState, useRef, useCallback, useEffect } from 'react'
 import DashboardShell from '@/components/DashboardShell'
 
@@ -9,17 +9,27 @@ const editorColors = ['#722f37', '#d4af37', '#b87333', '#1a1a1a', '#16a34a', '#2
 
 type Contact = { _id: string; firstName: string; lastName: string; email: string; editions: string[]; unsubscribed: boolean }
 
+type FormatState = {
+  bold: boolean; italic: boolean; justifyLeft: boolean; justifyCenter: boolean;
+  insertUnorderedList: boolean; insertOrderedList: boolean;
+}
+
 export default function MessageriePage() {
   const editorRef = useRef<HTMLDivElement>(null)
   const [subject, setSubject] = useState('')
   const [recipientInput, setRecipientInput] = useState('')
   const [recipients, setRecipients] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<{ sent: number; errors: number } | null>(null)
+  const [result, setResult] = useState<{ sent: number; errors: number; results?: any[] } | null>(null)
   const [error, setError] = useState('')
   const [showSource, setShowSource] = useState(false)
   const [htmlSource, setHtmlSource] = useState('')
   const [showColors, setShowColors] = useState(false)
+  const [editorContent, setEditorContent] = useState('')
+  const [formatState, setFormatState] = useState<FormatState>({
+    bold: false, italic: false, justifyLeft: false, justifyCenter: false,
+    insertUnorderedList: false, insertOrderedList: false,
+  })
 
   const [contacts, setContacts] = useState<Contact[]>([])
   const [showContacts, setShowContacts] = useState(false)
@@ -32,40 +42,57 @@ export default function MessageriePage() {
     }).catch(() => {})
   }, [])
 
+  const updateFormatState = useCallback(() => {
+    setFormatState({
+      bold: document.queryCommandState('bold'),
+      italic: document.queryCommandState('italic'),
+      justifyLeft: document.queryCommandState('justifyLeft'),
+      justifyCenter: document.queryCommandState('justifyCenter'),
+      insertUnorderedList: document.queryCommandState('insertUnorderedList'),
+      insertOrderedList: document.queryCommandState('insertOrderedList'),
+    })
+  }, [])
+
+  const syncContent = useCallback(() => {
+    setEditorContent(editorRef.current?.innerHTML || '')
+    updateFormatState()
+  }, [updateFormatState])
+
   const exec = useCallback((cmd: string, val?: string) => {
     document.execCommand(cmd, false, val)
     editorRef.current?.focus()
-  }, [])
+    setTimeout(syncContent, 10)
+  }, [syncContent])
+
+  const insertAtCursor = useCallback((html: string) => {
+    editorRef.current?.focus()
+    document.execCommand('insertHTML', false, html)
+    setTimeout(syncContent, 10)
+  }, [syncContent])
 
   const openButtonModal = () => {
-    if (editorRef.current) {
-      const url = window.prompt('URL du bouton :', 'https://jazzentech.com/billetterie')
-      if (!url) return
-      const text = window.prompt('Texte du bouton :', 'Réserver mes places')
-      if (!text) return
-      editorRef.current.innerHTML += '<p><a href="' + url + '" style="display:inline-block;background:#722f37;color:white;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">' + text + '</a></p>'
-    }
+    const url = window.prompt('URL du bouton :', 'https://jazzentech.com/billetterie')
+    if (!url) return
+    const text = window.prompt('Texte du bouton :', 'Réserver mes places')
+    if (!text) return
+    insertAtCursor('<p><a href="' + url + '" style="display:inline-block;background:#722f37;color:white;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">' + text + '</a></p><p><br></p>')
   }
 
   const openImageModal = () => {
-    if (editorRef.current) {
-      const url = window.prompt("URL de l'image :", 'https://')
-      if (!url) return
-      editorRef.current.innerHTML += '<p><img src="' + url + '" style="max-width:100%;border-radius:8px;" /></p>'
-    }
+    const url = window.prompt("URL de l'image :", 'https://')
+    if (!url) return
+    insertAtCursor('<p><img src="' + url + '" style="max-width:100%;border-radius:8px;" /></p><p><br></p>')
   }
 
   const openLinkModal = () => {
-    if (editorRef.current) {
-      const url = window.prompt('URL du lien :', 'https://jazzentech.com')
-      if (!url) return
-      const text = window.prompt('Texte du lien :', 'Cliquez ici')
-      if (!text) return
-      editorRef.current.innerHTML += '<a href="' + url + '" style="color:#722f37;text-decoration:underline;">' + text + '</a> '
-    }
+    const url = window.prompt('URL du lien :', 'https://jazzentech.com')
+    if (!url) return
+    const text = window.prompt('Texte du lien :', 'Cliquez ici')
+    if (!text) return
+    insertAtCursor('<a href="' + url + '" style="color:#722f37;text-decoration:underline;">' + text + '</a> ')
   }
 
-  const insertDivider = () => exec('insertHTML', '<hr style="border:none;border-top:1px solid #e5e2dc;margin:16px 0;" />')
+  const insertDivider = () => insertAtCursor('<hr style="border:none;border-top:1px solid #e5e2dc;margin:16px 0;" />')
 
   const addRecipient = (email?: string) => {
     const e = (email || recipientInput).trim().toLowerCase()
@@ -83,18 +110,30 @@ export default function MessageriePage() {
     setShowContacts(false)
   }
 
-  const getRawContent = () => showSource ? htmlSource : editorRef.current?.innerHTML || ''
+  const prepareHtmlForEmail = (html: string): string => {
+    return html
+      .replace(/<ul>/g, '<ul style="padding-left:24px;margin:12px 0;list-style-type:disc;">')
+      .replace(/<ol>/g, '<ol style="padding-left:24px;margin:12px 0;list-style-type:decimal;">')
+      .replace(/<li>/g, '<li style="margin-bottom:6px;">')
+      .replace(/<h2>/g, '<h2 style="font-size:20px;font-weight:700;margin:16px 0 8px;color:#1a1a1a;">')
+      .replace(/<img /g, '<img style="max-width:100%;border-radius:8px;display:block;margin:12px 0;" ')
+  }
+
+  const getRawContent = () => {
+    if (showSource) return htmlSource
+    return editorContent || editorRef.current?.innerHTML || ''
+  }
 
   const getPreviewHtml = () => {
-    const content = getRawContent()
+    const content = prepareHtmlForEmail(getRawContent())
     return `<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
       <div style="background:linear-gradient(135deg,#722f37,#b87333,#d4af37);padding:32px 24px;text-align:center;border-radius:12px 12px 0 0;">
         <img src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_120/jazz_en_tech_logo_smkogd.png" width="60" height="60" alt="Jazz en Tech" style="display:block;margin:0 auto 12px;" />
         <h1 style="color:#fff;margin:0;font-size:24px;font-weight:700;font-family:Georgia,serif;">Jazz en Tech 2026</h1>
-        <p style="color:rgba(255,255,255,0.85);margin:8px 0 0;font-size:14px;">11ème édition - Céret & Saint-Genis-des-Fontaines</p>
+        <p style="color:rgba(255,255,255,0.85);margin:8px 0 0;font-size:14px;">11eme edition - Ceret & Saint-Genis-des-Fontaines</p>
       </div>
       <div style="padding:32px 28px;background:#fff;border:1px solid #e5e2dc;border-top:none;border-radius:0 0 12px 12px;font-size:15px;line-height:1.7;color:#333;">${content}</div>
-      <p style="text-align:center;color:#999;font-size:12px;margin-top:16px;">Association Jazz en Tech - Céret (66)<br/>
+      <p style="text-align:center;color:#999;font-size:12px;margin-top:16px;">Association Jazz en Tech - Ceret (66)<br/>
       <a href="https://jazzentech.com" style="color:#722f37;">jazzentech.com</a></p>
     </div>`
   }
@@ -109,12 +148,12 @@ export default function MessageriePage() {
     }
     if (!subject || !finalRecipients.length) { setError('Ajoutez un objet et au moins un destinataire'); return }
     const content = getRawContent()
-    if (!content.trim()) { setError('Écrivez votre message'); return }
+    if (!content.trim()) { setError('Ecrivez votre message'); return }
     setLoading(true); setError(''); setResult(null)
     try {
       const res = await fetch('/api/newsletter', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subject, html: content, recipients: finalRecipients }),
+        body: JSON.stringify({ subject, html: prepareHtmlForEmail(content), recipients: finalRecipients }),
       })
       const data = await res.json()
       if (res.ok) {
@@ -124,7 +163,7 @@ export default function MessageriePage() {
           setError(errs || 'Erreurs lors de l\'envoi')
         }
       } else setError(data.error || 'Erreur')
-    } catch { setError('Erreur réseau') }
+    } catch { setError('Erreur reseau') }
     finally { setLoading(false) }
   }
 
@@ -138,7 +177,21 @@ export default function MessageriePage() {
 
   const labelStyle: React.CSSProperties = { display: 'block', fontSize: '12px', fontWeight: 600, color: '#555', marginBottom: '8px', letterSpacing: '0.03em', textTransform: 'uppercase' }
   const inputStyle: React.CSSProperties = { width: '100%', height: '44px', padding: '0 14px', fontSize: '14px', color: '#1a1a1a', background: '#f7f6f3', border: '1px solid #ddd', borderRadius: '8px', outline: 'none', boxSizing: 'border-box' }
-  const toolBtn: React.CSSProperties = { background: 'none', border: '1px solid #e5e2dc', borderRadius: '6px', padding: '6px 8px', cursor: 'pointer', color: '#555', display: 'flex', alignItems: 'center', justifyContent: 'center' }
+
+  const getToolBtn = (active: boolean): React.CSSProperties => ({
+    background: active ? '#f0eee9' : 'none',
+    border: active ? '2px solid #722f37' : '1px solid #e5e2dc',
+    borderRadius: '6px',
+    padding: '6px 8px',
+    cursor: 'pointer',
+    color: active ? '#722f37' : '#555',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: active ? 700 : 400,
+  })
+
+  const toolBtn = getToolBtn(false)
 
   return (
     <DashboardShell>
@@ -170,7 +223,6 @@ export default function MessageriePage() {
             </button>
           </div>
 
-          {/* Contact picker */}
           {showContacts && (
             <div className="mt-3 rounded-xl p-3 sm:p-4" style={{ background: '#fff', border: '1px solid #e5e2dc' }}>
               <div className="flex flex-col sm:flex-row gap-2 mb-3">
@@ -182,7 +234,7 @@ export default function MessageriePage() {
                 <div className="flex gap-2">
                   <select value={contactFilter} onChange={(e) => setContactFilter(e.target.value)}
                     style={{ height: '36px', padding: '0 10px', fontSize: '12px', background: '#f7f6f3', border: '1px solid #ddd', borderRadius: '6px', color: '#555' }}>
-                    <option value="">Toutes éditions</option>
+                    <option value="">Toutes editions</option>
                     {years.map(y => <option key={y} value={y}>{y}</option>)}
                   </select>
                   <button onClick={addAllFiltered}
@@ -202,7 +254,7 @@ export default function MessageriePage() {
                         <span className="truncate block sm:inline sm:ml-2" style={{ color: '#999', fontSize: '12px' }}>{c.email}</span>
                       </div>
                       {added ? (
-                        <span className="shrink-0 text-xs" style={{ color: '#16a34a' }}>Ajouté</span>
+                        <span className="shrink-0 text-xs" style={{ color: '#16a34a' }}>Ajoute</span>
                       ) : (
                         <button onClick={() => addRecipient(c.email)}
                           className="shrink-0 text-xs px-2 py-0.5 rounded"
@@ -255,24 +307,25 @@ export default function MessageriePage() {
             <label style={{ ...labelStyle, margin: 0 }}>Message</label>
             <button onClick={() => {
               if (!showSource) setHtmlSource(editorRef.current?.innerHTML || '')
-              else if (editorRef.current) editorRef.current.innerHTML = htmlSource
+              else if (editorRef.current) { editorRef.current.innerHTML = htmlSource; syncContent() }
               setShowSource(!showSource)
             }} style={{ fontSize: '12px', color: '#722f37', background: 'none', border: 'none', cursor: 'pointer' }}>
-              {showSource ? '‹ Éditeur visuel' : 'Code HTML'}
+              {showSource ? '< Editeur visuel' : 'Code HTML'}
             </button>
           </div>
 
           {!showSource && (
             <div className="flex flex-wrap gap-1 mb-0 p-2 rounded-t-lg" style={{ background: '#fff', border: '1px solid #ddd', borderBottom: 'none' }}>
-              <button onClick={() => exec('bold')} style={toolBtn} title="Gras"><Bold className="w-4 h-4" /></button>
-              <button onClick={() => exec('italic')} style={toolBtn} title="Italique"><Italic className="w-4 h-4" /></button>
+              <button onClick={() => exec('bold')} style={getToolBtn(formatState.bold)} title="Gras"><Bold className="w-4 h-4" /></button>
+              <button onClick={() => exec('italic')} style={getToolBtn(formatState.italic)} title="Italique"><Italic className="w-4 h-4" /></button>
               <button onClick={openLinkModal} style={toolBtn} title="Lien"><Link2 className="w-4 h-4" /></button>
-              <button onClick={() => exec('justifyLeft')} style={toolBtn} title="Gauche"><AlignLeft className="w-4 h-4" /></button>
-              <button onClick={() => exec('justifyCenter')} style={toolBtn} title="Centrer"><AlignCenter className="w-4 h-4" /></button>
+              <button onClick={() => exec('justifyLeft')} style={getToolBtn(formatState.justifyLeft)} title="Gauche"><AlignLeft className="w-4 h-4" /></button>
+              <button onClick={() => exec('justifyCenter')} style={getToolBtn(formatState.justifyCenter)} title="Centrer"><AlignCenter className="w-4 h-4" /></button>
               <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
               <button onClick={() => exec('formatBlock', 'h2')} style={toolBtn} title="Titre"><Type className="w-4 h-4" /></button>
               <button onClick={() => exec('formatBlock', 'p')} style={{ ...toolBtn, fontSize: '12px' }}>P</button>
-              <button onClick={() => exec('insertUnorderedList')} style={{ ...toolBtn, fontSize: '14px' }}>• -</button>
+              <button onClick={() => exec('insertUnorderedList')} style={getToolBtn(formatState.insertUnorderedList)} title="Liste a puces"><List className="w-4 h-4" /></button>
+              <button onClick={() => exec('insertOrderedList')} style={getToolBtn(formatState.insertOrderedList)} title="Liste numerotee"><ListOrdered className="w-4 h-4" /></button>
               <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
               <div style={{ position: 'relative' }}>
                 <button onClick={() => setShowColors(!showColors)} style={toolBtn}><Palette className="w-4 h-4" /></button>
@@ -287,7 +340,7 @@ export default function MessageriePage() {
               </div>
               <div className="hidden sm:block" style={{ width: '1px', background: '#e5e2dc', margin: '0 4px' }} />
               <button onClick={openButtonModal} style={{ ...toolBtn, fontSize: '12px', gap: '4px' }}>Bouton</button>
-              <button onClick={openImageModal} style={toolBtn}><Image className="w-4 h-4" /></button>
+              <button onClick={openImageModal} style={toolBtn} title="Image"><Image className="w-4 h-4" /></button>
               <button onClick={insertDivider} style={{ ...toolBtn, fontSize: '12px' }}>--</button>
             </div>
           )}
@@ -296,30 +349,74 @@ export default function MessageriePage() {
             <textarea value={htmlSource} onChange={(e) => setHtmlSource(e.target.value)}
               style={{ width: '100%', height: '300px', padding: '14px', fontSize: '13px', fontFamily: 'monospace', color: '#1a1a1a', background: '#f7f6f3', border: '1px solid #ddd', borderRadius: '8px', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
           ) : (
-            <div ref={editorRef} contentEditable suppressContentEditableWarning
-              style={{ minHeight: '250px', padding: '16px', fontSize: '14px', lineHeight: '1.7', color: '#1a1a1a', background: '#fff', border: '1px solid #ddd', borderRadius: '0 0 8px 8px', outline: 'none', boxSizing: 'border-box' }}
-              onFocus={(e) => { if (!e.currentTarget.textContent?.trim()) e.currentTarget.innerHTML = '<p>Cher(e) ami(e) du jazz,</p><p><br></p><p>Musicalement,<br>L\'équipe Jazz en Tech</p>' }}
-            />
+            <>
+              <div ref={editorRef} contentEditable suppressContentEditableWarning
+                className="newsletter-editor"
+                style={{ minHeight: '250px', padding: '16px', fontSize: '14px', lineHeight: '1.7', color: '#1a1a1a', background: '#fff', border: '1px solid #ddd', borderRadius: '0 0 8px 8px', outline: 'none', boxSizing: 'border-box' }}
+                onInput={syncContent}
+                onKeyUp={updateFormatState}
+                onMouseUp={updateFormatState}
+                onFocus={(e) => {
+                  if (!e.currentTarget.textContent?.trim()) {
+                    e.currentTarget.innerHTML = '<p>Cher(e) ami(e) du jazz,</p><p><br></p><p>Musicalement,<br>L\'equipe Jazz en Tech</p>'
+                    syncContent()
+                  }
+                  updateFormatState()
+                }}
+              />
+              <style>{`
+                .newsletter-editor ul {
+                  list-style-type: disc;
+                  padding-left: 24px;
+                  margin: 8px 0;
+                }
+                .newsletter-editor ol {
+                  list-style-type: decimal;
+                  padding-left: 24px;
+                  margin: 8px 0;
+                }
+                .newsletter-editor li {
+                  margin-bottom: 4px;
+                }
+                .newsletter-editor h2 {
+                  font-size: 20px;
+                  font-weight: 700;
+                  margin: 16px 0 8px;
+                  color: #1a1a1a;
+                }
+                .newsletter-editor img {
+                  max-width: 100%;
+                  border-radius: 8px;
+                  margin: 8px 0;
+                }
+                .newsletter-editor a {
+                  color: #722f37;
+                }
+              `}</style>
+            </>
           )}
         </div>
 
+        {/* Apercu */}
         <details className="mb-5">
-          <summary style={{ fontSize: '13px', color: '#722f37', cursor: 'pointer', marginBottom: '8px' }}>Aperçu de l&apos;email final</summary>
+          <summary style={{ fontSize: '13px', color: '#722f37', cursor: 'pointer', marginBottom: '8px' }}>Apercu de l&apos;email final</summary>
           <div className="rounded-lg p-3 sm:p-4 overflow-auto" style={{ background: '#e5e2dc', maxHeight: '500px' }}>
             <div dangerouslySetInnerHTML={{ __html: getPreviewHtml() }} />
           </div>
         </details>
 
+        {result && result.results && result.results.length > 0 && (
+          <div className="mb-4 rounded-lg p-3" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0' }}>
+            <p style={{ color: '#166534', fontSize: '13px', margin: 0 }}>
+              {result.sent} email(s) envoye(s) via {result.results[0]?.via || 'inconnu'}
+              {result.errors > 0 ? `, ${result.errors} erreur(s)` : ''}
+            </p>
+          </div>
+        )}
+
         {error && (
           <div className="mb-4 rounded-lg p-3" style={{ background: '#fef2f2', border: '1px solid #fecaca' }}>
             <p style={{ color: '#991b1b', fontSize: '13px', margin: 0 }}>{error}</p>
-          </div>
-        )}
-        {result && (
-          <div className="mb-4 rounded-lg p-3" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0' }}>
-            <p style={{ color: '#166534', fontSize: '13px', margin: 0 }}>
-              {result.sent} email(s) envoyé(s){result.errors > 0 ? `, ${result.errors} erreur(s)` : ''}
-            </p>
           </div>
         )}
 
