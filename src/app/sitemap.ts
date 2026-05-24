@@ -85,5 +85,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  return [...staticPages]
+  const artistSlugs = ['erik-truffaz', 'ladyva', 'dal-sasso', 'akpe-motion', 'cecile-recchia', 'knobil-trio']
+  const artistPages = artistSlugs.map((slug) => ({
+    url: `${baseUrl}/artistes/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  return [
+    ...staticPages,
+    {
+      url: `${baseUrl}/artistes`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    ...artistPages,
+  ]
 }

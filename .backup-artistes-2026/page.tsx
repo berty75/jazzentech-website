@@ -10,19 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default function ArtistesIndex() {
-  const artists: Array<{
-    name: string
-    slug: string
-    image: string
-    date: string
-    venue: string
-    type: string
-    price: string
-    subtitle: string
-    promo?: string
-    promoStart?: string
-    promoEnd?: string
-  }> = [
+  const artists = [
     {
       name: 'Erik Truffaz & Antonio Lizana',
       slug: 'erik-truffaz',
@@ -34,19 +22,6 @@ export default function ArtistesIndex() {
       subtitle: '"New Sketches of Spain"'
     },
     {
-      name: 'Dal Sasso Big Band',
-      slug: 'dal-sasso',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Dal-Sasso-groupe.jpg',
-      date: '6 août 2026',
-      venue: 'Céret',
-      type: 'Big Band',
-      price: '22€',
-      promo: '18€',
-      promoStart: '2026-01-01T00:00:00',
-      promoEnd: '2026-06-30T23:59:59',
-      subtitle: 'Africa Brass Revisited'
-    },
-    {
       name: 'Ladyva & Barcelona Big Blues Band',
       slug: 'ladyva',
       image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Ladyva.jpg',
@@ -54,51 +29,15 @@ export default function ArtistesIndex() {
       venue: 'Céret',
       type: 'Boogie-Woogie',
       price: '22€',
+      promo: '17€',
       subtitle: 'Une association explosive !'
-    },
-    {
-      name: 'Akpé Motion',
-      slug: 'akpe-motion',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Alain-Brunet.jpg',
-      date: '8 août 2026',
-      venue: 'Céret',
-      type: 'Jazz Rock',
-      price: '22€',
-      promo: '18€',
-      promoStart: '2026-01-01T00:00:00',
-      promoEnd: '2026-06-30T23:59:59',
-      subtitle: '« Électric Miles »'
-    },
-    {
-      name: 'Cécile L. Recchia',
-      slug: 'cecile-recchia',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Cecil-L-Recchia.jpg',
-      date: '26 juillet 2026',
-      venue: 'Saint-Génis-des-Fontaines',
-      type: 'Jazz Vocal',
-      price: '15€',
-      subtitle: 'sings Django Reinhardt'
-    },
-    {
-      name: 'Knobil Trio',
-      slug: 'knobil-trio',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Pierre-Daendliker-Louise.jpg',
-      date: '27 juillet 2026',
-      venue: 'Saint-Génis-des-Fontaines',
-      type: 'Jazz / Chanson',
-      price: '15€',
-      subtitle: 'Chanson et Jazz pailleté'
     }
   ]
 
-  // Vérifier si une promo est active pour un concert donné (fenêtre par concert)
+  // Vérifier si la promo Ladyva est active
   const now = new Date()
-  const isPromoActive = (artist: { promo?: string; promoStart?: string; promoEnd?: string }) =>
-    !!artist.promo &&
-    !!artist.promoStart &&
-    !!artist.promoEnd &&
-    now >= new Date(artist.promoStart) &&
-    now <= new Date(artist.promoEnd)
+  const promoEnd = new Date('2026-04-15T23:59:59')
+  const isPromoActive = now <= promoEnd
 
   return (
     <div className="min-h-screen">
@@ -157,7 +96,7 @@ export default function ArtistesIndex() {
                       >
                         {artist.type.toUpperCase()}
                       </span>
-                      {isPromoActive(artist) && (
+                      {artist.promo && isPromoActive && (
                         <span className="text-xs px-3 py-1.5 rounded-full font-bold bg-green-500 text-white animate-pulse">
                           PROMO
                         </span>
@@ -188,7 +127,7 @@ export default function ArtistesIndex() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
-                        {isPromoActive(artist) ? (
+                        {artist.promo && isPromoActive ? (
                           <div className="flex items-center gap-2">
                             <span className="text-xl font-bold text-white">{artist.promo}</span>
                             <span className="text-sm line-through text-white/50">{artist.price}</span>

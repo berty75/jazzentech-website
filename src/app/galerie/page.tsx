@@ -11,7 +11,7 @@ const getCloudinaryUrl = (src: string, width = 600, height = 400) => {
   // Transforme l'URL pour ajouter le crop intelligent centré sur le sujet
   return src.replace(
     '/upload/',
-    `/upload/c_fill,g_auto:subject,w_${width},h_${height},q_auto,f_auto/`
+    `/upload/c_fill,g_auto,w_${width},h_${height},q_auto,f_auto/`
   )
 }
 

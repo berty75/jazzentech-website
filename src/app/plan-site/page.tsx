@@ -59,7 +59,7 @@ export default function PlanSite() {
                 <h2 className="text-lg md:text-2xl font-semibold" style={{ color: '#f7f3e9' }}>Pages principales</h2>
               </div>
               
-              <ul className="space-y-3 md:space-y-4">
+              <ul className="space-y-3 md:space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                 <li>
                   <Link 
                     href="/accueil" 
@@ -163,16 +163,26 @@ export default function PlanSite() {
                 <h2 className="text-lg md:text-2xl font-semibold" style={{ color: '#f7f3e9' }}>Programmation 2026</h2>
               </div>
               
-              <ul className="space-y-3 md:space-y-4">
+              <ul className="space-y-3 md:space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
+                <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(184,115,51,0.08)' }}>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#b87333' }}>Dim. 26 juillet — Saint-Génis</p>
+                  <p className="text-sm font-semibold text-white mt-1">Cécile L. Recchia</p>
+                  <p className="text-xs text-stone-400 mt-0.5">sings Django Reinhardt</p>
+                </li>
+                <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(184,115,51,0.08)' }}>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#b87333' }}>Lun. 27 juillet — Saint-Génis</p>
+                  <p className="text-sm font-semibold text-white mt-1">Knobil Trio</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Chanson et Jazz pailleté</p>
+                </li>
                 <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
                   <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Mer. 5 août — 21h</p>
-                  <p className="text-sm font-semibold text-white mt-1">Eric Truffaz &amp; Antonio Lizana</p>
-                  <p className="text-xs text-stone-400 mt-0.5">Hommage Miles Davis — Sketches of Spain</p>
+                  <p className="text-sm font-semibold text-white mt-1">Erik Truffaz &amp; Antonio Lizana</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Hommage Miles Davis — New Sketches of Spain</p>
                 </li>
                 <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
                   <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Jeu. 6 août — 21h</p>
-                  <p className="text-sm font-semibold text-white mt-1">Big Band Christophe Dal Sasso &amp; Sophie Alour</p>
-                  <p className="text-xs text-stone-400 mt-0.5">Hommage John Coltrane — Africa Brass</p>
+                  <p className="text-sm font-semibold text-white mt-1">Dal Sasso Big Band</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Hommage John Coltrane — Africa Brass Revisited</p>
                 </li>
                 <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
                   <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Ven. 7 août — 21h</p>
@@ -180,8 +190,9 @@ export default function PlanSite() {
                   <p className="text-xs text-stone-400 mt-0.5">Boogie-Woogie &amp; grands standards du jazz</p>
                 </li>
                 <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
-                  <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Sam. 8 août — Soirée de clôture</p>
-                  <p className="text-sm font-semibold text-white mt-1">Programme en cours de finalisation</p>
+                  <p className="text-xs font-bold uppercase" style={{ color: '#d4af37' }}>Sam. 8 août — 21h</p>
+                  <p className="text-sm font-semibold text-white mt-1">Akpé Motion</p>
+                  <p className="text-xs text-stone-400 mt-0.5">Hommage Miles Davis — « Électric Miles »</p>
                 </li>
               </ul>
               
@@ -204,7 +215,7 @@ export default function PlanSite() {
                 <h2 className="text-lg md:text-2xl font-semibold" style={{ color: '#f7f3e9' }}>Informations légales</h2>
               </div>
               
-              <ul className="space-y-3 md:space-y-4">
+              <ul className="space-y-3 md:space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                 <li>
                   <Link 
                     href="/mentions-legales" 
@@ -333,8 +344,8 @@ export default function PlanSite() {
                   }}
                 >
                   <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Saint-Génis-des-Fontaines</h3>
-                  <p className="text-xs md:text-sm text-stone-300 mb-1">Cloître historique</p>
-                  <p className="text-xs text-stone-400">Programme en cours de finalisation</p>
+                  <p className="text-xs md:text-sm text-stone-300 mb-1">Cloître historique • 26 & 27 juillet 2026</p>
+                  <p className="text-xs text-stone-400">Cécile L. Recchia • Knobil Trio</p>
                   <div className="flex items-center text-xs text-stone-400 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span>Pyrénées-Orientales (66)</span>
@@ -410,7 +421,17 @@ export default function PlanSite() {
                 <h2 className="text-lg md:text-2xl font-semibold" style={{ color: '#f7f3e9' }}>Dates importantes</h2>
               </div>
               
-              <div className="space-y-3 md:space-y-4">
+              <div className="space-y-3 md:space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
+                <div className="p-3 md:p-4 rounded-lg border-l-4" style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', borderColor: '#b87333' }}>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Dimanche 26 juillet 2026 — 21h</p>
+                  <p className="text-xs md:text-sm text-stone-300">Cécile L. Recchia — Saint-Génis</p>
+                  <p className="text-xs text-stone-400">sings Django Reinhardt</p>
+                </div>
+                <div className="p-3 md:p-4 rounded-lg border-l-4" style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', borderColor: '#b87333' }}>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Lundi 27 juillet 2026 — 21h</p>
+                  <p className="text-xs md:text-sm text-stone-300">Knobil Trio — Saint-Génis</p>
+                  <p className="text-xs text-stone-400">Chanson et Jazz pailleté</p>
+                </div>
                 <div 
                   className="p-3 md:p-4 rounded-lg border-l-4"
                   style={{ 
@@ -419,8 +440,8 @@ export default function PlanSite() {
                   }}
                 >
                   <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Mercredi 5 août 2026 — 21h</p>
-                  <p className="text-xs md:text-sm text-stone-300">Eric Truffaz & Antonio Lizana</p>
-                  <p className="text-xs text-stone-400">Hommage Miles Davis — Sketches of Spain</p>
+                  <p className="text-xs md:text-sm text-stone-300">Erik Truffaz &amp; Antonio Lizana</p>
+                  <p className="text-xs text-stone-400">Hommage Miles Davis — New Sketches of Spain</p>
                 </div>
                 
                 <div 
@@ -431,8 +452,8 @@ export default function PlanSite() {
                   }}
                 >
                   <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Jeudi 6 août 2026 — 21h</p>
-                  <p className="text-xs md:text-sm text-stone-300">Big Band Dal Sasso & Sophie Alour</p>
-                  <p className="text-xs text-stone-400">Hommage John Coltrane — Africa Brass</p>
+                  <p className="text-xs md:text-sm text-stone-300">Dal Sasso Big Band</p>
+                  <p className="text-xs text-stone-400">Hommage John Coltrane — Africa Brass Revisited</p>
                 </div>
                 
                 <div 
@@ -448,12 +469,12 @@ export default function PlanSite() {
                 </div>
 
                 <div 
-                  className="p-3 md:p-4 rounded-lg"
-                  style={{ backgroundColor: 'rgba(184, 115, 51, 0.2)' }}
+                  className="p-3 md:p-4 rounded-lg border-l-4"
+                  style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', borderColor: '#d4af37' }}
                 >
-                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Samedi 8 août 2026</p>
-                  <p className="text-xs md:text-sm text-stone-300">Soirée de clôture</p>
-                  <p className="text-xs text-stone-400">Programme en cours de finalisation</p>
+                  <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Samedi 8 août 2026 — 21h</p>
+                  <p className="text-xs md:text-sm text-stone-300">Akpé Motion</p>
+                  <p className="text-xs text-stone-400">Hommage Miles Davis — « Électric Miles »</p>
                 </div>
               </div>
             </div>

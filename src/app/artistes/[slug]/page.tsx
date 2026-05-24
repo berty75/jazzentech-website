@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { Metadata } from 'next'
-import ReservationButton from '@/components/ReservationButton'
+import BilletwebPopupButton from '@/components/BilletwebPopupButton'
 
 // Lazy loading seulement pour la discographie
 const DiscographySection = dynamic(() => import('@/components/DiscographySection'), {
@@ -32,6 +32,7 @@ const artistsData = {
     time: '21H00',
     venue: 'Place de la République, Céret',
     ticketType: 'billetterie' as const,
+    ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6796635',
     badge: '🎺 HOMMAGE À MILES DAVIS • 100 ANS',
     biography: {
       intro: "Trompettiste de jazz suisse né le 3 avril 1960 à Chêne-Bougeries (canton de Genève), Erik Truffaz a grandi en France, dans le pays de Gex. Il joue de la trompette depuis l'âge de 6 ans. C'est avec l'album « The Dawn » en 1998 qu'il impose un son novateur : un jazz acoustique réinventé à l'aune des rythmiques électroniques.",
@@ -99,6 +100,7 @@ const artistsData = {
     time: '21H00',
     venue: 'Place de la République, Céret',
     ticketType: 'billetterie' as const,
+    ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6876952',
     badge: '🎹 BOOGIE-WOOGIE & BIG BAND',
     biography: {
       intro: "Signée par Universal en 2011, la pianiste et chanteuse LADYVA enchaîne depuis les succès et les récompenses. Le boogie-woogie lui colle à la peau depuis vingt ans désormais, avec ses grandes notes graves balancées et ses aiguës égrenées.",
@@ -165,6 +167,162 @@ const artistsData = {
       instagram: 'https://www.instagram.com/ladyvaofficial/',
       facebook: 'https://www.facebook.com/Ladyva01/',
       appleMusic: 'https://music.apple.com/us/artist/ladyva/78911153'
+    }
+  },
+  'dal-sasso': {
+    name: 'Dal Sasso Big Band',
+    subtitle: 'Africa Brass Revisited',
+    genre: 'Big Band • Jazz • Hommage Coltrane',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Dal-Sasso-groupe.jpg',
+    date: 'JEUDI 6 AOÛT 2026',
+    time: '21H00',
+    venue: 'Place de la République, Céret',
+    ticketType: 'billetterie' as const,
+    ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024291',
+    badge: '🎷 HOMMAGE À JOHN COLTRANE • 100 ANS',
+    biography: {
+      intro: "Si 2026 est l’année du centenaire de la naissance de Miles Davis, c’est aussi l’année du centenaire de la naissance de John Coltrane devenu depuis une légende du jazz.",
+      content: [
+        "En 1958, Miles et Coltrane jouent et enregistrent ensemble. En 1961, sort « Africa/Brass », un disque devenu culte dans la riche discographie de Coltrane, car il est le seul que le saxophoniste n’ait jamais enregistré en big band. Près d’un demi-siècle plus tard, Christophe Dal Sasso, reconnu comme l’un des arrangeurs les plus talentueux de l’Hexagone, est retourné à ce répertoire emblématique auquel il redonne, à la tête d’un big band inspiré et fougueux, toute la puissance spirituelle, fidèle à la portée universelle du message humaniste que John Coltrane avait inscrit au cœur de sa musique. Au-delà du mythique Africa Brass, cet All Stars du jazz français interprètera d’autres titres emblématiques de John Coltrane pour une soirée unique.",
+        "« Dal Sasso tire le meilleur de chacun pour s’approcher de l’énergie survoltée du mythique John Coltrane. » JAZZMANIA"
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Christophe Dal Sasso', instrument: 'flûtes, arrangements, direction' },
+      { name: 'David El-Malek', instrument: 'ténor sax' },
+      { name: 'Sophie Alour', instrument: 'ténor sax, flûte' },
+      { name: 'Stéphane Guillaume', instrument: 'ténor & soprano sax, flûte' },
+      { name: 'Thomas Savy', instrument: 'baryton sax, clarinette' },
+      { name: 'Nicolas Folmer', instrument: 'trompette' },
+      { name: 'Christian Martinez', instrument: 'trompette' },
+      { name: 'Jerry Edwards', instrument: 'trombone' },
+      { name: 'Denis Leloup', instrument: 'trombone' },
+      { name: 'Pierre de Bethmann', instrument: 'piano' },
+      { name: 'Manuel Marchès', instrument: 'contrebasse' },
+      { name: 'Karl Jannuska', instrument: 'batterie' },
+      { name: 'Nadia Tighidet', instrument: 'percussions' }
+    ],
+    videos: [
+      { id: '8bVUvXI26a8', title: 'Dal Sasso Big Band', description: 'Africa Brass Revisited - Hommage à John Coltrane' },
+      { id: 'htTZFc4Ai4Y', title: 'Dal Sasso Big Band', description: 'Christophe Dal Sasso & son big band en concert' },
+      { id: 'BjdPras6jsg', title: 'Dal Sasso Big Band', description: 'Le répertoire de John Coltrane revisité' }
+    ],
+    socials: {
+      instagram: '#',
+      facebook: '#',
+      appleMusic: 'https://music.apple.com/fr/artist/dal-sasso-big-band/1468955432'
+    }
+  },
+  'akpe-motion': {
+    name: 'Akpé Motion',
+    subtitle: '« Électric Miles »',
+    genre: 'Jazz Rock • World • Trompette',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Alain-Brunet.jpg',
+    date: 'SAMEDI 8 AOÛT 2026',
+    time: '21H00',
+    venue: 'Place de la République, Céret',
+    ticketType: 'billetterie' as const,
+    ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024288',
+    badge: '🎺 HOMMAGE À MILES DAVIS • 100 ANS',
+    biography: {
+      intro: "Akpé Motion nourri de jazz rock et de world music, rend à Miles Davis un hommage singulier avec le percussionniste/plasticien Pascal Bouterin amoureux des peaux travaillées seulement aux balais, avec Nico Morelli, pianiste virtuose, considéré comme l’un des meilleurs pianistes européens, avec le bassiste Didier Delaguila qui apporte sa très belle singularité et son expérience des musiques actuelles, avec celle enfin du trompettiste Alain Brunet très marqué par l’une des figures les plus novatrices, influentes et acclamées de l’histoire du jazz et de toutes les musiques nées du jazz : le Miles Davis dans sa dernière période, celle où les influences rock, hip hop etc… ont façonné l’esthétique de son groupe. Pour ce concert, Akpé Motion s’enrichit d’une chanteuse américaine, Karla Harris d’Atlanta, dont ce sera le premier concert français avant de retrouver à l’automne le groupe qui sera en tournée aux USA.",
+      content: [
+        "« A Partir d’une maitrise technique irréprochable, et d’une active familiarité avec l’univers Miles Davisien, Alain Brunet s’est inventé un modernisme suave exhaussé par les très diverses musiques qu’il explore au gré d’une sonorité soyeuse (mais de soie sauvage) et de persuasives mélodies. » — Philippe Carles, Dictionnaire encyclopédique du jazz"
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Alain Brunet', instrument: 'trompette, bugle, voix' },
+      { name: 'Karla Harris', instrument: 'voix' },
+      { name: 'Nico Morelli', instrument: 'claviers' },
+      { name: 'Didier Del Aguila', instrument: 'basse' },
+      { name: 'Pascal Bouterin', instrument: 'batterie, voix' }
+    ],
+    videos: [
+      { id: 'Z1RbRNX8FFQ', title: 'Akpé Motion', description: 'Hommage à Miles Davis - Électric Miles' },
+      { id: 'cmuRqqxdEKQ', title: 'Akpé Motion', description: 'Alain Brunet & Akpé Motion en concert' },
+      { id: 'r2n-RNCADvw', title: 'Akpé Motion', description: 'L’univers Miles Davisien revisité' }
+    ],
+    socials: {
+      instagram: '#',
+      facebook: '#',
+      appleMusic: 'https://music.apple.com/fr/artist/akp%C3%A9-motion/819201460'
+    }
+  },
+  'cecile-recchia': {
+    name: 'Cécile L. Recchia',
+    subtitle: 'sings Django Reinhardt',
+    genre: 'Jazz Vocal • Django Reinhardt',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Cecil-L-Recchia.jpg',
+    date: 'DIMANCHE 26 JUILLET 2026',
+    time: '21H00',
+    venue: 'Cloître de Saint-Génis-des-Fontaines',
+    city: 'Saint-Génis-des-Fontaines',
+    ticketType: 'saint-genis' as const,
+    ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024303',
+    badge: '🎤 CLOÎTRE DE SAINT-GÉNIS-DES-FONTAINES',
+    biography: {
+      intro: "Chanteuse française aux origines métissées (italo-espagnole et nord-africaine), Cecil L. Recchia étudie le piano classique dès l’âge de 5 ans. Diplômée de la Sorbonne en langue anglaise et littérature américaine, formée au jazz vocal avec Sonia Cat-Berro et au CIM (école jazz et musiques actuelles) pendant trois ans, elle est finaliste des Trophées du Sunset/Sunside en 2008. Elle se fait connaître du public au sein de son quartet et devient une habituée des lieux de la scène jazz parisienne.",
+      content: [
+        "En 2015, « Songs of the Tree : A Tribute to Ahmad Jamal » premier album remarqué, place Cecil L. Recchia parmi les valeurs sûres de la scène jazz actuelle. En 2018, « The Gumbo » son second album, célèbre la diversité des rythmes de la Nouvelle-Orléans. Unanimement salué par la critique ce disque confirme Cecil L. Recchia parmi les artistes vocales incontournables du jazz français. En 2021, Play Blue, dont elle signe tous les textes, reçoit les éloges dithyrambiques des médias.",
+        "Pour son 4e album, Cecil L. Recchia s’attaque à un défi de taille : réinventer des morceaux instrumentaux de Django Reinhardt, en y posant ses propres textes et sa voix. Le tout sans guitare, loin du swing manouche. Un projet aussi original qu’exigeant, mêlant chant, piano, contrebasse, trompette et batterie. Cecil L. Recchia propose ainsi une relecture audacieuse et raffinée, où se croisent l’élégance du jazz vocal, la force rythmique du hard bop et les couleurs festives de la Nouvelle Orléans.",
+        "« Une des grandes vocalistes françaises du jazz. Irrésistible ». FRANCE MUSIQUE"
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Cecil L. Recchia', instrument: 'chant, textes' },
+      { name: 'David Grebil', instrument: 'batterie, arrangements' },
+      { name: 'Noé Huchard', instrument: 'piano' },
+      { name: 'Raphaël Dever', instrument: 'contrebasse' },
+      { name: 'Malo Mazurié', instrument: 'trompette' }
+    ],
+    videos: [
+      { id: 'CaFjNenURck', title: 'Cécile L. Recchia', description: 'sings Django Reinhardt' },
+      { id: 'KWUdDZi1KUM', title: 'Cécile L. Recchia', description: 'Jazz vocal - en concert' },
+      { id: 'DO6RcGTgi3Y', title: 'Cécile L. Recchia', description: 'Une relecture audacieuse de Django Reinhardt' }
+    ],
+    socials: {
+      instagram: '#',
+      facebook: '#',
+      appleMusic: 'https://music.apple.com/fr/artist/cecil-l-recchia/1048751590'
+    }
+  },
+  'knobil-trio': {
+    name: 'Knobil Trio',
+    subtitle: 'Chanson et Jazz pailleté',
+    genre: 'Jazz • Chanson • Punk',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Pierre-Daendliker-Louise.jpg',
+    date: 'LUNDI 27 JUILLET 2026',
+    time: '21H00',
+    venue: 'Cloître de Saint-Génis-des-Fontaines',
+    city: 'Saint-Génis-des-Fontaines',
+    ticketType: 'saint-genis' as const,
+    ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024307',
+    badge: '🎶 CLOÎTRE DE SAINT-GÉNIS-DES-FONTAINES',
+    biography: {
+      intro: "Contrebassiste, chanteuse et compositrice, KNOBIL (Louise Knobil, 26 ans) vous invite à plonger dans son univers où le Jazz, le Punk, les paillettes et la Chanson française fusionnent avec une énergie pétillante et audacieuse.",
+      content: [
+        "Inspirée par des figures emblématiques comme Esperanza Spalding, Charles Mingus et Boris Vian, cette étoile montante du Jazz helvétique transforme son journal intime en une aventure musicale inédite. Polyamour, insomnies chroniques et recettes de pesto se côtoient dans des compositions à la fois personnelles et universelles. Ses mélodies impertinentes mêlant contrebasse et voix, gagnent en intensité grâce au talent de ses fidèles ‘knodisciples’ : Chloé Marsigny à la clarinette basse et aux effets, et Vincent Andreae à la batterie. En 2024, KNOBIL est lauréate du tremplin de Crest Jazz et de la bourse culturelle Leenaards.",
+        "« Un subtil manifeste pour le respect des différences ». JAZZ NEWS"
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Louise Knobil', instrument: 'contrebasse et voix' },
+      { name: 'Chloé Marsigny', instrument: 'clarinette basse' },
+      { name: 'Vincent Andreae', instrument: 'batterie' }
+    ],
+    videos: [
+      { id: 'dEs3sM_ZfCU', title: 'Knobil Trio', description: 'Chanson et Jazz pailleté' },
+      { id: 'FD0w3v1TMoA', title: 'Knobil Trio', description: 'Louise Knobil - extrait' },
+      { id: 'iXRn2ShrQ9Q', title: 'Knobil Trio', description: 'En concert' }
+    ],
+    socials: {
+      instagram: '#',
+      facebook: '#',
+      appleMusic: 'https://music.apple.com/fr/artist/knobil/1670717367'
     }
   }
 }
@@ -253,7 +411,7 @@ const StructuredData = ({ artist }: { artist: any }) => {
       "name": artist.venue,
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Céret",
+        "addressLocality": artist.city || "Céret",
         "addressCountry": "FR"
       }
     },
@@ -263,9 +421,9 @@ const StructuredData = ({ artist }: { artist: any }) => {
       "genre": artist.genre,
       "description": artist.biography.intro,
       "image": artist.image,
-      ...(artist.socials.instagram !== '#' && {
+      ...((artist.socials.instagram !== '#' || artist.socials.facebook !== '#' || artist.socials.appleMusic !== '#') && {
         "sameAs": [
-          artist.socials.instagram,
+          artist.socials.instagram !== '#' ? artist.socials.instagram : undefined,
           artist.socials.facebook !== '#' ? artist.socials.facebook : undefined,
           artist.socials.appleMusic !== '#' ? artist.socials.appleMusic : undefined
         ].filter(Boolean)
@@ -491,19 +649,24 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
             {/* Bouton réservation */}
             <section aria-labelledby="reservation-heading">
               <h2 id="reservation-heading" className="sr-only">Réservation</h2>
-              {artist.ticketType === 'billetterie' ? (
+              {artist.ticketUrl ? (
                 <div className="text-center">
-                  <Link 
-                    href="/billetterie"
+                  {artist.ticketType === 'saint-genis' && (
+                    <p className="text-sm mb-3" style={{ color: '#b87333' }}>
+                      Cloître de Saint-Génis-des-Fontaines • 15&nbsp;€
+                    </p>
+                  )}
+                  <BilletwebPopupButton
+                    ticketUrl={artist.ticketUrl}
                     className="inline-block px-8 py-4 rounded-xl font-bold text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-                    style={{ 
-                      backgroundColor: '#d4af37', 
+                    style={{
+                      backgroundColor: '#d4af37',
                       color: '#1a1a1a'
                     }}
-                    aria-label={`Réserver des places pour ${artist.name}`}
+                    ariaLabel={`Réserver des places pour ${artist.name}`}
                   >
                     🎫 Réserver mes places
-                  </Link>
+                  </BilletwebPopupButton>
                 </div>
               ) : null}
             </section>
@@ -595,7 +758,9 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
             )}
 
             {/* Réseaux sociaux */}
-            <SocialsSection socials={artist.socials} />
+            {artist.socials && (artist.socials.instagram !== '#' || artist.socials.facebook !== '#' || artist.socials.appleMusic !== '#') && (
+              <SocialsSection socials={artist.socials} />
+            )}
 
             {/* Navigation avec breadcrumb */}
             <nav aria-label="Breadcrumb" className="text-center pt-8" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>

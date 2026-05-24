@@ -5,8 +5,12 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, MapPin, Music, Users, Star } from 'lucide-react'
+import BilletwebPopupButton from '@/components/BilletwebPopupButton'
 
 export default function Home() {
+  const now = new Date()
+  const promoActive = now.getTime() <= new Date('2026-06-30T23:59:59').getTime()
+
   return (
     <>
       <div className="min-h-screen">
@@ -39,7 +43,7 @@ export default function Home() {
                 </p>
                 
                 <p className="text-sm sm:text-base mb-6 md:mb-8 font-medium" style={{ color: '#d4af37' }}>
-                  11ème édition • Programmation en cours !
+                  11ème édition • Hommage à Miles Davis &amp; John Coltrane
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
@@ -148,24 +152,20 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Tarif promo */}
-                  <div className="rounded-xl p-6 mb-6" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '2px solid rgba(212, 175, 55, 0.3)' }}>
-                    <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif promo du 10 mars au 15 avril</p>
-                    <div className="flex items-center gap-4">
-                      <span className="text-3xl font-bold" style={{ color: '#d4af37' }}>17€</span>
-                      <span className="text-xl line-through" style={{ color: '#f7f3e9', opacity: 0.7 }}>22€</span>
-                      <span className="px-3 py-1 rounded-full text-sm font-semibold" style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}>-23%</span>
-                    </div>
+                  {/* Tarif */}
+                  <div className="rounded-xl p-6 mb-6" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
+                    <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif</p>
+                    <span className="text-3xl font-bold" style={{ color: '#d4af37' }}>22 €</span>
                   </div>
 
-                  {/* LINK VERS BILLETTERIE */}
-                  <Link
-                    href="/billetterie"
+                  {/* LIEN BILLET LADYVA */}
+                  <BilletwebPopupButton
+                    ticketUrl="https://www.billetweb.fr/jazz-en-tech&quick=6876952"
                     className="inline-block px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl"
                     style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
                   >
-                    Réserver ma place
-                  </Link>
+                    🎫 Réserver ma place
+                  </BilletwebPopupButton>
                 </div>
               </div>
 
@@ -266,89 +266,96 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Section dates importantes */}
-          <section className="py-12 md:py-16 relative overflow-hidden" aria-labelledby="dates-heading">
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <div className="absolute top-10 left-10 w-20 h-20 md:w-32 md:h-32 border-2 rounded-full animate-spin-slow" style={{ borderColor: '#d4af37' }}></div>
-              <div className="absolute bottom-20 right-20 w-16 h-16 md:w-24 md:h-24 border-2 rounded-full animate-spin-slow delay-1000" style={{ borderColor: '#b87333' }}></div>
-              <div className="absolute top-1/2 left-1/3 w-12 h-12 md:w-20 md:h-20 border-2 rounded-full animate-spin-slow delay-500" style={{ borderColor: '#d4af37' }}></div>
-            </div>
-            
-            <div className="container mx-auto px-4 relative z-10">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 id="dates-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white">
-                  Les rendez-vous de l&#39;été 2026
+          {/* Section programmation */}
+          <section className="py-12 md:py-16" aria-labelledby="dates-heading">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-10">
+                <h2 id="dates-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-white">
+                  La programmation 2026
                 </h2>
                 <p className="text-sm sm:text-base max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
-                  🎷 D&#39;autres artistes et concerts seront annoncés prochainement !
+                  Une 11ème édition en hommage au centenaire de la naissance de Miles Davis et de John Coltrane.
                 </p>
               </div>
-              
-              <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
-                {/* Saint-Génis */}
-                <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
-                  background: 'rgba(26, 26, 26, 0.7)', 
-                  border: '2px solid rgba(212, 175, 55, 0.4)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  <div className="relative mb-4 md:mb-6">
-                    <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }} aria-hidden="true"></div>
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#d4af37' }}>
-                      <Calendar className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" style={{ color: '#1a1a1a' }} aria-hidden="true" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3 text-white">
-                    <time dateTime="2026-07-26/2026-07-27">26-27 Juillet</time>
-                  </h3>
-                  <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base text-white">Saint-Génis-des-Fontaines</p>
-                  <div className="text-xs sm:text-sm p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', color: '#f7f3e9' }}>
-                    <p className="font-semibold">Programme complet du festival</p>
-                    <p className="mt-1" style={{ color: '#d4af37' }}>dévoilé prochainement !</p>
-                  </div>
-                </article>
-                
-                {/* Céret */}
-                <article className="rounded-2xl p-6 md:p-8 shadow-2xl text-center transform hover:-translate-y-3 transition-all duration-300 hover:shadow-xl" style={{ 
-                  background: 'rgba(26, 26, 26, 0.7)', 
-                  border: '2px solid rgba(212, 175, 55, 0.4)',
-                  backdropFilter: 'blur(10px)'
-                }}>
-                  <div className="relative mb-4 md:mb-6">
-                    <div className="absolute inset-0 rounded-full blur-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.3)' }} aria-hidden="true"></div>
-                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto rounded-full flex items-center justify-center" style={{ backgroundColor: '#722f37' }}>
-                      <MapPin className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" aria-hidden="true" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-3 text-white">
-                    <time dateTime="2026-08-05/2026-08-08">5-6-7-8 Août</time>
-                  </h3>
-                  <p className="mb-3 md:mb-4 font-semibold text-sm sm:text-base text-white">Céret</p>
-                  <div className="text-xs sm:text-sm space-y-2">
-                    <div className="p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
-                      <p className="font-bold text-white">Mercredi 5 août • 21h</p>
-                      <p style={{ color: '#d4af37' }}>Erik Truffaz &amp; Antonio Lizana</p>
-                      <p className="text-xs mt-1" style={{ color: '#f7f3e9' }}>&quot;New Sketches of Spain&quot;</p>
-                    </div>
-                    <div className="p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
-                      <p className="font-bold text-white">Vendredi 7 août • 21h</p>
-                      <p style={{ color: '#d4af37' }}>Ladyva &amp; Barcelona Big Blues Band</p>
-                      <p className="text-xs mt-1" style={{ color: '#f7f3e9' }}>Boogie-woogie explosif !</p>
-                    </div>
-                    <div className="p-2 rounded-lg text-xs" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', color: '#f7f3e9' }}>
-                      + autres concerts à venir
-                    </div>
-                  </div>
-                </article>
+
+              {/* Céret */}
+              <div className="max-w-4xl mx-auto mb-10">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+                  <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
+                  <h3 className="text-xl font-bold text-white">Céret</h3>
+                  <span className="text-sm" style={{ color: '#b87333' }}>5 au 8 août • Place de la République</span>
+                </div>
+                <div className="space-y-3">
+                  {([
+                    { date: 'Mer. 5 août', name: 'Erik Truffaz & Antonio Lizana', sub: '« New Sketches of Spain »', slug: 'erik-truffaz', price: '25 €' },
+                    { date: 'Jeu. 6 août', name: 'Dal Sasso Big Band', sub: 'Africa Brass Revisited', slug: 'dal-sasso', price: '22 €', promo: '18 €' },
+                    { date: 'Ven. 7 août', name: 'Ladyva & Barcelona Big Blues Band', sub: 'Une association explosive !', slug: 'ladyva', price: '22 €' },
+                    { date: 'Sam. 8 août', name: 'Akpé Motion', sub: '« Électric Miles »', slug: 'akpe-motion', price: '22 €', promo: '18 €' },
+                  ] as Array<{ date: string; name: string; sub: string; slug: string; price: string; promo?: string }>).map((c, i) => (
+                    <Link
+                      key={i}
+                      href={`/artistes/${c.slug}`}
+                      className="flex items-center justify-between gap-4 p-4 rounded-xl transition-colors hover:bg-white/5"
+                      style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}
+                    >
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold" style={{ color: '#d4af37' }}>{c.date} • 21h</p>
+                        <p className="font-bold text-white truncate">{c.name}</p>
+                        <p className="text-sm truncate" style={{ color: '#f7f3e9' }}>{c.sub}</p>
+                      </div>
+                      <div className="text-right shrink-0">
+                        {c.promo && promoActive ? (
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{c.promo}</span>
+                            <span className="text-sm line-through" style={{ color: '#f7f3e9', opacity: 0.6 }}>{c.price}</span>
+                          </div>
+                        ) : (
+                          <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{c.price}</span>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <div className="mt-3 p-3 rounded-xl text-sm" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', color: '#f7f3e9' }}>
+                  Pass Céret : 2 concerts 40 € • 3 concerts 55 € • 4 concerts 65 €
+                </div>
               </div>
-              
-              <div className="text-center mt-8 md:mt-12">
-                <Link 
+
+              {/* Saint-Génis */}
+              <div className="max-w-4xl mx-auto mb-10">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
+                  <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
+                  <h3 className="text-xl font-bold text-white">Saint-Génis-des-Fontaines</h3>
+                  <span className="text-sm" style={{ color: '#b87333' }}>26 & 27 juillet • Cloître</span>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    { date: 'Dim. 26 juillet', name: 'Cécile L. Recchia', sub: 'sings Django Reinhardt', slug: 'cecile-recchia', price: '15 €' },
+                    { date: 'Lun. 27 juillet', name: 'Knobil Trio', sub: 'Chanson et Jazz pailleté', slug: 'knobil-trio', price: '15 €' },
+                  ].map((c, i) => (
+                    <Link
+                      key={i}
+                      href={`/artistes/${c.slug}`}
+                      className="flex items-center justify-between gap-4 p-4 rounded-xl transition-colors hover:bg-white/5"
+                      style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.2)' }}
+                    >
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold" style={{ color: '#d4af37' }}>{c.date} • 21h</p>
+                        <p className="font-bold text-white truncate">{c.name}</p>
+                        <p className="text-sm truncate" style={{ color: '#f7f3e9' }}>{c.sub}</p>
+                      </div>
+                      <span className="text-lg font-bold shrink-0" style={{ color: '#d4af37' }}>{c.price}</span>
+                    </Link>
+                  ))}
+                </div>
+                <p className="mt-3 text-sm" style={{ color: '#b87333' }}>Concerts à 15 € — billetterie à venir.</p>
+              </div>
+
+              <div className="text-center">
+                <Link
                   href="/billetterie"
                   className="inline-block px-4 sm:px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
-                  style={{ 
-                    backgroundColor: '#d4af37', 
-                    color: '#1a1a1a'
-                  }}
+                  style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
                 >
                   Réserver mes places
                 </Link>
@@ -434,7 +441,7 @@ export default function Home() {
                 Prêt pour cette 11ème édition ?
               </h2>
               <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto" style={{ color: '#f7f3e9' }}>
-                Réservez vos places dès maintenant pour Ladyva & Barcelona Big Blues Band !
+                Réservez vos places dès maintenant pour cette 11ème édition exceptionnelle !
               </p>
               <Link 
                 href="/billetterie"

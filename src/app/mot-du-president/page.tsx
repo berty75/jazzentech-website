@@ -257,12 +257,14 @@ export default function MotDuPresident() {
                       <Calendar className="w-4 h-4 text-jazz-gold" />
                       Programme 2026
                     </h3>
-                    <div className="space-y-3 text-sm">
+                    <div className="space-y-3 text-sm max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                       {[
-                        { date: 'Mer. 5 août', titre: 'Eric Truffaz & Antonio Lizana', desc: 'Hommage Miles Davis — Sketches of Spain' },
-                        { date: 'Jeu. 6 août', titre: 'Big Band Dal Sasso & Sophie Alour', desc: 'Hommage John Coltrane — Africa Brass' },
-                        { date: 'Ven. 7 août', titre: 'Ladyva & Barcelona Big Band Blues', desc: 'Boogie-Woogie & grands standards' },
-                        { date: 'Sam. 8 août', titre: 'Soirée de clôture', desc: 'Programme en cours de finalisation' },
+                        { date: 'Dim. 26 juil.', titre: 'Cécile L. Recchia', desc: 'Saint-Génis · sings Django Reinhardt' },
+                        { date: 'Lun. 27 juil.', titre: 'Knobil Trio', desc: 'Saint-Génis · Chanson et Jazz pailleté' },
+                        { date: 'Mer. 5 août', titre: 'Erik Truffaz & Antonio Lizana', desc: 'Hommage Miles Davis — New Sketches of Spain' },
+                        { date: 'Jeu. 6 août', titre: 'Dal Sasso Big Band', desc: 'Hommage John Coltrane — Africa Brass Revisited' },
+                        { date: 'Ven. 7 août', titre: 'Ladyva & Barcelona Big Blues Band', desc: 'Boogie-Woogie & grands standards' },
+                        { date: 'Sam. 8 août', titre: 'Akpé Motion', desc: 'Hommage Miles Davis — « Électric Miles »' },
                       ].map((c, i) => (
                         <div key={i} className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
                           <p className="font-bold text-jazz-gold text-xs">{c.date} — 21h</p>

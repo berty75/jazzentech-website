@@ -5,45 +5,6 @@ import { Calendar, MapPin, Clock, Music, Ticket, ArrowRight } from 'lucide-react
 import Link from 'next/link'
 import Image from 'next/image'
 
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  
-  useEffect(() => {
-    const festivalStart = new Date('2026-08-05T00:00:00')
-    const timer = setInterval(() => {
-      const now = new Date()
-      const difference = festivalStart.getTime() - now.getTime()
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        })
-      }
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
-  
-  return (
-    <div className="flex justify-center gap-2 md:gap-4">
-      {[
-        { value: timeLeft.days, label: 'jours' },
-        { value: timeLeft.hours, label: 'heures' },
-        { value: timeLeft.minutes, label: 'min' },
-        { value: timeLeft.seconds, label: 'sec' }
-      ].map((item, i) => (
-        <div key={i} className="text-center">
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl flex items-center justify-center text-lg md:text-2xl font-bold shadow-lg" style={{ backgroundColor: 'rgba(114, 47, 55, 0.6)', color: '#d4af37', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-            {item.value}
-          </div>
-          <span className="text-xs mt-1 block" style={{ color: '#b87333' }}>{item.label}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 export default function Programmation() {
   const [now, setNow] = useState(new Date())
 
@@ -52,8 +13,12 @@ export default function Programmation() {
     return () => clearInterval(timer)
   }, [])
 
-  const promoEnd = new Date('2026-04-15T23:59:59')
-  const isPromoActive = now <= promoEnd
+  const isPromoActive = (concert: { promoPrice?: string | null; promoStart?: string; promoEnd?: string }) =>
+    !!concert.promoPrice &&
+    !!concert.promoStart &&
+    !!concert.promoEnd &&
+    now >= new Date(concert.promoStart) &&
+    now <= new Date(concert.promoEnd)
 
   const concerts = [
     {
@@ -62,12 +27,29 @@ export default function Programmation() {
       description: 'Hommage à Miles Davis pour les 100 ans de sa naissance',
       date: 'Mercredi 5 août',
       time: '21h',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto:subject,w_600,h_450,f_auto,q_auto/erik_truffaz_antonio_lizana_jazz.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_1200,h_900,f_auto,q_auto/erik_truffaz_antonio_lizana_jazz.jpg',
       badge: 'JAZZ / FLAMENCO',
       badgeColor: '#722f37',
-      slug: 'erik-truffaz',
+      slug: 'erik-truffaz', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6796635',
       price: '25€',
-      promoPrice: null
+      promoPrice: null as string | null,
+      promoStart: undefined as string | undefined,
+      promoEnd: undefined as string | undefined
+    },
+    {
+      name: 'Dal Sasso Big Band',
+      subtitle: 'Africa Brass Revisited',
+      description: 'Hommage à John Coltrane pour les 100 ans de sa naissance',
+      date: 'Jeudi 6 août',
+      time: '21h',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_1200,h_900,f_auto,q_auto/Dal-Sasso-groupe.jpg',
+      badge: 'BIG BAND',
+      badgeColor: '#722f37',
+      slug: 'dal-sasso', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024291',
+      price: '22€',
+      promoPrice: '18€' as string | null,
+      promoStart: '2026-01-01T00:00:00' as string | undefined,
+      promoEnd: '2026-06-30T23:59:59' as string | undefined
     },
     {
       name: 'Ladyva & Barcelona Big Blues Band',
@@ -75,12 +57,29 @@ export default function Programmation() {
       description: 'Rythme et envie de danser garantis !',
       date: 'Vendredi 7 août',
       time: '21h',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto:subject,w_600,h_450,f_auto,q_auto/Ladyva.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_1200,h_900,f_auto,q_auto/Ladyva.jpg',
       badge: 'BOOGIE-WOOGIE',
       badgeColor: '#d4af37',
-      slug: 'ladyva',
+      slug: 'ladyva', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6876952',
       price: '22€',
-      promoPrice: '17€'
+      promoPrice: null as string | null,
+      promoStart: undefined as string | undefined,
+      promoEnd: undefined as string | undefined
+    },
+    {
+      name: 'Akpé Motion',
+      subtitle: '« Électric Miles »',
+      description: 'Hommage à Miles Davis pour les 100 ans de sa naissance',
+      date: 'Samedi 8 août',
+      time: '21h',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_1200,h_900,f_auto,q_auto/Alain-Brunet.jpg',
+      badge: 'JAZZ ROCK',
+      badgeColor: '#722f37',
+      slug: 'akpe-motion', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024288',
+      price: '22€',
+      promoPrice: '18€' as string | null,
+      promoStart: '2026-01-01T00:00:00' as string | undefined,
+      promoEnd: '2026-06-30T23:59:59' as string | undefined
     }
   ]
 
@@ -113,95 +112,55 @@ export default function Programmation() {
               <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
               <h2 className="text-2xl md:text-3xl font-bold text-white">Céret</h2>
             </div>
-            <p className="text-base" style={{ color: '#f7f3e9' }}>5 & 7 Août 2026 • Place de la République</p>
+            <p className="text-base" style={{ color: '#f7f3e9' }}>5, 6, 7 & 8 Août 2026 • Place de la République</p>
           </div>
 
           {/* Grid des cards */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {concerts.map((concert, index) => (
-              <article 
+              <Link
                 key={index}
-                className="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                style={{ border: '2px solid rgba(212, 175, 55, 0.4)', backgroundColor: 'rgba(26, 26, 26, 0.5)' }}
+                href={`/artistes/${concert.slug}`}
+                className="group flex flex-col rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                style={{ border: '1px solid rgba(212, 175, 55, 0.35)', backgroundColor: '#722f37' }}
               >
-                {/* Image en haut */}
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={concert.image}
-                    alt={concert.name}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Badge genre */}
-                  <div className="absolute top-4 left-4">
-                    <span 
-                      className="px-3 py-1.5 rounded-full text-xs font-bold shadow-lg"
-                      style={{ 
-                        backgroundColor: concert.badgeColor, 
-                        color: concert.badgeColor === '#d4af37' ? '#1a1a1a' : '#f7f3e9' 
-                      }}
-                    >
+                <div className="relative aspect-square">
+                  <Image src={concert.image} alt={concert.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 rounded-full text-[11px] font-bold" style={{ backgroundColor: concert.badgeColor, color: concert.badgeColor === '#d4af37' ? '#1a1a1a' : '#f7f3e9' }}>
                       {concert.badge}
                     </span>
                   </div>
-                  {/* Badge promo */}
-                  {concert.promoPrice && isPromoActive && (
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse" style={{ backgroundColor: '#22c55e', color: '#fff' }}>
-                        -23%
-                      </span>
+                  {isPromoActive(concert) && (
+                    <div className="absolute top-3 right-3">
+                      <span className="px-2.5 py-1 rounded-full text-[11px] font-bold" style={{ backgroundColor: '#22c55e', color: '#fff' }}>PROMO</span>
                     </div>
                   )}
                 </div>
-
-                {/* Infos en bas */}
-                <div className="p-6" style={{ backgroundColor: 'rgba(114, 47, 55, 0.85)', backdropFilter: 'blur(10px)' }}>
-                  <h3 className="text-xl font-bold text-white mb-1">{concert.name}</h3>
-                  <p className="text-sm mb-2" style={{ color: '#d4af37' }}>{concert.subtitle}</p>
-                  <p className="text-sm mb-4" style={{ color: '#f7f3e9' }}>{concert.description}</p>
-                  
-                  <div className="flex items-center gap-4 mb-4 text-sm" style={{ color: '#f7f3e9' }}>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" style={{ color: '#d4af37' }} />
-                      {concert.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" style={{ color: '#d4af37' }} />
-                      {concert.time}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.4)' }}>
-                    <div className="flex items-center gap-2">
-                      <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
-                      {concert.promoPrice && isPromoActive ? (
+                <div className="p-4 flex flex-col flex-1">
+                  <h3 className="text-base font-bold text-white leading-tight min-h-[2.5rem] line-clamp-2">{concert.name}</h3>
+                  <p className="text-xs mb-2" style={{ color: '#d4af37' }}>{concert.subtitle}</p>
+                  <p className="text-xs mb-3 flex items-center gap-1.5" style={{ color: '#f7f3e9' }}>
+                    <Calendar className="w-3.5 h-3.5" style={{ color: '#d4af37' }} />
+                    {concert.date} · {concert.time}
+                  </p>
+                  <div className="flex items-center justify-between pt-3 mt-auto" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.35)' }}>
+                    <div className="flex items-baseline gap-1.5">
+                      {isPromoActive(concert) ? (
                         <>
-                          <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>{concert.promoPrice}</span>
-                          <span className="text-sm line-through" style={{ color: '#f7f3e9', opacity: 0.6 }}>{concert.price}</span>
+                          <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{concert.promoPrice}</span>
+                          <span className="text-xs line-through" style={{ color: '#f7f3e9', opacity: 0.6 }}>{concert.price}</span>
                         </>
                       ) : (
-                        <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>{concert.price}</span>
+                        <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{concert.price}</span>
                       )}
                     </div>
-                    <div className="flex gap-2">
-                      <Link 
-                        href="/billetterie" 
-                        className="px-4 py-2 rounded-lg font-bold text-sm transition-all hover:scale-105"
-                        style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
-                      >
-                        Réserver
-                      </Link>
-                      <Link 
-                        href={`/artistes/${concert.slug}`}
-                        className="px-3 py-2 rounded-lg text-sm font-medium border transition-all hover:scale-105"
-                        style={{ borderColor: '#d4af37', color: '#d4af37' }}
-                      >
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </div>
+                    <span className="inline-flex items-center gap-1 text-sm font-medium transition-all group-hover:gap-2" style={{ color: '#d4af37' }}>
+                      Détails <ArrowRight className="w-4 h-4" />
+                    </span>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
 
@@ -220,20 +179,65 @@ export default function Programmation() {
                 <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
                 <h2 className="text-2xl md:text-3xl font-bold text-white">Saint-Génis-des-Fontaines</h2>
               </div>
-              <p className="text-base" style={{ color: '#f7f3e9' }}>Juillet 2026 • Cloître</p>
+              <p className="text-base" style={{ color: '#f7f3e9' }}>26 & 27 Juillet 2026 • Cloître</p>
             </div>
-            <div className="rounded-2xl p-8 text-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '2px dashed rgba(212, 175, 55, 0.3)' }}>
-              <Music className="w-12 h-12 mx-auto mb-3" style={{ color: '#d4af37' }} />
-              <p className="font-bold text-lg text-white">Programme à venir</p>
-              <p className="text-sm mt-2" style={{ color: '#b87333' }}>Les artistes seront annoncés prochainement</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-xl mx-auto">
+              {[
+                {
+                  name: 'Cécile L. Recchia',
+                  subtitle: 'sings Django Reinhardt',
+                  date: 'Dimanche 26 juillet',
+                  time: '21h',
+                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_1200,h_900,f_auto,q_auto/Cecil-L-Recchia.jpg',
+                  badge: 'JAZZ VOCAL',
+                  slug: 'cecile-recchia',
+                  price: '15€'
+                },
+                {
+                  name: 'Knobil Trio',
+                  subtitle: 'Chanson et Jazz pailleté',
+                  date: 'Lundi 27 juillet',
+                  time: '21h',
+                  image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_1200,h_900,f_auto,q_auto/Pierre-Daendliker-Louise.jpg',
+                  badge: 'JAZZ / CHANSON',
+                  slug: 'knobil-trio',
+                  price: '15€'
+                }
+              ].map((concert, index) => (
+                <Link
+                  key={index}
+                  href={`/artistes/${concert.slug}`}
+                  className="group flex flex-col rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                  style={{ border: '1px solid rgba(212, 175, 55, 0.35)', backgroundColor: '#722f37' }}
+                >
+                  <div className="relative aspect-square">
+                    <Image src={concert.image} alt={concert.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-full text-[11px] font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>{concert.badge}</span>
+                    </div>
+                  </div>
+                  <div className="p-4 flex flex-col flex-1">
+                    <h3 className="text-base font-bold text-white leading-tight min-h-[2.5rem] line-clamp-2">{concert.name}</h3>
+                    <p className="text-xs mb-2" style={{ color: '#d4af37' }}>{concert.subtitle}</p>
+                    <p className="text-xs mb-3 flex items-center gap-1.5" style={{ color: '#f7f3e9' }}>
+                      <Calendar className="w-3.5 h-3.5" style={{ color: '#d4af37' }} />
+                      {concert.date} · {concert.time}
+                    </p>
+                    <div className="flex items-center justify-between pt-3 mt-auto" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.35)' }}>
+                      <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{concert.price}</span>
+                      <span className="inline-flex items-center gap-1 text-sm font-medium transition-all group-hover:gap-2" style={{ color: '#d4af37' }}>Détails <ArrowRight className="w-4 h-4" /></span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
+
+            <p className="text-center text-sm mt-4" style={{ color: '#b87333' }}>
+              Concerts à 15&nbsp;€ — pas de pass pour Saint-Génis-des-Fontaines
+            </p>
           </section>
 
-          {/* Countdown */}
-          <section className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-            <h3 className="text-center text-xl font-bold mb-6 text-white">⏰ Le festival approche !</h3>
-            <CountdownTimer />
-          </section>
 
           {/* Infos pratiques */}
           <section className="rounded-2xl p-6" style={{ border: '1px solid rgba(212, 175, 55, 0.2)', backgroundColor: 'rgba(247, 243, 233, 0.05)' }}>

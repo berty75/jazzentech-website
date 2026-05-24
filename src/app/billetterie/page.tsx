@@ -1,9 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Calendar, MapPin, Clock, Ticket, Music, Headphones, ExternalLink, ArrowRight } from 'lucide-react'
+import { MapPin, Ticket, Music, Headphones, ExternalLink, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import BilletwebPopupButton from '@/components/BilletwebPopupButton'
 
 function BilletwebWidget() {
   useEffect(() => {
@@ -20,8 +21,8 @@ function BilletwebWidget() {
 
   return (
     <div className="billetweb-container">
-      <a 
-        title="Vente de billets en ligne" 
+      <a
+        title="Vente de billets en ligne"
         href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
         className="shop_frame hidden"
         target="_blank"
@@ -85,8 +86,12 @@ export default function Billetterie() {
     return () => clearInterval(timer)
   }, [])
 
-  const promoEnd = new Date('2026-04-15T23:59:59')
-  const isPromoActive = now <= promoEnd
+  const isPromoActive = (concert: { promoPrice?: string | null; promoStart?: string; promoEnd?: string }) =>
+    !!concert.promoPrice &&
+    !!concert.promoStart &&
+    !!concert.promoEnd &&
+    now >= new Date(concert.promoStart) &&
+    now <= new Date(concert.promoEnd)
 
   const concerts = [
     {
@@ -94,24 +99,56 @@ export default function Billetterie() {
       subtitle: '"New Sketches of Spain"',
       date: 'Mercredi 5 août',
       time: '21h',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto:subject,w_600,h_450,f_auto,q_auto/erik_truffaz_antonio_lizana_jazz.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_600,h_450,f_auto,q_auto/erik_truffaz_antonio_lizana_jazz.jpg',
       badge: 'JAZZ / FLAMENCO',
       badgeColor: '#722f37',
-      slug: 'erik-truffaz',
+      slug: 'erik-truffaz', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6796635',
       price: '25€',
-      promoPrice: null
+      promoPrice: null as string | null,
+      promoStart: undefined as string | undefined,
+      promoEnd: undefined as string | undefined
+    },
+    {
+      name: 'Dal Sasso Big Band',
+      subtitle: 'Africa Brass Revisited',
+      date: 'Jeudi 6 août',
+      time: '21h',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_600,h_450,f_auto,q_auto/Dal-Sasso-groupe.jpg',
+      badge: 'BIG BAND',
+      badgeColor: '#722f37',
+      slug: 'dal-sasso', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024291',
+      price: '22€',
+      promoPrice: '18€' as string | null,
+      promoStart: '2026-01-01T00:00:00' as string | undefined,
+      promoEnd: '2026-06-30T23:59:59' as string | undefined
     },
     {
       name: 'Ladyva & Barcelona Big Blues Band',
       subtitle: 'Une association explosive !',
       date: 'Vendredi 7 août',
       time: '21h',
-      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto:subject,w_600,h_450,f_auto,q_auto/Ladyva.jpg',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_600,h_450,f_auto,q_auto/Ladyva.jpg',
       badge: 'BOOGIE-WOOGIE',
       badgeColor: '#d4af37',
-      slug: 'ladyva',
+      slug: 'ladyva', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6876952',
       price: '22€',
-      promoPrice: '17€'
+      promoPrice: null as string | null,
+      promoStart: undefined as string | undefined,
+      promoEnd: undefined as string | undefined
+    },
+    {
+      name: 'Akpé Motion',
+      subtitle: '« Électric Miles »',
+      date: 'Samedi 8 août',
+      time: '21h',
+      image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_600,h_450,f_auto,q_auto/Alain-Brunet.jpg',
+      badge: 'JAZZ ROCK',
+      badgeColor: '#722f37',
+      slug: 'akpe-motion', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024288',
+      price: '22€',
+      promoPrice: '18€' as string | null,
+      promoStart: '2026-01-01T00:00:00' as string | undefined,
+      promoEnd: '2026-06-30T23:59:59' as string | undefined
     }
   ]
 
@@ -136,145 +173,158 @@ export default function Billetterie() {
       </section>
 
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="max-w-5xl mx-auto space-y-12">
-          
-          {/* Titre Céret */}
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
-              <h2 className="text-2xl md:text-3xl font-bold text-white">Concerts de Céret</h2>
-            </div>
-            <p className="text-base" style={{ color: '#f7f3e9' }}>5 & 7 Août 2026 • Place de la République</p>
-          </div>
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
-          {/* Grid des cards */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {concerts.map((concert, index) => (
-              <article 
-                key={index}
-                className="rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                style={{ border: '2px solid rgba(212, 175, 55, 0.4)', backgroundColor: 'rgba(26, 26, 26, 0.5)' }}
-              >
-                {/* Image en haut */}
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={concert.image}
-                    alt={concert.name}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Badge genre */}
-                  <div className="absolute top-4 left-4">
-                    <span 
-                      className="px-3 py-1.5 rounded-full text-xs font-bold shadow-lg"
-                      style={{ 
-                        backgroundColor: concert.badgeColor, 
-                        color: concert.badgeColor === '#d4af37' ? '#1a1a1a' : '#f7f3e9' 
-                      }}
-                    >
-                      {concert.badge}
-                    </span>
-                  </div>
-                  {/* Badge promo */}
-                  {concert.promoPrice && isPromoActive && (
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1.5 rounded-full text-xs font-bold shadow-lg animate-pulse" style={{ backgroundColor: '#22c55e', color: '#fff' }}>
-                        -23%
-                      </span>
-                    </div>
-                  )}
-                </div>
+          {/* COLONNE GAUCHE — concerts par lieu */}
+          <div className="lg:col-span-7 space-y-10">
 
-                {/* Infos en bas */}
-                <div className="p-6" style={{ backgroundColor: 'rgba(114, 47, 55, 0.85)', backdropFilter: 'blur(10px)' }}>
-                  <h3 className="text-xl font-bold text-white mb-1">{concert.name}</h3>
-                  <p className="text-sm mb-4" style={{ color: '#d4af37' }}>{concert.subtitle}</p>
-                  
-                  <div className="flex items-center gap-4 mb-4 text-sm" style={{ color: '#f7f3e9' }}>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" style={{ color: '#d4af37' }} />
-                      {concert.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" style={{ color: '#d4af37' }} />
-                      {concert.time}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.4)' }}>
-                    <div className="flex items-center gap-2">
-                      <Ticket className="w-5 h-5" style={{ color: '#d4af37' }} />
-                      {concert.promoPrice && isPromoActive ? (
-                        <>
-                          <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>{concert.promoPrice}</span>
-                          <span className="text-sm line-through" style={{ color: '#f7f3e9', opacity: 0.6 }}>{concert.price}</span>
-                        </>
-                      ) : (
-                        <span className="text-2xl font-bold" style={{ color: '#d4af37' }}>{concert.price}</span>
-                      )}
-                    </div>
-                    <Link 
-                      href={`/artistes/${concert.slug}`}
-                      className="flex items-center gap-1 text-sm font-medium"
-                      style={{ color: '#d4af37' }}
-                    >
-                      Détails <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* Widget Billetweb */}
-          <section>
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-2 text-white">🎟️ Réserver mes billets</h2>
-              <p style={{ color: '#f7f3e9' }}>Paiement sécurisé • Billets par email</p>
-            </div>
-            
-            <div className="rounded-2xl border-2 overflow-hidden shadow-xl" style={{ borderColor: 'rgba(212, 175, 55, 0.4)' }}>
-              <div className="p-4 text-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.7)' }}>
-                <h3 className="font-bold text-white text-lg">Billetterie Jazz en Tech 2026</h3>
-              </div>
-              <div className="p-6" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', maxHeight: '600px', overflowY: 'auto' }}>
-                <BilletwebWidget />
-              </div>
-              <div className="p-4 text-center text-sm border-t" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', color: '#f7f3e9', borderColor: 'rgba(212, 175, 55, 0.2)' }}>
-                🔒 Paiement sécurisé • CB • PayPal • Virement
-              </div>
-            </div>
-            
-            <div className="text-center mt-4">
-              <a href="https://www.billetweb.fr/shop.php?event=jazz-en-tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm" style={{ color: '#d4af37' }}>
-                <ExternalLink className="w-4 h-4 mr-1" />
-                Ouvrir dans un nouvel onglet
-              </a>
-            </div>
-          </section>
-
-          {/* Saint-Génis */}
-          <section>
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-2 mb-4">
+            {/* Céret */}
+            <section>
+              <div className="inline-flex items-center gap-2">
                 <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
-                <h2 className="text-2xl md:text-3xl font-bold text-white">Saint-Génis-des-Fontaines</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-white">Concerts de Céret</h2>
               </div>
-              <p className="text-base" style={{ color: '#f7f3e9' }}>Juillet 2026 • Cloître</p>
-            </div>
-            <div className="rounded-2xl p-8 text-center" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '2px dashed rgba(212, 175, 55, 0.4)' }}>
-              <Music className="w-12 h-12 mx-auto mb-3" style={{ color: '#d4af37' }} />
-              <p className="font-bold text-lg text-white">Programme à venir</p>
-            </div>
-          </section>
+              <p className="text-sm mb-5" style={{ color: '#b87333' }}>5, 6, 7 & 8 août 2026 • Place de la République</p>
 
-          {/* Countdown */}
+              <div className="space-y-3">
+                {concerts.map((concert, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-4 p-3 rounded-xl items-center"
+                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.25)' }}
+                  >
+                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden shrink-0">
+                      <Image src={concert.image} alt={concert.name} fill className="object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#d4af37' }}>{concert.date} • {concert.time}</p>
+                      <Link href={`/artistes/${concert.slug}`} className="font-bold text-white hover:underline block truncate">{concert.name}</Link>
+                      <p className="text-sm truncate mb-2" style={{ color: '#f7f3e9' }}>{concert.subtitle}</p>
+                      <div className="flex items-center justify-between gap-2">
+                        <div>
+                          {isPromoActive(concert) ? (
+                            <span>
+                              <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{concert.promoPrice}</span>{' '}
+                              <span className="text-xs line-through" style={{ color: '#f7f3e9', opacity: 0.6 }}>{concert.price}</span>
+                            </span>
+                          ) : (
+                            <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{concert.price}</span>
+                          )}
+                        </div>
+                        <Link
+                          href={`/artistes/${concert.slug}`}
+                          className="flex items-center gap-1 text-sm font-medium shrink-0 hover:underline"
+                          style={{ color: '#d4af37' }}
+                        >
+                          Détails <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Pass */}
+              <div className="mt-4 p-4 rounded-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.5)', border: '1px solid rgba(212, 175, 55, 0.25)' }}>
+                <p className="font-bold text-white mb-3">🎫 Pass Céret <span className="text-xs font-normal" style={{ color: '#b87333' }}>(concerts de Céret uniquement)</span></p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { label: '2 concerts', price: '40€', url: 'https://www.billetweb.fr/jazz-en-tech&quick=7024309' },
+                    { label: '3 concerts', price: '55€', url: 'https://www.billetweb.fr/jazz-en-tech&quick=7024311' },
+                    { label: '4 concerts', price: '65€', url: 'https://www.billetweb.fr/jazz-en-tech&quick=7024314' }
+                  ].map((pass, i) => (
+                    <BilletwebPopupButton
+                      key={i}
+                      ticketUrl={pass.url}
+                      className="text-sm font-semibold px-3 py-2 rounded-lg transition-all hover:scale-105"
+                      style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', color: '#d4af37', border: '1px solid rgba(212, 175, 55, 0.4)' }}
+                    >
+                      {pass.label} · {pass.price}
+                    </BilletwebPopupButton>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Saint-Génis */}
+            <section>
+              <div className="inline-flex items-center gap-2">
+                <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
+                <h2 className="text-xl md:text-2xl font-bold text-white">Saint-Génis-des-Fontaines</h2>
+              </div>
+              <p className="text-sm mb-5" style={{ color: '#b87333' }}>26 & 27 juillet 2026 • Cloître</p>
+
+              <div className="space-y-3">
+                {[
+                  { name: 'Cécile L. Recchia', subtitle: 'sings Django Reinhardt', date: 'Dim. 26 juillet', time: '21h', price: '15€', slug: 'cecile-recchia', image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_400,h_400,f_auto,q_auto/Cecil-L-Recchia.jpg', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024303' },
+                  { name: 'Knobil Trio', subtitle: 'Chanson et Jazz pailleté', date: 'Lun. 27 juillet', time: '21h', price: '15€', slug: 'knobil-trio', image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_400,h_400,f_auto,q_auto/Pierre-Daendliker-Louise.jpg', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024307' }
+                ].map((concert, index) => (
+                  <div
+                    key={index}
+                    className="flex gap-4 p-3 rounded-xl items-center"
+                    style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.25)' }}
+                  >
+                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-lg overflow-hidden shrink-0">
+                      <Image src={concert.image} alt={concert.name} fill className="object-cover" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#d4af37' }}>{concert.date} • {concert.time}</p>
+                      <Link href={`/artistes/${concert.slug}`} className="font-bold text-white hover:underline block truncate">{concert.name}</Link>
+                      <p className="text-sm truncate mb-2" style={{ color: '#f7f3e9' }}>{concert.subtitle}</p>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-lg font-bold" style={{ color: '#d4af37' }}>{concert.price}</span>
+                        <Link
+                          href={`/artistes/${concert.slug}`}
+                          className="flex items-center gap-1 text-sm font-medium shrink-0 hover:underline"
+                          style={{ color: '#d4af37' }}
+                        >
+                          Détails <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs mt-3" style={{ color: '#b87333' }}>Concerts à 15 € — pas de pass pour Saint-Génis.</p>
+            </section>
+
+          </div>
+
+          {/* COLONNE DROITE — widget Billetweb */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <div className="rounded-2xl border-2 overflow-hidden shadow-xl" style={{ borderColor: 'rgba(212, 175, 55, 0.4)' }}>
+                <div className="p-4 text-center" style={{ backgroundColor: 'rgba(114, 47, 55, 0.7)' }}>
+                  <h3 className="font-bold text-white text-lg">🎟️ Réserver mes billets</h3>
+                  <p className="text-xs mt-1" style={{ color: '#f7f3e9' }}>Paiement sécurisé • Billets par email</p>
+                </div>
+                <div className="bg-white p-3">
+                  <BilletwebWidget />
+                </div>
+                <div className="p-3 text-center text-xs border-t" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', color: '#f7f3e9', borderColor: 'rgba(212, 175, 55, 0.2)' }}>
+                  🔒 CB • PayPal • Virement
+                </div>
+              </div>
+              <div className="text-center mt-3">
+                <a href="https://www.billetweb.fr/shop.php?event=jazz-en-tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm hover:underline" style={{ color: '#d4af37' }}>
+                  <ExternalLink className="w-4 h-4 mr-1" />
+                  Ouvrir dans un nouvel onglet
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Compte à rebours + service client */}
+      <div className="container mx-auto px-4 pb-12 md:pb-16">
+        <div className="max-w-5xl mx-auto space-y-8">
           <section className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
             <h3 className="text-center text-xl font-bold mb-6 text-white">⏰ Le festival approche !</h3>
             <CountdownTimer />
           </section>
 
-          {/* Service client */}
           <section className="rounded-2xl p-6" style={{ border: '1px solid rgba(212, 175, 55, 0.2)', backgroundColor: 'rgba(26, 26, 26, 0.3)' }}>
             <h3 className="font-bold mb-6 text-center text-lg text-white">🎧 Besoin d'aide ?</h3>
             <div className="grid sm:grid-cols-2 gap-6 max-w-xl mx-auto">
@@ -286,7 +336,7 @@ export default function Billetterie() {
               <div className="text-center p-4 rounded-xl" style={{ backgroundColor: 'rgba(114, 47, 55, 0.2)' }}>
                 <Music className="w-8 h-8 mx-auto mb-2" style={{ color: '#d4af37' }} />
                 <p className="font-semibold text-white">Service client</p>
-                <p className="text-sm font-bold" style={{ color: '#d4af37' }}>+33 6 37 58 18 86</p>
+                <p className="text-sm font-bold" style={{ color: '#d4af37' }}>+33 6 01 86 46 72</p>
               </div>
             </div>
           </section>
@@ -295,7 +345,7 @@ export default function Billetterie() {
 
       <style jsx>{`
         .billetweb-container { min-height: 500px; width: 100%; }
-        .billetweb-container iframe { border: none !important; border-radius: 8px; width: 100% !important; min-height: 500px; }
+        .billetweb-container iframe { border: none !important; width: 100% !important; min-height: 500px; }
         .shop_frame.hidden { display: none; }
       `}</style>
     </div>
