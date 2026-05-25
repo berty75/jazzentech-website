@@ -5,7 +5,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, MapPin, Music, Users, Star } from 'lucide-react'
-import BilletwebPopupButton from '@/components/BilletwebPopupButton'
+import CentenaireFan from '@/components/CentenaireFan'
 
 export default function Home() {
   const now = new Date()
@@ -58,9 +58,9 @@ export default function Home() {
                     href="#evenement"
                     className="inline-block border-2 px-4 sm:px-6 md:px-8 py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-center text-sm sm:text-base"
                     style={{ borderColor: '#f7f3e9', color: '#f7f3e9' }}
-                    aria-label="Découvrir le concert événement"
+                    aria-label="Découvrir l'édition centenaire"
                   >
-                    Concert événement
+                    L'édition centenaire
                   </Link>
                 </div>
               </div>
@@ -90,179 +90,20 @@ export default function Home() {
         </header>
 
         <main>
-          {/* Section Concert Événement Ladyva */}
-          <section id="evenement" className="py-16 md:py-24 relative overflow-hidden" aria-labelledby="evenement-heading">
-            {/* Éléments décoratifs */}
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <div className="absolute top-10 left-10 w-32 h-32 rounded-full blur-3xl" style={{ backgroundColor: '#d4af37' }}></div>
-              <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full blur-3xl" style={{ backgroundColor: '#b87333' }}></div>
-            </div>
-
-            <div className="container mx-auto px-4 relative z-10">
-              {/* Badge */}
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', border: '2px solid #d4af37' }}>
-                  <Music className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
-                  <span className="text-sm font-semibold" style={{ color: '#d4af37' }}>BOOGIE-WOOGIE & BIG BAND</span>
-                </div>
+          {/* Section Centenaire 2026 */}
+          <section id="evenement" className="py-16 md:py-24" aria-labelledby="evenement-heading">
+            <div className="container mx-auto px-4">
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: '#d4af37' }}>Édition 2026 · Double centenaire</p>
+                <h2 id="evenement-heading" className="text-3xl md:text-5xl font-bold text-white mb-4">Ils auraient eu 100 ans cette année !</h2>
+                <p className="text-lg" style={{ color: '#f7f3e9' }}>
+                  JAZZ en TECH 2026 célèbre le centenaire de la naissance de{' '}
+                  <span className="font-semibold" style={{ color: '#d4af37' }}>Miles Davis</span> et{' '}
+                  <span className="font-semibold" style={{ color: '#d4af37' }}>John Coltrane</span>.
+                </p>
               </div>
 
-              <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-                {/* Photos */}
-                <div className="relative">
-                  <div className="grid grid-cols-2 gap-4">
-                    <Image
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_600/Ladyva.jpg"
-                      alt="Ladyva au piano"
-                      className="w-full rounded-2xl shadow-2xl"
-                      width={300}
-                      height={400}
-                    />
-                    <Image
-                      src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_600/Barcelona_Big_Blues_Band_mrqfct.jpg"
-                      alt="Barcelona Big Blues Band"
-                      className="w-full rounded-2xl shadow-2xl mt-8"
-                      width={300}
-                      height={400}
-                    />
-                  </div>
-                </div>
-
-                {/* Contenu */}
-                <div className="text-white">
-                  <h2 id="evenement-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
-                    Ladyva & Barcelona Big Blues Band
-                  </h2>
-                  <p className="text-xl sm:text-2xl mb-2" style={{ color: '#d4af37' }}>
-                    Une association explosive !
-                  </p>
-                  <p className="text-base mb-6" style={{ color: '#f7f3e9' }}>
-                    Rythme et envie de danser garantis !
-                  </p>
-
-                  {/* Infos concert */}
-                  <div className="flex flex-wrap gap-4 mb-6">
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
-                      <Calendar className="w-5 h-5" style={{ color: '#d4af37' }} />
-                      <span>Vendredi 7 août 2026</span>
-                    </div>
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
-                      <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} />
-                      <span>Céret • 21h</span>
-                    </div>
-                  </div>
-
-                  {/* Tarif */}
-                  <div className="rounded-xl p-6 mb-6" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                    <p className="text-sm mb-2" style={{ color: '#f7f3e9' }}>🎟️ Tarif</p>
-                    <span className="text-3xl font-bold" style={{ color: '#d4af37' }}>22 €</span>
-                  </div>
-
-                  {/* LIEN BILLET LADYVA */}
-                  <BilletwebPopupButton
-                    ticketUrl="https://www.billetweb.fr/jazz-en-tech&quick=6876952"
-                    className="inline-block px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl"
-                    style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
-                  >
-                    🎫 Réserver ma place
-                  </BilletwebPopupButton>
-                </div>
-              </div>
-
-              {/* Description artistes */}
-              <div className="max-w-4xl mx-auto mt-16 grid md:grid-cols-2 gap-8">
-                <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', borderLeft: '4px solid #d4af37', border: '1px solid rgba(212, 175, 55, 0.2)', borderLeftWidth: '4px', borderLeftColor: '#d4af37' }}>
-                  <h3 className="text-xl font-bold mb-3" style={{ color: '#d4af37' }}>Ladyva</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#f7f3e9' }}>
-                    Signée par Universal en 2011, la pianiste et chanteuse LADYVA enchaîne depuis les succès et les récompenses. Le boogie-woogie lui colle à la peau depuis vingt ans désormais. Elle s&#39;est produite dans tous les festivals boogie européens. En 2017, à Londres, elle reçoit le prix de « Best Boogie Woogie Pianist 2017 ».
-                  </p>
-                </div>
-                <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', borderLeft: '4px solid #b87333', border: '1px solid rgba(184, 115, 51, 0.2)', borderLeftWidth: '4px', borderLeftColor: '#b87333' }}>
-                  <h3 className="text-xl font-bold mb-3 text-white">Barcelona Big Blues Band</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#f7f3e9' }}>
-                    Mené par le charismatique contrebassiste Ivan Kovacevic, ce big band est influencé par le rhythm&#39;n blues et le rock&#39;n roll. Un son énergique, capable d&#39;être sauvage et brut avec des arrangements sophistiqués. Il a joué avec Ray Gelato, Mike Sanchez, et se produit désormais partout en Europe.
-                  </p>
-                </div>
-              </div>
-
-              {/* Vidéos */}
-              <div className="max-w-4xl mx-auto mt-12 text-center">
-                <h3 className="text-xl font-bold mb-6 text-white">Découvrir en vidéo</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-full aspect-video rounded-lg overflow-hidden">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/i-IwcEw2Xz8"
-                        title="Got My Mojo Working"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <p className="text-sm" style={{ color: '#f7f3e9' }}>Got My Mojo Working</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-full aspect-video rounded-lg overflow-hidden">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/gyAQ-pC_78Y"
-                        title="Ladyva Stomp (live)"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <p className="text-sm" style={{ color: '#f7f3e9' }}>Ladyva Stomp (live)</p>
-                  </div>
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-full aspect-video rounded-lg overflow-hidden">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/7K4T9l4wZSo"
-                        title="Great Balls of Fire (live)"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <p className="text-sm" style={{ color: '#f7f3e9' }}>Great Balls of Fire (live)</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Distribution */}
-              <div className="max-w-4xl mx-auto mt-12">
-                <h3 className="text-xl font-bold mb-6 text-center text-white">La formation (13 musiciens)</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {[
-                    { name: 'Ladyva', role: 'Piano & voix' },
-                    { name: 'Ivan Kovacevic', role: 'Contrebasse & direction' },
-                    { name: 'Duska Miscevic', role: 'Saxophone alto' },
-                    { name: 'Ignasi Poch', role: 'Saxophone alto' },
-                    { name: 'Nil Mujal', role: 'Saxophone ténor' },
-                    { name: 'Federico Alvares', role: 'Saxophone ténor' },
-                    { name: 'Nuria Vito', role: 'Saxophone baryton' },
-                    { name: 'Jaume Torne', role: 'Trompette' },
-                    { name: 'Victor Verges', role: 'Trompette' },
-                    { name: 'Aram Montagud', role: 'Trombone' },
-                    { name: 'Miguel Berenguer', role: 'Trombone' },
-                    { name: 'Hector Martin Diaz', role: 'Guitare' },
-                    { name: 'Oscar Hita', role: 'Batterie' },
-                  ].map((artist, index) => (
-                    <div key={index} className="p-3 rounded-xl text-center" style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}>
-                      <p className="font-semibold text-white text-sm">{artist.name}</p>
-                      <p className="text-xs mt-1" style={{ color: '#d4af37' }}>{artist.role}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <CentenaireFan />
             </div>
           </section>
 
