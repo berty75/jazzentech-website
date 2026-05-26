@@ -67,7 +67,7 @@ export default function Programmation() {
       promoEnd: undefined as string | undefined
     },
     {
-      name: 'Akpé Motion',
+      name: 'Akpé Motion featuring Karla Harris',
       subtitle: '« Électric Miles »',
       description: 'Hommage à Miles Davis pour les 100 ans de sa naissance',
       date: 'Samedi 8 août',
@@ -185,7 +185,7 @@ export default function Programmation() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-xl mx-auto">
               {[
                 {
-                  name: 'Cécile L. Recchia',
+                  name: 'Cecil L. Recchia Quintet',
                   subtitle: 'sings Django Reinhardt',
                   date: 'Dimanche 26 juillet',
                   time: '21h',

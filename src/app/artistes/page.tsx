@@ -57,7 +57,7 @@ export default function ArtistesIndex() {
       subtitle: 'Une association explosive !'
     },
     {
-      name: 'Akpé Motion',
+      name: 'Akpé Motion featuring Karla Harris',
       slug: 'akpe-motion',
       image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Alain-Brunet.jpg',
       date: '8 août 2026',
@@ -70,7 +70,7 @@ export default function ArtistesIndex() {
       subtitle: '« Électric Miles »'
     },
     {
-      name: 'Cécile L. Recchia',
+      name: 'Cecil L. Recchia Quintet',
       slug: 'cecile-recchia',
       image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Cecil-L-Recchia.jpg',
       date: '26 juillet 2026',

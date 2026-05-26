@@ -35,7 +35,7 @@ const artistsData = {
     ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=6796635',
     badge: '🎺 HOMMAGE À MILES DAVIS • 100 ANS',
     biography: {
-      intro: "Trompettiste de jazz suisse né le 3 avril 1960 à Chêne-Bougeries (canton de Genève), Erik Truffaz a grandi en France, dans le pays de Gex. Il joue de la trompette depuis l'âge de 6 ans. C'est avec l'album « The Dawn » en 1998 qu'il impose un son novateur : un jazz acoustique réinventé à l'aune des rythmiques électroniques.",
+      intro: "Trompettiste de jazz suisse né dans le canton de Genève, Erik Truffaz a grandi en France, dans le pays de Gex. Il joue de la trompette depuis l'âge de 6 ans. C'est avec l'album « The Dawn » en 1998 qu'il impose un son novateur : un jazz acoustique réinventé à l'aune des rythmiques électroniques.",
       content: [
         "Son style mêle jazz, hip-hop et drum'n'bass, ce qui lui vaut d'être régulièrement comparé à Miles Davis pour la sensibilité de son phrasé. Il remporte le Prix du public aux Victoires du Jazz en 2005 et, en 2023, l'Office fédéral de la culture suisse lui décerne le Grand Prix suisse de musique.",
         "Natif de San Fernando (province de Cadix), l'un des berceaux du chant flamenco, Antonio Lizana est l'un des représentants les plus célèbres du nouveau jazz flamenco. Il pratique avec un rare brio le saxophone alto et le chant flamenco. Ses collaborations avec Arturo O'Farrill et Alejandro Sanz lui ont valu deux Latin Grammy Awards.",
@@ -215,10 +215,13 @@ const artistsData = {
     }
   },
   'akpe-motion': {
-    name: 'Akpé Motion',
+    name: 'Akpé Motion featuring Karla Harris',
     subtitle: '« Électric Miles »',
     genre: 'Jazz Rock • World • Trompette',
     image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Alain-Brunet.jpg',
+    secondImage: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Karla-Harris.jpg',
+    imageCaption: 'Alain Brunet',
+    secondImageCaption: 'Karla Harris',
     date: 'SAMEDI 8 AOÛT 2026',
     time: '21H00',
     venue: 'Place de la République, Céret',
@@ -251,7 +254,7 @@ const artistsData = {
     }
   },
   'cecile-recchia': {
-    name: 'Cécile L. Recchia',
+    name: 'Cecil L. Recchia Quintet',
     subtitle: 'sings Django Reinhardt',
     genre: 'Jazz Vocal • Django Reinhardt',
     image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Cecil-L-Recchia.jpg',
@@ -266,7 +269,7 @@ const artistsData = {
       intro: "Chanteuse française aux origines métissées (italo-espagnole et nord-africaine), Cecil L. Recchia étudie le piano classique dès l’âge de 5 ans. Diplômée de la Sorbonne en langue anglaise et littérature américaine, formée au jazz vocal avec Sonia Cat-Berro et au CIM (école jazz et musiques actuelles) pendant trois ans, elle est finaliste des Trophées du Sunset/Sunside en 2008. Elle se fait connaître du public au sein de son quartet et devient une habituée des lieux de la scène jazz parisienne.",
       content: [
         "En 2015, « Songs of the Tree : A Tribute to Ahmad Jamal » premier album remarqué, place Cecil L. Recchia parmi les valeurs sûres de la scène jazz actuelle. En 2018, « The Gumbo » son second album, célèbre la diversité des rythmes de la Nouvelle-Orléans. Unanimement salué par la critique ce disque confirme Cecil L. Recchia parmi les artistes vocales incontournables du jazz français. En 2021, Play Blue, dont elle signe tous les textes, reçoit les éloges dithyrambiques des médias.",
-        "Pour son 4e album, Cecil L. Recchia s’attaque à un défi de taille : réinventer des morceaux instrumentaux de Django Reinhardt, en y posant ses propres textes et sa voix. Le tout sans guitare, loin du swing manouche. Un projet aussi original qu’exigeant, mêlant chant, piano, contrebasse, trompette et batterie. Cecil L. Recchia propose ainsi une relecture audacieuse et raffinée, où se croisent l’élégance du jazz vocal, la force rythmique du hard bop et les couleurs festives de la Nouvelle Orléans.",
+        "Pour son 4e album, Cecil L. Recchia s’attaque à un défi de taille : réinventer des morceaux instrumentaux de Django Reinhardt, en y posant ses propres textes et sa voix. Le tout sans guitare, loin du swing manouche. Un projet aussi original qu’exigeant, mêlant chant, piano, contrebasse, trompette et batterie. Cecil L. Recchia propose ainsi une relecture audacieuse et raffinée, où se croisent l’élégance du jazz vocal, la force rythmique du hard bop et les couleurs festives de la Nouvelle Orléans. Son dernier disque a reçu le « choc » de Jazz Magazine qui récompense les meilleurs CD.",
         "« Une des grandes vocalistes françaises du jazz. Irrésistible ». FRANCE MUSIQUE"
       ]
     },
@@ -279,9 +282,9 @@ const artistsData = {
       { name: 'Malo Mazurié', instrument: 'trompette' }
     ],
     videos: [
-      { id: 'CaFjNenURck', title: 'Cécile L. Recchia', description: 'sings Django Reinhardt' },
-      { id: 'KWUdDZi1KUM', title: 'Cécile L. Recchia', description: 'Jazz vocal - en concert' },
-      { id: 'DO6RcGTgi3Y', title: 'Cécile L. Recchia', description: 'Une relecture audacieuse de Django Reinhardt' }
+      { id: 'CaFjNenURck', title: 'Cecil L. Recchia', description: 'sings Django Reinhardt' },
+      { id: 'KWUdDZi1KUM', title: 'Cecil L. Recchia', description: 'Jazz vocal - en concert' },
+      { id: 'DO6RcGTgi3Y', title: 'Cecil L. Recchia', description: 'Une relecture audacieuse de Django Reinhardt' }
     ],
     socials: {
       instagram: '#',
@@ -566,6 +569,8 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
     notFound()
   }
 
+  const extra = artist as { secondImage?: string; imageCaption?: string; secondImageCaption?: string }
+
   return (
     <>
       <StructuredData artist={artist} />
@@ -610,16 +615,50 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
                 {artist.genre}
               </p>
               
-              {/* Photo circulaire optimisée */}
+              {/* Photo(s) circulaire(s) optimisée(s) */}
               <div className="flex justify-center mb-8">
-                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
-                  <OptimizedImage 
-                    src={artist.image}
-                    alt={`Portrait de ${artist.name}, artiste de ${artist.genre}`}
-                    className="w-full h-full object-cover"
-                    priority={true}
-                  />
-                </div>
+                {extra.secondImage ? (
+                  <div className="flex flex-wrap items-start justify-center gap-6 sm:gap-10">
+                    <figure className="flex flex-col items-center">
+                      <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                        <OptimizedImage
+                          src={artist.image}
+                          alt={`Portrait de ${extra.imageCaption ?? artist.name}`}
+                          className="w-full h-full object-cover"
+                          priority={true}
+                        />
+                      </div>
+                      {extra.imageCaption && (
+                        <figcaption className="mt-3 text-sm font-semibold" style={{ color: '#f7f3e9' }}>
+                          {extra.imageCaption}
+                        </figcaption>
+                      )}
+                    </figure>
+                    <figure className="flex flex-col items-center">
+                      <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                        <OptimizedImage
+                          src={extra.secondImage}
+                          alt={`Portrait de ${extra.secondImageCaption ?? 'invitée'}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      {extra.secondImageCaption && (
+                        <figcaption className="mt-3 text-sm font-semibold" style={{ color: '#f7f3e9' }}>
+                          {extra.secondImageCaption}
+                        </figcaption>
+                      )}
+                    </figure>
+                  </div>
+                ) : (
+                  <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                    <OptimizedImage
+                      src={artist.image}
+                      alt={`Portrait de ${artist.name}, artiste de ${artist.genre}`}
+                      className="w-full h-full object-cover"
+                      priority={true}
+                    />
+                  </div>
+                )}
               </div>
               
               {/* Infos concert */}

@@ -44,7 +44,7 @@ export default function MotDuPresident() {
               <div className="relative">
                 <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mx-auto">
                   <Image
-                    src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/v1757764875/alain-brunet_gb0jx1.jpg"
+                    src="https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/alain-brunet_president.jpg"
                     alt="Alain Brunet, Président de Jazz en Tech"
                     width={320}
                     height={320}
@@ -107,8 +107,8 @@ export default function MotDuPresident() {
                       <p>
                         Le lendemain, jeudi 6 août 21h ce sera autour de John Coltrane né aussi en
                         1926 et hélas trop tôt décédé (1967), géant du jazz s'il en est, d'être célébré à
-                        Céret par le Big Band de Christophe Dal Sasso et la formidable soliste Sophie
-                        Alour dans le rôle si je puis dire, de John Coltrane autour d'une œuvre majeure
+                        Céret par le Big Band de Christophe Dal Sasso et les formidables saxophonistes Sophie
+                        Alour, David El-Malek et Stéphane Guillaume qui incarneront à tour de rôle Coltrane autour d'une œuvre majeure
                         <em> Africa Brass</em> et de quelques autres….
                       </p>
                     </div>
@@ -118,7 +118,7 @@ export default function MotDuPresident() {
                       <p>
                         Vendredi 7 août 21h, la pianiste chanteuse Ladyva entourée des gaillards du
                         Barcelone Big band Blues revisiteront quelques grands standards du jazz dont
-                        notamment des fameux Boogie-Woogie sont Ladyva est l'une des plus grandes
+                        notamment des fameux Boogie-Woogie dont Ladyva est l'une des plus grandes
                         spécialistes au monde. Swing maximum assuré !
                       </p>
                     </div>
@@ -259,12 +259,12 @@ export default function MotDuPresident() {
                     </h3>
                     <div className="space-y-3 text-sm max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                       {[
-                        { date: 'Dim. 26 juil.', titre: 'Cécile L. Recchia', desc: 'Saint-Génis · sings Django Reinhardt' },
+                        { date: 'Dim. 26 juil.', titre: 'Cecil L. Recchia Quintet', desc: 'Saint-Génis · sings Django Reinhardt' },
                         { date: 'Lun. 27 juil.', titre: 'Knobil Trio', desc: 'Saint-Génis · Chanson et Jazz pailleté' },
                         { date: 'Mer. 5 août', titre: 'Erik Truffaz & Antonio Lizana', desc: 'Hommage Miles Davis — New Sketches of Spain' },
                         { date: 'Jeu. 6 août', titre: 'Dal Sasso Big Band', desc: 'Hommage John Coltrane — Africa Brass Revisited' },
                         { date: 'Ven. 7 août', titre: 'Ladyva & Barcelona Big Blues Band', desc: 'Boogie-Woogie & grands standards' },
-                        { date: 'Sam. 8 août', titre: 'Akpé Motion', desc: 'Hommage Miles Davis — « Électric Miles »' },
+                        { date: 'Sam. 8 août', titre: 'Akpé Motion featuring Karla Harris', desc: 'Hommage Miles Davis — « Électric Miles »' },
                       ].map((c, i) => (
                         <div key={i} className="rounded-lg p-3" style={{ backgroundColor: 'rgba(212,175,55,0.07)' }}>
                           <p className="font-bold text-jazz-gold text-xs">{c.date} — 21h</p>

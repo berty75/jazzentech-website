@@ -34,7 +34,7 @@ const items: Item[] = [
     source: 'Radio France',
   },
   {
-    name: 'Akpé Motion',
+    name: 'Akpé Motion featuring Karla Harris',
     slug: 'akpe-motion',
     image:
       'https://res.cloudinary.com/dpgfensnv/image/upload/c_limit,w_900,f_auto,q_auto/akpe-pochette.jpg',

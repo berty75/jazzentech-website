@@ -131,7 +131,7 @@ export default function Home() {
                     { date: 'Mer. 5 août', name: 'Erik Truffaz & Antonio Lizana', sub: '« New Sketches of Spain »', slug: 'erik-truffaz', price: '25 €' },
                     { date: 'Jeu. 6 août', name: 'Dal Sasso Big Band', sub: 'Africa Brass Revisited', slug: 'dal-sasso', price: '22 €', promo: '18 €' },
                     { date: 'Ven. 7 août', name: 'Ladyva & Barcelona Big Blues Band', sub: 'Une association explosive !', slug: 'ladyva', price: '22 €' },
-                    { date: 'Sam. 8 août', name: 'Akpé Motion', sub: '« Électric Miles »', slug: 'akpe-motion', price: '22 €', promo: '18 €' },
+                    { date: 'Sam. 8 août', name: 'Akpé Motion featuring Karla Harris', sub: '« Électric Miles »', slug: 'akpe-motion', price: '22 €', promo: '18 €' },
                   ] as Array<{ date: string; name: string; sub: string; slug: string; price: string; promo?: string }>).map((c, i) => (
                     <Link
                       key={i}
@@ -171,7 +171,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-3">
                   {[
-                    { date: 'Dim. 26 juillet', name: 'Cécile L. Recchia', sub: 'sings Django Reinhardt', slug: 'cecile-recchia', price: '15 €' },
+                    { date: 'Dim. 26 juillet', name: 'Cecil L. Recchia Quintet', sub: 'sings Django Reinhardt', slug: 'cecile-recchia', price: '15 €' },
                     { date: 'Lun. 27 juillet', name: 'Knobil Trio', sub: 'Chanson et Jazz pailleté', slug: 'knobil-trio', price: '15 €' },
                   ].map((c, i) => (
                     <Link

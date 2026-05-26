@@ -166,7 +166,7 @@ export default function PlanSite() {
               <ul className="space-y-3 md:space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                 <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(184,115,51,0.08)' }}>
                   <p className="text-xs font-bold uppercase" style={{ color: '#b87333' }}>Dim. 26 juillet — Saint-Génis</p>
-                  <p className="text-sm font-semibold text-white mt-1">Cécile L. Recchia</p>
+                  <p className="text-sm font-semibold text-white mt-1">Cecil L. Recchia</p>
                   <p className="text-xs text-stone-400 mt-0.5">sings Django Reinhardt</p>
                 </li>
                 <li className="rounded-lg p-3" style={{ backgroundColor: 'rgba(184,115,51,0.08)' }}>
@@ -345,7 +345,7 @@ export default function PlanSite() {
                 >
                   <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#f7f3e9' }}>Saint-Génis-des-Fontaines</h3>
                   <p className="text-xs md:text-sm text-stone-300 mb-1">Cloître historique • 26 & 27 juillet 2026</p>
-                  <p className="text-xs text-stone-400">Cécile L. Recchia • Knobil Trio</p>
+                  <p className="text-xs text-stone-400">Cecil L. Recchia • Knobil Trio</p>
                   <div className="flex items-center text-xs text-stone-400 mt-2">
                     <MapPin className="w-3 h-3 mr-1" />
                     <span>Pyrénées-Orientales (66)</span>
@@ -424,7 +424,7 @@ export default function PlanSite() {
               <div className="space-y-3 md:space-y-4 max-h-80 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-amber-700/50 [&::-webkit-scrollbar-thumb]:rounded-full">
                 <div className="p-3 md:p-4 rounded-lg border-l-4" style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', borderColor: '#b87333' }}>
                   <p className="font-semibold text-sm md:text-base" style={{ color: '#f7f3e9' }}>Dimanche 26 juillet 2026 — 21h</p>
-                  <p className="text-xs md:text-sm text-stone-300">Cécile L. Recchia — Saint-Génis</p>
+                  <p className="text-xs md:text-sm text-stone-300">Cecil L. Recchia — Saint-Génis</p>
                   <p className="text-xs text-stone-400">sings Django Reinhardt</p>
                 </div>
                 <div className="p-3 md:p-4 rounded-lg border-l-4" style={{ backgroundColor: 'rgba(26, 26, 26, 0.4)', borderColor: '#b87333' }}>

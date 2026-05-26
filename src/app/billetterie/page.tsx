@@ -137,7 +137,7 @@ export default function Billetterie() {
       promoEnd: undefined as string | undefined
     },
     {
-      name: 'Akpé Motion',
+      name: 'Akpé Motion featuring Karla Harris',
       subtitle: '« Électric Miles »',
       date: 'Samedi 8 août',
       time: '21h',
@@ -256,7 +256,7 @@ export default function Billetterie() {
 
               <div className="space-y-3">
                 {[
-                  { name: 'Cécile L. Recchia', subtitle: 'sings Django Reinhardt', date: 'Dim. 26 juillet', time: '21h', price: '15€', slug: 'cecile-recchia', image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_400,h_400,f_auto,q_auto/Cecil-L-Recchia.jpg', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024303' },
+                  { name: 'Cecil L. Recchia Quintet', subtitle: 'sings Django Reinhardt', date: 'Dim. 26 juillet', time: '21h', price: '15€', slug: 'cecile-recchia', image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_400,h_400,f_auto,q_auto/Cecil-L-Recchia.jpg', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024303' },
                   { name: 'Knobil Trio', subtitle: 'Chanson et Jazz pailleté', date: 'Lun. 27 juillet', time: '21h', price: '15€', slug: 'knobil-trio', image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_400,h_400,f_auto,q_auto/Pierre-Daendliker-Louise.jpg', ticketUrl: 'https://www.billetweb.fr/jazz-en-tech&quick=7024307' }
                 ].map((concert, index) => (
                   <div
