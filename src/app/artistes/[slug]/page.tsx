@@ -217,7 +217,7 @@ const artistsData = {
   'akpe-motion': {
     name: 'Akpé Motion featuring Karla Harris',
     subtitle: '« Électric Miles »',
-    genre: 'Jazz Rock • World • Trompette',
+    genre: 'Jazz Rock • World',
     image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Alain-Brunet.jpg',
     secondImage: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/Karla-Harris.jpg',
     imageCaption: 'Alain Brunet',
