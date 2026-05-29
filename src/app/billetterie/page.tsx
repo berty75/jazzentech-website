@@ -1,5 +1,7 @@
 'use client'
 
+import SonnyRollinsTribute from '@/components/SonnyRollinsTribute'
+
 import React, { useState, useEffect } from 'react'
 import { MapPin, Ticket, Music, Headphones, ExternalLink, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -171,6 +173,8 @@ export default function Billetterie() {
           </p>
         </div>
       </section>
+
+      <SonnyRollinsTribute />
 
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">

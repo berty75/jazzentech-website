@@ -184,6 +184,7 @@ const artistsData = {
       intro: "Si 2026 est l’année du centenaire de la naissance de Miles Davis, c’est aussi l’année du centenaire de la naissance de John Coltrane devenu depuis une légende du jazz.",
       content: [
         "En 1958, Miles et Coltrane jouent et enregistrent ensemble. En 1961, sort « Africa/Brass », un disque devenu culte dans la riche discographie de Coltrane, car il est le seul que le saxophoniste n’ait jamais enregistré en big band. Près d’un demi-siècle plus tard, Christophe Dal Sasso, reconnu comme l’un des arrangeurs les plus talentueux de l’Hexagone, est retourné à ce répertoire emblématique auquel il redonne, à la tête d’un big band inspiré et fougueux, toute la puissance spirituelle, fidèle à la portée universelle du message humaniste que John Coltrane avait inscrit au cœur de sa musique. Au-delà du mythique Africa Brass, cet All Stars du jazz français interprètera d’autres titres emblématiques de John Coltrane pour une soirée unique.",
+        "Le Dal Sasso Big Band rendra également un hommage à Sonny Rollins, dernier géant du Jazz, disparu en mai 2026, figure dorénavant légendaire de cette musique aux côtés de Miles Davis et John Coltrane pour ne citer que les « centenaires ».",
         "« Dal Sasso tire le meilleur de chacun pour s’approcher de l’énergie survoltée du mythique John Coltrane. » JAZZMANIA"
       ]
     },
