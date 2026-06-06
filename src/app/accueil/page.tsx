@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, MapPin, Music, Users, Star } from 'lucide-react'
 import CentenaireFan from '@/components/CentenaireFan'
-import SonnyRollinsTribute from '@/components/SonnyRollinsTribute'
 
 export default function Home() {
   const now = new Date()
@@ -107,9 +106,6 @@ export default function Home() {
               <CentenaireFan />
             </div>
           </section>
-
-          {/* Hommage Sonny Rollins */}
-          <SonnyRollinsTribute />
 
           {/* Section programmation */}
           <section className="py-12 md:py-16" aria-labelledby="dates-heading">

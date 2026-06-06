@@ -1,4 +1,4 @@
-import { Music, Calendar, MapPin, Heart, Star, Users } from 'lucide-react'
+import { Music, Calendar, MapPin, Heart, Users } from 'lucide-react'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,7 +28,7 @@ export default function MotDuPresident() {
                   Mot du Président
                 </h1>
                 <p className="text-base sm:text-lg text-warm-cream leading-relaxed mb-4">
-                  Chers amis de Jazz en Tech
+                  Cher(e)s ami(e)s de Jazz en Tech
                 </p>
                 <div className="flex items-center space-x-3 md:space-x-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-jazz-gold bg-opacity-20 rounded-full flex items-center justify-center">
@@ -75,61 +75,55 @@ export default function MotDuPresident() {
               {/* Texte principal — mot pour mot */}
               <div className="lg:col-span-2 space-y-6">
 
-                {/* Programmation */}
+                {/* Lettre du président — édition 2026 (verbatim) */}
                 <div
                   className="rounded-2xl p-6 md:p-8"
                   style={{ backgroundColor: 'rgba(26, 26, 26, 0.5)', border: '1px solid rgba(212, 175, 55, 0.3)' }}
                 >
-                  <h2 className="text-xl md:text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <Star className="w-5 h-5 text-jazz-gold flex-shrink-0" />
-                    La programmation 2026
-                  </h2>
                   <div className="space-y-5 text-stone-200 leading-relaxed text-base md:text-lg">
                     <p>
-                      L'année 2026 après 2025, édition couronnée de succès pour Jazz en Tech, verra
-                      notre festival continuer son développement pour la plus grande satisfaction du
-                      public.
+                      Le mois de juin nous fait entrer dans l'été qui, en France, est l'été des
+                      festivals. Ainsi Jazz Magazine dans son édition de juin donne le programme
+                      des festivals européens de l'été et nous y figurons en bonne place !
+                    </p>
+                    <p>
+                      Après un printemps difficile car nous n'avons pas échappé aux aléas
+                      budgétaires, de plus en plus fréquents dans le domaine de la culture,
+                      Jazz en Tech se déroulera bien comme nous l'avions prévu à l'automne
+                      dernier : deux concerts en juillet dans le magnifique cloître de
+                      Saint-Génis-des-Fontaines, et quatre concerts en août sur cette belle
+                      place de la République de Céret ornée de magnifiques platanes à l'ombre
+                      desquels Soutine, Picasso, Juan Gris, Masson et bien d'autres, ont
+                      savouré, en leur temps, muscat et anisette.
+                    </p>
+                    <p>
+                      Car c'est bien un concert de plus qu'en 2025 que nous proposons cette
+                      année afin que, vous qui avez été nombreux l'été dernier, le soient plus
+                      encore cette année.
+                    </p>
+                    <p>
+                      Le programme est présenté ci-dessous, je n'insiste pas sinon pour dire
+                      que cette année est le temps des hommages à des géants du jazz que l'on
+                      ne peut ignorer. Mais cette démarche n'exclut pas, bien au contraire,
+                      de repenser certains aspects de l'œuvre de ces immenses musiciens qui
+                      ont pour noms Miles Davis, John Coltrane (nés en 1926) et Sonny Rollins
+                      (disparu cette année).
                     </p>
 
-                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
-                      <p className="font-semibold text-white mb-1">Mercredi 5 août — 21h</p>
+                    <div className="pt-3 border-t" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}>
+                      <h3
+                        className="text-lg md:text-xl font-bold text-white mt-5 mb-3"
+                        style={{ fontFamily: 'var(--font-playfair)' }}
+                      >
+                        Francis Picabia a-t-il aimé le jazz ?
+                      </h3>
                       <p>
-                        Coup d'envoi de la 11<sup>ème</sup> édition à Céret mercredi 5 août 21h. Un hommage
-                        majestueux à Miles Davis, « Picasso du jazz » selon Pascal Anquetil, dont nous
-                        fêterons avec éclat le 100<sup>ème</sup> anniversaire de la naissance. Le trompettiste Eric
-                        Truffaz et le saxophoniste-chanteur Antonio Lizana, magnifiquement entourés
-                        procéderont à une relecture du fameux disque devenu culte <em>Sketches of Spain</em>.
-                      </p>
-                    </div>
-
-                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
-                      <p className="font-semibold text-white mb-1">Jeudi 6 août — 21h</p>
-                      <p>
-                        Le lendemain, jeudi 6 août 21h ce sera autour de John Coltrane né aussi en
-                        1926 et hélas trop tôt décédé (1967), géant du jazz s'il en est, d'être célébré à
-                        Céret par le Big Band de Christophe Dal Sasso et les formidables saxophonistes Sophie
-                        Alour, David El-Malek et Stéphane Guillaume qui incarneront à tour de rôle Coltrane autour d'une œuvre majeure
-                        <em> Africa Brass</em> et de quelques autres….
-                      </p>
-                    </div>
-
-                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
-                      <p className="font-semibold text-white mb-1">Vendredi 7 août — 21h</p>
-                      <p>
-                        Vendredi 7 août 21h, la pianiste chanteuse Ladyva entourée des gaillards du
-                        Barcelone Big band Blues revisiteront quelques grands standards du jazz dont
-                        notamment des fameux Boogie-Woogie dont Ladyva est l'une des plus grandes
-                        spécialistes au monde. Swing maximum assuré !
-                      </p>
-                    </div>
-
-                    <div className="border-l-4 pl-4" style={{ borderColor: '#d4af37' }}>
-                      <p className="font-semibold text-white mb-1">Samedi 8 août — Soirée de clôture</p>
-                      <p>
-                        Enfin samedi 8 août, soirée de clôture, devrait être aussi une soirée
-                        particulièrement festive dont le programme est en cours de finalisation et
-                        dépendra des moyens budgétaires que nous parviendrons à mobiliser dans les
-                        toutes prochaines semaines.
+                        Puisqu'il fut un artiste qui ne cessa d'inventer, de bouleverser
+                        « les codes » (comme le jazz sait toujours le faire à sa manière) et
+                        que ce grand peintre sera du 27 juin jusqu'à la fin de l'automne la
+                        « star » du Musée d'Art Moderne de Céret, un trio de musiciens livrera
+                        une « performance », au cœur même de l'exposition, le 5 août prochain
+                        à 11h, pour ouvrir cette nouvelle édition de Jazz en Tech à Céret.
                       </p>
                     </div>
                   </div>
