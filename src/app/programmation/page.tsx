@@ -239,6 +239,29 @@ export default function Programmation() {
           </section>
 
 
+          {/* Concerts gratuits dans les rues */}
+          <section
+            className="rounded-2xl p-6 md:p-8 text-center"
+            style={{ border: '1px solid rgba(212, 175, 55, 0.3)', backgroundColor: 'rgba(114, 47, 55, 0.4)' }}
+          >
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+              Et aussi : des concerts gratuits dans les rues de Céret
+            </h3>
+            <p className="text-sm md:text-base mb-5 max-w-2xl mx-auto" style={{ color: '#f7f3e9', opacity: 0.9 }}>
+              Du 4 au 8 août, deux podiums en accès libre chaque jour : boulevard Joffre à 17h
+              et place Picasso à 18h. Harmonie de Céret, André Mallau Quartet, Karla Harris
+              Quartet, Lisa Jazz Trio, Florin Gugulica Quartet, Gavin Hackett Quintet, Triton 66 Quintet.
+            </p>
+            <Link
+              href="/concerts-gratuits"
+              className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold shadow-xl transition-all hover:scale-105"
+              style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+            >
+              Voir les concerts gratuits
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </section>
+
           {/* Infos pratiques */}
           <section className="rounded-2xl p-6" style={{ border: '1px solid rgba(212, 175, 55, 0.2)', backgroundColor: 'rgba(247, 243, 233, 0.05)' }}>
             <h3 className="font-bold mb-4 flex items-center text-white">

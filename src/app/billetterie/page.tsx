@@ -1,6 +1,6 @@
 'use client'
 
-import SonnyRollinsTribute from '@/components/SonnyRollinsTribute'
+import OfficeTourismeSaintGenis from '@/components/OfficeTourismeSaintGenis'
 
 import React, { useState, useEffect } from 'react'
 import { MapPin, Ticket, Music, Headphones, ExternalLink, ArrowRight } from 'lucide-react'
@@ -174,8 +174,6 @@ export default function Billetterie() {
         </div>
       </section>
 
-      <SonnyRollinsTribute />
-
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
@@ -291,6 +289,9 @@ export default function Billetterie() {
               </div>
               <p className="text-xs mt-3" style={{ color: '#b87333' }}>Concerts à 15 € — pas de pass pour Saint-Génis.</p>
             </section>
+
+            {/* Billetterie Office de Tourisme — Saint-Génis */}
+            <OfficeTourismeSaintGenis />
 
           </div>
 

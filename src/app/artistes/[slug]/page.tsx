@@ -328,6 +328,207 @@ const artistsData = {
       facebook: '#',
       appleMusic: 'https://music.apple.com/fr/artist/knobil/1670717367'
     }
+  },
+  'harmonie-ceret': {
+    name: 'Harmonie de Céret',
+    subtitle: 'Du Vallespir au jazz',
+    genre: 'Harmonie • Fanfare • Jazz',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/harmonie-ceret.jpg',
+    date: 'MARDI 4 AOÛT 2026',
+    time: '18H00',
+    venue: 'Place Picasso, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "À l'origine, l'Harmonie du Vallespir créée en 1886 et qui comptait une centaine de musiciens, a participé à des concours de musique, se déplaçant même jusqu'à Alger dans les années 1900.",
+      content: [
+        "Elle jouait pour la procession de Pâques à Céret avec des musiciens recrutés pour l'occasion. Les deux guerres mondiales ont mis un arrêt à cette grande formation. La reprise de l'activité s'est faite dans les années 1950 sous le nom de Clique fanfare de Céret.",
+        "Au fil des ans, grâce à l'enseignement musical dispensé, la clique s'est enrichie d'instrumentistes pour former une vraie Harmonie avec un répertoire plus riche que celui d'une simple clique. En 2005, la direction musicale a été confiée à Patrick Barrionuevo, professeur de saxophone.",
+        "L'ensemble se compose dorénavant d'une trentaine de musiciens, et assure les cérémonies officielles et commémoratives du Vallespir, mais également des concerts avec un répertoire varié qui emprunte au jazz. Ainsi, l'Harmonie de Céret participe-t-elle, à sa manière, à une approche de la musique de jazz qui la rend accessible à toutes et tous."
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Patrick Barrionuevo', instrument: 'direction musicale' }
+    ],
+    videos: [],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
+  },
+  'andre-mallau-quartet': {
+    name: 'André Mallau Quartet',
+    subtitle: 'Hommage à Miles Davis',
+    genre: 'Jazz • Hommage • Improvisation',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/mallau.jpg',
+    date: 'MERCREDI 5 AOÛT (Bd Joffre 17h) & JEUDI 6 AOÛT (Place Picasso 18h)',
+    time: '17H00 / 18H00',
+    venue: 'Boulevard Joffre & Place Picasso, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "Le quartet d'André Mallau composé pour Jazz en Tech jouera et improvisera sur des compositions de Chick Corea et rendra hommage à Miles Davis en cette année du centenaire de la naissance du trompettiste.",
+      content: [
+        "André Mallau, star occitane de la batterie, est aussi un grand pédagogue sur cet instrument qu'il a enseigné de nombreuses années au conservatoire de Perpignan. Il est entouré d'un all star catalan qui lui est fidèle depuis nombre d'années."
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Nicolas Lupovici', instrument: 'guitare' },
+      { name: 'David Poblet', instrument: 'piano' },
+      { name: 'Jean-Luc Lher', instrument: 'contrebasse' },
+      { name: 'André Mallau', instrument: 'batterie' }
+    ],
+    videos: [],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
+  },
+  'karla-harris-quartet': {
+    name: 'Karla Harris Quartet',
+    subtitle: "Jazz vocal d'Atlanta",
+    genre: 'Jazz vocal • Swing',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/karla-harris-ceret.jpg',
+    date: 'MERCREDI 5 AOÛT (Place Picasso 18h) & JEUDI 6 AOÛT (Bd Joffre 17h)',
+    time: '18H00 / 17H00',
+    venue: 'Place Picasso & Boulevard Joffre, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "Karla Harris, venue d'Atlanta, s'est produite sur les scènes principales de l'Atlanta Jazz Festival, du Donald Nixon Performing Arts Center, de la série Callanwolde Jazz, du Lawrenceville Arts Center et du Falany Performing Arts Center.",
+      content: [
+        "En 2026, Karla Harris continue de se forger une renommée nationale grâce à une voix que les critiques qualifient de « belle, puissante et pourtant polyvalente » et que l'artiste elle-même décrit comme celle d'une « improvisatrice intrépide »."
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Karla Harris', instrument: 'voix' },
+      { name: 'Olivier Roman Garcia', instrument: 'guitare' },
+      { name: 'Didier Del Aguila', instrument: 'contrebasse' },
+      { name: 'Pascal Bouterin', instrument: 'batterie' }
+    ],
+    videos: [
+      { id: '6uH__5LzQs4', title: 'Karla Harris', description: 'Karla Harris Quartet en concert' }
+    ],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
+  },
+  'lisa-jazz-trio': {
+    name: 'Lisa Jazz Trio',
+    subtitle: 'Jazz sobre et épuré',
+    genre: 'Jazz • Chanson',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/lisa-jazz-trio.jpg',
+    date: 'VENDREDI 7 AOÛT 2026',
+    time: '16H30',
+    venue: 'Boulevard Joffre, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "L'écrin très doux d'un piano et d'une contrebasse… Mais en laissant de côté les solos interminables, et en mettant en valeur la très belle et douce voix de la chanteuse par des compositions qui racontent des histoires et parlent, au sens propre comme au sens figuré, au public.",
+      content: [
+        "Un moment de partage au son d'un jazz sobre et épuré, où le public écoute, chante, rit, vibre sur les chansons du trio."
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Julien Lebart', instrument: 'piano' },
+      { name: 'Isabelle Durel', instrument: 'chant' },
+      { name: 'Francis Adam', instrument: 'contrebasse' }
+    ],
+    videos: [
+      { id: '7DXf_UsvnY0', title: 'Lisa Jazz Trio', description: 'Lisa Jazz Trio en concert' }
+    ],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
+  },
+  'florin-gugulica-quartet': {
+    name: 'Florin Gugulica Quartet',
+    subtitle: 'Jazz manouche transfrontières',
+    genre: 'Jazz manouche • Klezmer • Swing',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/gugulica.jpg',
+    date: 'VENDREDI 7 AOÛT 2026',
+    time: '18H00',
+    venue: 'Place Picasso, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "Florin Gugulica nous offre un retour toujours revisité, jamais reproductif, au jazz manouche de sa jeunesse française (Didier Lockwood, Biréli Lagrène et toute la bande du Django Drom).",
+      content: [
+        "Ici entouré de complices très swing formant un trio à configurations évolutives, il nous fait partager sa musique, avec la délicatesse émouvante des enfants de Django et de ce « jazz manouche » si transfrontières qu'il a créé : un zeste de musique klezmer d'Europe centrale, un zeste de jazz made in USA, un zeste de bal musette et de chanson française."
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Florin Gugulica', instrument: 'clarinette, saxophone' }
+    ],
+    videos: [
+      { id: 'sHogMmjL08A', title: 'Florin Gugulica', description: 'Florin Gugulica Quartet en concert' }
+    ],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
+  },
+  'gavin-hackett-quintet': {
+    name: 'Gavin Hackett Quintet',
+    subtitle: 'Swing et pépites instrumentales',
+    genre: 'Swing • Jazz vocal',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/david-hackett.jpg',
+    date: 'SAMEDI 8 AOÛT 2026',
+    time: '17H00',
+    venue: 'Boulevard Joffre, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "Avec un répertoire des classiques du swing mêlé à quelques pépites instrumentales, le Gavin Hackett Quintet offre un swing indéniable et une rythmique pulsée.",
+      content: [
+        "Le groupe interprète des titres de Louis Armstrong, Louis Jordan, Louis Prima, Ella Fitzgerald, Frank Sinatra, Harry Connick Jr., Cab Calloway, Michael Bublé…"
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Gavin Hackett', instrument: 'chant et saxophones' },
+      { name: 'Nicolas Mialocq', instrument: 'piano' },
+      { name: 'André Kaleykis', instrument: 'guitare' },
+      { name: 'Guilhaume Bouthié', instrument: 'basse' },
+      { name: 'Cyril Canerie', instrument: 'batterie' }
+    ],
+    videos: [],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
+  },
+  'triton-66-quintet': {
+    name: 'Triton 66 Quintet',
+    subtitle: 'Du jazz à la bossa nova',
+    genre: 'Jazz • Bossa Nova • Swing',
+    image: 'https://res.cloudinary.com/dpgfensnv/image/upload/f_auto,q_auto,w_800/triton.jpg',
+    date: 'SAMEDI 8 AOÛT 2026',
+    time: '18H00',
+    venue: 'Place Picasso, Céret',
+    city: 'Céret',
+    ticketType: 'gratuit' as const,
+    ticketUrl: '',
+    badge: '🎵 CONCERT GRATUIT • DANS LES RUES DE CÉRET',
+    biography: {
+      intro: "Cinq musiciens passionnés animés par le plaisir du jeu collectif et le désir de partager une musique vivante, généreuse et accessible.",
+      content: [
+        "L'ensemble explore un répertoire allant des grands standards du jazz à la Bossa Nova, en passant par des compositions emblématiques de Miles Davis, Dizzy Gillespie, Herbie Hancock, Sonny Rollins et bien d'autres figures majeures du genre. À travers des arrangements subtils, une belle complicité musicale et une énergie communicative, le quintette propose un voyage sonore riche en nuances, entre swing, groove et improvisation."
+      ]
+    },
+    discography: [],
+    lineup: [
+      { name: 'Bernard Poujal', instrument: 'batterie' },
+      { name: 'Garry Fowler', instrument: 'guitare' },
+      { name: 'Joël Bergeon', instrument: 'saxophone' },
+      { name: 'Jean-Yves Bouche', instrument: 'guitare' },
+      { name: 'Albert Woda', instrument: 'basse' }
+    ],
+    videos: [
+      { id: 'S8n12s-2GjE', title: 'Triton 66 Quintet', description: 'Triton 66 Quintet en concert' }
+    ],
+    socials: { instagram: '#', facebook: '#', appleMusic: '#' }
   }
 }
 
@@ -467,7 +668,7 @@ const OptimizedImage = ({ src, alt, className, priority = false }: {
   />
 )
 
-const ConcertGratuitInfo = () => (
+const ConcertGratuitInfo = ({ venue, date, time }: { venue?: string; date?: string; time?: string }) => (
   <div className="text-center">
     <div 
       className="inline-flex items-center px-6 py-4 rounded-xl font-bold text-lg shadow-xl"
@@ -479,8 +680,13 @@ const ConcertGratuitInfo = () => (
       🎵 Concert Gratuit - Accès Libre 🎵
     </div>
     <p className="mt-4" style={{ color: '#f7f3e9' }}>
-      Rendez-vous dans le centre-ville de Céret pour ce concert en accès libre
+      Concert offert dans les rues de Céret{venue ? ` — ${venue}` : ''}.
     </p>
+    {(date || time) && (
+      <p className="mt-1 text-sm" style={{ color: '#b87333' }}>
+        {[date, time].filter(Boolean).join(' • ')}
+      </p>
+    )}
   </div>
 )
 
@@ -689,7 +895,9 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
             {/* Bouton réservation */}
             <section aria-labelledby="reservation-heading">
               <h2 id="reservation-heading" className="sr-only">Réservation</h2>
-              {artist.ticketUrl ? (
+              {artist.ticketType === 'gratuit' ? (
+                <ConcertGratuitInfo venue={artist.venue} date={artist.date} time={artist.time} />
+              ) : artist.ticketUrl ? (
                 <div className="text-center">
                   {artist.ticketType === 'saint-genis' && (
                     <p className="text-sm mb-3" style={{ color: '#b87333' }}>

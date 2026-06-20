@@ -294,8 +294,10 @@ export default function PlanSite() {
                     borderColor: '#b87333'
                   }}
                 >
-                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#b87333' }}>Concerts Gratuits</h3>
-                  <p className="text-xs md:text-sm text-stone-300">Programme en cours de finalisation</p>
+                  <h3 className="font-semibold text-sm md:text-base mb-2" style={{ color: '#b87333' }}>
+                    <Link href="/concerts-gratuits" className="hover:underline">Concerts Gratuits dans les rues de Céret</Link>
+                  </h3>
+                  <p className="text-xs md:text-sm text-stone-300">Du 4 au 8 août — boulevard Joffre (17h) &amp; place Picasso (18h)</p>
                   <p className="text-xs text-amber-400 font-bold">🎉 ACCÈS LIBRE</p>
                 </div>
               </div>

@@ -8,6 +8,7 @@ const navItems = [
   { href: '/accueil', label: 'Accueil', short: 'Accueil' },
   { href: '/mot-du-president', label: 'Mot du Président', short: 'Président' },
   { href: '/programmation', label: 'Programme', short: 'Programme' },
+  { href: '/concerts-gratuits', label: 'Concerts Gratuits', short: 'Gratuits' },
   { href: '/soutenir', label: 'Soutenir', short: 'Soutenir' },
   { href: '/galerie', label: 'Galerie Photos', short: 'Galerie' },
   { href: '/benevoles', label: 'Bénévoles', short: 'Bénévoles' },

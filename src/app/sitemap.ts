@@ -24,6 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/concerts-gratuits`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/soutenir`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -85,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  const artistSlugs = ['erik-truffaz', 'ladyva', 'dal-sasso', 'akpe-motion', 'cecile-recchia', 'knobil-trio']
+  const artistSlugs = ['erik-truffaz', 'ladyva', 'dal-sasso', 'akpe-motion', 'cecile-recchia', 'knobil-trio', 'harmonie-ceret', 'andre-mallau-quartet', 'karla-harris-quartet', 'lisa-jazz-trio', 'florin-gugulica-quartet', 'gavin-hackett-quintet', 'triton-66-quintet']
   const artistPages = artistSlugs.map((slug) => ({
     url: `${baseUrl}/artistes/${slug}`,
     lastModified: new Date(),
