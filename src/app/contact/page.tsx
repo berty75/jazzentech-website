@@ -239,14 +239,6 @@ export default function Contact() {
                 >
                   <span className="text-sm font-bold" aria-hidden="true">@</span>
                 </a>
-                <a 
-                  href="https://twitter.com/jazzentech" 
-                  className="focus-minimal w-10 h-10 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
-                  style={{ backgroundColor: '#3277cc' }}
-                  aria-label="Suivez-nous sur Twitter"
-                >
-                  <span className="text-sm font-bold text-white" aria-hidden="true">t</span>
-                </a>
               </div>
             </div>
           </div>

@@ -204,6 +204,45 @@ export default function Home() {
             </div>
           </section>
 
+          {/* Section concerts gratuits */}
+          <section className="py-12 md:py-16" aria-labelledby="gratuits-heading">
+            <div className="max-w-5xl mx-auto px-4">
+              <div
+                className="rounded-2xl p-6 md:p-10 text-center"
+                style={{ border: '1px solid rgba(212, 175, 55, 0.3)', backgroundColor: 'rgba(114, 47, 55, 0.4)' }}
+              >
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5"
+                  style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)', border: '1px solid #d4af37' }}
+                >
+                  <Music className="w-4 h-4" style={{ color: '#d4af37' }} />
+                  <span className="text-sm font-semibold" style={{ color: '#d4af37' }}>
+                    Accès libre • Du 4 au 8 août
+                  </span>
+                </div>
+                <h2 id="gratuits-heading" className="text-2xl md:text-4xl font-bold text-white mb-4">
+                  Concerts gratuits dans les rues de Céret
+                </h2>
+                <p className="text-base md:text-lg max-w-2xl mx-auto mb-3" style={{ color: '#f7f3e9', opacity: 0.9 }}>
+                  Chaque jour du festival, deux podiums gratuits font vivre la ville :
+                  boulevard Joffre à 17h et place Picasso à 18h.
+                </p>
+                <p className="text-sm md:text-base max-w-3xl mx-auto mb-7" style={{ color: '#f7f3e9', opacity: 0.75 }}>
+                  Harmonie de Céret · André Mallau Quartet · Karla Harris Quartet · Lisa Jazz Trio ·
+                  Florin Gugulica Quartet · Gavin Hackett Quintet · Triton 66 Quintet
+                </p>
+                <Link
+                  href="/concerts-gratuits"
+                  className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl text-sm sm:text-base"
+                  style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+                >
+                  <MapPin className="w-5 h-5" />
+                  Voir les concerts gratuits
+                </Link>
+              </div>
+            </div>
+          </section>
+
           {/* Section À propos */}
           <section className="py-12 md:py-16 relative overflow-hidden" aria-labelledby="about-heading">
             <div className="absolute inset-0 opacity-10" aria-hidden="true">

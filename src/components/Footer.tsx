@@ -2,7 +2,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, Ticket } from 'lucide-react'
+import { Facebook, Instagram, Mail, Phone, MapPin, Ticket } from 'lucide-react'
 import DonorWall from '@/components/DonorWall'
 
 function Footer() {
@@ -36,14 +36,6 @@ function Footer() {
                   aria-label="Suivez Jazz en Tech sur Instagram"
                 >
                   <Instagram size={20} aria-hidden="true" />
-                </Link>
-                <Link 
-                  href="https://twitter.com/jazzentech" 
-                  className="nav-link hover:opacity-80 transition-colors rounded-lg p-1" 
-                  style={{ color: '#d4af37' }}
-                  aria-label="Suivez Jazz en Tech sur Twitter"
-                >
-                  <Twitter size={20} aria-hidden="true" />
                 </Link>
               </div>
             </nav>
