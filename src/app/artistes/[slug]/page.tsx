@@ -784,9 +784,9 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
       
       <div className="min-h-screen">
         {/* Hero Section avec sémantique améliorée */}
-        <header className="relative text-white pt-36 pb-16 sm:pt-40 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">
+        <header className="relative text-white pt-44 pb-16 sm:pt-44 sm:pb-20 md:pt-44 md:pb-24 overflow-hidden">
           {/* Image de fond optimisée */}
-          <div className="absolute inset-0" aria-hidden="true">
+          <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_0,black_11rem)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0,black_11rem)]" aria-hidden="true">
             <OptimizedImage 
               src={artist.image}
               alt={`Photo de ${artist.name} en concert`}
