@@ -1,7 +1,7 @@
 // PATH: src/app/dashboard/contacts/page.tsx
 'use client'
 
-import { Upload, Loader2, Search, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Upload, Loader2, Search, ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import DashboardShell from '@/components/DashboardShell'
 
@@ -51,6 +51,26 @@ export default function ContactsPage() {
     }
   }
 
+  const handleSyncBilletweb = async () => {
+    setImporting(true)
+    setImportResult('')
+    try {
+      const res = await fetch('/api/billetweb/sync', { method: 'POST' })
+      const data = await res.json()
+      if (res.ok && data.ok) {
+        setImportResult(`Billetweb : ${data.imported} nouveaux, ${data.updated} mis à jour (${data.fetched} récupérés)`)
+        const updated = await fetch('/api/contacts').then(r => r.json())
+        if (Array.isArray(updated)) setClients(updated)
+      } else {
+        setImportResult(data.error || 'Erreur de synchronisation Billetweb')
+      }
+    } catch (e: any) {
+      setImportResult('Erreur: ' + e.message)
+    } finally {
+      setImporting(false)
+    }
+  }
+
   const filtered = clients.filter(c => {
     const matchSearch = !search ||
       `${c.firstName} ${c.lastName} ${c.email}`.toLowerCase().includes(search.toLowerCase())
@@ -70,12 +90,20 @@ export default function ContactsPage() {
             <h2 className="text-xl md:text-2xl" style={{ fontWeight: 700, color: '#1a1a1a' }}>Contacts</h2>
             <p style={{ fontSize: '14px', color: '#888', marginTop: '4px' }}>{activeCount} contacts actifs sur {clients.length} total</p>
           </div>
-          <button onClick={handleImportJSON} disabled={importing}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm self-start sm:self-auto shrink-0"
-            style={{ background: '#722f37', color: '#fff', border: 'none', fontWeight: 600, cursor: 'pointer' }}>
-            {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-            Importer contacts
-          </button>
+          <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+            <button onClick={handleSyncBilletweb} disabled={importing}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm"
+              style={{ background: '#d4af37', color: '#1a1a1a', border: 'none', fontWeight: 600, cursor: 'pointer' }}>
+              {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
+              Synchroniser Billetweb
+            </button>
+            <button onClick={handleImportJSON} disabled={importing}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm"
+              style={{ background: '#722f37', color: '#fff', border: 'none', fontWeight: 600, cursor: 'pointer' }}>
+              {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+              Importer contacts
+            </button>
+          </div>
         </div>
 
         {importResult && (

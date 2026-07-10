@@ -11,6 +11,7 @@
 import type * as campaigns from "../campaigns.js";
 import type * as clients from "../clients.js";
 import type * as donations from "../donations.js";
+import type * as sync from "../sync.js";
 
 import type {
   ApiFromModules,
@@ -22,6 +23,7 @@ declare const fullApi: ApiFromModules<{
   campaigns: typeof campaigns;
   clients: typeof clients;
   donations: typeof donations;
+  sync: typeof sync;
 }>;
 
 /**

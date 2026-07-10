@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { ConvexHttpClient } from 'convex/browser'
 import { api } from '../../../../../convex/_generated/api'
+import { createBilletwebOrder } from '@/lib/billetweb'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
@@ -74,6 +75,45 @@ export async function POST(req: NextRequest) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session
+
+    // --- GUICHET : paiement carte réussi → création du billet Billetweb ---
+    if (session.metadata?.type === 'guichet') {
+      const m = session.metadata
+      const buyerEmail = m.buyerEmail || session.customer_details?.email || session.customer_email || ''
+      const result = await createBilletwebOrder({
+        eventId: m.eventId,
+        ticketId: m.ticketId,
+        paymentType: 'card',
+        quantity: parseInt(m.quantity, 10) || 1,
+        firstname: m.firstname || '',
+        name: m.name || '',
+        email: buyerEmail || undefined,
+        phone: m.phone || undefined,
+        instagram: m.instagram || undefined,
+        ship: true, // billet envoyé par email au client
+      })
+
+      if (!result.ok) {
+        // Le client a PAYÉ mais le billet n'a pas pu être créé → alerte admin (à traiter à la main)
+        console.error('[webhook guichet] Billet non créé après paiement:', result.error)
+        await sendEmail(
+          ADMIN_EMAIL,
+          '⚠️ Billet guichet NON créé après paiement carte',
+          emailTemplate(`
+            <h2 style="color:#991b1b;margin:0 0 16px;">Paiement reçu mais billet non émis</h2>
+            <p>Un client a payé par carte au guichet, mais la création du billet Billetweb a échoué. <strong>À régler manuellement.</strong></p>
+            <table style="width:100%;border-collapse:collapse;">
+            <tr><td style="padding:6px 0;color:#999;font-size:13px;width:130px;">Concert</td><td style="padding:6px 0;font-weight:600;">${m.concertName || m.eventId}</td></tr>
+            <tr><td style="padding:6px 0;color:#999;font-size:13px;">Tarif</td><td style="padding:6px 0;">${m.ticketName || m.ticketId}</td></tr>
+            <tr><td style="padding:6px 0;color:#999;font-size:13px;">Client</td><td style="padding:6px 0;">${m.firstname} ${m.name}</td></tr>
+            <tr><td style="padding:6px 0;color:#999;font-size:13px;">Email</td><td style="padding:6px 0;">${buyerEmail}</td></tr>
+            <tr><td style="padding:6px 0;color:#999;font-size:13px;">Erreur</td><td style="padding:6px 0;color:#991b1b;">${result.error}</td></tr>
+            </table>
+          `)
+        )
+      }
+      return NextResponse.json({ received: true })
+    }
 
     if (session.metadata?.type === 'donation') {
       const customFields = (session as any).custom_fields || []

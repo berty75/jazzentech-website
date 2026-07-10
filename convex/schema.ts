@@ -78,4 +78,12 @@ export default defineSchema({
     createdAt: v.number(),
   })
     .index("by_clerk_id", ["clerkId"]),
+
+  // État de synchronisation (API Billetweb — récupération incrémentale)
+  syncState: defineTable({
+    key: v.string(),          // ex: "billetweb_attendees"
+    lastSync: v.number(),     // timestamp (ms) de la dernière synchro réussie
+    updatedAt: v.number(),
+  })
+    .index("by_key", ["key"]),
 });
