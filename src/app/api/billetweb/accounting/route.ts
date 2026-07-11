@@ -76,19 +76,36 @@ export async function GET(req: NextRequest) {
     // Découvert via la structure Billetweb réelle :
     //  - champ `pass` = ID du billet-pass parent (non vide et ≠ "0") sur les concerts consommés via pass
     //  - `reduction_code` contient le libellé du pass (ex: "Pass Céret - ... > Tarif Standard - Céret 4 concerts")
-    const isIncludedInPass = (a: any) => {
-      const passRef = String(a.pass || '').trim()
-      const hasPassParent = passRef !== '' && passRef !== '0'
-      const rc = String(a.reduction_code || '').toLowerCase()
-      const rcIsPass = rc.includes('pass')
-      return hasPassParent || rcIsPass
-    }
-
     // Détecte la LIGNE MÈRE d'un pass (celle qui porte le prix, ex: "Pass Céret ... 55 €")
     const isPassParent = (a: any) => {
       const price = parseFloat(a.price ?? '0') || 0
       const label = `${a.ticket || ''} ${a.category || ''}`.toLowerCase()
       return price > 0 && label.includes('pass')
+    }
+
+    // Ensemble des commandes (order_id) qui contiennent un billet-pass.
+    // Utile pour les pass émis au guichet : les concerts à 0 € n'ont ni champ `pass`
+    // ni `reduction_code`, mais partagent l'order_id du billet-pass de la commande.
+    const passOrderIds = new Set<string>()
+    for (const a of attendees) {
+      if (isPassParent(a)) {
+        const oid = String(a.order_id || '').trim()
+        if (oid) passOrderIds.add(oid)
+      }
+    }
+
+    // Un billet à 0 € est "inclus dans un pass" si :
+    //  - son champ `pass` pointe vers un parent, OU
+    //  - son `reduction_code` contient "pass" (pass Billetweb en ligne), OU
+    //  - sa commande contient un billet-pass (pass émis au guichet)
+    const isIncludedInPass = (a: any) => {
+      const passRef = String(a.pass || '').trim()
+      if (passRef !== '' && passRef !== '0') return true
+      const rc = String(a.reduction_code || '').toLowerCase()
+      if (rc.includes('pass')) return true
+      const oid = String(a.order_id || '').trim()
+      if (oid && passOrderIds.has(oid)) return true
+      return false
     }
 
     for (const a of attendees) {

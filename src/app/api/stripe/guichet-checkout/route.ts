@@ -6,9 +6,11 @@ import { verifySession } from '@/lib/auth'
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 // POST /api/stripe/guichet-checkout
-// Crée une session de paiement carte pour un billet au guichet.
-// Renvoie { url, sessionId } → l'URL est encodée en QR code que le client scanne.
-// Le billet Billetweb sera créé par le WEBHOOK après paiement (metadata.type = 'guichet').
+// Crée une session de paiement carte pour un PANIER de billets au guichet.
+// Body: { eventId, concertName?, email?, phone?, instagram?,
+//         lines: [{ ticketId, ticketName, firstname, name, unitPrice }] }
+// Renvoie { url, sessionId } → l'URL est encodée en QR code.
+// Les billets Billetweb seront créés au retour (guichet-confirm) via les metadata.
 // ⚠️ Réservé aux admins connectés.
 export async function POST(req: NextRequest) {
   if (!(await verifySession())) {
@@ -23,52 +25,68 @@ export async function POST(req: NextRequest) {
   }
 
   const eventId = String(body.eventId || '').trim()
-  const ticketId = String(body.ticketId || '').trim()
-  const ticketName = String(body.ticketName || '').trim()
-  const concertName = String(body.concertName || '').trim()
-  const quantity = Math.max(1, Math.min(50, parseInt(body.quantity, 10) || 1))
-  const unitPrice = Math.max(0, parseFloat(body.unitPrice) || 0) // en euros
-  const firstname = String(body.firstname || '').trim()
-  const name = String(body.name || '').trim()
   const email = String(body.email || '').trim()
   const phone = String(body.phone || '').trim()
   const instagram = String(body.instagram || '').trim()
 
-  if (!eventId || !ticketId) return NextResponse.json({ error: 'Concert ou tarif manquant' }, { status: 400 })
-  if (!firstname || !name) return NextResponse.json({ error: 'Nom et prénom obligatoires' }, { status: 400 })
-  if (unitPrice <= 0) return NextResponse.json({ error: 'Ce tarif est gratuit — utilise « Invitation »' }, { status: 400 })
+  const rawLines = Array.isArray(body.lines) ? body.lines : []
+  const lines = rawLines
+    .map((l: any) => ({
+      ticketId: String(l.ticketId || '').trim(),
+      ticketName: String(l.ticketName || '').trim(),
+      firstname: String(l.firstname || '').trim(),
+      name: String(l.name || '').trim(),
+      unitPrice: Math.max(0, parseFloat(l.unitPrice) || 0),
+      // price forcé (concert inclus dans pass = 0 €). Si absent, unitPrice fait foi.
+      forcedPrice: (l.price !== undefined && l.price !== null) ? Math.max(0, parseFloat(l.price) || 0) : undefined,
+    }))
+    .filter((l: any) => l.ticketId && l.firstname && l.name)
+
+  if (!eventId) return NextResponse.json({ error: 'Concert manquant' }, { status: 400 })
+  if (lines.length === 0) return NextResponse.json({ error: 'Panier vide' }, { status: 400 })
+  const total = lines.reduce((s: number, l: any) => s + l.unitPrice, 0)
+  if (total <= 0) return NextResponse.json({ error: 'Le panier est gratuit — utilise « Invitation »' }, { status: 400 })
+
+  // Lignes compactes pour les metadata (id + prénom + nom). Limite Stripe: 500 car./valeur.
+  const compact = lines.map((l: any) => {
+    const o: any = { t: l.ticketId, f: l.firstname, n: l.name }
+    if (l.forcedPrice !== undefined) o.p = l.forcedPrice
+    return o
+  })
+  const linesJson = JSON.stringify(compact)
+  if (linesJson.length > 480) {
+    return NextResponse.json({ error: 'Trop de billets dans un seul paiement (max ~10). Fais deux paiements.' }, { status: 400 })
+  }
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || req.nextUrl.origin
+
+  // Un line_item Stripe par billet (affichage détaillé au paiement)
+  const line_items = lines
+    .filter((l: any) => l.unitPrice > 0)
+    .map((l: any) => ({
+      price_data: {
+        currency: 'eur',
+        unit_amount: Math.round(l.unitPrice * 100),
+        product_data: {
+          name: `${l.ticketName || 'Billet'} — ${l.firstname} ${l.name}`,
+        },
+      },
+      quantity: 1,
+    }))
 
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
-      line_items: [{
-        price_data: {
-          currency: 'eur',
-          unit_amount: Math.round(unitPrice * 100),
-          product_data: {
-            name: `${ticketName || 'Billet'} — Jazz en Tech`,
-            description: concertName || undefined,
-          },
-        },
-        quantity,
-      }],
-      // Métadonnées lues par le webhook pour créer le billet Billetweb
+      line_items,
       metadata: {
         type: 'guichet',
         eventId,
-        ticketId,
-        ticketName,
-        concertName,
-        quantity: String(quantity),
-        firstname,
-        name,
+        lines: linesJson,       // [{t,f,n}, ...]
         buyerEmail: email,
         phone,
         instagram,
+        total: total.toFixed(2),
       },
-      // Pré-remplit l'email si fourni (pour le reçu Stripe)
       ...(email ? { customer_email: email } : {}),
       success_url: `${baseUrl}/dashboard/guichet?paid=1&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/dashboard/guichet?canceled=1`,

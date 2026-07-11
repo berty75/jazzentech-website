@@ -2,20 +2,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { verifySession } from '@/lib/auth'
-import { createBilletwebOrder } from '@/lib/billetweb'
+import { createBilletwebMultiOrder, CartLine } from '@/lib/billetweb'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
-// Anti-doublon en mémoire process : une session déjà traitée ne recrée pas de billet.
-// (Suffisant pour un guichet ; en cas de reboot serveur, Stripe garantit qu'on peut
-//  au pire recréer une fois — on protège aussi via le statut de session.)
+// Anti-doublon en mémoire process : une session déjà traitée ne recrée pas de billets.
 const processed = new Set<string>()
 
 // POST /api/stripe/guichet-confirm  { session_id }
 // Appelée par la page guichet au retour du paiement (?paid=1&session_id=...).
-// 1) Vérifie auprès de Stripe que la session est PAYÉE (on ne fait pas confiance à l'URL).
-// 2) Crée le billet Billetweb (payment_type card, envoi email).
-// Idempotent : rejoue = pas de doublon.
+// 1) Vérifie auprès de Stripe que la session est PAYÉE.
+// 2) Crée les billets Billetweb (panier) avec payment_type card, envoi email.
 export async function POST(req: NextRequest) {
   if (!(await verifySession())) {
     return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
@@ -26,7 +23,6 @@ export async function POST(req: NextRequest) {
   const sessionId = String(body.session_id || '').trim()
   if (!sessionId) return NextResponse.json({ error: 'session_id manquant' }, { status: 400 })
 
-  // Déjà traité ? → succès sans recréer
   if (processed.has(sessionId)) {
     return NextResponse.json({ ok: true, alreadyDone: true })
   }
@@ -34,11 +30,10 @@ export async function POST(req: NextRequest) {
   let session: Stripe.Checkout.Session
   try {
     session = await stripe.checkout.sessions.retrieve(sessionId)
-  } catch (e: any) {
+  } catch {
     return NextResponse.json({ error: 'Session Stripe introuvable' }, { status: 404 })
   }
 
-  // Sécurité : on ne crée le billet que si Stripe confirme le paiement
   if (session.payment_status !== 'paid') {
     return NextResponse.json({ error: 'Paiement non confirmé', status: session.payment_status }, { status: 402 })
   }
@@ -49,13 +44,26 @@ export async function POST(req: NextRequest) {
   const m = session.metadata
   const buyerEmail = m.buyerEmail || session.customer_details?.email || session.customer_email || ''
 
-  const result = await createBilletwebOrder({
+  // Reconstituer les lignes du panier depuis les metadata
+  let compact: { t: string; f: string; n: string; p?: number }[] = []
+  try { compact = JSON.parse(m.lines || '[]') } catch { compact = [] }
+  const lines: CartLine[] = compact
+    .map((c) => ({
+      ticketId: String(c.t || ''),
+      firstname: String(c.f || ''),
+      name: String(c.n || ''),
+      ...(c.p !== undefined ? { price: Number(c.p) } : {}),
+    }))
+    .filter((l) => l.ticketId && l.firstname && l.name)
+
+  if (lines.length === 0) {
+    return NextResponse.json({ error: 'Aucune ligne de billet dans la session' }, { status: 400 })
+  }
+
+  const result = await createBilletwebMultiOrder({
     eventId: m.eventId,
-    ticketId: m.ticketId,
     paymentType: 'card',
-    quantity: parseInt(m.quantity, 10) || 1,
-    firstname: m.firstname || '',
-    name: m.name || '',
+    lines,
     email: buyerEmail || undefined,
     phone: m.phone || undefined,
     instagram: m.instagram || undefined,
@@ -63,10 +71,10 @@ export async function POST(req: NextRequest) {
   })
 
   if (!result.ok) {
-    console.error('[guichet-confirm] Billet NON créé après paiement:', result.error)
+    console.error('[guichet-confirm] Billets non créés après paiement:', result.error)
     return NextResponse.json({ error: result.error, billetweb_raw: result.raw }, { status: 502 })
   }
 
-  processed.add(sessionId) // marque comme traité
-  return NextResponse.json({ ok: true, buyer: `${m.firstname} ${m.name}`.trim(), email: buyerEmail })
+  processed.add(sessionId)
+  return NextResponse.json({ ok: true, count: lines.length, email: buyerEmail })
 }
