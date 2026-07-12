@@ -7,7 +7,7 @@ import { Calendar, MapPin, ArrowRight, Music } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Concerts Gratuits dans les rues de Céret - Jazz en Tech 2026',
   description:
-    "Du 4 au 8 août 2026, Jazz en Tech offre des concerts gratuits dans les rues de Céret, boulevard Joffre et place Picasso. Harmonie de Céret, André Mallau Quartet, Karla Harris Quartet, Lisa Jazz Trio, Florin Gugulica Quartet, Gavin Hackett Quintet et Triton 66 Quintet.",
+    "Du 4 au 8 août 2026, Jazz en Tech offre des concerts gratuits à Céret : l'Harmonie de Céret place de la République, puis boulevard Joffre et place Picasso. André Mallau Quartet, Karla Harris Quartet, Lisa Jazz Trio, Florin Gugulica Quartet, Gavin Hackett Quintet et Triton 66 Quintet.",
 }
 
 const groups = [
@@ -15,8 +15,8 @@ const groups = [
     slug: 'harmonie-ceret',
     name: 'Harmonie de Céret',
     genre: 'Harmonie • Fanfare • Jazz',
-    when: 'Mardi 4 août • 18h',
-    venue: 'Place Picasso',
+    when: 'Mardi 4 août • 19h',
+    venue: 'Place de la République',
     image: 'https://res.cloudinary.com/dpgfensnv/image/upload/c_fill,g_auto,w_800,h_800,f_auto,q_auto/harmonie-ceret.jpg',
   },
   {
@@ -70,7 +70,7 @@ const groups = [
 ]
 
 const schedule = [
-  { day: 'Mardi 4 août', joffre: null, picasso: { name: 'Harmonie de Céret', slug: 'harmonie-ceret' } },
+  { day: 'Mardi 4 août', joffre: null, picasso: { name: 'Harmonie de Céret', slug: 'harmonie-ceret', note: 'Place de la République • 19h' } },
   { day: 'Mercredi 5 août', joffre: { name: 'André Mallau Quartet', slug: 'andre-mallau-quartet' }, picasso: { name: 'Karla Harris Quartet', slug: 'karla-harris-quartet' } },
   { day: 'Jeudi 6 août', joffre: { name: 'Karla Harris Quartet', slug: 'karla-harris-quartet' }, picasso: { name: 'André Mallau Quartet', slug: 'andre-mallau-quartet' } },
   { day: 'Vendredi 7 août', joffre: { name: 'Lisa Jazz Trio', slug: 'lisa-jazz-trio', note: '16h30' }, picasso: { name: 'Florin Gugulica Quartet', slug: 'florin-gugulica-quartet' } },

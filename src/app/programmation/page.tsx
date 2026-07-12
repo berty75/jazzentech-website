@@ -239,6 +239,41 @@ export default function Programmation() {
           </section>
 
 
+          {/* Concert d'ouverture — Harmonie de Céret (gratuit) */}
+          <section
+            className="rounded-2xl p-6 md:p-8 mb-6"
+            style={{ border: '1px solid rgba(212, 175, 55, 0.3)', backgroundColor: 'rgba(114, 47, 55, 0.4)' }}
+          >
+            <div className="flex flex-col md:flex-row md:items-center gap-5">
+              <div className="flex-1">
+                <span
+                  className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3"
+                  style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+                >
+                  OUVERTURE • ENTRÉE LIBRE
+                </span>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                  Harmonie de Céret
+                </h3>
+                <p className="text-sm mb-3" style={{ color: '#d4af37' }}>
+                  Harmonie • Fanfare • Jazz
+                </p>
+                <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm" style={{ color: '#f7f3e9' }}>
+                  <span><strong style={{ color: '#d4af37' }}>Mardi 4 août</strong> • 19h</span>
+                  <span>Place de la République, Céret</span>
+                </div>
+              </div>
+              <Link
+                href="/artistes/harmonie-ceret"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold transition-all hover:scale-105 shrink-0"
+                style={{ backgroundColor: 'transparent', color: '#d4af37', border: '2px solid #d4af37' }}
+              >
+                En savoir plus
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </section>
+
           {/* Concerts gratuits dans les rues */}
           <section
             className="rounded-2xl p-6 md:p-8 text-center"
@@ -248,8 +283,8 @@ export default function Programmation() {
               Et aussi : des concerts gratuits dans les rues de Céret
             </h3>
             <p className="text-sm md:text-base mb-5 max-w-2xl mx-auto" style={{ color: '#f7f3e9', opacity: 0.9 }}>
-              Du 4 au 8 août, deux podiums en accès libre chaque jour : boulevard Joffre à 17h
-              et place Picasso à 18h. Harmonie de Céret, André Mallau Quartet, Karla Harris
+              Du 5 au 8 août, deux podiums en accès libre chaque jour : boulevard Joffre à 17h
+              et place Picasso à 18h. André Mallau Quartet, Karla Harris
               Quartet, Lisa Jazz Trio, Florin Gugulica Quartet, Gavin Hackett Quintet, Triton 66 Quintet.
             </p>
             <Link

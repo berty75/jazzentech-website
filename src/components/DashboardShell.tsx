@@ -3,7 +3,7 @@
 
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { LogOut, LayoutDashboard, Heart, FileText, Mail, Settings, Users, X, Menu, Receipt, Ticket } from 'lucide-react'
+import { LogOut, LayoutDashboard, Heart, FileText, Mail, Settings, Users, X, Menu, Receipt, Ticket, MailWarning, PenLine, TrendingUp } from 'lucide-react'
 import { useState } from 'react'
 
 const nav = [
@@ -11,8 +11,11 @@ const nav = [
   { href: '/dashboard/dons', label: 'Dons', icon: Heart },
   { href: '/dashboard/contacts', label: 'Contacts', icon: Users },
   { href: '/dashboard/comptabilite', label: 'Comptabilité', icon: Receipt },
+  { href: '/dashboard/statistiques', label: 'Statistiques', icon: TrendingUp },
   { href: '/dashboard/guichet', label: 'Guichet', icon: Ticket },
+  { href: '/dashboard/billets', label: 'Billets émis', icon: MailWarning },
   { href: '/dashboard/cerfa', label: 'Cerfa', icon: FileText },
+  { href: '/dashboard/signature', label: 'Signature', icon: PenLine },
   { href: '/dashboard/messagerie', label: 'Messagerie', icon: Mail },
   { href: '/dashboard/settings', label: 'Paramètres', icon: Settings },
 ]

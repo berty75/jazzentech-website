@@ -14,6 +14,7 @@ export default function Select({
   placeholder = '— Choisir —',
   disabled = false,
   loading = false,
+  compact = false,
 }: {
   value: string
   onChange: (v: string) => void
@@ -21,6 +22,7 @@ export default function Select({
   placeholder?: string
   disabled?: boolean
   loading?: boolean
+  compact?: boolean   // aligne la taille sur les champs de date (compta, billets)
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -44,9 +46,11 @@ export default function Select({
         disabled={isDisabled}
         className="w-full flex items-center justify-between gap-2"
         style={{
-          padding: '11px 14px',
-          borderRadius: '12px',
-          border: `1.5px solid ${open ? '#722f37' : '#e3ddd0'}`,
+          padding: compact ? '8px 12px' : '11px 14px',
+          borderRadius: compact ? '8px' : '12px',
+          border: compact
+            ? `1px solid ${open ? '#722f37' : '#ddd'}`
+            : `1.5px solid ${open ? '#722f37' : '#e3ddd0'}`,
           background: isDisabled ? '#f6f4ef' : '#fff',
           color: selected ? '#1a1a1a' : '#9a9488',
           fontSize: '14px',

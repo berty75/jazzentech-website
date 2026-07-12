@@ -152,12 +152,13 @@ export default function ComptabilitePage() {
 
         {/* Filtres */}
         <div className="flex flex-wrap items-end gap-3 mb-2">
-          <div style={{ minWidth: '220px' }}>
+          <div style={{ width: '190px' }}>
             <label style={{ fontSize: '12px', color: '#666', display: 'block', marginBottom: '4px' }}>Édition</label>
             <Select
               value={edition}
               onChange={setEdition}
               loading={editionsLoading}
+              compact
               placeholder="Toutes les éditions"
               options={[
                 { value: '', label: 'Toutes les éditions' },

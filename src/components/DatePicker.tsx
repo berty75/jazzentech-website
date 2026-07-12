@@ -9,12 +9,13 @@ const DAYS = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
 
 // Mini menu déroulant maison (mois / année) — charte Jazz en Tech
 function PickerDropdown({
-  value, options, onChange, capitalize = false,
+  value, options, onChange, capitalize = false, width,
 }: {
   value: number
   options: { value: number; label: string }[]
   onChange: (v: number) => void
   capitalize?: boolean
+  width?: number   // largeur fixe : évite que « Décembre » pousse les chevrons hors du cadre
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -25,19 +26,22 @@ function PickerDropdown({
   }, [open])
   const current = options.find((o) => o.value === value)
   return (
-    <div ref={ref} style={{ position: 'relative' }}>
+    <div ref={ref} style={{ position: 'relative', flexShrink: 0 }}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1"
+        className="flex items-center justify-between gap-1"
         style={{
           border: `1px solid ${open ? '#722f37' : '#e8dfc8'}`, background: '#fff', color: '#722f37',
-          fontWeight: 700, fontSize: '13px', borderRadius: '8px', padding: '5px 8px', cursor: 'pointer',
+          fontWeight: 700, fontSize: '13px', borderRadius: '8px', padding: '5px 7px', cursor: 'pointer',
           textTransform: capitalize ? 'capitalize' : 'none', outline: 'none',
+          width: width ? `${width}px` : undefined,
         }}
       >
-        {current?.label ?? ''}
-        <ChevronDown className="w-3 h-3" style={{ transition: 'transform 0.15s', transform: open ? 'rotate(180deg)' : 'none' }} />
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {current?.label ?? ''}
+        </span>
+        <ChevronDown className="w-3 h-3 shrink-0" style={{ transition: 'transform 0.15s', transform: open ? 'rotate(180deg)' : 'none' }} />
       </button>
       {open && (
         <div style={{
@@ -161,7 +165,7 @@ export default function DatePicker({
   const years: number[] = []
   for (let y = lowYear; y <= Math.max(maxYear, year); y++) years.push(y)
 
-  const navBtn: React.CSSProperties = { border: 'none', background: '#f7f3e9', cursor: 'pointer', borderRadius: '8px', padding: '6px' }
+  const navBtn: React.CSSProperties = { border: 'none', background: '#f7f3e9', cursor: 'pointer', borderRadius: '8px', padding: '5px', flexShrink: 0, lineHeight: 0 }
 
   return (
     <div ref={ref} style={{ position: 'relative', display: 'inline-block' }}>
@@ -180,12 +184,12 @@ export default function DatePicker({
           style={{
             position: 'absolute', top: 'calc(100% + 6px)', left: 0, zIndex: 50,
             background: '#fff', border: '1px solid #e8dfc8', borderRadius: '14px',
-            boxShadow: '0 12px 32px rgba(26,26,26,0.18)', padding: '12px', width: '300px',
+            boxShadow: '0 12px 32px rgba(26,26,26,0.18)', padding: '14px', width: '340px',
           }}
         >
           {/* En-tête : navigation année + mois/année déroulants */}
-          <div className="flex items-center justify-between mb-2" style={{ gap: '4px' }}>
-            <div className="flex" style={{ gap: '2px' }}>
+          <div className="flex items-center justify-between mb-2" style={{ gap: '2px' }}>
+            <div className="flex" style={{ gap: '2px', flexShrink: 0 }}>
               <button type="button" title="Année précédente" onClick={() => goYear(-1)} style={navBtn}>
                 <ChevronsLeft className="w-4 h-4" style={{ color: '#722f37' }} />
               </button>
@@ -194,21 +198,23 @@ export default function DatePicker({
               </button>
             </div>
 
-            <div className="flex items-center" style={{ gap: '4px' }}>
+            <div className="flex items-center" style={{ gap: '3px', minWidth: 0 }}>
               <PickerDropdown
                 value={month}
                 onChange={setMonth}
                 capitalize
+                width={104}
                 options={MONTHS.map((m, i) => ({ value: i, label: m }))}
               />
               <PickerDropdown
                 value={year}
                 onChange={setYear}
+                width={72}
                 options={years.map((y) => ({ value: y, label: String(y) }))}
               />
             </div>
 
-            <div className="flex" style={{ gap: '2px' }}>
+            <div className="flex" style={{ gap: '2px', flexShrink: 0 }}>
               <button type="button" title="Mois suivant" onClick={() => goMonth(1)} style={navBtn}>
                 <ChevronRight className="w-4 h-4" style={{ color: '#722f37' }} />
               </button>

@@ -86,4 +86,13 @@ export default defineSchema({
     updatedAt: v.number(),
   })
     .index("by_key", ["key"]),
+
+  // Réglages généraux (clé/valeur)
+  // ex: "president_signature" → dataURL PNG de la signature apposée sur les Cerfa
+  settings: defineTable({
+    key: v.string(),
+    value: v.string(),
+    updatedAt: v.number(),
+  })
+    .index("by_key", ["key"]),
 });

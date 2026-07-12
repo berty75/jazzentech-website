@@ -39,12 +39,7 @@ function numberToWords(n: number): string {
   return String(n)
 }
 
-function drawBox(page: any, x: number, y: number, w: number, h: number, opts: { fill?: any; border?: any; borderWidth?: number } = {}) {
-  if (opts.fill) page.drawRectangle({ x, y, width: w, height: h, color: opts.fill })
-  if (opts.border) page.drawRectangle({ x, y, width: w, height: h, borderColor: opts.border, borderWidth: opts.borderWidth || 0.5, color: undefined })
-}
-
-async function generateCerfaPdf(donation: any, hash: string): Promise<Uint8Array> {
+async function generateCerfaPdf(donation: any, hash: string, signatureDataUrl?: string | null): Promise<Uint8Array> {
   const doc = await PDFDocument.create()
   const page = doc.addPage([595, 842])
   const font = await doc.embedFont(StandardFonts.Helvetica)
@@ -52,128 +47,178 @@ async function generateCerfaPdf(donation: any, hash: string): Promise<Uint8Array
   const fontItalic = await doc.embedFont(StandardFonts.HelveticaOblique)
   const { width, height } = page.getSize()
 
+  // --- Palette sobre (charte Jazz en Tech, usage minimal) ---
   const burg = rgb(114 / 255, 47 / 255, 55 / 255)
   const gold = rgb(212 / 255, 175 / 255, 55 / 255)
-  const black = rgb(0, 0, 0)
-  const gray = rgb(0.45, 0.45, 0.45)
-  const lightBg = rgb(0.97, 0.96, 0.93)
-  const white = rgb(1, 1, 1)
-  const darkBg = rgb(0.08, 0.06, 0.05)
+  const ink = rgb(0.10, 0.10, 0.10)      // texte principal
+  const muted = rgb(0.48, 0.47, 0.45)    // libellés
+  const hair = rgb(0.87, 0.86, 0.84)     // filets
+  const green = rgb(0.13, 0.50, 0.28)
 
   const date = new Date(donation.createdAt)
   const dateStr = date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })
   const numCerfa = `JET-${date.getFullYear()}-${hash.slice(-6)}`
   const fullName = `${donation.firstName} ${donation.lastName}`.trim() || 'Anonyme'
   const amount = donation.amountEur
-  const margin = 45
 
-  // === HEADER ===
-  drawBox(page, 0, height - 130, width, 130, { fill: darkBg })
-  drawBox(page, 0, height - 130, width, 3, { fill: gold })
+  // --- Grille ---
+  const M = 56                 // marge
+  const COL = width - M * 2    // largeur utile
+  const LABEL_X = M            // colonne libellés
+  const VALUE_X = M + 150      // colonne valeurs
+  let y = height - M
 
-  page.drawText('RECU AU TITRE DES DONS', { x: margin + 5, y: height - 45, size: 22, font: fontBold, color: white })
-  page.drawText('a des organismes d\'interet general', { x: margin + 5, y: height - 68, size: 11, font, color: gold })
-  page.drawText('Articles 200, 238 bis et 978 du Code General des Impots', { x: margin + 5, y: height - 85, size: 8, font: fontItalic, color: rgb(0.6, 0.6, 0.6) })
+  const rule = (yy: number, color = hair, h = 0.5, x = M, w = COL) =>
+    page.drawRectangle({ x, y: yy, width: w, height: h, color })
 
-  const numW = fontBold.widthOfTextAtSize(numCerfa, 11)
-  page.drawText(numCerfa, { x: width - margin - numW - 5, y: height - 50, size: 11, font: fontBold, color: gold })
-  const dateW = font.widthOfTextAtSize(dateStr, 8.5)
-  page.drawText(dateStr, { x: width - margin - dateW - 5, y: height - 68, size: 8.5, font, color: rgb(0.6, 0.6, 0.6) })
-  page.drawText('Jazz en Tech', { x: width - margin - font.widthOfTextAtSize('Jazz en Tech', 9) - 5, y: height - 85, size: 9, font: fontBold, color: rgb(0.5, 0.5, 0.5) })
+  // ============ EN-TÊTE ============
+  page.drawText('REÇU FISCAL', { x: M, y, size: 9, font: fontBold, color: gold })
+  y -= 26
+  page.drawText('Reçu au titre des dons', { x: M, y, size: 21, font: fontBold, color: ink })
+  y -= 17
+  page.drawText("à des organismes d'intérêt général", { x: M, y, size: 12, font, color: muted })
 
-  let y = height - 165
+  // Bloc identifiant, aligné à droite
+  const idLabel = 'N° DE REÇU'
+  page.drawText(idLabel, { x: width - M - fontBold.widthOfTextAtSize(idLabel, 7), y: height - M, size: 7, font: fontBold, color: muted })
+  page.drawText(numCerfa, { x: width - M - fontBold.widthOfTextAtSize(numCerfa, 11), y: height - M - 15, size: 11, font: fontBold, color: burg })
+  page.drawText(dateStr, { x: width - M - font.widthOfTextAtSize(dateStr, 8.5), y: height - M - 30, size: 8.5, font, color: muted })
 
-  const drawSection = (title: string, num: string) => {
-    drawBox(page, margin, y - 2, width - margin * 2, 22, { fill: burg })
-    page.drawText(`  ${num}   ${title}`, { x: margin + 8, y: y + 3, size: 10, font: fontBold, color: white })
-    y -= 28
-  }
+  y -= 20
+  rule(y, gold, 1.5)
+  y -= 10
+  page.drawText('Articles 200, 238 bis et 978 du Code Général des Impôts', { x: M, y: y - 4, size: 7.5, font: fontItalic, color: muted })
+  y -= 34
 
-  const drawField = (label: string, value: string) => {
-    page.drawText(label, { x: margin + 15, y, size: 8.5, font: fontBold, color: gray })
-    page.drawText(value, { x: margin + 130, y, size: 8.5, font, color: black })
+  // --- Helpers de section ---
+  const section = (num: string, title: string) => {
+    page.drawText(num, { x: M, y, size: 8, font: fontBold, color: gold })
+    page.drawText(title.toUpperCase(), { x: M + 22, y, size: 8, font: fontBold, color: burg })
+    y -= 8
+    rule(y)
     y -= 16
   }
 
-  // === SECTION 1: ORGANISME ===
-  drawSection('ORGANISME BENEFICIAIRE', '01')
-  drawBox(page, margin, y - 90, width - margin * 2, 95, { fill: lightBg, border: rgb(0.9, 0.88, 0.84), borderWidth: 0.5 })
-  y -= 5
-  drawField('Nom', 'Association Jazz en Tech (loi 1901)')
-  drawField('Objet', 'Promotion et diffusion du jazz dans les Pyrenees-Orientales')
-  drawField('Adresse', '10 rue Companyo, 66400 Ceret, France')
-  drawField('SIRET', '838 417 012 00013 -- APE 9499Z')
-  drawField('RNA', 'W662007356')
-  drawField('Création', 'Créée le 23 janvier 2018, parution au JO du 3 février 2018')
-  y -= 15
+  const field = (label: string, value: string) => {
+    page.drawText(label, { x: LABEL_X, y, size: 8.5, font, color: muted })
+    page.drawText(value, { x: VALUE_X, y, size: 9, font: fontBold, color: ink })
+    y -= 15
+  }
 
-  // === SECTION 2: DONATEUR ===
-  drawSection('DONATEUR / DONATRICE', '02')
-  const addrStr = [donation.address, `${donation.postalCode || ''} ${donation.city || ''}`.trim(), donation.country].filter(Boolean).join(', ') || 'Non renseignee'
-  drawBox(page, margin, y - 75, width - margin * 2, 80, { fill: lightBg, border: rgb(0.9, 0.88, 0.84), borderWidth: 0.5 })
-  y -= 5
-  drawField('Nom complet', fullName)
-  drawField('Email', donation.email || 'Non renseigne')
-  drawField('Telephone', donation.phone || 'Non renseigne')
-  drawField('Adresse', addrStr.length > 65 ? addrStr.slice(0, 65) + '...' : addrStr)
-  y -= 15
+  // ============ 01 — ORGANISME ============
+  section('01', 'Organisme bénéficiaire')
+  field('Nom', 'Association Jazz en Tech (loi 1901)')
+  field('Objet', 'Promotion et diffusion du jazz')
+  field('Adresse', '10 rue Companyo, 66400 Céret')
+  field('SIRET', '838 417 012 00013 — APE 9499Z')
+  field('RNA', 'W662007356')
+  field('Création', '23 janvier 2018 — JO du 3 février 2018')
+  y -= 8
 
-  // === SECTION 3: DON ===
-  drawSection('DON', '03')
-  drawBox(page, margin, y - 50, width - margin * 2, 55, { fill: lightBg, border: rgb(0.9, 0.88, 0.84), borderWidth: 0.5 })
-  y -= 5
-  const pmLabels: Record<string, string> = { card: 'Carte bancaire', sepa_debit: 'Prelevement SEPA', customer_balance: 'Virement bancaire' }
-  drawField('Date du versement', dateStr)
-  drawField('Mode de versement', pmLabels[donation.paymentMethod || ''] || donation.paymentMethod || 'En ligne')
-  drawField('Nature du don', 'Numeraire (somme d\'argent)')
+  // ============ 02 — DONATEUR ============
+  section('02', 'Donateur')
+  const addrStr = [donation.address, `${donation.postalCode || ''} ${donation.city || ''}`.trim(), donation.country]
+    .filter(Boolean).join(', ') || 'Non renseignée'
+  field('Nom complet', fullName)
+  field('Email', donation.email || 'Non renseigné')
+  field('Téléphone', donation.phone || 'Non renseigné')
+  field('Adresse', addrStr.length > 58 ? addrStr.slice(0, 58) + '...' : addrStr)
+  y -= 8
+
+  // ============ 03 — VERSEMENT ============
+  section('03', 'Versement')
+  const pmLabels: Record<string, string> = { card: 'Carte bancaire', sepa_debit: 'Prélèvement SEPA', customer_balance: 'Virement bancaire' }
+  field('Date', dateStr)
+  field('Mode', pmLabels[donation.paymentMethod || ''] || donation.paymentMethod || 'En ligne')
+  field('Nature', "Numéraire (somme d'argent)")
   y -= 12
 
-  // === MONTANT BOX ===
-  drawBox(page, margin, y - 55, width - margin * 2, 60, { fill: rgb(0.96, 0.94, 0.90), border: gold, borderWidth: 1.5 })
-  page.drawText('MONTANT DU DON', { x: margin + 20, y: y - 15, size: 9, font: fontBold, color: gray })
-  page.drawText(`${amount} EUR`, { x: margin + 20, y: y - 38, size: 28, font: fontBold, color: burg })
-  const wordsText = `Soit : ${numberToWords(amount)} euros`
-  page.drawText(wordsText, { x: width - margin - fontItalic.widthOfTextAtSize(wordsText, 9) - 20, y: y - 15, size: 9, font: fontItalic, color: gray })
+  // ============ MONTANT — le chiffre-clé ============
+  rule(y + 8, hair, 0.5)
+  y -= 6
+  page.drawText('MONTANT DU DON', { x: M, y, size: 7.5, font: fontBold, color: muted })
+  const wordsText = `Soit ${numberToWords(amount)} euros`
+  page.drawText(wordsText, { x: width - M - fontItalic.widthOfTextAtSize(wordsText, 9), y, size: 9, font: fontItalic, color: muted })
+  y -= 34
+  page.drawText(`${amount} €`, { x: M, y, size: 34, font: fontBold, color: burg })
 
   const deduction = Math.round(amount * 0.66)
-  const coutReel = Math.round(amount * 0.34)
-  const deductionText = `Deduction fiscale (66%) : ${deduction} EUR  |  Cout reel : ${coutReel} EUR`
-  page.drawText(deductionText, {
-    x: width - margin - fontBold.widthOfTextAtSize(deductionText, 8) - 20,
-    y: y - 38, size: 8, font: fontBold, color: rgb(0.13, 0.59, 0.13)
-  })
-  y -= 80
+  const coutReel = amount - deduction
+  const dLabel = 'Déduction fiscale (66 %)'
+  const cLabel = 'Coût réel après déduction'
+  page.drawText(dLabel, { x: width - M - 180, y: y + 20, size: 8, font, color: muted })
+  const dVal = `${deduction} €`
+  page.drawText(dVal, { x: width - M - fontBold.widthOfTextAtSize(dVal, 10), y: y + 20, size: 10, font: fontBold, color: green })
+  page.drawText(cLabel, { x: width - M - 180, y: y + 4, size: 8, font, color: muted })
+  const cVal = `${coutReel} €`
+  page.drawText(cVal, { x: width - M - fontBold.widthOfTextAtSize(cVal, 10), y: y + 4, size: 10, font: fontBold, color: ink })
 
-  // === SECTION 4: ATTESTATION ===
-  drawSection('ATTESTATION SUR L\'HONNEUR', '04')
+  y -= 12
+  rule(y, hair, 0.5)
+  y -= 24
+
+  // ============ 04 — ATTESTATION ============
+  section('04', 'Attestation sur l\'honneur')
   const attestLines = [
-    'Le beneficiaire certifie sur l\'honneur que les dons et versements qu\'il recoit ouvrent droit',
-    'a la reduction d\'impot prevue a l\'article 200 du Code General des Impots.',
-    '',
-    '[X] L\'organisme beneficiaire est une association loi 1901 (SIRET 838 417 012 00013),',
-    '     reconnue d\'interet general, a caractere culturel (art. 200 et 238 bis du CGI).',
-    '',
-    '[X] Le donateur renonce expressement et definitivement a tout droit de reprise',
-    '     des sommes versees.',
+    "Le bénéficiaire certifie sur l'honneur que les dons et versements qu'il reçoit",
+    "ouvrent droit à la réduction d'impôt prévue à l'article 200 du CGI.",
   ]
   for (const line of attestLines) {
-    if (line) page.drawText(line, { x: margin + 15, y, size: 8, font: line.startsWith('[X]') ? fontBold : font, color: black })
-    y -= 12
+    page.drawText(line, { x: M, y, size: 9, font, color: ink })
+    y -= 14
   }
-  y -= 10
+  y -= 6
+  const bullets = [
+    "L'organisme est une association loi 1901 reconnue d'intérêt général, à caractère culturel",
+    "(art. 200 et 238 bis du CGI).",
+    "Le donateur renonce expressément et définitivement à tout droit de reprise des sommes",
+    "versées.",
+  ]
+  for (let i = 0; i < bullets.length; i++) {
+    const isFirst = i === 0 || i === 2
+    if (isFirst) page.drawRectangle({ x: M, y: y + 2.5, width: 3, height: 3, color: gold })
+    page.drawText(bullets[i], { x: M + 12, y, size: 8.5, font, color: isFirst ? ink : muted })
+    y -= 13
+  }
 
-  // === SIGNATURE ===
-  drawBox(page, width - 250, y - 55, 210, 60, { fill: lightBg, border: rgb(0.9, 0.88, 0.84), borderWidth: 0.5 })
-  page.drawText('Le President de l\'association,', { x: width - 240, y: y - 12, size: 8.5, font: fontItalic, color: gray })
-  page.drawText('Alain Brunet', { x: width - 240, y: y - 28, size: 13, font: fontBold, color: black })
-  page.drawText(`Fait a Ceret, le ${dateStr}`, { x: width - 240, y: y - 43, size: 7.5, font, color: gray })
+  // ============ SIGNATURE — ancrée au bas de page ============
+  const SIG_BOTTOM = 100            // ancrage fixe au-dessus du footer (jamais de chevauchement)
+  const SIG_W = 200
+  const SIG_X = width - M - SIG_W
 
-  // === FOOTER ===
-  drawBox(page, margin, 55, width - margin * 2, 1, { fill: gold })
-  page.drawText(`Certificat d'authenticite : ${hash}`, { x: margin, y: 40, size: 7.5, font: fontBold, color: burg })
-  page.drawText(`Verification en ligne : jazzentech.com/cerfa/verify?h=${hash}`, { x: margin, y: 28, size: 6.5, font, color: gray })
-  const footerRight = 'Jazz en Tech | SIRET 838 417 012 00013 | 10 rue Companyo, 66400 Ceret'
-  page.drawText(footerRight, { x: width - margin - font.widthOfTextAtSize(footerRight, 6.5), y: 28, size: 6.5, font, color: gray })
+  let sy = SIG_BOTTOM + 78
+  page.drawText("Le Président de l'association", { x: SIG_X, y: sy, size: 8, font: fontItalic, color: muted })
+  sy -= 8
+
+  if (signatureDataUrl && signatureDataUrl.startsWith('data:image/png;base64,')) {
+    try {
+      const sigImage = await doc.embedPng(Buffer.from(signatureDataUrl.split(',')[1], 'base64'))
+      const maxH = 40
+      const scale = Math.min(SIG_W / sigImage.width, maxH / sigImage.height)
+      const sw = sigImage.width * scale
+      const sh = sigImage.height * scale
+      page.drawImage(sigImage, { x: SIG_X, y: SIG_BOTTOM + 30, width: sw, height: sh })
+    } catch (err) {
+      console.error('[cerfa] signature non integree:', err)
+    }
+  }
+
+  rule(SIG_BOTTOM + 24, hair, 0.5, SIG_X, SIG_W)
+  page.drawText('Alain Brunet', { x: SIG_X, y: SIG_BOTTOM + 10, size: 11, font: fontBold, color: ink })
+  page.drawText(`Fait à Céret, le ${dateStr}`, { x: SIG_X, y: SIG_BOTTOM - 2, size: 7.5, font, color: muted })
+
+  // ============ PIED DE PAGE ============
+  rule(72, hair, 0.5)
+  page.drawText("Certificat d'authenticité", { x: M, y: 58, size: 7, font: fontBold, color: muted })
+  page.drawText(hash, { x: M, y: 46, size: 8, font: fontBold, color: burg })
+  page.drawText(`jazzentech.com/cerfa/verify?h=${hash}`, { x: M, y: 34, size: 6.5, font, color: muted })
+
+  const f1 = 'Association Jazz en Tech'
+  const f2 = 'SIRET 838 417 012 00013'
+  const f3 = '10 rue Companyo, 66400 Céret'
+  page.drawText(f1, { x: width - M - fontBold.widthOfTextAtSize(f1, 7), y: 58, size: 7, font: fontBold, color: muted })
+  page.drawText(f2, { x: width - M - font.widthOfTextAtSize(f2, 6.5), y: 46, size: 6.5, font, color: muted })
+  page.drawText(f3, { x: width - M - font.widthOfTextAtSize(f3, 6.5), y: 34, size: 6.5, font, color: muted })
 
   return await doc.save()
 }
@@ -255,7 +300,8 @@ export async function POST(req: NextRequest) {
   if (!donation) return NextResponse.json({ error: 'Don non trouvé' }, { status: 404 })
 
   const hash = generateHash(donation)
-  const pdfBytes = await generateCerfaPdf(donation, hash)
+  const signature = await convex.query(api.settings.get, { key: 'president_signature' }).catch(() => null)
+  const pdfBytes = await generateCerfaPdf(donation, hash, signature)
 
   // Mark as generated in Convex
   try {
@@ -296,7 +342,8 @@ export async function GET(req: NextRequest) {
   if (!donation) return NextResponse.json({ error: 'Cerfa non trouvé' }, { status: 404 })
 
   // Regenerate PDF on-the-fly (deterministic)
-  const pdfBytes = await generateCerfaPdf(donation, hash)
+  const signature = await convex.query(api.settings.get, { key: 'president_signature' }).catch(() => null)
+  const pdfBytes = await generateCerfaPdf(donation, hash, signature)
 
   return new NextResponse(pdfBytes, {
     headers: {
