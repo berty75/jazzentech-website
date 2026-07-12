@@ -70,7 +70,6 @@ const groups = [
 ]
 
 const schedule = [
-  { day: 'Mardi 4 août', joffre: null, picasso: { name: 'Harmonie de Céret', slug: 'harmonie-ceret', note: 'Place de la République • 19h' } },
   { day: 'Mercredi 5 août', joffre: { name: 'André Mallau Quartet', slug: 'andre-mallau-quartet' }, picasso: { name: 'Karla Harris Quartet', slug: 'karla-harris-quartet' } },
   { day: 'Jeudi 6 août', joffre: { name: 'Karla Harris Quartet', slug: 'karla-harris-quartet' }, picasso: { name: 'André Mallau Quartet', slug: 'andre-mallau-quartet' } },
   { day: 'Vendredi 7 août', joffre: { name: 'Lisa Jazz Trio', slug: 'lisa-jazz-trio', note: '16h30' }, picasso: { name: 'Florin Gugulica Quartet', slug: 'florin-gugulica-quartet' } },
@@ -96,7 +95,8 @@ export default function ConcertsGratuits() {
             Concerts gratuits dans les rues de Céret
           </h1>
           <p className="text-base sm:text-lg max-w-2xl mx-auto" style={{ color: '#f7f3e9', opacity: 0.9 }}>
-            Chaque jour du festival, deux podiums gratuits font vivre la ville :
+            Le mardi 4 août, l&apos;Harmonie de Céret ouvre le festival place de la République à 19h.
+            Puis, du 5 au 8 août, deux podiums gratuits font vivre la ville :
             boulevard Joffre à 17h et place Picasso à 18h.
           </p>
         </div>
@@ -126,6 +126,25 @@ export default function ConcertsGratuits() {
                 </tr>
               </thead>
               <tbody>
+                {/* Ouverture : l'Harmonie ne joue pas sur les podiums, mais Place de la République */}
+                <tr style={{ backgroundColor: 'rgba(212,175,55,0.10)', borderTop: '1px solid rgba(212, 175, 55, 0.25)' }}>
+                  <td className="px-4 py-3 text-sm font-bold" style={{ color: '#d4af37' }}>
+                    Mardi 4 août
+                  </td>
+                  <td className="px-4 py-3 text-sm" colSpan={2} style={{ color: '#f7f3e9' }}>
+                    <Link href="/artistes/harmonie-ceret" className="hover:underline font-semibold">
+                      Harmonie de Céret
+                    </Link>
+                    <span style={{ color: '#d4af37' }}> — Place de la République, 19h</span>
+                    <span
+                      className="ml-2 px-2 py-0.5 rounded text-xs font-bold"
+                      style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+                    >
+                      OUVERTURE
+                    </span>
+                  </td>
+                </tr>
+
                 {schedule.map((row, i) => (
                   <tr
                     key={row.day}

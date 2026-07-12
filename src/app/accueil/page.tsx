@@ -124,9 +124,28 @@ export default function Home() {
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-4">
                   <MapPin className="w-5 h-5" style={{ color: '#d4af37' }} aria-hidden="true" />
                   <h3 className="text-xl font-bold text-white">Céret</h3>
-                  <span className="text-sm" style={{ color: '#b87333' }}>5 au 8 août • Place de la République</span>
+                  <span className="text-sm" style={{ color: '#b87333' }}>4 au 8 août • Place de la République</span>
                 </div>
                 <div className="space-y-3">
+                  {/* Ouverture gratuite : Harmonie de Céret */}
+                  <Link
+                    href="/artistes/harmonie-ceret"
+                    className="flex items-center justify-between gap-4 p-4 rounded-xl transition-colors hover:bg-white/5"
+                    style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)', border: '1px solid rgba(212, 175, 55, 0.4)' }}
+                  >
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold" style={{ color: '#d4af37' }}>Mar. 4 août • 19h</p>
+                      <p className="font-bold text-white truncate">Harmonie de Céret</p>
+                      <p className="text-sm truncate" style={{ color: '#f7f3e9' }}>Concert d&apos;ouverture</p>
+                    </div>
+                    <span
+                      className="px-3 py-1.5 rounded-lg text-sm font-bold shrink-0"
+                      style={{ backgroundColor: '#d4af37', color: '#1a1a1a' }}
+                    >
+                      Entrée libre
+                    </span>
+                  </Link>
+
                   {([
                     { date: 'Mer. 5 août', name: 'Erik Truffaz & Antonio Lizana', sub: '« New Sketches of Spain »', slug: 'erik-truffaz', price: '25 €' },
                     { date: 'Jeu. 6 août', name: 'Dal Sasso Big Band', sub: 'Africa Brass Revisited', slug: 'dal-sasso', price: '22 €', promo: '18 €' },
@@ -224,7 +243,8 @@ export default function Home() {
                   Concerts gratuits dans les rues de Céret
                 </h2>
                 <p className="text-base md:text-lg max-w-2xl mx-auto mb-3" style={{ color: '#f7f3e9', opacity: 0.9 }}>
-                  Chaque jour du festival, deux podiums gratuits font vivre la ville :
+                  <strong style={{ color: '#d4af37' }}>Mardi 4 août à 19h</strong>, l&apos;Harmonie de Céret ouvre le festival
+                  place de la République. Puis, du 5 au 8 août, deux podiums gratuits font vivre la ville :
                   boulevard Joffre à 17h et place Picasso à 18h.
                 </p>
                 <p className="text-sm md:text-base max-w-3xl mx-auto mb-7" style={{ color: '#f7f3e9', opacity: 0.75 }}>
