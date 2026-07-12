@@ -600,23 +600,76 @@ export async function generateMetadata({ params }: ArtistPageProps): Promise<Met
   }
 }
 
-// Composant pour les données structurées
+// Conversion "MARDI 4 AOÛT 2026" + "19H00" → "2026-08-04T19:00:00+02:00" (ISO 8601)
+// Google exige ce format pour startDate/endDate, sans quoi l'événement
+// n'apparaît pas dans les résultats enrichis.
+const MONTHS_FR: Record<string, string> = {
+  JANVIER: '01', FEVRIER: '02', 'FÉVRIER': '02', MARS: '03', AVRIL: '04',
+  MAI: '05', JUIN: '06', JUILLET: '07', AOUT: '08', 'AOÛT': '08',
+  SEPTEMBRE: '09', OCTOBRE: '10', NOVEMBRE: '11', DECEMBRE: '12', 'DÉCEMBRE': '12',
+}
+
+function toISO(dateStr: string, timeStr: string): string | null {
+  if (!dateStr) return null
+  // "MARDI 4 AOÛT 2026" → ["4", "AOÛT", "2026"]
+  const parts = dateStr.toUpperCase().replace(/,/g, '').split(/\s+/)
+  const day = parts.find((p) => /^\d{1,2}$/.test(p))
+  const month = parts.find((p) => MONTHS_FR[p])
+  const year = parts.find((p) => /^\d{4}$/.test(p))
+  if (!day || !month || !year) return null
+
+  // "21H00" ou "19H30" → "21:00"
+  const m = (timeStr || '').toUpperCase().match(/(\d{1,2})\s*H\s*(\d{2})?/)
+  const hh = m ? m[1].padStart(2, '0') : '21'
+  const mm = m && m[2] ? m[2] : '00'
+
+  // Août = heure d'été en France → +02:00
+  return `${year}-${MONTHS_FR[month]}-${day.padStart(2, '0')}T${hh}:${mm}:00+02:00`
+}
+
+// Fin de concert estimée : +2 heures (endDate recommandé par Google)
+function addHours(iso: string, hours: number): string {
+  const d = new Date(iso)
+  d.setHours(d.getHours() + hours)
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00+02:00`
+}
+
+// Composant pour les données structurées (schema.org MusicEvent)
 const StructuredData = ({ artist }: { artist: any }) => {
-  const structuredData = {
+  const startDate = toISO(artist.date, artist.time)
+  const endDate = startDate ? addHours(startDate, 2) : null
+  const isFree = artist.ticketType === 'gratuit'
+
+  const structuredData: any = {
     "@context": "https://schema.org",
     "@type": "MusicEvent",
     "name": `${artist.name} - ${artist.subtitle}`,
     "description": artist.biography.intro,
     "image": artist.image,
-    "startDate": artist.date,
+    ...(startDate && { "startDate": startDate }),
+    ...(endDate && { "endDate": endDate }),
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
       "@type": "Place",
       "name": artist.venue,
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": artist.venue,
         "addressLocality": artist.city || "Céret",
+        "postalCode": artist.city === "Saint-Génis-des-Fontaines" ? "66740" : "66400",
+        "addressRegion": "Pyrénées-Orientales",
         "addressCountry": "FR"
       }
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": isFree ? "https://jazzentech.com/concerts-gratuits" : (artist.ticketUrl || "https://jazzentech.com/billetterie"),
+      "price": isFree ? "0" : (artist.price ? String(artist.price) : "22"),
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      ...(startDate && { "validFrom": "2026-01-01T00:00:00+01:00" })
     },
     "performer": {
       "@type": "MusicGroup",
