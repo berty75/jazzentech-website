@@ -41,6 +41,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Session non-guichet' }, { status: 400 })
   }
 
+  // Verrou partagé (Stripe) : si le webhook a déjà créé les billets, on s'arrête.
+  // Le Set en mémoire ne suffit pas — webhook et confirm sont deux process distincts.
+  if (session.metadata?.tickets_created === '1') {
+    processed.add(sessionId)
+  // Verrou : empêche le webhook de recréer les mêmes billets
+  try {
+    await stripe.checkout.sessions.update(sessionId, {
+      metadata: { ...(session.metadata || {}), tickets_created: '1' },
+    })
+  } catch { /* le Set local protège déjà ce process */ }
+    return NextResponse.json({ ok: true, alreadyDone: true })
+  }
+
   const m = session.metadata
   const buyerEmail = m.buyerEmail || session.customer_details?.email || session.customer_email || ''
 
@@ -76,5 +89,11 @@ export async function POST(req: NextRequest) {
   }
 
   processed.add(sessionId)
+  // Verrou : empêche le webhook de recréer les mêmes billets
+  try {
+    await stripe.checkout.sessions.update(sessionId, {
+      metadata: { ...(session.metadata || {}), tickets_created: '1' },
+    })
+  } catch { /* le Set local protège déjà ce process */ }
   return NextResponse.json({ ok: true, count: lines.length, email: buyerEmail })
 }

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { ConvexHttpClient } from 'convex/browser'
 import { api } from '../../../../../convex/_generated/api'
+import { createBilletwebMultiOrder, CartLine } from '@/lib/billetweb'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
@@ -78,9 +79,93 @@ export async function POST(req: NextRequest) {
     // NB: les billets guichet (type='guichet') sont créés par /api/stripe/guichet-confirm
     // (bouton « Générer le billet » côté tablette), PAS ici. On ignore donc ce type au webhook
     // pour éviter tout doublon.
+    // ---- GUICHET ----
+    // Deux cas :
+    //  · Le client paie DEVANT toi (QR code) → tu cliques « Générer les billets »
+    //    au retour, et guichet-confirm s'en charge. Le webhook ne fait rien.
+    //  · Le client paie À DISTANCE (lien envoyé par email/SMS) → tu ne verras
+    //    jamais le retour navigateur. C'est le webhook qui DOIT créer les billets.
+    //
+    // Le champ metadata.remote distingue les deux.
     if (session.metadata?.type === 'guichet') {
+      // Verrou : si l'admin a déjà cliqué « Générer les billets », on ne refait rien.
+      if (session.metadata?.tickets_created === '1') {
+        return NextResponse.json({ received: true, alreadyDone: true })
+      }
+
+      // Petit délai : laisse la main à guichet-confirm si l'admin est devant l'écran.
+      // Au-delà, on considère qu'il n'y est pas (paiement à distance) et on crée.
+      await new Promise((r) => setTimeout(r, 8000))
+      const fresh = await stripe.checkout.sessions.retrieve(session.id)
+      if (fresh.metadata?.tickets_created === '1') {
+        return NextResponse.json({ received: true, alreadyDone: true })
+      }
+
+      try {
+        const eventId = session.metadata.eventId
+        const compact = JSON.parse(session.metadata.lines || '[]') as any[]
+        const lines: CartLine[] = compact.map((c) => ({
+          ticketId: String(c.t),
+          firstname: String(c.f || ''),
+          name: String(c.n || ''),
+          ...(c.p !== undefined ? { forcedPrice: Number(c.p) } : {}),
+        }))
+
+        const result = await createBilletwebMultiOrder({
+          eventId,
+          paymentType: 'card',
+          lines,
+          email: session.metadata.buyerEmail || undefined,
+          phone: session.metadata.phone || undefined,
+          ship: true,                   // Billetweb envoie les billets au client
+        })
+
+        if (result.ok) {
+          try {
+            await stripe.checkout.sessions.update(session.id, {
+              metadata: { ...(session.metadata || {}), tickets_created: '1' },
+            })
+          } catch { /* non bloquant */ }
+        }
+
+        if (!result.ok) {
+          await sendEmail(
+            ADMIN_EMAIL,
+            '🚨 URGENT — Paiement reçu mais billets NON créés',
+            emailTemplate(`
+              <h2 style="color:#991b1b;">Lien de paiement réglé, billets non créés</h2>
+              <p>Un client a payé via un lien envoyé depuis le guichet, mais la création
+              Billetweb a échoué. <strong>Il faut créer ses billets à la main.</strong></p>
+              <table style="width:100%;border-collapse:collapse;">
+                <tr><td style="padding:6px 0;color:#999;width:130px;">Email client</td><td style="padding:6px 0;font-weight:600;">${session.metadata.buyerEmail || '—'}</td></tr>
+                <tr><td style="padding:6px 0;color:#999;">Montant</td><td style="padding:6px 0;">${((session.amount_total || 0) / 100).toFixed(2)} €</td></tr>
+                <tr><td style="padding:6px 0;color:#999;">Session Stripe</td><td style="padding:6px 0;">${session.id}</td></tr>
+                <tr><td style="padding:6px 0;color:#999;">Erreur</td><td style="padding:6px 0;color:#991b1b;">${result.error}</td></tr>
+              </table>
+            `)
+          )
+        } else {
+          await sendEmail(
+            ADMIN_EMAIL,
+            '✅ Lien de paiement réglé — billets créés',
+            emailTemplate(`
+              <h2 style="color:#722f37;">Paiement à distance confirmé</h2>
+              <p>Un client a réglé le lien de paiement que tu lui as envoyé.
+              Ses billets ont été créés et lui ont été envoyés automatiquement.</p>
+              <table style="width:100%;border-collapse:collapse;">
+                <tr><td style="padding:6px 0;color:#999;width:130px;">Client</td><td style="padding:6px 0;font-weight:600;">${session.metadata.buyerEmail || '—'}</td></tr>
+                <tr><td style="padding:6px 0;color:#999;">Billets</td><td style="padding:6px 0;font-weight:600;">${lines.length}</td></tr>
+                <tr><td style="padding:6px 0;color:#999;">Montant</td><td style="padding:6px 0;font-weight:600;">${((session.amount_total || 0) / 100).toFixed(2)} €</td></tr>
+              </table>
+            `)
+          )
+        }
+      } catch (e: any) {
+        console.error('[webhook guichet distant]', e)
+      }
       return NextResponse.json({ received: true })
     }
+
 
     if (session.metadata?.type === 'donation') {
       const customFields = (session as any).custom_fields || []

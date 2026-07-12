@@ -42,6 +42,8 @@ export async function POST(req: NextRequest) {
     }))
     .filter((l: any) => l.ticketId && l.firstname && l.name)
 
+  const remote = body.remote === true    // paiement à distance (lien envoyé au client)
+
   if (!eventId) return NextResponse.json({ error: 'Concert manquant' }, { status: 400 })
   if (lines.length === 0) return NextResponse.json({ error: 'Panier vide' }, { status: 400 })
   const total = lines.reduce((s: number, l: any) => s + l.unitPrice, 0)
@@ -80,6 +82,7 @@ export async function POST(req: NextRequest) {
       line_items,
       metadata: {
         type: 'guichet',
+        remote: remote ? '1' : '0',   // '1' → le webhook crée les billets
         eventId,
         lines: linesJson,       // [{t,f,n}, ...]
         buyerEmail: email,

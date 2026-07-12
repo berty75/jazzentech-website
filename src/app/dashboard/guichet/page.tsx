@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Loader2, Ticket, CheckCircle2, AlertTriangle, Send, Gift, Banknote, CreditCard, FileText, Plus, Trash2, Users, Layers } from 'lucide-react'
+import { Loader2, Ticket, CheckCircle2, AlertTriangle, Send, Gift, Banknote, CreditCard, FileText, Plus, Trash2, Users, Layers, Mail, Copy, Maximize2 } from 'lucide-react'
 import DashboardShell from '@/components/DashboardShell'
 import Select from '@/components/Select'
 import { PASS_TYPES, CERET_CONCERTS } from '@/lib/passConfig'
@@ -55,6 +55,11 @@ export default function GuichetPage() {
   const [result, setResult] = useState<{ ok: boolean; msg: string } | null>(null)
 
   const [qrUrl, setQrUrl] = useState('')
+  const [linkEmail, setLinkEmail] = useState('')      // envoi du lien de paiement
+  const [sendingLink, setSendingLink] = useState(false)
+  const [linkSent, setLinkSent] = useState('')
+  const [copied, setCopied] = useState(false)
+  const [fullscreen, setFullscreen] = useState(false)   // QR plein écran à montrer au client
   const [qrSessionId, setQrSessionId] = useState('')
   const [payStatus, setPayStatus] = useState<'idle' | 'waiting' | 'paid' | 'expired'>('idle')
   const [issuing, setIssuing] = useState(false)
@@ -174,7 +179,7 @@ export default function GuichetPage() {
     try {
       const res = await fetch('/api/stripe/guichet-checkout', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ eventId, concertName: selectedEvent?.name || '', lines: linesForApi(), email, phone, instagram }),
+        body: JSON.stringify({ eventId, concertName: selectedEvent?.name || '', lines: linesForApi(), email, phone, instagram, remote: true }),
       })
       const data = await res.json()
       if (!res.ok) { setResult({ ok: false, msg: data.error || 'Erreur Stripe' }); return }
@@ -196,6 +201,9 @@ export default function GuichetPage() {
     return () => clearInterval(iv)
   }, [payStatus, qrSessionId])
 
+  // Création des billets au retour du paiement (le cas normal : client devant toi).
+  // Le webhook fait la même chose si le client paie à distance ; guichet-confirm
+  // est idempotent (Set 'processed' + vérification Stripe), donc pas de doublon.
   const issueTickets = async () => {
     setIssuing(true)
     try {
@@ -205,10 +213,52 @@ export default function GuichetPage() {
       })
       const data = await res.json()
       if (!res.ok) setResult({ ok: false, msg: data.error || 'Billets non créés. ' + (data.billetweb_raw || '') })
-      else { setIssued(true); setResult({ ok: true, msg: `Billets créés et envoyés. Vérifie dans Billetweb.` }) }
+      else { setIssued(true); setResult({ ok: true, msg: 'Billets créés et envoyés au client.' }) }
     } catch (e: any) { setResult({ ok: false, msg: 'Erreur réseau : ' + e.message }) }
     finally { setIssuing(false) }
   }
+
+  // Copier le lien de paiement (à coller dans un SMS, WhatsApp…)
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(qrUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch { /* presse-papiers indisponible */ }
+  }
+
+  // Envoyer le lien de paiement par email au client
+  const sendLink = async () => {
+    const to = linkEmail.trim()
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) { setLinkSent('Adresse email invalide'); return }
+    setSendingLink(true); setLinkSent('')
+    try {
+      const res = await fetch('/api/stripe/send-payment-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: to,
+          url: qrUrl,
+          summary: `${currentCount} ${mode === 'pass' ? 'pass' : 'billet' + (currentCount > 1 ? 's' : '')}`,
+          total: eur(currentTotal),
+        }),
+      })
+      const d = await res.json()
+      setLinkSent(res.ok ? `Lien envoyé à ${to}` : (d.error || 'Échec de l’envoi'))
+    } catch (e: any) {
+      setLinkSent('Erreur réseau : ' + e.message)
+    } finally {
+      setSendingLink(false)
+    }
+  }
+
+  // Après paiement, on laisse la confirmation 2,5 s au client puis on revient au dashboard
+  useEffect(() => {
+    if (payStatus === 'paid' && fullscreen) {
+      const t = setTimeout(() => setFullscreen(false), 2500)
+      return () => clearTimeout(t)
+    }
+  }, [payStatus, fullscreen])
 
   const closeQr = () => {
     setQrUrl(''); setQrSessionId(''); setPayStatus('idle'); setIssued(false); setIssuing(false)
@@ -452,12 +502,108 @@ export default function GuichetPage() {
                 <div style={{ background: '#fff', padding: '12px', borderRadius: '16px', border: '2px solid #f0ece3', display: 'inline-block', marginBottom: '20px' }}>
                   <img src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(qrUrl)}`} width={240} height={240} alt="QR paiement" style={{ display: 'block' }} />
                 </div>
+                <button onClick={() => setFullscreen(true)}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl mb-3"
+                  style={{ background: '#1a1a1a', color: '#fff', border: 'none', fontWeight: 600, fontSize: '14px', cursor: 'pointer' }}>
+                  <Maximize2 className="w-4 h-4" />
+                  Montrer au client (plein écran)
+                </button>
+
                 <div className="flex items-center justify-center gap-2 mb-4" style={{ color: '#8a8478' }}><Loader2 className="w-4 h-4 animate-spin" /><span style={{ fontSize: '13px' }}>En attente du paiement…</span></div>
+
+                {/* Le client n'est pas devant toi ? Envoie-lui le lien. */}
+                <div className="pt-4 mb-3" style={{ borderTop: '1px solid #f0ece3' }}>
+                  <p style={{ fontSize: '12px', color: '#8a8478', marginBottom: '10px' }}>
+                    Le client n&apos;est pas là ? Envoie-lui le lien de paiement :
+                  </p>
+
+                  <div className="flex gap-2 mb-2">
+                    <input
+                      type="email"
+                      value={linkEmail}
+                      onChange={(e) => setLinkEmail(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') sendLink() }}
+                      placeholder="email du client"
+                      style={{ flex: 1, minWidth: 0, padding: '8px 10px', borderRadius: '8px', border: '1px solid #ddd', fontSize: '13px', outline: 'none' }}
+                    />
+                    <button onClick={sendLink} disabled={sendingLink}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-lg shrink-0"
+                      style={{ background: BORDEAUX, color: '#fff', border: 'none', fontSize: '13px', fontWeight: 600, cursor: 'pointer' }}>
+                      {sendingLink ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Mail className="w-3.5 h-3.5" />}
+                      Envoyer
+                    </button>
+                  </div>
+
+                  <button onClick={copyLink}
+                    className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg"
+                    style={{ background: 'transparent', color: copied ? '#166534' : '#8a8478', border: `1px solid ${copied ? '#c3e0c3' : '#e3ddd0'}`, fontSize: '12.5px', fontWeight: 500, cursor: 'pointer' }}>
+                    {copied ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                    {copied ? 'Lien copié !' : 'Copier le lien (SMS, WhatsApp…)'}
+                  </button>
+
+                  {linkSent && (
+                    <p style={{ fontSize: '12px', marginTop: '8px', color: linkSent.startsWith('Lien envoyé') ? '#166534' : '#991b1b' }}>
+                      {linkSent}
+                    </p>
+                  )}
+
+                  <p style={{ fontSize: '11px', color: '#a8a094', marginTop: '8px', lineHeight: 1.45 }}>
+                    Ses billets seront créés automatiquement dès qu&apos;il aura payé, même si tu fermes cette fenêtre.
+                  </p>
+                </div>
+
                 <a href={qrUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', color: BORDEAUX, textDecoration: 'underline', display: 'block', marginBottom: '12px' }}>Ou ouvrir la page de paiement ici</a>
                 <button onClick={closeQr} className="w-full py-2.5 rounded-xl" style={{ background: 'transparent', color: '#8a8478', border: '1px solid #e3ddd0', fontWeight: 500, cursor: 'pointer' }}>Annuler</button>
               </>
             )}
           </div>
+        </div>
+      )}
+      {/* ---- QR PLEIN ÉCRAN — à tendre au client ----
+           Fond blanc, luminosité maximale, QR le plus grand possible.
+           Se referme dès que le paiement est détecté. */}
+      {fullscreen && qrUrl && (
+        <div
+          onClick={() => setFullscreen(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 100, background: '#fff',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            padding: '20px', cursor: 'pointer',
+          }}
+        >
+          {payStatus === 'paid' ? (
+            <>
+              <div style={{ width: '96px', height: '96px', borderRadius: '50%', background: '#eef6ee', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
+                <CheckCircle2 className="w-12 h-12" style={{ color: '#166534' }} />
+              </div>
+              <p style={{ fontSize: '28px', fontWeight: 700, color: '#166534', margin: 0 }}>Paiement reçu</p>
+              <p style={{ fontSize: '16px', color: '#8a8478', marginTop: '8px' }}>Merci !</p>
+            </>
+          ) : (
+            <>
+              <p style={{ fontSize: '15px', color: '#8a8478', marginBottom: '6px', textAlign: 'center' }}>
+                Scannez pour payer
+              </p>
+              <p style={{ fontSize: '38px', fontWeight: 700, color: BORDEAUX, margin: '0 0 24px', lineHeight: 1 }}>
+                {eur(currentTotal)}
+              </p>
+
+              {/* QR aussi grand que possible : min(85vw, 85vh) */}
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=0&data=${encodeURIComponent(qrUrl)}`}
+                alt="QR code de paiement"
+                style={{ width: 'min(78vw, 62vh)', height: 'min(78vw, 62vh)', display: 'block' }}
+              />
+
+              <p style={{ fontSize: '14px', color: '#8a8478', marginTop: '22px', textAlign: 'center' }}>
+                {currentCount} {mode === 'pass' ? 'pass' : 'billet' + (currentCount > 1 ? 's' : '')}
+                {' · '}Ouvrez l&apos;appareil photo de votre téléphone
+              </p>
+              <p style={{ fontSize: '12px', color: '#c9c2b4', marginTop: '18px' }}>
+                Touchez l&apos;écran pour revenir
+              </p>
+            </>
+          )}
         </div>
       )}
     </DashboardShell>
