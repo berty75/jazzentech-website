@@ -611,19 +611,28 @@ const MONTHS_FR: Record<string, string> = {
 
 function toISO(dateStr: string, timeStr: string): string | null {
   if (!dateStr) return null
-  // "MARDI 4 AOÛT 2026" → ["4", "AOÛT", "2026"]
-  const parts = dateStr.toUpperCase().replace(/,/g, '').split(/\s+/)
+
+  // Certains artistes jouent plusieurs fois :
+  //   "MERCREDI 5 AOÛT (Bd Joffre 17h) & JEUDI 6 AOÛT (Place Picasso 18h)"
+  // On ne garde que la PREMIÈRE date (Google n'accepte qu'un startDate par page).
+  const first = dateStr.split('&')[0]
+
+  // On retire les parenthèses, qui contiennent des heures parasites
+  const clean = first.replace(/\([^)]*\)/g, ' ')
+
+  const parts = clean.toUpperCase().replace(/,/g, '').split(/\s+/).filter(Boolean)
   const day = parts.find((p) => /^\d{1,2}$/.test(p))
   const month = parts.find((p) => MONTHS_FR[p])
-  const year = parts.find((p) => /^\d{4}$/.test(p))
-  if (!day || !month || !year) return null
+  const year = parts.find((p) => /^\d{4}$/.test(p)) || '2026'   // année sous-entendue
+  if (!day || !month) return null
 
-  // "21H00" ou "19H30" → "21:00"
-  const m = (timeStr || '').toUpperCase().match(/(\d{1,2})\s*H\s*(\d{2})?/)
+  // Heure : "17H00", "19H30", ou "17H00 / 18H00" (on prend la première)
+  const firstTime = (timeStr || '').split('/')[0]
+  const m = firstTime.toUpperCase().match(/(\d{1,2})\s*H\s*(\d{2})?/)
   const hh = m ? m[1].padStart(2, '0') : '21'
   const mm = m && m[2] ? m[2] : '00'
 
-  // Août = heure d'été en France → +02:00
+  // Août/juillet = heure d'été en France → +02:00
   return `${year}-${MONTHS_FR[month]}-${day.padStart(2, '0')}T${hh}:${mm}:00+02:00`
 }
 
