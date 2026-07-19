@@ -51,11 +51,11 @@ export default function ContactsPage() {
     }
   }
 
-  const handleSyncBilletweb = async () => {
+  const handleSyncBilletweb = async (full = false) => {
     setImporting(true)
     setImportResult('')
     try {
-      const res = await fetch('/api/billetweb/sync', { method: 'POST' })
+      const res = await fetch(`/api/billetweb/sync${full ? '?full=1' : ''}`, { method: 'POST' })
       const data = await res.json()
       if (res.ok && data.ok) {
         setImportResult(`Billetweb : ${data.imported} nouveaux, ${data.updated} mis à jour (${data.fetched} récupérés)`)
@@ -91,11 +91,18 @@ export default function ContactsPage() {
             <p style={{ fontSize: '14px', color: '#888', marginTop: '4px' }}>{activeCount} contacts actifs sur {clients.length} total</p>
           </div>
           <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
-            <button onClick={handleSyncBilletweb} disabled={importing}
+            <button onClick={() => handleSyncBilletweb(false)} disabled={importing}
               className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm"
               style={{ background: '#d4af37', color: '#1a1a1a', border: 'none', fontWeight: 600, cursor: 'pointer' }}>
               {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
               Synchroniser Billetweb
+            </button>
+            <button onClick={() => handleSyncBilletweb(true)} disabled={importing}
+              title="Relit TOUS les participants depuis le début (plus long, mais recalcule les compteurs de billets)"
+              className="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm"
+              style={{ background: 'transparent', color: '#8a8478', border: '1px solid #e3ddd0', fontWeight: 500, cursor: 'pointer' }}>
+              <RefreshCw className="w-4 h-4" />
+              Complète
             </button>
             <button onClick={handleImportJSON} disabled={importing}
               className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm"

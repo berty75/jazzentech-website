@@ -54,7 +54,7 @@ function mapAttendee(a: any) {
   }
 }
 
-async function runSync() {
+async function runSync(full = false) {
   const user = process.env.BILLETWEB_USER
   const key = process.env.BILLETWEB_KEY
   if (!user || !key) {
@@ -73,7 +73,10 @@ async function runSync() {
   url.searchParams.set('user', user)
   url.searchParams.set('key', key)
   url.searchParams.set('version', '1')
-  if (lastUpdateSec > 0) url.searchParams.set('last_update', String(lastUpdateSec))
+  // En mode complet, on ne filtre pas : on relit TOUS les participants.
+  // Indispensable après un correctif, sinon les contacts déjà importés
+  // ne sont jamais retraités (leurs compteurs restent faux).
+  if (!full && lastUpdateSec > 0) url.searchParams.set('last_update', String(lastUpdateSec))
 
   const res = await fetch(url.toString(), { headers: { Accept: 'application/json' } })
   if (!res.ok) {
@@ -130,9 +133,10 @@ async function runSync() {
 }
 
 // Déclenchement manuel (bouton dashboard)
-export async function POST() {
+export async function POST(req: NextRequest) {
+  const full = new URL(req.url).searchParams.get('full') === '1'
   try {
-    const result = await runSync()
+    const result = await runSync(full)
     return NextResponse.json(result, { status: result.status })
   } catch (e: any) {
     return NextResponse.json({ ok: false, error: e.message }, { status: 500 })
