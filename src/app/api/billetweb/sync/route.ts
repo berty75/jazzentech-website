@@ -34,7 +34,23 @@ function mapAttendee(a: any) {
     lastName = parts.join(' ')
   }
 
-  const phone = (a.phone || a.tel || a.telephone || '').trim() || undefined
+  // Le téléphone n'est pas un champ standard : Billetweb le range dans les
+  // champs personnalisés du formulaire, sous `custom_order` (ex. { "Téléphone": "+33..." }).
+  // On cherche donc la clé de façon souple, l'intitulé pouvant varier.
+  let phone = (a.phone || a.tel || a.telephone || '').trim()
+  if (!phone) {
+    const customs = { ...(a.custom_order || {}), ...(a.custom || {}) }
+    for (const [label, value] of Object.entries(customs)) {
+      const k = label
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')   // retire les accents : "Téléphone" → "telephone"
+      if (k.includes('tel') || k.includes('phone') || k.includes('portable') || k.includes('mobile')) {
+        phone = String(value ?? '').trim()
+        if (phone) break
+      }
+    }
+  }
 
   // Édition : on tente de déduire l'année d'une date, sinon édition courante
   let edition = CURRENT_EDITION
@@ -48,7 +64,7 @@ function mapAttendee(a: any) {
     firstName,
     lastName,
     email,
-    phone,
+    phone: phone || undefined,
     editions: [edition],
     ticketCount: 1,
   }
