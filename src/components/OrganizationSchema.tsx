@@ -79,6 +79,40 @@ export default function OrganizationSchema() {
       },
     },
     organizer: { '@id': 'https://jazzentech.com/#organization' },
+    // Têtes d'affiche : permet d'apparaître sur les recherches d'artistes
+    // (« Erik Truffaz concert 2026 »), pas seulement « festival jazz Céret ».
+    performer: [
+      {
+        '@type': 'MusicGroup',
+        name: 'Erik Truffaz & Antonio Lizana',
+        url: 'https://jazzentech.com/artistes/erik-truffaz',
+      },
+      {
+        '@type': 'MusicGroup',
+        name: 'Dal Sasso Big Band',
+        url: 'https://jazzentech.com/artistes/dal-sasso',
+      },
+      {
+        '@type': 'MusicGroup',
+        name: 'Ladyva & Barcelona Big Blues Band',
+        url: 'https://jazzentech.com/artistes/ladyva',
+      },
+      {
+        '@type': 'MusicGroup',
+        name: 'Akpé Motion featuring Karla Harris',
+        url: 'https://jazzentech.com/artistes/akpe-motion',
+      },
+      {
+        '@type': 'MusicGroup',
+        name: 'Cecil L. Recchia Quintet',
+        url: 'https://jazzentech.com/artistes/cecile-recchia',
+      },
+      {
+        '@type': 'MusicGroup',
+        name: 'Harmonie de Céret',
+        url: 'https://jazzentech.com/artistes/harmonie-ceret',
+      },
+    ],
     offers: {
       '@type': 'Offer',
       url: 'https://jazzentech.com/billetterie',
