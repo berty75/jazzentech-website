@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import ConvexClerkProvider from '@/components/ConvexClerkProvider'
 import SiteShell from '@/components/SiteShell'
+import OrganizationSchema from '@/components/OrganizationSchema'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -79,6 +80,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col hero-gradient`}>
+        <OrganizationSchema />
         <ConvexClerkProvider>
           <SiteShell>
             {children}
