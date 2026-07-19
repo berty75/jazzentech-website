@@ -37,7 +37,20 @@ export const importClients = mutation({
       if (existing) {
         // Met à jour les éditions sans doublon
         const editions = [...new Set([...existing.editions, ...client.editions])];
-        await ctx.db.patch(existing._id, { editions });
+
+        // Le nombre de billets vient de la synchro (déjà agrégé par email).
+        // On prend la valeur la plus élevée : une synchro partielle ne doit pas
+        // faire régresser un compteur déjà correct.
+        const ticketCount = Math.max(existing.ticketCount ?? 0, client.ticketCount ?? 0);
+
+        await ctx.db.patch(existing._id, {
+          editions,
+          ticketCount,
+          // On complète les champs restés vides (ex. nom absent d'un ancien import)
+          ...(!existing.firstName && client.firstName ? { firstName: client.firstName } : {}),
+          ...(!existing.lastName && client.lastName ? { lastName: client.lastName } : {}),
+          ...(!existing.phone && client.phone ? { phone: client.phone } : {}),
+        });
         updated++;
       } else {
         await ctx.db.insert("clients", {

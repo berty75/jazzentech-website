@@ -13,15 +13,23 @@ const SYNC_KEY = 'billetweb_attendees'
 // Les noms de champs Billetweb peuvent varier : on essaie plusieurs variantes,
 // et la mutation importClients dédoublonne de toute façon par email.
 function mapAttendee(a: any) {
-  const email = (a.email || a.mail || '').trim().toLowerCase()
+  // Billetweb : `email` est celui du PARTICIPANT (souvent vide),
+  // `order_email` celui de l'ACHETEUR — c'est lui qui sert aux envois.
+  const email = (a.order_email || a.email || a.mail || '').trim().toLowerCase()
   if (!email) return null
 
-  let firstName = (a.firstname || a.first_name || a.prenom || '').trim()
-  let lastName = (a.lastname || a.last_name || a.nom || '').trim()
+  // ⚠️ Chez Billetweb, le nom de famille est dans `name` (et non `lastname`).
+  let firstName = (a.firstname || a.order_firstname || a.first_name || a.prenom || '').trim()
+  let lastName = (a.name || a.order_name || a.lastname || a.last_name || a.nom || '').trim()
 
-  // Si seul un "name" complet est fourni, on le découpe
-  if (!firstName && !lastName && a.name) {
-    const parts = String(a.name).trim().split(/\s+/)
+  // Cas où un seul champ contient « Prénom Nom » : on le découpe
+  if (firstName && !lastName && firstName.includes(' ')) {
+    const parts = firstName.split(/\s+/)
+    firstName = parts.shift() || ''
+    lastName = parts.join(' ')
+  }
+  if (!firstName && lastName && lastName.includes(' ')) {
+    const parts = lastName.split(/\s+/)
     firstName = parts.shift() || ''
     lastName = parts.join(' ')
   }
@@ -77,10 +85,33 @@ async function runSync() {
   const attendees: any[] = Array.isArray(data) ? data : (data?.attendees || data?.data || [])
 
   // Mapping + filtrage (email obligatoire)
-  const mapped = attendees.map(mapAttendee).filter(Boolean) as Array<{
+  const rows = attendees.map(mapAttendee).filter(Boolean) as Array<{
     firstName: string; lastName: string; email: string
     phone?: string; editions: string[]; ticketCount?: number
   }>
+
+  // Agrégation par email : un client qui a acheté 4 billets ne doit pas être
+  // envoyé 4 fois avec ticketCount:1, mais UNE fois avec ticketCount:4.
+  const byEmail = new Map<string, {
+    firstName: string; lastName: string; email: string
+    phone?: string; editions: string[]; ticketCount: number
+  }>()
+
+  for (const r of rows) {
+    const prev = byEmail.get(r.email)
+    if (!prev) {
+      byEmail.set(r.email, { ...r, ticketCount: 1 })
+    } else {
+      prev.ticketCount += 1
+      // On garde les infos les plus complètes rencontrées
+      if (!prev.firstName && r.firstName) prev.firstName = r.firstName
+      if (!prev.lastName && r.lastName) prev.lastName = r.lastName
+      if (!prev.phone && r.phone) prev.phone = r.phone
+      prev.editions = [...new Set([...prev.editions, ...r.editions])]
+    }
+  }
+
+  const mapped = [...byEmail.values()]
 
   // Import par lots de 50 (réutilise ta mutation existante qui dédoublonne)
   let imported = 0
