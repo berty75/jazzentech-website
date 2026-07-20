@@ -1,3 +1,53 @@
+// ---- Content-Security-Policy ----
+// Version volontairement permissive. Le site étant entièrement statique (pages
+// pré-rendues et servies par le CDN), on ne peut pas utiliser de nonce : celui-ci
+// doit être recalculé à chaque requête, ce qui imposerait un rendu dynamique.
+// D'où 'unsafe-inline' sur script-src, indispensable aux balises JSON-LD et aux
+// scripts d'hydratation de Next.
+//
+// L'objectif ici n'est pas une protection maximale mais un filet raisonnable
+// sans rien casser : billetterie Billetweb, paiement Stripe, temps réel Convex,
+// images Cloudinary, vidéos YouTube.
+//
+// Pour tester sans bloquer : CSP_REPORT_ONLY=1 dans l'environnement. Les
+// violations remontent alors dans /api/csp-report (terminal en local, onglet
+// Logs sur Vercel) sans qu'aucune ressource ne soit refusée.
+const csp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+
+  // Formulaires : Billetweb et Stripe reçoivent des soumissions
+  "form-action 'self' https://www.billetweb.fr https://checkout.stripe.com",
+
+  // Scripts : widget Billetweb, Stripe. 'unsafe-inline' cf. explication ci-dessus.
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.billetweb.fr https://js.stripe.com",
+
+  // Styles : Tailwind et les styles inline des composants
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self' data:",
+
+  // Images : Cloudinary, QR codes, vignettes diverses. Large à dessein — une
+  // image bloquée est un visuel manquant sur le site public.
+  "img-src 'self' data: blob: https:",
+  "media-src 'self' https:",
+
+  // Connexions : Convex (dont websocket temps réel), Cloudinary, Stripe, Billetweb
+  "connect-src 'self' https://*.convex.cloud wss://*.convex.cloud https://api.cloudinary.com https://api.stripe.com https://www.billetweb.fr",
+
+  // Cadres : YouTube, billetterie Billetweb, Stripe, Apple Music, office de tourisme
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.billetweb.fr https://js.stripe.com https://checkout.stripe.com https://embed.music.apple.com https://music.apple.com https://boutique.tourisme-pyrenees-mediterranee.com",
+
+  "worker-src 'self' blob:",
+  "upgrade-insecure-requests",
+  'report-uri /api/csp-report',
+].join('; ')
+
+const cspHeaderName = process.env.CSP_REPORT_ONLY
+  ? 'Content-Security-Policy-Report-Only'
+  : 'Content-Security-Policy'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -163,13 +213,6 @@ const nextConfig = {
   },
 
   // ---- En-têtes de sécurité ----
-  // Protections simples et sans effet de bord : elles ne bloquent aucune
-  // ressource, elles ne font que restreindre des comportements du navigateur.
-  //
-  // Pas de Content-Security-Policy ici : elle demande de recenser toutes les
-  // sources externes (Billetweb, Stripe, Convex, Clerk, Cloudinary...) et le
-  // moindre oubli casse une fonctionnalité. À reprendre après le festival,
-  // au calme, en mode Report-Only d'abord.
   async headers() {
     return [
       {
@@ -195,6 +238,9 @@ const nextConfig = {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
+
+          // Content-Security-Policy (voir le détail en haut du fichier)
+          { key: cspHeaderName, value: csp },
         ],
       },
     ]
