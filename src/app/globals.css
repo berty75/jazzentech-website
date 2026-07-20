@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Inter est déjà chargée — et hébergée localement — par next/font dans layout.tsx.
+   L'ancien @import vers fonts.googleapis.com faisait un DOUBLE téléchargement :
+   il ralentissait l'affichage et envoyait l'IP des visiteurs à Google (RGPD).
+   Supprimé volontairement : ne pas le remettre. */
 
 @tailwind base;
 @tailwind components;

@@ -187,6 +187,12 @@ const nextConfig = {
             value: 'max-age=63072000; includeSubDomains; preload',
           },
 
+          // Déclare le groupe de rapport utilisé par 'report-to' (Chrome)
+          {
+            key: 'Reporting-Endpoints',
+            value: 'csp-endpoint="/api/csp-report"',
+          },
+
           // ---- CSP en mode OBSERVATION ----
           // 'Report-Only' : le navigateur SIGNALE les violations dans la console
           // mais ne bloque RIEN. Zéro risque pour la billetterie.
@@ -214,6 +220,9 @@ const nextConfig = {
               "object-src 'none'",
               "base-uri 'self'",
               "frame-ancestors 'self'",
+              // Adresse de collecte : sans elle, Firefox ne rapporte RIEN
+              "report-uri /api/csp-report",
+              "report-to csp-endpoint",
             ].join('; '),
           },
         ],

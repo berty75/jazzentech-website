@@ -125,7 +125,7 @@ export default function Programmation() {
                 style={{ border: '1px solid rgba(212, 175, 55, 0.35)', backgroundColor: '#722f37' }}
               >
                 <div className="relative aspect-square">
-                  <Image src={concert.image} alt={concert.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <Image src={concert.image} alt={concert.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute top-3 left-3">
                     <span className="px-2.5 py-1 rounded-full text-[11px] font-bold" style={{ backgroundColor: concert.badgeColor, color: concert.badgeColor === '#d4af37' ? '#1a1a1a' : '#f7f3e9' }}>
                       {concert.badge}
@@ -212,7 +212,7 @@ export default function Programmation() {
                   style={{ border: '1px solid rgba(212, 175, 55, 0.35)', backgroundColor: '#722f37' }}
                 >
                   <div className="relative aspect-square">
-                    <Image src={concert.image} alt={concert.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Image src={concert.image} alt={concert.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute top-3 left-3">
                       <span className="px-2.5 py-1 rounded-full text-[11px] font-bold" style={{ backgroundColor: '#722f37', color: '#f7f3e9' }}>{concert.badge}</span>
                     </div>
