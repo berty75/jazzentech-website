@@ -3,7 +3,11 @@
 
 import Link from 'next/link'
 import { Facebook, Instagram, Mail, Phone, MapPin, Ticket } from 'lucide-react'
-import DonorWall from '@/components/DonorWall'
+import dynamic from 'next/dynamic'
+
+// Différé pour la même raison que DonorBar : le mur des donateurs est en bas
+// de page, il n'a pas à retarder l'affichage du contenu principal.
+const DonorWall = dynamic(() => import('@/components/DonorWall'), { ssr: false })
 
 function Footer() {
   return (

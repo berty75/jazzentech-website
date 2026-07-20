@@ -5,6 +5,10 @@ import { ConvexHttpClient } from 'convex/browser'
 import { api } from '../../../../../convex/_generated/api'
 import { createBilletwebMultiOrder, CartLine } from '@/lib/billetweb'
 
+// Le traitement guichet attend quelques secondes puis appelle Billetweb et Brevo :
+// sans cette ligne, Vercel coupe la fonction à 10 s et Stripe rejoue l'événement.
+export const maxDuration = 60
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 const BREVO_API_KEY = process.env.BREVO_API_KEY
@@ -88,27 +92,40 @@ export async function POST(req: NextRequest) {
     //
     // Le champ metadata.remote distingue les deux.
     if (session.metadata?.type === 'guichet') {
-      // Verrou : si l'admin a déjà cliqué « Générer les billets », on ne refait rien.
-      if (session.metadata?.tickets_created === '1') {
-        return NextResponse.json({ received: true, alreadyDone: true })
-      }
-
       // Petit délai : laisse la main à guichet-confirm si l'admin est devant l'écran.
       // Au-delà, on considère qu'il n'y est pas (paiement à distance) et on crée.
-      await new Promise((r) => setTimeout(r, 8000))
-      const fresh = await stripe.checkout.sessions.retrieve(session.id)
-      if (fresh.metadata?.tickets_created === '1') {
+      await new Promise((r) => setTimeout(r, 5000))
+
+      // Verrou atomique. La metadata Stripe ne suffit pas : lire puis écrire laisse
+      // une fenêtre où le webhook et guichet-confirm créent tous deux les billets.
+      // Convex exécute ses mutations en transaction sérialisable : un seul appelant
+      // obtient le verrou, quel que soit l'ordre d'arrivée.
+      const lockKey = `lock:guichet:${session.id}`
+      let acquired = false
+      try {
+        const claim = await convex.mutation(api.settings.claim, { key: lockKey })
+        acquired = !!claim?.acquired
+      } catch (e) {
+        console.error('[webhook guichet] verrou Convex indisponible', e)
+        // Convex injoignable : on retombe sur la metadata Stripe, moins sûre mais
+        // meilleure que rien.
+        const fresh = await stripe.checkout.sessions.retrieve(session.id)
+        acquired = fresh.metadata?.tickets_created !== '1'
+      }
+      if (!acquired) {
         return NextResponse.json({ received: true, alreadyDone: true })
       }
 
       try {
         const eventId = session.metadata.eventId
         const compact = JSON.parse(session.metadata.lines || '[]') as any[]
+        // ⚠️ Le champ attendu par CartLine est `price`, pas `forcedPrice` :
+        // mal nommé, il était ignoré et le billet repartait au tarif catalogue.
         const lines: CartLine[] = compact.map((c) => ({
           ticketId: String(c.t),
           firstname: String(c.f || ''),
           name: String(c.n || ''),
-          ...(c.p !== undefined ? { forcedPrice: Number(c.p) } : {}),
+          ...(c.p !== undefined ? { price: Number(c.p) } : {}),
         }))
 
         const result = await createBilletwebMultiOrder({
@@ -129,6 +146,10 @@ export async function POST(req: NextRequest) {
         }
 
         if (!result.ok) {
+          // Échec de création : on relâche le verrou pour qu'un nouvel essai
+          // (rejeu Stripe ou bouton « Générer les billets ») puisse aboutir.
+          try { await convex.mutation(api.settings.release, { key: lockKey }) } catch {}
+
           await sendEmail(
             ADMIN_EMAIL,
             '🚨 URGENT — Paiement reçu mais billets NON créés',
@@ -162,6 +183,7 @@ export async function POST(req: NextRequest) {
         }
       } catch (e: any) {
         console.error('[webhook guichet distant]', e)
+        try { await convex.mutation(api.settings.release, { key: lockKey }) } catch {}
       }
       return NextResponse.json({ received: true })
     }

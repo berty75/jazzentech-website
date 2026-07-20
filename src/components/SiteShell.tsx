@@ -6,7 +6,13 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SoutenirTicker from '@/components/SoutenirTicker'
 import HeroLogo from '@/components/HeroLogo'
-import DonorBar from '@/components/DonorBar'
+import dynamic from 'next/dynamic'
+
+// Chargement différé : DonorBar interroge Convex en temps réel (WebSocket).
+// Sans cela, chaque visiteur télécharge et initialise le client Convex avant
+// même de voir la page — pour un simple bandeau de donateurs.
+// Ici, la page s'affiche d'abord ; le bandeau arrive ensuite.
+const DonorBar = dynamic(() => import('@/components/DonorBar'), { ssr: false })
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()

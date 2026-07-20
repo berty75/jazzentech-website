@@ -1,10 +1,15 @@
 // PATH: src/app/api/stripe/guichet-confirm/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { ConvexHttpClient } from 'convex/browser'
+import { api } from '../../../../../convex/_generated/api'
 import { verifySession } from '@/lib/auth'
 import { createBilletwebMultiOrder, CartLine } from '@/lib/billetweb'
 
+export const maxDuration = 60
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 
 // Anti-doublon en mémoire process : une session déjà traitée ne recrée pas de billets.
 const processed = new Set<string>()
@@ -41,16 +46,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Session non-guichet' }, { status: 400 })
   }
 
-  // Verrou partagé (Stripe) : si le webhook a déjà créé les billets, on s'arrête.
-  // Le Set en mémoire ne suffit pas — webhook et confirm sont deux process distincts.
-  if (session.metadata?.tickets_created === '1') {
-    processed.add(sessionId)
-  // Verrou : empêche le webhook de recréer les mêmes billets
+  // Verrou partagé, tenu par Convex (transaction sérialisable). Le Set en mémoire
+  // ne protège qu'un seul process : webhook et confirm tournent séparément.
+  const lockKey = `lock:guichet:${sessionId}`
+  let acquired = false
   try {
-    await stripe.checkout.sessions.update(sessionId, {
-      metadata: { ...(session.metadata || {}), tickets_created: '1' },
-    })
-  } catch { /* le Set local protège déjà ce process */ }
+    const claim = await convex.mutation(api.settings.claim, { key: lockKey })
+    acquired = !!claim?.acquired
+  } catch (e) {
+    console.error('[guichet-confirm] verrou Convex indisponible', e)
+    acquired = session.metadata?.tickets_created !== '1'
+  }
+  if (!acquired) {
+    processed.add(sessionId)
     return NextResponse.json({ ok: true, alreadyDone: true })
   }
 
@@ -85,15 +93,17 @@ export async function POST(req: NextRequest) {
 
   if (!result.ok) {
     console.error('[guichet-confirm] Billets non créés après paiement:', result.error)
+    // On relâche le verrou : un nouvel essai doit rester possible.
+    try { await convex.mutation(api.settings.release, { key: lockKey }) } catch {}
     return NextResponse.json({ error: result.error, billetweb_raw: result.raw }, { status: 502 })
   }
 
   processed.add(sessionId)
-  // Verrou : empêche le webhook de recréer les mêmes billets
+  // Trace lisible côté Stripe (le verrou effectif reste celui de Convex).
   try {
     await stripe.checkout.sessions.update(sessionId, {
       metadata: { ...(session.metadata || {}), tickets_created: '1' },
     })
-  } catch { /* le Set local protège déjà ce process */ }
+  } catch { /* non bloquant */ }
   return NextResponse.json({ ok: true, count: lines.length, email: buyerEmail })
 }
