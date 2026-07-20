@@ -186,6 +186,36 @@ const nextConfig = {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
+
+          // ---- CSP en mode OBSERVATION ----
+          // 'Report-Only' : le navigateur SIGNALE les violations dans la console
+          // mais ne bloque RIEN. Zéro risque pour la billetterie.
+          //
+          // Marche à suivre : naviguer sur tout le site (billetterie, guichet,
+          // dons, dashboard), relever les violations en console, compléter la
+          // liste ci-dessous, puis renommer la clé en 'Content-Security-Policy'
+          // pour l'activer réellement.
+          {
+            key: 'Content-Security-Policy-Report-Only',
+            value: [
+              "default-src 'self'",
+              // Next.js injecte des scripts inline ; Clerk et Stripe chargent les leurs
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.billetweb.fr https://js.stripe.com https://*.clerk.accounts.dev https://challenges.cloudflare.com",
+              // Styles en ligne utilisés partout dans le site
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: blob: https://res.cloudinary.com https://api.qrserver.com https://www.billetweb.fr https://img.clerk.com",
+              "font-src 'self' data:",
+              // Convex (temps réel), Clerk, Stripe, Brevo, Cloudinary
+              "connect-src 'self' https://*.convex.cloud wss://*.convex.cloud https://*.clerk.accounts.dev https://api.stripe.com https://api.brevo.com https://api.cloudinary.com https://www.billetweb.fr",
+              // Contenus intégrés : billetterie, paiement, vidéos, musique
+              "frame-src 'self' https://www.billetweb.fr https://checkout.stripe.com https://js.stripe.com https://www.youtube.com https://embed.music.apple.com https://boutique.tourisme-pyrenees-mediterranee.com",
+              // Envois de formulaire (paiement)
+              "form-action 'self' https://www.billetweb.fr https://checkout.stripe.com",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "frame-ancestors 'self'",
+            ].join('; '),
+          },
         ],
       },
     ]
