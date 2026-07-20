@@ -155,6 +155,41 @@ const nextConfig = {
       }
     ]
   },
+
+  // ---- En-têtes de sécurité ----
+  // Protections préventives (clickjacking, MIME-sniffing, fuite de référent...).
+  // Volontairement SANS Content-Security-Policy : une CSP mal réglée casserait
+  // le widget Billetweb, Stripe ou Cloudinary. À voir après le festival, avec
+  // le temps de tester chaque source.
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          // Empêche l'affichage du site dans une iframe tierce (clickjacking)
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+
+          // Le navigateur respecte le type déclaré au lieu de le deviner
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+
+          // N'envoie l'URL complète qu'aux pages du même site
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+
+          // Désactive les API sensibles dont le site n'a pas besoin
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=(), payment=(self "https://checkout.stripe.com" "https://www.billetweb.fr"), interest-cohort=()',
+          },
+
+          // Force HTTPS pendant 2 ans (déjà actif, on le fige explicitement)
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
