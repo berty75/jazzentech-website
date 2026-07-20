@@ -1,7 +1,6 @@
 'use client'
 
 import OfficeTourismeSaintGenis from '@/components/OfficeTourismeSaintGenis'
-import BilletterieCustom from '@/components/BilletterieCustom'
 
 import React, { useState, useEffect } from 'react'
 import { MapPin, Ticket, Music, Headphones, ExternalLink, ArrowRight } from 'lucide-react'
@@ -9,6 +8,38 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BilletwebPopupButton from '@/components/BilletwebPopupButton'
 
+function BilletwebWidget() {
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = 'https://www.billetweb.fr/js/export.js'
+    script.async = true
+    document.head.appendChild(script)
+    return () => {
+      const existingScript = document.querySelector('script[src="https://www.billetweb.fr/js/export.js"]')
+      if (existingScript) document.head.removeChild(existingScript)
+    }
+  }, [])
+
+  return (
+    <div className="billetweb-container">
+      <a
+        title="Vente de billets en ligne"
+        href="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
+        className="shop_frame hidden"
+        target="_blank"
+        data-src="https://www.billetweb.fr/shop.php?event=jazz-en-tech"
+        data-max-width="100%"
+        data-initial-height="800"
+        data-scrolling="no"
+        data-id="jazz-en-tech"
+        data-resize="1"
+      >
+        Vente de billets en ligne
+      </a>
+    </div>
+  )
+}
 
 function CountdownTimer() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
@@ -272,8 +303,11 @@ export default function Billetterie() {
                   <h3 className="font-bold text-white text-lg">🎟️ Réserver mes billets</h3>
                   <p className="text-xs mt-1" style={{ color: '#f7f3e9' }}>Paiement sécurisé • Billets par email</p>
                 </div>
-                <div className="p-4" style={{ backgroundColor: 'rgba(114, 47, 55, 0.25)' }}>
-                  <BilletterieCustom />
+                <div className="bg-white p-3">
+                  <BilletwebWidget />
+                </div>
+                <div className="p-3 text-center text-xs border-t" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', color: '#f7f3e9', borderColor: 'rgba(212, 175, 55, 0.2)' }}>
+                  🔒 CB • PayPal • Virement
                 </div>
               </div>
               <div className="text-center mt-3">
