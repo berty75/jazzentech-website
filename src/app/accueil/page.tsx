@@ -1,7 +1,9 @@
 // PATH: src/app/accueil/page.tsx
 'use client'
 
+
 import React from 'react'
+import PlacesRestantes from '@/components/PlacesRestantes'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, MapPin, Music, Users, Star } from 'lucide-react'
@@ -162,6 +164,9 @@ export default function Home() {
                         <p className="text-sm font-semibold" style={{ color: '#d4af37' }}>{c.date} • 21h</p>
                         <p className="font-bold text-white truncate">{c.name}</p>
                         <p className="text-sm truncate" style={{ color: '#f7f3e9' }}>{c.sub}</p>
+                        <div className="mt-1.5 empty:hidden">
+                          <PlacesRestantes slug={c.slug} />
+                        </div>
                       </div>
                       <div className="text-right shrink-0">
                         {c.promo && promoActive ? (

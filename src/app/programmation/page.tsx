@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import PlacesRestantes from '@/components/PlacesRestantes'
 import { Calendar, MapPin, Clock, Music, Ticket, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -140,6 +141,7 @@ export default function Programmation() {
                 <div className="p-4 flex flex-col flex-1">
                   <h3 className="text-base font-bold text-white leading-tight min-h-[2.5rem] line-clamp-2">{concert.name}</h3>
                   <p className="text-xs mb-2" style={{ color: '#d4af37' }}>{concert.subtitle}</p>
+                  <div className="mb-2 empty:hidden"><PlacesRestantes slug={concert.slug} /></div>
                   <p className="text-xs mb-3 flex items-center gap-1.5" style={{ color: '#f7f3e9' }}>
                     <Calendar className="w-3.5 h-3.5" style={{ color: '#d4af37' }} />
                     {concert.date} · {concert.time}
@@ -220,6 +222,7 @@ export default function Programmation() {
                   <div className="p-4 flex flex-col flex-1">
                     <h3 className="text-base font-bold text-white leading-tight min-h-[2.5rem] line-clamp-2">{concert.name}</h3>
                     <p className="text-xs mb-2" style={{ color: '#d4af37' }}>{concert.subtitle}</p>
+                  <div className="mb-2 empty:hidden"><PlacesRestantes slug={concert.slug} /></div>
                     <p className="text-xs mb-3 flex items-center gap-1.5" style={{ color: '#f7f3e9' }}>
                       <Calendar className="w-3.5 h-3.5" style={{ color: '#d4af37' }} />
                       {concert.date} · {concert.time}

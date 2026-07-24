@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react'
+import PlacesRestantes from '@/components/PlacesRestantes'
 import { notFound } from 'next/navigation'
 import { Calendar, MapPin, Clock, Music, Instagram, Apple, Facebook } from 'lucide-react'
 import Link from 'next/link'
@@ -959,6 +960,9 @@ export default async function ArtistPage({ params }: ArtistPageProps) {
                 <ConcertGratuitInfo venue={artist.venue} date={artist.date} time={artist.time} />
               ) : artist.ticketUrl ? (
                 <div className="text-center">
+                  <div className="mb-3 empty:hidden">
+                    <PlacesRestantes slug={slug} />
+                  </div>
                   {artist.ticketType === 'saint-genis' && (
                     <p className="text-sm mb-3" style={{ color: '#b87333' }}>
                       Cloître de Saint-Génis-des-Fontaines • 15&nbsp;€

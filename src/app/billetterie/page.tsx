@@ -1,6 +1,7 @@
 'use client'
 
 import OfficeTourismeSaintGenis from '@/components/OfficeTourismeSaintGenis'
+import PlacesRestantes from '@/components/PlacesRestantes'
 
 import React, { useState, useEffect } from 'react'
 import { MapPin, Ticket, Music, Headphones, ExternalLink, ArrowRight } from 'lucide-react'
@@ -202,6 +203,9 @@ export default function Billetterie() {
                       <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#d4af37' }}>{concert.date} • {concert.time}</p>
                       <Link href={`/artistes/${concert.slug}`} className="font-bold text-white hover:underline block truncate">{concert.name}</Link>
                       <p className="text-sm truncate mb-2" style={{ color: '#f7f3e9' }}>{concert.subtitle}</p>
+                      <div className="mb-2 empty:hidden">
+                        <PlacesRestantes slug={concert.slug} />
+                      </div>
                       <div className="flex items-center justify-between gap-2">
                         <div>
                           {isPromoActive(concert) ? (
