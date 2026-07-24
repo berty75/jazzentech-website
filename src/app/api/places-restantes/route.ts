@@ -15,7 +15,7 @@ const BASE = 'https://www.billetweb.fr/api'
 // l'office de tourisme et 40 réservées aux invités = 450. C'est la même valeur
 // que le quota posé dans Billetweb, et les deux doivent rester alignées.
 const JAUGES: { match: string; capacity: number }[] = [
-  { match: 'truffaz', capacity: 450 },
+  { match: 'truffaz', capacity: 480 },
   { match: 'dal sasso', capacity: 450 },
   { match: 'ladyva', capacity: 450 },
   { match: 'akpe', capacity: 450 },
